@@ -14,3 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('', 'IndexController@getIndex');
+Route::get('error','ErController@getError' );
+
+Route::prefix('movie')->group(function () {
+    Route::get('', 'MovieController@GetMovie');
+    Route::get('page', 'MovieController@GetPage');
+});
+Route::get('search', 'SearchController@GetSearch');
+Route::get('sigup','SigUpController@GetSigUp');
