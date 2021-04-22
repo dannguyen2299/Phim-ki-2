@@ -24,3 +24,5 @@ Route::get('search', 'SearchController@GetSearch');
 Route::get('sigup','SigUpController@GetSigUp');
 
 //Dannnnnnnnnnnnn
+
+//Dan_2
