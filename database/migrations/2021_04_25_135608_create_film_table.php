@@ -21,7 +21,8 @@ class CreateFilmTable extends Migration
             $table->text('introduce_film')->nullable(false);
             $table->time('time');
             $table->string('url_trailer',255)->nullable(false);
-            $table->string('url_image',255)->nullable(false);
+            $table->string('url_image',255)->nullable();
+            $table->string('url_image_2',255)->nullable();
             $table->string('url_cmt_fb',255)->nullable();
             $table->integer('status')->unsigned()->nullable(false);
             // Tao lien ket

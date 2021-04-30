@@ -16,8 +16,8 @@ class CreateEpisodeTable extends Migration
         Schema::create('episode', function (Blueprint $table) {
             $table->increments('id_episode');
             $table->string('name_episode',30)->nullable(false);
-            $table->string('url_first',255)->nullable(false);
-            $table->string('url_second',255)->nullable(false);
+            $table->string('url_first',255)->nullable();
+            $table->string('url_second',255)->nullable();
             $table->integer('status')->unsigned();
             // Tao khoa ngoai
             $table->integer('id_film')->unsigned();

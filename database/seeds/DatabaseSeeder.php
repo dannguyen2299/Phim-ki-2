@@ -16,6 +16,11 @@ class DatabaseSeeder extends Seeder
          $this->call(user::class);
          $this->call(film::class);
          $this->call(episode::class);
+
+         $this->call(role::class);
+         $this->call(message::class);
+         $this->call(detail_film::class);
+         $this->call(detail_category::class);
         // 
          
     }
