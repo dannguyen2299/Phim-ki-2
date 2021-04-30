@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 25, 2021 lúc 06:16 PM
+-- Thời gian đã tạo: Th4 30, 2021 lúc 06:07 PM
 -- Phiên bản máy phục vụ: 10.4.14-MariaDB
 -- Phiên bản PHP: 7.4.10
 
@@ -59,6 +59,18 @@ CREATE TABLE `detail_category` (
   `id_category` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `detail_category`
+--
+
+INSERT INTO `detail_category` (`idd`, `status`, `id_film`, `id_category`) VALUES
+(1, 1, 1, 1),
+(2, 0, 1, 1),
+(3, 1, 2, 2),
+(4, 0, 2, 2),
+(5, 1, 1, 1),
+(6, 0, 3, 3);
+
 -- --------------------------------------------------------
 
 --
@@ -74,6 +86,18 @@ CREATE TABLE `detail_film` (
   `id_user` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `detail_film`
+--
+
+INSERT INTO `detail_film` (`idd`, `rate`, `follow`, `status`, `id_film`, `id_user`) VALUES
+(1, 5, 100, 1, 1, 1),
+(2, 6, 200, 0, 1, 2),
+(3, 7, 300, 1, 2, 2),
+(4, 8, 400, 0, 2, 1),
+(5, 9, 500, 1, 1, 3),
+(6, 10, 600, 0, 2, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -83,8 +107,8 @@ CREATE TABLE `detail_film` (
 CREATE TABLE `episode` (
   `id_episode` int(10) UNSIGNED NOT NULL,
   `name_episode` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `url_first` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `url_second` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `url_first` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `url_second` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status` int(10) UNSIGNED NOT NULL,
   `id_film` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -114,7 +138,8 @@ CREATE TABLE `film` (
   `introduce_film` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `time` time NOT NULL,
   `url_trailer` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `url_image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `url_image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `url_image_2` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `url_cmt_fb` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status` int(10) UNSIGNED NOT NULL,
   `id_nation` int(10) UNSIGNED NOT NULL
@@ -124,13 +149,13 @@ CREATE TABLE `film` (
 -- Đang đổ dữ liệu cho bảng `film`
 --
 
-INSERT INTO `film` (`id_film`, `name_film`, `year`, `number_view`, `introduce_film`, `time`, `url_trailer`, `url_image`, `url_cmt_fb`, `status`, `id_nation`) VALUES
-(1, '50 Sắc Thái', 2019, 100000, 'Phim kể về mối tình giữa T và Q', '01:08:00', 'a.url', 'b.img', 'c.facebook', 1, 1),
-(2, '51 Sắc Thái', 2020, 100000, 'Phim kể về mối tình giữa T và Q', '01:08:00', 'a.url', 'b.img', 'c.facebook', 1, 2),
-(3, '52 Sắc Thái', 2021, 100000, 'Phim kể về mối tình giữa T và Q', '01:08:00', 'a.url', 'b.img', 'c.facebook', 1, 3),
-(4, '53 Sắc Thái', 2022, 100000, 'Phim kể về mối tình giữa T và Q', '01:08:00', 'a.url', 'b.img', 'c.facebook', 1, 4),
-(5, '54 Sắc Thái', 2023, 100000, 'Phim kể về mối tình giữa T và Q', '01:08:00', 'a.url', 'b.img', 'c.facebook', 1, 5),
-(6, '55 Sắc Thái', 2024, 100000, 'Phim kể về mối tình giữa T và Q', '01:08:00', 'a.url', 'b.img', 'c.facebook', 1, 6);
+INSERT INTO `film` (`id_film`, `name_film`, `year`, `number_view`, `introduce_film`, `time`, `url_trailer`, `url_image`, `url_image_2`, `url_cmt_fb`, `status`, `id_nation`) VALUES
+(1, '50 Sắc Thái', 2019, 100000, 'Phim kể về mối tình giữa T và Q', '01:08:00', 'a.url', 'b.img', 'd.img', 'c.facebook', 1, 1),
+(2, '51 Sắc Thái', 2020, 100000, 'Phim kể về mối tình giữa T và Q', '01:08:00', 'a.url', 'b.img', 'd.img', 'c.facebook', 1, 2),
+(3, '52 Sắc Thái', 2021, 100000, 'Phim kể về mối tình giữa T và Q', '01:08:00', 'a.url', 'b.img', 'd.img', 'c.facebook', 1, 3),
+(4, '53 Sắc Thái', 2022, 100000, 'Phim kể về mối tình giữa T và Q', '01:08:00', 'a.url', 'b.img', 'd.img', 'c.facebook', 1, 4),
+(5, '54 Sắc Thái', 2023, 100000, 'Phim kể về mối tình giữa T và Q', '01:08:00', 'a.url', 'b.img', 'd.img', 'c.facebook', 1, 5),
+(6, '55 Sắc Thái', 2024, 100000, 'Phim kể về mối tình giữa T và Q', '01:08:00', 'a.url', 'b.img', 'd.img', 'c.facebook', 1, 6);
 
 -- --------------------------------------------------------
 
@@ -145,6 +170,17 @@ CREATE TABLE `message` (
   `message` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `id_episode` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `message`
+--
+
+INSERT INTO `message` (`id_message`, `name`, `email`, `message`, `id_episode`) VALUES
+(1, 'duy', 'duy@gmail.com', 'Không xem được phim', 1),
+(2, 'thanh', 'thanh@gmail.com', 'Xem không được phim', 1),
+(3, 'dan', 'dan@gmail.com', 'Phim không xem được', 2),
+(4, 'hoang', 'hoang@gmail.com', 'Xem được phim không', 2),
+(5, 'anh', 'anh@gmail.com', 'Phim được xem không', 3);
 
 -- --------------------------------------------------------
 
@@ -163,15 +199,15 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '2021_04_25_130652_create_category_table', 1),
-(2, '2021_04_25_134539_create_nation_table', 2),
-(3, '2021_04_25_134808_create_user_table', 2),
-(4, '2021_04_25_135608_create_film_table', 2),
-(5, '2021_04_25_141531_create_episode_table', 2),
-(6, '2021_04_25_142214_create_message_table', 2),
-(7, '2021_04_25_143019_create_role_table', 2),
-(8, '2021_04_25_143544_create_detail_category_table', 2),
-(9, '2021_04_25_144155_create_detail_film_table', 2);
+(10, '2021_04_25_130652_create_category_table', 1),
+(11, '2021_04_25_134539_create_nation_table', 1),
+(12, '2021_04_25_134808_create_user_table', 1),
+(13, '2021_04_25_135608_create_film_table', 1),
+(14, '2021_04_25_141531_create_episode_table', 1),
+(15, '2021_04_25_142214_create_message_table', 1),
+(16, '2021_04_25_143019_create_role_table', 1),
+(17, '2021_04_25_143544_create_detail_category_table', 1),
+(18, '2021_04_25_144155_create_detail_film_table', 1);
 
 -- --------------------------------------------------------
 
@@ -210,6 +246,18 @@ CREATE TABLE `role` (
   `status` int(10) UNSIGNED NOT NULL,
   `id_user` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `role`
+--
+
+INSERT INTO `role` (`id_role`, `name_role`, `status`, `id_user`) VALUES
+(1, 'name1', 1, 1),
+(2, 'name2', 0, 2),
+(3, 'name3', 1, 3),
+(4, 'name4', 0, 4),
+(5, 'name5', 1, 3),
+(6, 'name6', 0, 2);
 
 -- --------------------------------------------------------
 
@@ -321,19 +369,19 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT cho bảng `category`
 --
 ALTER TABLE `category`
-  MODIFY `id_category` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_category` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT cho bảng `detail_category`
 --
 ALTER TABLE `detail_category`
-  MODIFY `idd` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `idd` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT cho bảng `detail_film`
 --
 ALTER TABLE `detail_film`
-  MODIFY `idd` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `idd` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT cho bảng `episode`
@@ -351,13 +399,13 @@ ALTER TABLE `film`
 -- AUTO_INCREMENT cho bảng `message`
 --
 ALTER TABLE `message`
-  MODIFY `id_message` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_message` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT cho bảng `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT cho bảng `nation`
@@ -369,7 +417,7 @@ ALTER TABLE `nation`
 -- AUTO_INCREMENT cho bảng `role`
 --
 ALTER TABLE `role`
-  MODIFY `id_role` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_role` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT cho bảng `user`
