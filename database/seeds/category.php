@@ -22,6 +22,8 @@ class category extends Seeder
             ['id_category'=>5,'name_category'=>'Phim Taihen','status'=>1],
             ['id_category'=>6,'name_category'=>'Phim Nhật Bổn','status'=>1],
             ['id_category'=>7,'name_category'=>'Phim Việt Nam','status'=>1],
+            ['id_category'=>8,'name_category'=>'Phim Việt Nam','status'=>1],
+            ['id_category'=>9,'name_category'=>'Phim Việt','status'=>1],
          ]);
     }
 }
