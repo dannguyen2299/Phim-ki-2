@@ -26,3 +26,13 @@ Route::get('sigup','SigUpController@GetSigUp');
 //Dannnnnnnnnnnnn
 
 //Dan_2
+
+//Thanh - admin
+
+Route::get('dashboard', 'AdminController@show_dashboard');
+
+//* Category
+Route::get('add_category', 'CategoryController@add_category');
+Route::get('edit_category', 'CategoryController@edit_category');
+Route::get('list_category', 'CategoryController@list_category');
+//end - admin
