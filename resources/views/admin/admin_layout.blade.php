@@ -264,17 +264,17 @@ use Illuminate\Support\Facades\Session;
                         </li>
 
                         <li class="submenu">
-                            <a id="tables" href="#">
+                            <a id="tables">
                                 <i class="fas fa-table"></i>
-                                <span> Tables </span>
+                                <span> Category </span>
                                 <span class="menu-arrow"></span>
                             </a>
                             <ul class="list-unstyled">
                                 <li>
-                                    <a href="tables-basic.html">Basic Tables</a>
+                                    <a href="{{URL::to('/add_category')}}">Add Category</a>
                                 </li>
                                 <li>
-                                    <a href="tables-datatable.html">Data Tables</a>
+                                    <a href="{{URL::to('/list_category')}}">All category</a>
                                 </li>
                             </ul>
                         </li>
@@ -353,21 +353,7 @@ use Illuminate\Support\Facades\Session;
     <script>
         $(document).on('ready', function() {
             // data-tables
-            $('#dataTable').DataTable({
-                columns: [{
-                    title: "Name"
-                }, {
-                    title: "Position"
-                }, {
-                    title: "Office"
-                }, {
-                    title: "Extn."
-                }, {
-                    title: "Date"
-                }, {
-                    title: "Salary"
-                }]
-            });
+            $('#dataTable').DataTable();
 
             // counter-up
             $('.counter').counterUp({

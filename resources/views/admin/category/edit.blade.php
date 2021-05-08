@@ -5,63 +5,37 @@
 <div class="row">
     <div class="col-xl-12">
         <div class="card-body">
-            <form autocomplete="off" action="#">
+        @foreach($category as $key=>$value)
+            <form autocomplete="off" action="{{URL::to('update_category/'.$value->id_category)}}">
                 <div class="form-group row">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Category Id</label>
                     <div class="col-sm-10">
-                        <input type="email" class="form-control" id="inputEmail3" placeholder="Email" autocomplete="off">
+                        <input type="text" value="{{$value->id_category}}" name="category_id" disabled class="form-control" id="inputEmail3" placeholder="Category Id" autocomplete="off">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+                    <label for="inputPassword3" class="col-sm-2 col-form-label">Category Name</label>
                     <div class="col-sm-10">
-                        <input type="password" class="form-control" id="inputPassword3" placeholder="Password" autocomplete="off">
-                    </div>
-                </div>
-                <fieldset class="form-group">
-                    <div class="row">
-                        <label class="col-sm-2 col-form-label">Radios</label>
-                        <div class="col-sm-10">
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
-                                    Option one is this and that&mdash;be sure to include why
-                                    it's great
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
-                                    Option two can be something else and selecting it will
-                                    deselect option one
-                                </label>
-                            </div>
-                            <div class="form-check disabled">
-                                <label class="form-check-label">
-                                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option3" disabled>
-                                    Option three is disabled
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </fieldset>
-                <div class="form-group row">
-                    <div class="col-sm-2">Checkbox</div>
-                    <div class="col-sm-10">
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox"> Check me out
-                            </label>
-                        </div>
+                        <input type="text" value="{{$value->name_category}}" name="category_name" class="form-control" id="inputPassword3" placeholder="Category Name" autocomplete="off">
                     </div>
                 </div>
                 <div class="form-group row">
+                    <label for="sl_status" class="col-sm-2 col-form-label">Status</label>
                     <div class="col-sm-10">
-                        <button type="submit" class="btn btn-primary">Update</button>
+                        <select name="sl_status" id="sl_status" class="form-control">
+                            <option value="1" <?php if ($value->status == 1) echo 'selected';?>>Show</option>
+                            <option value="0" <?php if ($value->status == 0) echo 'selected';?>>Hidden</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group row">
+                    <div class="col-sm-10">
+                        <button type="submit" class="btn btn-success">Update</button>
                     </div>
                 </div>
             </form>
-
+        @endforeach
             </div>
     </div>
 </div>

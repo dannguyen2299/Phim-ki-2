@@ -33,6 +33,9 @@ Route::get('dashboard', 'AdminController@show_dashboard');
 
 //* Category
 Route::get('add_category', 'CategoryController@add_category');
-Route::get('edit_category', 'CategoryController@edit_category');
+Route::get('edit_category/{category_id}', 'CategoryController@edit_category');
 Route::get('list_category', 'CategoryController@list_category');
+Route::get('update_category/{category_id}', 'CategoryController@update_category');
+Route::get('save_category', 'CategoryController@save_category');
+Route::get('delete_category/{category_id}', 'CategoryController@delete_category');
 //end - admin
