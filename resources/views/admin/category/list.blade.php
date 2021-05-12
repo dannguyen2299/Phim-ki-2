@@ -25,7 +25,7 @@ use Illuminate\Support\Facades\Session;
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Category_name</th>
+                                <th>Category name</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
@@ -33,20 +33,24 @@ use Illuminate\Support\Facades\Session;
                         <tbody>
                         @foreach($all_category as $key=>$value)
                             <tr>
-                                <td>{{$value->id_category}}</td>
-                                <td>{{$value->name_category}}</td>
+                                <td>{{$value->category_id}}</td>
+                                <td>{{$value->category_name}}</td>
                                 <td>
                                 <?php
-                                    if ($value->status == '1'){
-                                        echo "Show";
-                                    } else {
-                                        echo "Hidden";
-                                    }
+                                if ($value->status == '1'){
+                                ?>
+                                    <a href="{{URL::to('admin_1/unactive-category/'.$value->category_id)}}"><i class="far fa-eye"></i></a>
+                                <?php    
+                                } else {
+                                ?>
+                                    <a href="{{URL::to('admin_1/active-category/'.$value->category_id)}}"><i class="far fa-eye-slash"></i></a>
+                                <?php
+                                }
                                 ?>
                                 </td>
                                 <td>
-                                    <a href="{{URL::to('edit_category/'.$value->id_category)}}" class="btn btn-success"><i class="fas fa-pencil-alt"></i></a>
-                                    <a href="{{URL::to('delete_category/'.$value->id_category)}}" class="btn btn-danger"  onclick="return confirm('Do you want to delete this brand product?')"><i class="fas fa-times"></i></a>
+                                    <a href="{{URL::to('admin_1/edit-category/'.$value->category_id)}}" class="btn btn-success"><i class="fas fa-pencil-alt"></i></a>
+                                    <a href="{{URL::to('admin_1/delete-category/'.$value->category_id)}}" class="btn btn-danger"  onclick="return confirm('Do you want to delete this brand product?')"><i class="fas fa-times"></i></a>
                                 </td>
                             </tr>
                         @endforeach
@@ -65,4 +69,11 @@ use Illuminate\Support\Facades\Session;
 
 </div>
 <!-- end row-->
+@endsection
+
+@section('script')
+<script>
+    $('.submenu ul li a').removeClass('active');
+    $('#submenu-category ul li a').last().addClass('active');
+</script>
 @endsection

@@ -14,13 +14,13 @@ class CreateMessageTable extends Migration
     public function up()
     {
         Schema::create('message', function (Blueprint $table) {
-            $table->increments('id_message');
-            $table->string('name',255)->nullable(false);
-            $table->string('email',255)->nullable(false);
-            $table->text('message',255);
+            $table->increments('message_id');
+            $table->string('user_name',255)->nullable(false);
+            $table->string('user_email',255)->nullable(false);
+            $table->text('content',255);
             // Tao khoa ngoai
-            $table->integer('id_episode')->unsigned();
-            $table->foreign('id_episode')->references('id_episode')->on('episode')->onDelete('cascade');         
+            $table->integer('episode_id')->unsigned();
+            $table->foreign('episode_id')->references('episode_id')->on('episode')->onDelete('cascade');         
         });
     }
 

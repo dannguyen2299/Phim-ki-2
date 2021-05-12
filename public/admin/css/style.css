@@ -540,7 +540,7 @@ body.adminbody .main-sidebar.left {
     border-top: 0
 }
 
-#sidebar-menu ul ul li.active a {
+#sidebar-menu ul ul li a.active {
     background-color: #414d58
 }
 
@@ -1662,3 +1662,12 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
 
 /** Thanh custom  */
 
+.fa-eye{
+    color: rgb(0, 149, 0);
+    font-size: 17px;
+}
+
+.fa-eye-slash{
+    color: red;
+    font-size: 17px;
+}

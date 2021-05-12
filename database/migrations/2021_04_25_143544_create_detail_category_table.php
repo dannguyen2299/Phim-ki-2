@@ -13,14 +13,14 @@ class CreateDetailCategoryTable extends Migration
      */
     public function up()
     {
-        Schema::create('detail_category', function (Blueprint $table) {
+        Schema::create('category_detail', function (Blueprint $table) {
             $table->increments('idd');
             $table->integer('status')->unsigned();
             // Tao khoa ngoai
-            $table->integer('id_film')->unsigned();
-            $table->integer('id_category')->unsigned();
-            $table->foreign('id_film')->references('id_film')->on('film')->onDelete('cascade');
-            $table->foreign('id_category')->references('id_category')->on('category')->onDelete('cascade');
+            $table->integer('movie_id')->unsigned();
+            $table->integer('category_id')->unsigned();
+            $table->foreign('movie_id')->references('movie_id')->on('movie')->onDelete('cascade');
+            $table->foreign('category_id')->references('category_id')->on('category')->onDelete('cascade');
             
         });
     }
@@ -32,6 +32,6 @@ class CreateDetailCategoryTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('detail_category');
+        Schema::dropIfExists('category_detail');
     }
 }

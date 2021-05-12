@@ -9,3 +9,10 @@
 </div>
 
 @endsection
+
+@section('script')
+<script>
+    $('.submenu a').removeClass('active');
+    $('#submenu-dashboard a').addClass('active');
+</script>
+@endsection

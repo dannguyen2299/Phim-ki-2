@@ -38,7 +38,7 @@ use Illuminate\Support\Facades\Session;
 
             <!-- LOGO -->
             <div class="headerbar-left">
-                <a href="index.html" class="logo">
+                <a href="{{URL::to('admin_1/')}}" class="logo">
                     <img alt="Logo" src="images/logo.png" />
                     <span>Nura Admin</span>
                 </a>
@@ -249,32 +249,48 @@ use Illuminate\Support\Facades\Session;
                 <div id="sidebar-menu">
 
                     <ul>
-                        <li class="submenu">
-                            <a class="active" href="{{URL::to('/dashboard')}}">
+                        <li class="submenu" id="submenu-dashboard">
+                            <a href="{{URL::to('admin_1/dashboard')}}">
                                 <i class="fas fa-bars"></i>
                                 <span> Dashboard </span>
                             </a>
                         </li>
 
-                        <li class="submenu">
-                            <a href="{{URL::to('/dashboard')}}">
+                        <li class="submenu" id="submenu-user">
+                            <a href="{{URL::to('admin_1/dashboard')}}">
                                 <i class="fas fa-user"></i>
                                 <span> Users </span>
                             </a>
                         </li>
 
-                        <li class="submenu">
-                            <a id="tables">
+                        <li class="submenu" id="submenu-category">
+                            <a href="{{Request::url().'#'}}" id="tables">
                                 <i class="fas fa-table"></i>
                                 <span> Category </span>
                                 <span class="menu-arrow"></span>
                             </a>
                             <ul class="list-unstyled">
                                 <li>
-                                    <a href="{{URL::to('/add_category')}}">Add Category</a>
+                                    <a href="{{URL::to('admin_1/add-category')}}">Add Category</a>
                                 </li>
                                 <li>
-                                    <a href="{{URL::to('/list_category')}}">All category</a>
+                                    <a href="{{URL::to('admin_1/list-category')}}">All category</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="submenu" id="submenu-movie">
+                            <a href="{{Request::url().'#'}}" id="tables">
+                                <i class="fas fa-table"></i>
+                                <span> Movie </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <ul class="list-unstyled">
+                                <li>
+                                    <a href="{{URL::to('admin_1/add-movie')}}">Add Movie</a>
+                                </li>
+                                <li>
+                                    <a href="{{URL::to('admin_1/list-movie')}}">All Movie</a>
                                 </li>
                             </ul>
                         </li>
@@ -338,7 +354,6 @@ use Illuminate\Support\Facades\Session;
     <!-- END main -->
 
     <!-- BEGIN Java Script for this page -->
-    <script src="plugins/chart.js/Chart.min.js"></script>
     <script src="plugins/datatables/datatables.min.js"></script>
 
     <!-- Counter-Up-->
@@ -348,8 +363,13 @@ use Illuminate\Support\Facades\Session;
     <!-- dataTabled data -->
     <script src="data/data_datatables.js"></script>
 
-    <!-- Charts data -->
-    <script src="data/data_charts_dashboard.js"></script>
+    <!-- Add active class in left sidebar -->
+    @yield('script')
+    
+    <!-- Upload files -->
+    <script></script>
+
+    <!-- Jquery for data-table -->
     <script>
         $(document).on('ready', function() {
             // data-tables
@@ -361,9 +381,10 @@ use Illuminate\Support\Facades\Session;
                 time: 600
             });
         });
+
+        // NAVIGATION HIGHLIGHT & OPEN PARENT
+        $("#sidebar-menu ul li.submenu a.active").parents("li:last").children("a:first").addClass("active").trigger("click");
+    
     </script>
-    <!-- END Java Script for this page -->
-
 </body>
-
 </html>

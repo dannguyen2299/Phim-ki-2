@@ -13,16 +13,17 @@ class CreateDetailFilmTable extends Migration
      */
     public function up()
     {
-        Schema::create('detail_film', function (Blueprint $table) {
+        Schema::create('movie_detail', function (Blueprint $table) {
             $table->increments('idd');
             $table->integer('rate')->unsigned();
             $table->integer('follow')->unsigned();
             $table->integer('status')->unsigned();
             // Tao khoa ngoai
-            $table->integer('id_film')->unsigned();
-            $table->integer('id_user')->unsigned();
-            $table->foreign('id_film')->references('id_film')->on('film')->onDelete('cascade');
-            $table->foreign('id_user')->references('id_user')->on('user')->onDelete('cascade');
+            $table->integer('movie_id')->unsigned();
+            $table->integer('user_id')->unsigned();
+            $table->foreign('movie_id')->references('movie_id')->on('movie')->onDelete('cascade');
+            $table->foreign('user_id')->references('user_id')->on('user')->onDelete('cascade');
+            
         });
     }
 
@@ -33,6 +34,6 @@ class CreateDetailFilmTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('detail_film');
+        Schema::dropIfExists('movie_detail');
     }
 }

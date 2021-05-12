@@ -13,11 +13,11 @@ class episode extends Seeder
     {
         DB::table('episode')->delete();
         DB::table('episode')->insert([
-            ['id_episode'=>1,'name_episode'=>'Nooooooooooo','url_first'=>'a.com','url_second'=>'b.com','status'=>1,'id_film'=>1],
-            ['id_episode'=>2,'name_episode'=>'Nooooooooooo','url_first'=>'a.com','url_second'=>'b.com','status'=>0,'id_film'=>2],
-            ['id_episode'=>3,'name_episode'=>'Nooooooooooo','url_first'=>'a.com','url_second'=>'b.com','status'=>1,'id_film'=>3],
-            ['id_episode'=>4,'name_episode'=>'Nooooooooooo','url_first'=>'a.com','url_second'=>'b.com','status'=>0,'id_film'=>4],
-            ['id_episode'=>5,'name_episode'=>'Nooooooooooo','url_first'=>'a.com','url_second'=>'b.com','status'=>1,'id_film'=>1],
+            ['episode_id'=>1,'episode_name'=>'Nooooooooooo','url_first'=>'a.com','url_second'=>'b.com','status'=>1,'movie_id'=>1],
+            ['episode_id'=>2,'episode_name'=>'Nooooooooooo','url_first'=>'a.com','url_second'=>'b.com','status'=>0,'movie_id'=>2],
+            ['episode_id'=>3,'episode_name'=>'Nooooooooooo','url_first'=>'a.com','url_second'=>'b.com','status'=>1,'movie_id'=>3],
+            ['episode_id'=>4,'episode_name'=>'Nooooooooooo','url_first'=>'a.com','url_second'=>'b.com','status'=>0,'movie_id'=>4],
+            ['episode_id'=>5,'episode_name'=>'Nooooooooooo','url_first'=>'a.com','url_second'=>'b.com','status'=>1,'movie_id'=>1],
         ]);
         //
     }

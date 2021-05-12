@@ -16,12 +16,12 @@ class role extends Seeder
         //
         DB::table('role')->delete();
         DB::table('role')->insert([
-            ['id_role'=>1,'name_role'=>'name1','status'=>1,'id_user'=>1],
-            ['id_role'=>2,'name_role'=>'name2','status'=>0,'id_user'=>2],
-            ['id_role'=>3,'name_role'=>'name3','status'=>1,'id_user'=>3],
-            ['id_role'=>4,'name_role'=>'name4','status'=>0,'id_user'=>4],
-            ['id_role'=>5,'name_role'=>'name5','status'=>1,'id_user'=>3],
-            ['id_role'=>6,'name_role'=>'name6','status'=>0,'id_user'=>2],
+            ['role_id'=>1,'role_name'=>'name1','status'=>1,'user_id'=>1],
+            ['role_id'=>2,'role_name'=>'name2','status'=>0,'user_id'=>2],
+            ['role_id'=>3,'role_name'=>'name3','status'=>1,'user_id'=>3],
+            ['role_id'=>4,'role_name'=>'name4','status'=>0,'user_id'=>4],
+            ['role_id'=>5,'role_name'=>'name5','status'=>1,'user_id'=>3],
+            ['role_id'=>6,'role_name'=>'name6','status'=>0,'user_id'=>2],
         ]);
     }
 }

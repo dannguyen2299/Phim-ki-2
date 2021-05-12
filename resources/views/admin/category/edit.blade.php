@@ -6,17 +6,17 @@
     <div class="col-xl-12">
         <div class="card-body">
         @foreach($category as $key=>$value)
-            <form autocomplete="off" action="{{URL::to('update_category/'.$value->id_category)}}">
+            <form autocomplete="off" action="{{URL::to('admin_1/update-category/'.$value->category_id)}}">
                 <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">Category Id</label>
                     <div class="col-sm-10">
-                        <input type="text" value="{{$value->id_category}}" name="category_id" disabled class="form-control" id="inputEmail3" placeholder="Category Id" autocomplete="off">
+                        <input type="text" value="{{$value->category_id}}" name="category_id" disabled class="form-control" id="inputEmail3" placeholder="Category Id" autocomplete="off">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="inputPassword3" class="col-sm-2 col-form-label">Category Name</label>
                     <div class="col-sm-10">
-                        <input type="text" value="{{$value->name_category}}" name="category_name" class="form-control" id="inputPassword3" placeholder="Category Name" autocomplete="off">
+                        <input type="text" value="{{$value->category_name}}" name="category_name" class="form-control" id="inputPassword3" placeholder="Category Name" autocomplete="off">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -40,4 +40,11 @@
     </div>
 </div>
 
+@endsection
+
+@section('script')
+<script>
+    $('.submenu ul li a').removeClass('active');
+    $('#submenu-category ul li a').last().addClass('active');
+</script>
 @endsection

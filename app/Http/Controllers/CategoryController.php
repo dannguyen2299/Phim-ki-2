@@ -16,28 +16,28 @@ class CategoryController extends Controller
     }
     
     public function edit_category($category_id){
-        $category = DB::table('category')->where('id_category','=',$category_id)->get();
+        $category = DB::table('category')->where('category_id','=',$category_id)->get();
         return view('admin.category.edit')->with('category',$category);
     }
     
     public function update_category(Request $request, $category_id){
         $data = array();
-        $data['name_category'] = $request->category_name;
+        $data['category_name'] = $request->category_name;
         $data['status'] = $request->sl_status;
 
-        DB::table('category')->where('id_category','=',$category_id)->update($data);
+        DB::table('category')->where('category_id','=',$category_id)->update($data);
         Session::put('message','Update Category Successfully');
-        return Redirect::to('list_category');
+        return Redirect::to('admin_1/list-category');
     }
     
     public function save_category(Request $request){
         $data = array();
-        $data['name_category'] = $request->category_name;
+        $data['category_name'] = $request->category_name;
         $data['status'] = $request->sl_status;
 
         DB::table('category')->insert($data);
         Session::put('message','Add Category Successfully');
-        return Redirect::to('add_category');
+        return Redirect::to('admin_1/add-category');
     }
     
     public function list_category(){
@@ -46,8 +46,8 @@ class CategoryController extends Controller
     }
 
     public function delete_category($category_id){
-        DB::table('category')->where('id_category',$category_id)->delete();
+        DB::table('category')->where('category_id',$category_id)->delete();
         Session::put('message','Delete Category Successfully');
-        return Redirect::to('list_category');
+        return Redirect::to('admin_1/list-category');
     }
 }

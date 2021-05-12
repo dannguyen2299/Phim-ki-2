@@ -14,14 +14,15 @@ class CreateEpisodeTable extends Migration
     public function up()
     {
         Schema::create('episode', function (Blueprint $table) {
-            $table->increments('id_episode');
-            $table->string('name_episode',30)->nullable(false);
+            $table->increments('episode_id');
+            $table->string('episode_name',255)->nullable(false);
             $table->string('url_first',255)->nullable();
             $table->string('url_second',255)->nullable();
             $table->integer('status')->unsigned();
             // Tao khoa ngoai
-            $table->integer('id_film')->unsigned();
-            $table->foreign('id_film')->references('id_film')->on('film')->onDelete('cascade');
+            $table->integer('movie_id')->unsigned();
+            $table->foreign('movie_id')->references('movie_id')->on('movie')->onDelete('cascade');
+            
         });
     }
 

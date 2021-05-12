@@ -15,15 +15,15 @@ class category extends Seeder
         //
         DB::table('category')->delete();
          DB::table('category')->insert([
-            ['id_category'=>1,'name_category'=>'Phim Bộ','status'=>1],
-            ['id_category'=>2,'name_category'=>'Phim Lẻ','status'=>1],
-            ['id_category'=>3,'name_category'=>'Phim Thuyết Minh','status'=>0],
-            ['id_category'=>4,'name_category'=>'Phim 18+','status'=>0],
-            ['id_category'=>5,'name_category'=>'Phim Taihen','status'=>1],
-            ['id_category'=>6,'name_category'=>'Phim Nhật Bổn','status'=>1],
-            ['id_category'=>7,'name_category'=>'Phim Việt Nam','status'=>1],
-            ['id_category'=>8,'name_category'=>'Phim Việt Nam','status'=>1],
-            ['id_category'=>9,'name_category'=>'Phim Việt','status'=>1],
+            ['category_id'=>1,'category_name'=>'Phim Bộ','status'=>1],
+            ['category_id'=>2,'category_name'=>'Phim Lẻ','status'=>1],
+            ['category_id'=>3,'category_name'=>'Phim Thuyết Minh','status'=>0],
+            ['category_id'=>4,'category_name'=>'Phim 18+','status'=>0],
+            ['category_id'=>5,'category_name'=>'Phim Taihen','status'=>1],
+            ['category_id'=>6,'category_name'=>'Phim Nhật Bổn','status'=>1],
+            ['category_id'=>7,'category_name'=>'Phim Việt Nam','status'=>1],
+            ['category_id'=>8,'category_name'=>'Phim Việt Nam','status'=>1],
+            ['category_id'=>9,'category_name'=>'Phim Việt','status'=>1],
          ]);
     }
 }

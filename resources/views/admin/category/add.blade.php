@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Session;
                 Session::put('message',null);
             }
             ?>
-            <form autocomplete="off" action="{{URL::to('save_category')}}">
+            <form autocomplete="off" action="{{URL::to('admin_1/save-category')}}">
                 <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">Category Id</label>
                     <div class="col-sm-10">
@@ -47,5 +47,11 @@ use Illuminate\Support\Facades\Session;
             </div>
     </div>
 </div>
+@endsection
 
+@section('script')
+<script>
+    $('.submenu ul li a').removeClass('active');
+    $('#submenu-category ul li a').first().addClass('active');
+</script>
 @endsection

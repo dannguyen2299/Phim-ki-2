@@ -14,12 +14,12 @@ class CreateRoleTable extends Migration
     public function up()
     {
         Schema::create('role', function (Blueprint $table) {
-            $table->increments('id_role');
-            $table->string('name_role',100)->nullable(false);
+            $table->increments('role_id');
+            $table->string('role_name',100)->nullable(false);
             $table->integer('status')->unsigned();
             // Tao khoa ngoai
-            $table->integer('id_user')->unsigned();
-            $table->foreign('id_user')->references('id_user')->on('user')->onDelete('cascade');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('user_id')->on('user')->onDelete('cascade');
             
         });
     }
