@@ -50,5 +50,16 @@
             return Redirect::to('admin_1/list-nation');
         }
         
+        public function active($nation_id){
+            DB::table('nation')->where('nation_id','=',$nation_id)->update(['status'=>1]);
+            Session::put('message','Active Nation Successfully');
+            return Redirect::to('admin_1/list-nation');
+        }
+
+        public function unactive($nation_id){
+            DB::table('nation')->where('nation_id','=',$nation_id)->update(['status'=>0]);
+            Session::put('message','Unactive Nation Successfully');
+            return Redirect::to('admin_1/list-nation');
+        }
     }
 ?>
