@@ -15,21 +15,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('', 'IndexController@getIndex');
-Route::get('error','ErController@getError' );
+Route::get('error', 'ErController@getError');
 
 Route::prefix('movie')->group(function () {
-Route::get('', 'MovieController@GetPage');
+    Route::get('', 'MovieController@GetPage');
     Route::get('page', 'MovieController@GetMovie');
-    
 });
 Route::get('search', 'SearchController@GetSearch');
-Route::get('sigup','SigUpController@GetSigUp');
-Route::get('login','LoginController@getLogin');
+Route::get('sigup', 'SigUpController@GetSigUp');
+Route::get('login', 'LoginController@getLogin');
 
 //Thanh - admin
 
-Route::get('login_b','Login_backController@getLoginB');
-Route::post('login_b','Login_backController@postLogin');
+Route::get('login_b', 'Login_backController@getLoginB');
+Route::post('login_b', 'Login_backController@postLogin');
 
 Route::prefix('admin_1')->group(function () {
     Route::get('', 'AdminController@show_dashboard');
@@ -56,7 +55,19 @@ Route::prefix('admin_1')->group(function () {
 
     Route::get('active-movie/{id_film}', 'MovieController@active');
     Route::get('unactive-movie/{id_film}', 'MovieController@unactive');
-//end - admin
+
+    // Nation
+    Route::get('add-nation', 'NationController@add_nation');
+    Route::get('edit-nation/{nation_id}', 'NationController@edit_nation');
+    Route::get('list-nation', 'NationController@list_nation');
+    Route::get('update-nation/{nation_id}', 'NationController@update_nation');
+
+    Route::get('save-nation', 'NationController@save_nation');
+    Route::get('delete-nation/{nation_id}', 'NationController@delete_nation');
+
+    Route::get('active-nation/{nation_id}', 'NationController@active');
+    Route::get('unactive-nation/{nation_id}', 'NationController@unactive');
+    //end - admin
 });
 
 
