@@ -52,38 +52,88 @@ class MovieController extends Controller
     }
 
     public function edit_movie($movie_id){
-
+        $movie_edit = DB::table('movie')->where('movie_id',$movie_id)->get();
+        $nations = DB::table('nation')->where('status','1')->get();
+        $categories = DB::table('category')->where('status','1')->get();
+        $detail_categories = DB::table('category_detail')->where('status','1')->where('movie_id',$movie_id)->get();
+        return view('admin.movie.edit')->with('movie_edit',$movie_edit)
+        ->with('nations',$nations)->with('categories',$categories)->with('detail_categories',$detail_categories);
     }
 
-    public function update_movie($movie_id){
-
-    }
-    
-    public function save_movie(REQUEST $request, $movie_id){
+    public function update_movie(Request $request, $movie_id){
         // movie
         $data = array();
         $data['movie_name'] = $request->movie_name;
         $data['year'] = $request->movie_year;
         $data['view'] = $request->movie_view;
-        $data['introduct'] = $request->movie_introduce;
+        $data['introduce'] = $request->movie_introduce;
         $data['length'] = $request->movie_length;
         $data['url_trailer'] = $request->movie_trailer;
         $data['url_image'] = $request->movie_image;
         $data['url_cmt_fb'] = $request->movie_cmt;
-        $data['status'] = $request->status;
+        $data['status'] = $request->sl_status;
+        $data['nation_id'] = $request->movie_nation;
+
+        DB::table('movie')->where('movie_id','=',$movie_id)->update($data);
+
+        // category
+
+        $cates = array();
+        $cate = array();
+        $size = count($request->movie_category);
+        for ($i = 0; $i < $size; $i++){
+            $cate['status'] = 1;
+            $cate['movie_id'] = $movie_id;
+            $cate['category_id'] = $request->movie_category[$i];
+            $cates[]=$cate;
+        }
+        DB::table('category_detail')->where('movie_id',$movie_id)->delete();
+        DB::table('category_detail')->insert($cates);
+        Session::put('message','Update Movie Successfully');
+        return Redirect::to('admin_1/list-movie');
+    }
+    
+    public function save_movie(REQUEST $request){
+        // movie
+        $data = array();
+        $data['movie_name'] = $request->movie_name;
+        $data['year'] = $request->movie_year;
+        $data['view'] = $request->movie_view;
+        $data['introduce'] = $request->movie_introduce;
+        $data['length'] = $request->movie_length;
+        $data['url_trailer'] = $request->movie_trailer;
+        $data['url_image'] = $request->movie_image;
+        $data['url_cmt_fb'] = $request->movie_cmt;
+        $data['status'] = $request->sl_status;
         $data['nation_id'] = $request->movie_nation;
 
         DB::table('movie')->insert($data);
 
         // category
+        $movie_id = DB::table('movie')->orderby('movie_id','desc')->first();
+        
+        $cates = array();
         $cate = array();
-        $cate[''] = 1;
-
+        $size = count($request->movie_category);
+        for ($i = 0; $i < $size; $i++){
+            $cate['status'] = 1;
+            $cate['movie_id'] = $movie_id->movie_id;
+            $cate['category_id'] = $request->movie_category[$i];
+            $cates[]=$cate;
+        }
+        DB::table('category_detail')->insert($cates);
         Session::put('message','Add Movie Successfully');
-        return Redirect::to('add-category');
+        return Redirect::to('admin_1/add-movie');
     }
     
     public function delete_movie($movie_id){
+        DB::table('category_detail')->where('movie_id',$movie_id)->delete();
+        DB::table('movie')->where('movie_id',$movie_id)->delete();
+        Session::put('message','Delete Movie Successfully');
+        return Redirect::to('admin_1/list-movie');
+    }
+    
+    public function edit_episode($movie_id){
 
     }
 

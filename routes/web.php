@@ -59,7 +59,3 @@ Route::prefix('admin_1')->group(function () {
     Route::get('unactive-movie/{id_film}', 'backend\MovieController@unactive');
 //end - admin
 });
-
-
-
-//end - admin
