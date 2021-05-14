@@ -1,4 +1,5 @@
 <?php
+
 use Illuminate\Support\Facades\Session;
 ?>
 <!DOCTYPE html>
@@ -294,6 +295,22 @@ use Illuminate\Support\Facades\Session;
                                 </li>
                             </ul>
                         </li>
+                        
+                        <li class="submenu" id="submenu-nation">
+                            <a href="{{Request::url().'#'}}" id="tables">
+                                <i class="fas fa-table"></i>
+                                <span> Nation </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <ul class="list-unstyled">
+                                <li>
+                                    <a href="{{URL::to('admin_1/add-nation')}}">Add Nation</a>
+                                </li>
+                                <li>
+                                    <a href="{{URL::to('admin_1/list-nation')}}">All Nation</a>
+                                </li>
+                            </ul>
+                        </li>
 
                     </ul>
 
@@ -313,7 +330,7 @@ use Illuminate\Support\Facades\Session;
             <!-- Start content -->
             <div class="content">
                 <div class="container-fluid">
-                    
+
                     @yield('admin_content')
 
                 </div>
@@ -324,7 +341,7 @@ use Illuminate\Support\Facades\Session;
         <!-- END content-page -->
 
         <footer class="footer">
-            <span class="text-right">                
+            <span class="text-right">
                 Copyright <a target="_blank" href="#">Company</a>
             </span>
             <span class="float-right">
@@ -365,7 +382,7 @@ use Illuminate\Support\Facades\Session;
 
     <!-- Add active class in left sidebar -->
     @yield('script')
-    
+
     <!-- Upload files -->
     <script></script>
 
@@ -384,7 +401,7 @@ use Illuminate\Support\Facades\Session;
 
         // NAVIGATION HIGHLIGHT & OPEN PARENT
         $("#sidebar-menu ul li.submenu a.active").parents("li:last").children("a:first").addClass("active").trigger("click");
-    
     </script>
 </body>
+
 </html>

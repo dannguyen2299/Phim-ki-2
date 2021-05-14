@@ -51,4 +51,16 @@ class CategoryController extends Controller
         Session::put('message','Delete Category Successfully');
         return Redirect::to('admin_1/list-category');
     }
+
+    public function active($category_id){
+        DB::table('category')->where('category_id','=',$category_id)->update(['status'=>1]);
+        Session::put('message','Active Category Successfully');
+        return Redirect::to('admin_1/list-category');
+    }
+
+    public function unactive($category_id){
+        DB::table('category')->where('category_id','=',$category_id)->update(['status'=>0]);
+        Session::put('message','Unactive Category Successfully');
+        return Redirect::to('admin_1/list-category');
+    }
 }

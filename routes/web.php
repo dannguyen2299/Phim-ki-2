@@ -29,12 +29,12 @@ Route::get('login','frontend\LoginController@getLogin');
 
 //Thanh - admin
 
-Route::get('login_b','Login_backController@getLoginB');
-Route::post('login_b','Login_backController@postLogin');
+Route::get('login_b', 'Login_backController@getLoginB');
+Route::post('login_b', 'Login_backController@postLogin');
 
 Route::prefix('admin_1')->group(function () {
     Route::get('', 'backend\AdminController@show_dashboard');
-    Route::get('dashboard', 'AdminController@show_dashboard');
+    Route::get('dashboard', 'backend\AdminController@show_dashboard');
 
     //* Category
     Route::get('add-category', 'backend\CategoryController@add_category');

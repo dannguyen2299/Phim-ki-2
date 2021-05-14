@@ -88,14 +88,14 @@ class MovieController extends Controller
     }
 
     public function active($movie_id){
-        DB::table('film')->where('movie_id','=',$movie_id)->update(['status'=>1]);
+        DB::table('movie')->where('movie_id','=',$movie_id)->update(['status'=>1]);
         Session::put('message','Active Movie Successfully');
-        return Redirect::to('list-movie');
+        return Redirect::to('admin_1/list-movie');
     }
 
     public function unactive($movie_id){
-        DB::table('film')->where('movie_id','=',$movie_id)->update(['status'=>0]);
+        DB::table('movie')->where('movie_id','=',$movie_id)->update(['status'=>0]);
         Session::put('message','Unactive Movie Successfully');
-        return Redirect::to('list-movie');
+        return Redirect::to('admin_1/list-movie');
     }
 }
