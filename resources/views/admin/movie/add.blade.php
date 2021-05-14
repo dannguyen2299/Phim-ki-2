@@ -54,6 +54,12 @@ use Illuminate\Support\Facades\Session;
                     </div>
                 </div>
                 <div class="form-group row">
+                    <label for="movie_image" class="col-sm-2 col-form-label">Poster</label>
+                        <div class="col-sm-10">
+                            <input type="text" value="" name="movie_image" class="form-control" id="movie_image" placeholder="URL Image" autocomplete="off">
+                        </div>
+                </div>
+                <div class="form-group row">
                     <label for="inputPassword7" class="col-sm-2 col-form-label">Link trailer</label>
                     <div class="col-sm-10">
                         <input type="text" value="" name="movie_trailer" class="form-control" id="inputPassword7" placeholder="Trailer URL" autocomplete="off">
@@ -92,28 +98,21 @@ use Illuminate\Support\Facades\Session;
                 </div>
             </div>
         </div>
-        <div class="col-xl-6">
+        <div class="col-xl-3">
+            <h4 class="text-center">Image</h4>
+            <img src="" style="max-height: 400px" alt="" id="img_poster">
+        </div>
+        <div class="col-xl-3">
             <h4 class="text-center">Category</h4>
 
             @foreach($categories as $key=>$value)
 
             <div class="form-check">
-                <input id="{{$value->category_id}}" type="checkbox" name="category[]" value="{{$value->category_id}}" class="form-check-input">
+                <input id="{{$value->category_id}}" type="checkbox" name="movie_category[]" value="{{$value->category_id}}" class="form-check-input">
                 <label for="{{$value->category_id}}" class="form-check-label">{{$value->category_name}}</label>
             </div>
             <br/>
             @endforeach
-
-            <h4 class="text-center">Image</h4>
-            <br>
-            <div class="row">
-                <label class="col-2" for="">Poster</label>
-                <div class="custom-file col-10">
-                    <input type="file" name="movie_image" class="custom-file-input" id="customFile">
-                    <label class="custom-file-label" for="customFile">Choose file...</label>
-                </div>
-                <img src="{{URL::to('public/admin/images/')}}" style="max-height: 400px" alt="">
-            </div>
         </div>
     </div>
 </form>
@@ -124,5 +123,13 @@ use Illuminate\Support\Facades\Session;
 <script>
     $('.submenu ul li a').removeClass('active');
     $('#submenu-movie ul li a').first().addClass('active');
+
+    $( document ).ready(function() {
+        var movie_image = $('#movie_image');
+        movie_image.on('input',function(){
+            var url = movie_image.val();
+            $('#img_poster').attr('src',url);
+        });
+    });
 </script>
 @endsection

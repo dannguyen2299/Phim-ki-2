@@ -52,9 +52,10 @@ Route::prefix('admin_1')->group(function () {
     Route::get('update-movie/{movie_id}', 'MovieController@update_movie');
     Route::get('save-movie', 'MovieController@save_movie');
     Route::get('delete-movie/{movie_id}', 'MovieController@delete_movie');
+    Route::get('edit-episode/{movie_id}', 'MovieController@edit_episode');
 
-    Route::get('active-movie/{id_film}', 'MovieController@active');
-    Route::get('unactive-movie/{id_film}', 'MovieController@unactive');
+    Route::get('active-movie/{movie_id}', 'MovieController@active');
+    Route::get('unactive-movie/{movie_id}', 'MovieController@unactive');
 
     // Nation
     Route::get('add-nation', 'NationController@add_nation');

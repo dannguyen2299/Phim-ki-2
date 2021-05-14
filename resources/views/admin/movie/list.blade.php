@@ -29,14 +29,12 @@ use Illuminate\Support\Facades\Session;
                                 <th>Views</th>
                                 <th>Introduce</th>
                                 <th>Length</th>
-                                <th>Trailer</th>
                                 <th>Image</th>
-                                <th>FB cmt</th>
                                 <th>Episode</th>
                                 <th>Category</th>
                                 <th>Nation</th>
                                 <th>Status</th>
-                                <th>Action</th>
+                                <th width="90">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -47,9 +45,7 @@ use Illuminate\Support\Facades\Session;
                                 <td>{{$value->view}}</td>
                                 <td>{{$value->introduce}}</td>
                                 <td>{{$value->length}}</td>
-                                <td>{{$value->url_trailer}}</td>
-                                <td>{{$value->url_image}}</td>
-                                <td>{{$value->url_cmt_fb}}</td>
+                                <td><img src="{{$value->url_image}}" alt="" width="100"></td>
                                 <td>{{$episode_nums[$value->movie_id]}}</td>
                                 <td>{{$categories[$value->movie_id]}}</td>
                                 <td>{{$value->nation_status==1?$value->nation_name:'' }}</td>
@@ -69,6 +65,7 @@ use Illuminate\Support\Facades\Session;
                                 <td>
                                     <a href="{{URL::to('admin_1/edit-movie/'.$value->movie_id)}}" class="btn btn-success"><i class="fas fa-pencil-alt"></i></a>
                                     <a href="{{URL::to('admin_1/delete-movie/'.$value->movie_id)}}" class="btn btn-danger"  onclick="return confirm('Do you want to delete this brand product?')"><i class="fas fa-times"></i></a>
+                                    <a href="{{URL::to('admin_1/edit-episode/'.$value->movie_id)}}" class="btn btn-primary mt-2"><i class="fas fa-tv"></i></a>
                                 </td>
                             </tr>
                         @endforeach
