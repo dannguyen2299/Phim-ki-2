@@ -40,7 +40,7 @@
         <nav class="navbar navbar-expand-lg navbar-light">
           <a class="navbar-brand text-danger" href="#">1080+</a>
           <button
-            class="navbar-toggler"jm
+            class="navbar-toggler"
             type="button"
             data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -50,7 +50,7 @@
           >
             <span class="navbar-toggler-icon"></span>
           </button>
-    
+
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item active">
@@ -72,21 +72,43 @@
                 </a>
                 <div
                   class="dropdown-menu bg-dark"
-                  style="width: 600px !important"
+                  style="width: 470px !important"
                   aria-labelledby="navbarDropdown"
                 >
-                
                   <div class="row">
-                    @foreach($category_l as $row)
-                    <div class="col-4 mt-3">
-                      <a class="dropdown-item text-light" href="#">{{ $row->category_name }}</a>
+                    <div class="col-4">
+                      <a class="dropdown-item text-light" href="#">Hành động</a>
                     </div>
-                    @endforeach  
+                    <div class="col-4">
+                      <a class="dropdown-item text-light" href="#">Tình cảm</a>
+                    </div>
+                    <div class="col-4">
+                      <a class="dropdown-item text-light" href="#">Kinh dị</a>
+                    </div>
                   </div>
-                  
+                  <div class="row mt-3">
+                    <div class="col-4">
+                      <a class="dropdown-item text-light" href="#">Viễn tưởng</a>
+                    </div>
+                    <div class="col-4">
+                      <a class="dropdown-item text-light" href="#">Chiến tranh</a>
+                    </div>
+                    <div class="col-4">
+                      <a class="dropdown-item text-light" href="#">Phiêu lưu</a>
+                    </div>
+                  </div>
+                  <div class="row mt-3">
+                    <div class="col-4">
+                      <a class="dropdown-item text-light" href="#">Cổ trang</a>
+                    </div>
+                    <div class="col-4">
+                      <a class="dropdown-item text-light" href="#">Tâm lý</a>
+                    </div>
+                   
+                  </div>
                 </div>
               </li>
-    
+
               <li class="nav-item dropdown">
                 <a
                   class="nav-link dropdown-toggle text-light"
@@ -105,15 +127,25 @@
                   aria-labelledby="navbarDropdown"
                 >
                   <div class="row">
-                    @foreach ($nation as $row )
-                    <div class="col-4 mt-3">
-                      <a class="dropdown-item text-light" href="#">{{ $row->nation_name }}</a>
+                    <div class="col-4">
+                      <a class="dropdown-item text-light" href="#">Hàn quốc</a>
                     </div>
-                    @endforeach
-                    
-                   
+                    <div class="col-4">
+                      <a class="dropdown-item text-light" href="#">Trung quốc</a>
+                    </div>
+                    <div class="col-4">
+                      <a class="dropdown-item text-light" href="#">Việt nam</a>
+                    </div>
                   </div>
-                 
+                  <div class="row mt-3">
+                    <div class="col-4">
+                      <a class="dropdown-item text-light" href="#">Nước ngoài</a>
+                    </div>
+                    <div class="col-4">
+                      <a class="dropdown-item text-light" href="#">Nhật bản</a>
+                    </div>
+                    
+                  </div>
                 </div>
               </li>
               <li class="nav-item active">
@@ -154,7 +186,6 @@
         </nav>
       </div>
     </header>
-    
     @yield('content');
 
 </body>
