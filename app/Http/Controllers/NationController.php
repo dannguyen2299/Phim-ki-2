@@ -10,8 +10,10 @@
 
     class NationController extends Controller{
 
+
         public function add_nation(Request $request){
             return view('admin.nation.add');
+            
         }
         
         public function edit_nation($nation_id){
