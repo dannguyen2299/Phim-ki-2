@@ -80,7 +80,7 @@ Route::prefix('admin_1')->group(function () {
     Route::get('save-nation', 'NationController@save_nation');
     Route::get('delete-nation/{nation_id}', 'NationController@delete_nation');
 
-    Route::get('active-nation/{nation_id}', 'NationController@active');
+    Route::get('active-nation1/{nation_id}', 'NationController@active');
     Route::get('unactive-nation/{nation_id}', 'NationController@unactive');
     //end - admin
 });
