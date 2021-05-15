@@ -58,6 +58,20 @@ Route::prefix('admin_1')->group(function () {
     Route::get('unactive-movie/{movie_id}', 'MovieController@unactive');
 
     // Nation
+    Route::get('active-nation1/{nation_id}', 'NationController@active');
+    Route::get('active-nation1/{nation_id}', 'NationController@active');
+    Route::get('active-nation1/{nation_id}', 'NationController@active');
+    Route::get('active-nation1/{nation_id}', 'NationController@active');
+    Route::get('active-nation1/{nation_id}', 'NationController@active');
+    Route::get('active-nation1/{nation_id}', 'NationController@active');
+    Route::get('active-nation1/{nation_id}', 'NationController@active');
+    Route::get('active-nation1/{nation_id}', 'NationController@active');
+    Route::get('active-nation1/{nation_id}', 'NationController@active');
+    Route::get('active-nation1/{nation_id}', 'NationController@active');
+    Route::get('active-nation1/{nation_id}', 'NationController@active');
+
+
+
     Route::get('add-nation', 'NationController@add_nation');
     Route::get('edit-nation/{nation_id}', 'NationController@edit_nation');
     Route::get('list-nation', 'NationController@list_nation');
