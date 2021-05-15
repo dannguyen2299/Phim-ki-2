@@ -1,5 +1,5 @@
 @extends('admin/admin_layout')
-@section('title','dashboard')
+@section('title','Admin: Edit Category')
 @section('admin_content')
 
 <div class="row">

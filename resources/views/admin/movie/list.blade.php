@@ -1,5 +1,5 @@
 @extends('admin/admin_layout')
-@section('title','dashboard')
+@section('title','Admin: List Movie')
 @section('admin_content')
 <?php
 use Illuminate\Support\Facades\Session;
@@ -26,11 +26,10 @@ use Illuminate\Support\Facades\Session;
                             <tr>
                                 <th>Name</th>
                                 <th>Year</th>
-                                <th>Views</th>
+                                <th>Episode</th>
                                 <th>Introduce</th>
                                 <th>Length</th>
                                 <th>Image</th>
-                                <th>Episode</th>
                                 <th>Category</th>
                                 <th>Nation</th>
                                 <th>Status</th>
@@ -42,11 +41,10 @@ use Illuminate\Support\Facades\Session;
                             <tr>
                                 <td>{{$value->movie_name}}</td>
                                 <td>{{$value->year}}</td>
-                                <td>{{$value->view}}</td>
+                                <td>{{$episode_nums[$value->movie_id]}} / {{$value->total_eps}} tập</td>
                                 <td>{{$value->introduce}}</td>
                                 <td>{{$value->length}}</td>
                                 <td><img src="{{$value->url_image}}" alt="" width="100"></td>
-                                <td>{{$episode_nums[$value->movie_id]}}</td>
                                 <td>{{$categories[$value->movie_id]}}</td>
                                 <td>{{$value->nation_status==1?$value->nation_name:'' }}</td>
                                 <td>

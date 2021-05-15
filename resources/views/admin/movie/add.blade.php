@@ -1,5 +1,5 @@
 @extends('admin/admin_layout')
-@section('title','dashboard')
+@section('title','Admin: Add Movie')
 @section('admin_content')
 <?php
 use Illuminate\Support\Facades\Session;
@@ -36,9 +36,9 @@ use Illuminate\Support\Facades\Session;
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="inputPassword4" class="col-sm-2 col-form-label">View</label>
+                    <label for="inputPassword4" class="col-sm-2 col-form-label">Total Episodes</label>
                     <div class="col-sm-10">
-                        <input type="text" value="" name="movie_view" class="form-control" id="inputPassword4" placeholder="View" autocomplete="off">
+                        <input type="text" value="" name="movie_episodes" class="form-control" id="inputPassword4" placeholder="total episodes" autocomplete="off">
                     </div>
                 </div>
                 <div class="form-group row">

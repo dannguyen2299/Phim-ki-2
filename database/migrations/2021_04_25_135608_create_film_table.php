@@ -17,7 +17,7 @@ class CreateFilmTable extends Migration
             $table->increments('movie_id');
             $table->string('movie_name',255)->nullable(false);
             $table->year('year');
-            $table->integer('view')->unsigned();
+            $table->integer('total_eps')->unsigned();
             $table->text('introduce')->nullable(false);
             $table->string('length');
             $table->string('url_trailer',255)->nullable(false);
@@ -28,8 +28,6 @@ class CreateFilmTable extends Migration
             $table->integer('nation_id')->unsigned();
             $table->foreign('nation_id')->references('nation_id')->on('nation')->onDelete('cascade');
             
-
-        
         });
     }
 

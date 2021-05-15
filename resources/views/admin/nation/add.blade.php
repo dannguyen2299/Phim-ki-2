@@ -1,5 +1,5 @@
 @extends('admin/admin_layout')
-@section('title','dashboard')
+@section('title','Admin: Add Nation')
 @section('admin_content')
 <?php
 use Illuminate\Support\Facades\Session;

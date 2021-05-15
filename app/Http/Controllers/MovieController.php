@@ -69,7 +69,7 @@ class MovieController extends Controller
         $data = array();
         $data['movie_name'] = $request->movie_name;
         $data['year'] = $request->movie_year;
-        $data['view'] = $request->movie_view;
+        $data['total_eps'] = $request->movie_episodes;
         $data['introduce'] = $request->movie_introduce;
         $data['length'] = $request->movie_length;
         $data['url_trailer'] = $request->movie_trailer;
@@ -102,7 +102,7 @@ class MovieController extends Controller
         $data = array();
         $data['movie_name'] = $request->movie_name;
         $data['year'] = $request->movie_year;
-        $data['view'] = $request->movie_view;
+        $data['total_eps'] = $request->movie_episodes;
         $data['introduce'] = $request->movie_introduce;
         $data['length'] = $request->movie_length;
         $data['url_trailer'] = $request->movie_trailer;
