@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
+namespace App\Http\Controllers\frontend;
+
+use App\Http\Controllers\Controller;
+
 
 class ErController extends Controller
 {

@@ -44,33 +44,4 @@
     <div class="row-2">
       <button class="btn bg-danger mt-2">Lựa chọn của hệ thống</button>
     </div>
-    <div class="row mt-3">
-      <h5 class="text-danger ml-3">TOP PHIM IDMI ?</h5>
-    </div>
-    <div class="row-2 mt-3">
-      <table class="table table-dark">
-        <tr>
-          <td><a href=""><i class="fa fa-arrow-up text-danger"></i></a></td>
-          <td><a href=""><p class="text-danger mb-0">Hoa và nắng</p></a></td>
-          <td><a href="" class="text-light">9.8 sao</td>
-        </tr>
-        <tr>
-          <td><a href=""><i class="fa fa-arrow-down text-danger"></i></a></td>
-          <td><a href=""><p class="text-danger mb-0">Hoa và nắng</p></a></td>
-          <td><a href="" class="text-light">9.8 sao</td>
-        </tr>
-        <tr>
-          <td><a href=""><i class="fa fa-arrow-down text-danger"></i></a></td>
-          <td><a href=""><p class="text-danger mb-0">Hoa và nắng</p></a></td>
-          <td><a href="" class="text-light">9.8 sao</td>
-        </tr>
-        <tr>
-          <td><a href=""><i class="fa fa-arrow-up text-success"></i></a></td>
-          <td><a href=""><p class="text-danger mb-0">Hoa và nắng</p></a></td>
-          <td><a href="" class="text-light">9.8 sao</td>
-        </tr>
-       
-      </table>
-    </div>
-
   </div>
