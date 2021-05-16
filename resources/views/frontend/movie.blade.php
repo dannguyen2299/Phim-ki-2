@@ -78,14 +78,14 @@
 
             </div>
             <div class="row-2 mt-3">
-              <h5 class="text-danger">PHIM CÙNG TÁC GIẢ</h5>
+              <h5 class="text-danger">PHIM CÙNG QUỐC GIA</h5>
             </div>
             <div class="row">
               @foreach ($movie_nation as $row )
               <div class="col-3">
                 <div class="row mt-4">
                   <div class="col-xl-6">
-                    <a href="../movie/movie-{{ $row->movie_id }}.html">
+                    <a href="../movie/movie-{{ $row->movie_id }}.html" class="ml-2 mt-3 mr-1">
                       <div class="card-style-1"  id="respon">
                         <img src="{{ $row->url_image }}" alt="" />
                         <div class="infor">
