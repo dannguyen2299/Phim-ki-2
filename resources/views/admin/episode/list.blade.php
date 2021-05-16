@@ -11,8 +11,38 @@ use Illuminate\Support\Facades\Session;
             <div class="card-header">
                 <h3><i class="fas fa-table"></i> Episode of Movie</h3>
             </div>
-
+            <h3 class="mt-4"><i class="fas fa-tv mx-4"></i>{{$movie->movie_name}}</h3>
             <div class="card-body">
+                <form autocomplete="off" action="{{URL::to('admin_1/save-episode')}}">
+                    <input type="text" value="{{$movie->movie_id}}" name="movie_id" hidden>
+                    <div class="table-responsive">
+                        <table class="table table-hover display" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>Episode Name</th>
+                                    <th>Link 1</th>
+                                    <th>Link 2</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input type="text" class="form-control" name="episode_name"></td>
+                                    <td><input type="text" class="form-control" name="url_first"></td>
+                                    <td><input type="text" class="form-control" name="url_second"></td>
+                                    <td>
+                                        <select name="sl_status" class="form-control" id="">
+                                            <option value="1">Show</option>
+                                            <option value="0">Hidden</option>
+                                        </select>
+                                    </td>
+                                    <td><input type="submit" hidden id="add_episode_input"><label for="add_episode_input" class="btn btn-success"><i class="fas fa-plus"></i></label></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
                 <?php
                 $message = Session::get('message');
                 if ($message){
@@ -24,33 +54,40 @@ use Illuminate\Support\Facades\Session;
                     <table id="dataTable" class="table table-bordered table-hover display" style="width:100%">
                         <thead>
                             <tr>
+                                <th>Odinal</th>
+                                <th>Episode Id</th>
                                 <th>Episode</th>
-                                <th></th>
+                                <th>Link 1</th>
+                                <th>Link 2</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                        @foreach($all_category as $key=>$value)
+                        <?php $i = 0 ?>
+                        @foreach($episodes as $key=>$value)
                             <tr>
-                                <td>{{$value->category_id}}</td>
-                                <td>{{$value->category_name}}</td>
+                                <td>{{$i++}}</td>
+                                <td>{{$value->episode_id}}</td>
+                                <td>{{$value->episode_name}}</td>
+                                <td>{{$value->url_first}}</td>
+                                <td>{{$value->url_second}}</td>
                                 <td>
                                 <?php
                                 if ($value->status == '1'){
                                 ?>
-                                    <a href="{{URL::to('admin_1/unactive-category/'.$value->category_id)}}"><i class="far fa-eye"></i></a>
+                                    <a href="{{URL::to('admin_1/unactive-episode/'.$value->episode_id)}}"><i class="far fa-eye"></i></a>
                                 <?php    
                                 } else {
                                 ?>
-                                    <a href="{{URL::to('admin_1/active-category/'.$value->category_id)}}"><i class="far fa-eye-slash"></i></a>
+                                    <a href="{{URL::to('admin_1/active-episode/'.$value->episode_id)}}"><i class="far fa-eye-slash"></i></a>
                                 <?php
                                 }
                                 ?>
                                 </td>
                                 <td>
-                                    <a href="{{URL::to('admin_1/edit-category/'.$value->category_id)}}" class="btn btn-success"><i class="fas fa-pencil-alt"></i></a>
-                                    <a href="{{URL::to('admin_1/delete-category/'.$value->category_id)}}" class="btn btn-danger"  onclick="return confirm('Do you want to delete this brand product?')"><i class="fas fa-times"></i></a>
+                                    <a href="{{URL::to('admin_1/edit-episode/'.$value->episode_id)}}" class="btn btn-success"><i class="fas fa-pencil-alt"></i></a>
+                                    <a href="{{URL::to('admin_1/delete-episode/'.$value->episode_id)}}" class="btn btn-danger"  onclick="return confirm('Do you want to delete this episode?')"><i class="fas fa-times"></i></a>
                                 </td>
                             </tr>
                         @endforeach

@@ -62,8 +62,8 @@ use Illuminate\Support\Facades\Session;
                                 </td>
                                 <td>
                                     <a href="{{URL::to('admin_1/edit-movie/'.$value->movie_id)}}" class="btn btn-success"><i class="fas fa-pencil-alt"></i></a>
-                                    <a href="{{URL::to('admin_1/delete-movie/'.$value->movie_id)}}" class="btn btn-danger"  onclick="return confirm('Do you want to delete this brand product?')"><i class="fas fa-times"></i></a>
-                                    <a href="{{URL::to('admin_1/edit-episode/'.$value->movie_id)}}" class="btn btn-primary mt-2"><i class="fas fa-tv"></i></a>
+                                    <a href="{{URL::to('admin_1/delete-movie/'.$value->movie_id)}}" class="btn btn-danger"  onclick="return confirm('Do you want to delete this movie?')"><i class="fas fa-times"></i></a>
+                                    <a href="{{URL::to('admin_1/list-episode/'.$value->movie_id)}}" class="btn btn-primary mt-2"><i class="fas fa-tv"></i></a>
                                 </td>
                             </tr>
                         @endforeach

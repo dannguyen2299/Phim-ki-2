@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Redirect;
 
 class MovieController extends Controller
 {
+    //* Frontend ở đây
     function GetMovie(){
         return  view('frontend.movie');
     }
@@ -18,7 +19,8 @@ class MovieController extends Controller
         return  view('frontend.page');
     }
 
-    //* Thanh - Admin
+    
+    //* Admin ở đây
     public function list_movie(){
         $movies = DB::table('movie')
         ->join('nation','nation.nation_id','=','movie.nation_id')->select('movie.*','nation.*','movie.status as movie_status','nation.status as nation_status')->get();
@@ -135,10 +137,6 @@ class MovieController extends Controller
         DB::table('movie')->where('movie_id',$movie_id)->delete();
         Session::put('message','Delete Movie Successfully');
         return Redirect::to('admin_1/list-movie');
-    }
-    
-    public function edit_episode($movie_id){
-
     }
 
     public function active($movie_id){
