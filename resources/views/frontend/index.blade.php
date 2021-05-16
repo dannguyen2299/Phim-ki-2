@@ -53,11 +53,9 @@
       </div>
       <div class="row">
         <div class="col"  >
-          <div class="row">
+          <div class="row" id="respon_card">
             @foreach ($movie_up as $row )
-            <div class="col-3">
-              <div class="row mt-4">
-                <div class="col-xl-6">
+           
                   <a href="/movie/movie-{{ $row->movie_id }}.html">
                     <div class="card-style-1"  id="respon">
                       <img src="{{ $row->url_image }}" alt="" />
@@ -71,7 +69,7 @@
                       <div class="episode">
                         <h8
                           >Tập
-                          <p>{{$episode_nums[$row->movie_id]}} / {{$row->total_eps}} tập</p></h8
+                          <p>{{$episode_nums[$row->movie_id]}} / {{$row->total_eps}} </p></h8
                         >
                       </div>
                       <div class="play">
@@ -79,12 +77,12 @@
                       </div>
                     </div>
                   </a>
-                </div>
+                <!-- </div>
               </div>
-            </div>
+            </div> -->
             @endforeach
           </div>
-          <div class="row-2 mt-4 mb-3">
+          <div class="row-2 mt-4 mb-3 "  id="respon_card">
             <a href="" class="btn btn-danger">Xem thêm...</a>
           </div>
           <div class="row-2 mt-4">
@@ -93,11 +91,11 @@
           <div class="row-2">
             <hr />
           </div>
-          <div class="row">
+          <div class="row"  id="respon_card">
             @foreach ($movie_v as $row )
-            <div class="col-3">
+            {{-- <div class="col-3">
               <div class="row mt-4">
-                <div class="col-xl-6">
+                <div class="col-xl-6"> --}}
                   <a href="/movie/movie-{{ $row->movie_id }}.html">
                     <div class="card-style-1"  id="respon">
                       <img src="{{ $row->url_image }}" alt="" />
@@ -111,7 +109,7 @@
                       <div class="episode">
                         <h8
                           >Tập
-                          <p>{{$episode_nums[$row->movie_id]}} / {{$row->total_eps}} tập</p></h8
+                          <p>{{$episode_nums[$row->movie_id]}} / {{$row->total_eps}} </p></h8
                         >
                       </div>
                       <div class="play">
@@ -119,12 +117,12 @@
                       </div>
                     </div>
                   </a>
-                </div>
+                <!-- </div>
               </div>
-            </div>
+            </div> -->
             @endforeach
           </div>
-          <div class="row-2 mt-4 mb-3">
+          <div class="row-2 mt-4 mb-3"  id="respon_card">
             <a href="" class="btn btn-danger">Xem thêm...</a>
           </div>
         </div>
