@@ -193,6 +193,10 @@ footer .container .fr .content{
   
   }
   @media screen and (max-width: 600px) {
+      .owl-item{
+          width: 169px !important;
+          margin-right: 9px;
+      }
     #respon_card{
         width: 380px;
         margin: auto;
