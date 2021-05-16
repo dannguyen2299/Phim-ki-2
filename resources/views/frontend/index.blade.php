@@ -15,7 +15,7 @@
            @foreach ($movie as $row)
 
            <div class="news-grid">
-            <a href="">
+            <a href="/movie/movie-{{ $row->movie_id }}.html">
               <div class="card-style-1">
                 <img src="{{ $row->url_image }}" alt="" />
                 <div class="episode">
@@ -58,7 +58,7 @@
             <div class="col-3">
               <div class="row mt-4">
                 <div class="col-xl-6">
-                  <a href="">
+                  <a href="/movie/movie-{{ $row->movie_id }}.html">
                     <div class="card-style-1"  id="respon">
                       <img src="{{ $row->url_image }}" alt="" />
                       <div class="infor">
@@ -98,7 +98,7 @@
             <div class="col-3">
               <div class="row mt-4">
                 <div class="col-xl-6">
-                  <a href="">
+                  <a href="/movie/movie-{{ $row->movie_id }}.html">
                     <div class="card-style-1"  id="respon">
                       <img src="{{ $row->url_image }}" alt="" />
                       <div class="infor">

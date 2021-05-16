@@ -18,8 +18,8 @@ Route::get('', 'frontend\IndexController@getIndex');
 Route::get('error', 'frontend\ErController@getError');
 
 Route::prefix('movie')->group(function () {
-    Route::get('', 'frontend\MovieController@GetPage');
-    Route::get('page', 'frontend\MovieController@GetMovie');
+    Route::get('movie-{movie_id}.html', 'frontend\MovieController@GetPage');
+    Route::get('page-movie-{movie_id}&{episode_id}&{server}.html', 'frontend\MovieController@GetMovie');
 });
 Route::get('search', 'frontend\SearchController@GetSearch');
 Route::get('sigup', 'frontend\SigUpController@GetSigUp');
