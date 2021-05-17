@@ -19,7 +19,7 @@ class nation extends Seeder
             ['nation_id'=>4,'nation_name'=>'Ý','status'=>1],
             ['nation_id'=>5,'nation_name'=>'Ninh Bình','status'=>0],
             ['nation_id'=>6,'nation_name'=>'Thái Bình','status'=>1],
-            ['nation_id'=>7,'nation_name'=>'Thanh Hóa','status'=>0],
+            ['nation_id'=>7,'nation_name'=>'Thanh Hóa','status'=>0]
         ]);
         //
     }

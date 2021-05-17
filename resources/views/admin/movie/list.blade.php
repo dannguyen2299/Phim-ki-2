@@ -27,6 +27,7 @@ use Illuminate\Support\Facades\Session;
                                 <th>Name</th>
                                 <th>Year</th>
                                 <th>Episode</th>
+                                <th>View</th>
                                 <th>Introduce</th>
                                 <th>Length</th>
                                 <th>Image</th>
@@ -42,6 +43,7 @@ use Illuminate\Support\Facades\Session;
                                 <td>{{$value->movie_name}}</td>
                                 <td>{{$value->year}}</td>
                                 <td>{{$episode_nums[$value->movie_id]}} / {{$value->total_eps}} tập</td>
+                                <td>{{$view_nums[$value->movie_id]}} views</td>
                                 <td>{{$value->introduce}}</td>
                                 <td>{{$value->length}}</td>
                                 <td><img src="{{$value->url_image}}" alt="" width="100"></td>

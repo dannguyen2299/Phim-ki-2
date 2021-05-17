@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+
+namespace App\Http\Controllers\backend;
+use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
@@ -11,16 +13,7 @@ use Illuminate\Support\Facades\Redirect;
 
 class MovieController extends Controller
 {
-    //* Frontend ở đây
-    function GetMovie(){
-        return  view('frontend.movie');
-    }
-    function GetPage(){
-        return  view('frontend.page');
-    }
-
-    
-    //* Admin ở đây
+    //* Thanh - Admin
     public function list_movie(){
         $movies = DB::table('movie')
         ->join('nation','nation.nation_id','=','movie.nation_id')->select('movie.*','nation.*','movie.status as movie_status','nation.status as nation_status')->get();
@@ -40,15 +33,25 @@ class MovieController extends Controller
         }
 
         $episode_nums = array();
+        $view_nums = array();
         foreach($movies as &$movie){
-            $episode_num = DB::table('movie')
+            
+            //* Tổng số tập
+            $episodes = DB::table('movie')
             ->join('episode','episode.movie_id','=','movie.movie_id')
             ->where('movie.movie_id',$movie->movie_id)
             ->where('episode.status','1')->get();
-            $episode_nums[$movie->movie_id] = count($episode_num);
+            $episode_nums[$movie->movie_id] = count($episodes);
+
+            //* Tổng số view
+            $views = 0;
+            foreach($episodes as &$value){
+                $views = $views + $value->view;
+            }
+            $view_nums[$movie->movie_id] = count($views);
         }
 
-        return view('admin.movie.list')->with('movies',$movies)->with('episode_nums',$episode_nums)->with('categories',$categories);
+        return view('admin.movie.list')->with('movies',$movies)->with('episode_nums',$episode_nums)->with('view_nums',$view_nums)->with('categories',$categories);
     }
 
     public function add_movie(){
@@ -70,6 +73,7 @@ class MovieController extends Controller
         // movie
         $data = array();
         $data['movie_name'] = $request->movie_name;
+        $data['view'] = '0';
         $data['year'] = $request->movie_year;
         $data['total_eps'] = $request->movie_episodes;
         $data['introduce'] = $request->movie_introduce;

@@ -46,6 +46,8 @@ header{
 }
 .card-style-1 img{
     height: 250px;
+    width: 169px;  
+    /* Sửa ở đây nhé */
 }
 .card-style-2 img{
     height: 150px;
@@ -137,7 +139,7 @@ header{
 }
 
 .owl-item{
-    width: 280px !important;
+    /* width: 280px !important; */
 }
 
 .news-grid{
@@ -152,7 +154,7 @@ header{
 .owl-controls .owl-prev {
 	position: absolute;
 	left: -10px;
-	bottom: 50px;
+	bottom: 150px;
 	padding: 8px 17px;
 	background: #A21D0A;
 	border-radius: 50px;
@@ -162,7 +164,7 @@ header{
 .owl-controls .owl-next {
 	position: absolute;
 	right: -10px;
-	bottom: 50px;
+	bottom: 150px;
 	padding: 8px 17px;
 	background: #A21D0A;
 	border-radius: 50px;

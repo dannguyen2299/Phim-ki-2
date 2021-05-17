@@ -13,11 +13,10 @@ class DatabaseSeeder extends Seeder
     {
          $this->call(category::class);
          $this->call(nation::class);
+         $this->call(role::class);
          $this->call(user::class);
          $this->call(movie::class);
          $this->call(episode::class);
-
-         $this->call(role::class);
          $this->call(message::class);
          $this->call(movie_detail::class);
          $this->call(category_detail::class);

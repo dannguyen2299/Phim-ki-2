@@ -29,6 +29,7 @@ class EpisodeController extends Controller
         $data['episode_name'] = $request->episode_name;
         $data['url_first'] = $request->url_first;
         $data['url_second'] = $request->url_second;
+        $data['view'] = 0; // ban đầu view = 0;
         $data['status'] = $request->sl_status;
         $data['movie_id'] = $request->movie_id;
         DB::table('episode')->insert($data);
