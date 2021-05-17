@@ -21,7 +21,7 @@
   <header>
     <div class="container" style="padding: 0 !important">
       <nav class="navbar navbar-expand-lg navbar-light">
-        <a class="navbar-brand text-danger" href="#">1080+</a>
+        <a class="navbar-brand text-danger" href="{{ URL::to('') }}">1080+</a>
         <button class="navbar-toggler" jm type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -29,7 +29,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link text-light" href="#">Trang chủ <span class="sr-only">(current)</span></a>
+              <a class="nav-link text-light" href="{{ URL::to('') }}">Trang chủ <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -38,7 +38,7 @@
               <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
                 @foreach($category_l as $row)
 
-                <a class="dropdown-item text-light" href="#">{{ $row->category_name }}</a>
+                <a class="dropdown-item text-light" href="../filter/{{ $row->category_id }}">{{ $row->category_name }}</a>
 
                 @endforeach
 
@@ -54,22 +54,25 @@
 
                 @foreach ($nation as $row )
 
-                <a class="dropdown-item text-light" href="#">{{ $row->nation_name }}</a>
+                <a class="dropdown-item text-light" href="../filter-nation/{{ $row->nation_id }}">{{ $row->nation_name }}</a>
 
                 @endforeach
             </li>
             <li class="nav-item active">
-              <a class="nav-link text-light" href="#">Phim bộ <span class="sr-only">(current)</span></a>
+              <a class="nav-link text-light" href="../filter/1">Phim bộ <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item active">
-              <a class="nav-link text-light" href="#">Phim lẻ <span class="sr-only">(current)</span></a>
+              <a class="nav-link text-light" href="../filter/2">Phim lẻ <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item active">
               <a class="nav-link text-light" href="#">Top IMDB <span class="sr-only">(current)</span></a>
             </li>
           </ul>
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2 rounded-pill bg-dark text-light" type="search" placeholder="Tìm kiếm" aria-label="Search" style="width: 250px; height:30px" />
+          <form class="form-inline my-2 my-lg-0" method="POST" action="{{ URL::to('/search') }}">
+            {{ csrf_field() }}
+            
+            <input class="form-control mr-sm-2 rounded-pill bg-dark text-light" name="keywords_submit" type="search" placeholder="Tìm kiếm" aria-label="Search" style="width: 250px; height:30px" />
+            <input type="submit" name="submit" class="fa fa-search" hidden>
             <!-- <button
                 class="btn my-2 my-sm-0 rounded-pill"
                 type="submit"
