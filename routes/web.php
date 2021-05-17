@@ -52,7 +52,6 @@ Route::prefix('admin_1')->group(function () {
     Route::get('update-movie/{movie_id}', 'backend\MovieController@update_movie');
     Route::get('save-movie', 'backend\MovieController@save_movie');
     Route::get('delete-movie/{movie_id}', 'backend\MovieController@delete_movie');
-    Route::get('edit-episode/{movie_id}', 'backend\MovieController@edit_episode');
 
     Route::get('active-movie/{movie_id}', 'backend\MovieController@active');
     Route::get('unactive-movie/{movie_id}', 'backend\MovieController@unactive');
@@ -62,7 +61,6 @@ Route::prefix('admin_1')->group(function () {
     Route::get('edit-nation/{nation_id}', 'backend\NationController@edit_nation');
     Route::get('list-nation', 'backend\NationController@list_nation');
     Route::get('update-nation/{nation_id}', 'backend\NationController@update_nation');
-
     Route::get('save-nation', 'backend\NationController@save_nation');
     Route::get('delete-nation/{nation_id}', 'backend\NationController@delete_nation');
 
@@ -79,8 +77,8 @@ Route::prefix('admin_1')->group(function () {
 
     Route::get('active-episode/{episode_id}', 'backend\EpisodeController@active');
     Route::get('unactive-episode/{episode_id}', 'backend\EpisodeController@unactive');
-
-    //end - admin
+    
+    //*end - admin
 });
 
 

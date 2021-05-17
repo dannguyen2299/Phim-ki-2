@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\backend;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\DB;
@@ -54,6 +55,15 @@ class EpisodeController extends Controller
 
         DB::table('episode')->where('episode_id',$episode_id)->update($data);
         Session::put('message','Update Episode Successfully');
+        return Redirect::to('admin_1/list-episode/'.$movie_id);
+    }
+
+    public function delete_episode($episode_id){
+        $movie_id = DB::table('episode')->where('episode_id',$episode_id)->get()[0]->movie_id;
+        DB::table('episode')->where('episode_id',$episode_id)->update(['status'=>1]);
+
+        DB::table('episode')->where('episode_id',$episode_id)->delete();
+        Session::put('message','Delete Episode Successfully');
         return Redirect::to('admin_1/list-episode/'.$movie_id);
     }
 

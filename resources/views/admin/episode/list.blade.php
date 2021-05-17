@@ -59,6 +59,7 @@ use Illuminate\Support\Facades\Session;
                                 <th>Episode</th>
                                 <th>Link 1</th>
                                 <th>Link 2</th>
+                                <th>View</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
@@ -72,6 +73,7 @@ use Illuminate\Support\Facades\Session;
                                 <td>{{$value->episode_name}}</td>
                                 <td>{{$value->url_first}}</td>
                                 <td>{{$value->url_second}}</td>
+                                <td>{{$value->view}}</td>
                                 <td>
                                 <?php
                                 if ($value->status == '1'){
