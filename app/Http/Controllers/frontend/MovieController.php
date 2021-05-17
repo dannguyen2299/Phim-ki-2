@@ -23,10 +23,10 @@ class MovieController extends Controller
 
         $data['movie_page']=DB::table('episode')->join('movie','episode.movie_id','=','movie.movie_id')->where("episode_id",$episode_id)->first();
 
-        $data['movie_page1']=DB::table('episode')->join('movie','episode.movie_id','=','movie.movie_id')->where("episode.movie_id",$movie_id)->get();
+        $data['movie_page1']=DB::table('episode')->join('movie','episode.movie_id','=','movie.movie_id')->where("episode_id",$episode_id)->get();
 
-    //    $data['movie_page']=DB::table('episode')->join('movie','movie.movie_id','=','episode.movie_id')->get();
-    // $movie_page=DB::select("SELECT * FROM episode inner join movie on movie.movie_id=episode.movie_id WHERE episode.movie_id=".$movie_id."" );
+        $data['movie_page2']=DB::table('episode')->join('movie','episode.movie_id','=','movie.movie_id')->where("episode.movie_id",$movie_id)->get();
+    
         
 
        

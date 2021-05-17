@@ -58,7 +58,7 @@
               
               
             <?php $count=1;?>
-                @foreach ($movie_page1 as $row1)
+                @foreach ($movie_page2 as $row1)
      
                     <a style="width: 50px;"href="../movie/page-movie-{{ $row1->movie_id }}&{{ $row1->episode_id }}&1.html" class="btn bg-danger mr-2 mt-2"><?php echo $count; ?></a>
            
