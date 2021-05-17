@@ -41,12 +41,21 @@ class MovieController extends Controller
         ->where('movie.movie_id',$movie->movie_id)
         ->where('episode.status','1')->get();
         $episode_nums[$movie->movie_id] = count($episode_num);
+
+        
+        //* Tổng số view
+        $views = 0;
+        foreach($episode_num as &$value){
+            $views = $views + $value->view;
+        }
+        $view_nums[$movie->movie_id] = $views;
+
     }
         // echo $movie_id;
 
         // $data['movie_page']=DB::table('episode')->where('episode.movie_id',$movie_id)->first();
 
-        return  view('frontend.movie',$data)->with('episode_nums',$episode_nums)->with('server',$server);
+        return  view('frontend.movie',$data)->with('episode_nums',$episode_nums)->with('view_nums',$view_nums)->with('server',$server);
     }
 
     function GetPage($movie_id){
@@ -68,10 +77,18 @@ class MovieController extends Controller
             ->where('movie.movie_id',$movie->movie_id)
             ->where('episode.status','1')->get();
             $episode_nums[$movie->movie_id] = count($episode_num);
+        
+            //* Tổng số view
+            $views = 0;
+            foreach($episode_num as &$value){
+                $views = $views + $value->view;
+            }
+            $view_nums[$movie->movie_id] = $views;
+    
         }
         
        
-        return  view('frontend.page',$data)->with('episode_nums',$episode_nums);
+        return  view('frontend.page',$data)->with('episode_nums',$episode_nums)->with('view_nums',$view_nums);
     }
 
     
