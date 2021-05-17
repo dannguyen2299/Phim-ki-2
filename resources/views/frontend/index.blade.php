@@ -32,7 +32,7 @@
                 </div>
                 <div class="infor">
                   <h5>{{ $row->movie_name }}</h5>
-                  <p>Lượt xem: {{ $row->view}} SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSviews</p>
+                  <p>Lượt xem: {{ $row->view}}</p>
                 </div>
               </div>
             </a>
