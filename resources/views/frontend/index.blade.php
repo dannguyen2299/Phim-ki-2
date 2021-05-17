@@ -32,7 +32,7 @@
                 </div>
                 <div class="infor">
                   <h5>{{ $row->movie_name }}</h5>
-                  <p>Lượt xem: {{ $row->view}} views</p>
+                  <p>Lượt xem: {{ $view_nums[$row->movie_id]}} views</p>
                 </div>
               </div>
             </a>
@@ -61,7 +61,7 @@
                       <img src="{{ $row->url_image }}" alt="" />
                       <div class="infor">
                         <h5>{{ $row->movie_name }}</h5>
-                        <p>Lượt xem: {{ $row->view}} views</p>
+                        <p>Lượt xem: {{ $view_nums[$row->movie_id]}} views</p>
                       </div>
                       <div class="rate">
                         <p>8.5 <i class="fa fa-star"></i></p>
@@ -101,7 +101,7 @@
                       <img src="{{ $row->url_image }}" alt="" />
                       <div class="infor">
                         <h5>{{ $row->movie_name }}</h5>
-                        <p>Lượt xem: {{ $row->view}} views</p>
+                        <p>Lượt xem: {{ $view_nums[$row->movie_id]}} views</p>
                       </div>
                       <div class="rate">
                         <p>8.5 <i class="fa fa-star"></i></p>

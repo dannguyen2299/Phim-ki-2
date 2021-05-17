@@ -15,7 +15,7 @@ class CreateNationTable extends Migration
     {
         Schema::create('nation', function (Blueprint $table) {
             $table->increments('nation_id');
-            $table->string('nation_name',30)->nullable(false);
+            $table->string('nation_name',100)->nullable(false);
             $table->integer('status')->unsigned();
         });
     }

@@ -50,7 +50,7 @@ use Illuminate\Support\Facades\Session;
                                 </td>
                                 <td>
                                     <a href="{{URL::to('admin_1/edit-nation/'.$value->nation_id)}}" class="btn btn-success"><i class="fas fa-pencil-alt"></i></a>
-                                    <a href="{{URL::to('admin_1/delete-nation/'.$value->nation_id)}}" class="btn btn-danger"  onclick="return confirm('Do you want to delete this brand product?')"><i class="fas fa-times"></i></a>
+                                    <a href="{{URL::to('admin_1/delete-nation/'.$value->nation_id)}}" class="btn btn-danger"  onclick="return confirm('Do you want to delete this nation?')"><i class="fas fa-times"></i></a>
                                 </td>
                             </tr>
                         @endforeach

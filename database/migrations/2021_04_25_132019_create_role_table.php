@@ -17,9 +17,6 @@ class CreateRoleTable extends Migration
             $table->increments('role_id');
             $table->string('role_name',100)->nullable(false);
             $table->integer('status')->unsigned();
-            // Tao khoa ngoai
-            $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('user_id')->on('user')->onDelete('cascade');
             
         });
     }

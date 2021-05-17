@@ -23,7 +23,7 @@ class category extends Seeder
             ['category_id'=>6,'category_name'=>'Phim Nhật Bổn','status'=>1],
             ['category_id'=>7,'category_name'=>'Phim Việt Nam','status'=>1],
             ['category_id'=>8,'category_name'=>'Phim Việt Nam','status'=>1],
-            ['category_id'=>9,'category_name'=>'Phim Việt','status'=>1],
+            ['category_id'=>9,'category_name'=>'Phim Việt','status'=>1]
          ]);
     }
 }

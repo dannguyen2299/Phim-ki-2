@@ -16,8 +16,6 @@ class CreateFilmTable extends Migration
         Schema::create('movie', function (Blueprint $table) {
             $table->increments('movie_id');
             $table->string('movie_name',255)->nullable(false);
-            $table->integer('view')->unsigned()->nullable(false);
-            
             $table->year('year');
             $table->integer('total_eps')->unsigned();
             $table->text('introduce')->nullable(false);

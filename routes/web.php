@@ -54,23 +54,33 @@ Route::prefix('admin_1')->group(function () {
     Route::get('update-movie/{movie_id}', 'backend\MovieController@update_movie');
     Route::get('save-movie', 'backend\MovieController@save_movie');
     Route::get('delete-movie/{movie_id}', 'backend\MovieController@delete_movie');
-    Route::get('edit-episode/{movie_id}', 'backend\MovieController@edit_episode');
 
     Route::get('active-movie/{movie_id}', 'backend\MovieController@active');
     Route::get('unactive-movie/{movie_id}', 'backend\MovieController@unactive');
 
-    // Nation
+    //* Nation
     Route::get('add-nation', 'backend\NationController@add_nation');
     Route::get('edit-nation/{nation_id}', 'backend\NationController@edit_nation');
     Route::get('list-nation', 'backend\NationController@list_nation');
     Route::get('update-nation/{nation_id}', 'backend\NationController@update_nation');
-
     Route::get('save-nation', 'backend\NationController@save_nation');
     Route::get('delete-nation/{nation_id}', 'backend\NationController@delete_nation');
 
     Route::get('active-nation/{nation_id}', 'backend\NationController@active');
     Route::get('unactive-nation/{nation_id}', 'backend\NationController@unactive');
-    //end - admin
+
+    //* Episode
+    Route::get('add-episode', 'backend\EpisodeController@add_episode');
+    Route::get('edit-episode/{episode_id}', 'backend\EpisodeController@edit_episode');
+    Route::get('list-episode/{movie_id}', 'backend\EpisodeController@list_episode');
+    Route::get('update-episode/{episode_id}', 'backend\EpisodeController@update_episode');
+    Route::get('save-episode', 'backend\EpisodeController@save_episode');
+    Route::get('delete-episode/{episode_id}', 'backend\EpisodeController@delete_episode');
+
+    Route::get('active-episode/{episode_id}', 'backend\EpisodeController@active');
+    Route::get('unactive-episode/{episode_id}', 'backend\EpisodeController@unactive');
+    
+    //*end - admin
 });
 
 
