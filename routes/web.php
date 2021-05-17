@@ -21,7 +21,9 @@ Route::prefix('movie')->group(function () {
     Route::get('movie-{movie_id}.html', 'frontend\MovieController@GetPage');
     Route::get('page-movie-{movie_id}&{episode_id}&{server}.html', 'frontend\MovieController@GetMovie');
 });
-Route::get('search', 'frontend\SearchController@GetSearch');
+Route::post('search', 'frontend\SearchController@GetSearch');
+Route::get('filter/{category_id}', 'frontend\FilterController@GetFilter');
+Route::get('filter-nation/{nation_id}', 'frontend\FilterController@GetNation');
 Route::get('sigup', 'frontend\SigUpController@GetSigUp');
 Route::get('login', 'frontend\LoginController@getLogin');
 
