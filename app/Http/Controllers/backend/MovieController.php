@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+
+namespace App\Http\Controllers\backend;
+use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
@@ -11,16 +13,7 @@ use Illuminate\Support\Facades\Redirect;
 
 class MovieController extends Controller
 {
-    //* Frontend ở đây
-    function GetMovie(){
-        return  view('frontend.movie');
-    }
-    function GetPage(){
-        return  view('frontend.page');
-    }
-
-    
-    //* Admin ở đây
+    //* Thanh - Admin
     public function list_movie(){
         $movies = DB::table('movie')
         ->join('nation','nation.nation_id','=','movie.nation_id')->select('movie.*','nation.*','movie.status as movie_status','nation.status as nation_status')->get();

@@ -1,6 +1,9 @@
 @extends('frontend.master.master')
 @section('title','Movie')
 @section('content')
+
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v10.0" nonce="ifGS9jp0"></script>
    
     <div class="container">
       <div class="row-2 mt-4">
@@ -16,42 +19,51 @@
     
                 <tr>
                   <td style="width:100px"><h6 class="text-secondary">TÊN PHIM: </h6></td>
-                  <td><h6 class="text-danger">NẮNG VÀ HOA</h6></td>
+                  <td><h6 class="text-danger">{{ $movie_detail->movie_name }}</h6></td>
                 </tr>
                 <tr>
-                  <td style="width:100px"><h6 class="text-secondary mt-2">Đạo diễn: </h6></td>
-                  <td><h6 class="text-danger mt-2">Ngô Thanh Hà</h6></td>
+                  <td style="width:100px"><h6 class="text-secondary mt-2">Quốc gia: </h6></td>
+                  <td><h6 class="text-danger mt-2">{{ $movie_detail->nation_name }}</h6></td>
                 </tr>
             </table>
           </div>
             <div class="row-2 mt-3">
-              <iframe width="100%" height="315" src="https://www.youtube.com/embed/Vdxp5H2vOdU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              @if ($server==1)
+                <iframe width="100%" height="315"       
+              src="{{ $movie_page->url_first }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              @elseif ($server==2)
+              <iframe width="100%" height="315"       
+              src="{{ $movie_page->url_second }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              @endif
+              
             </div>
             <div class="row-2 mt-4">
               <h5 class="text-danger">LINK DỰ PHÒNG</h5>
             </div>
             <div class="row-2 mt-4">
-              <a href="" class="btn-success btn">Server #1</a>
-              <a href="" class="btn-outline-success btn">Server #2</a>
-              <a href="" class="btn-outline-success btn">Server #3</a>
+              
+                @foreach ($movie_page1 as $row1)
+              <a href="../movie/page-movie-{{ $row1->movie_id }}&{{ $row1->episode_id }}&1.html" class="btn-success btn">Server #1</a>
+              <a href="../movie/page-movie-{{ $row1->movie_id }}&{{ $row1->episode_id }}&2.html" class="btn-success btn">Server #2</a>
               <a href="" class="btn-warning btn">Báo lỗi</a>
+              @endforeach
+              {{-- <a href="" class="btn-outline-success btn">Server #2</a>
+              <a href="" class="btn-outline-success btn">Server #3</a>
+               --}}
             </div>
             <div class="row-2 mt-4">
               <h5 class="text-danger">TẬP PHIM</h5>
             </div>
             <div class="row-2">
-                    <a style="width: 50px;"href="" class="btn bg-danger mr-2 mt-2">01</a>
-                    <a style="width: 50px;"href="" class="btn bg-dark mr-2 mt-2">02</a>
-                    <a style="width: 50px;"href="" class="btn bg-dark mr-2 mt-2">03</a>
-                    <a style="width: 50px;"href="" class="btn bg-dark mr-2 mt-2">04</a>
-                    <a style="width: 50px;"href="" class="btn bg-dark mr-2 mt-2">05</a>
-                    <a style="width: 50px;"href="" class="btn bg-dark mr-2 mt-2">06</a>
-                    <a style="width: 50px;"href="" class="btn bg-dark mr-2 mt-2">07</a>
-                    <a style="width: 50px;"href="" class="btn bg-dark mr-2 mt-2">08</a>
-                   <a style="width: 50px;"href="" class="btn bg-dark mr-2 mt-2">09</a>
-                    <a style="width: 50px;"href="" class="btn bg-dark mr-2 mt-2">10</a>
-                   <a style="width: 50px;"href="" class="btn bg-dark mr-2 mt-2">11</a>
-                   <a style="width: 50px;"href="" class="btn bg-dark mr-2 mt-2">12</a>
+              
+              
+            <?php $count=1;?>
+                @foreach ($movie_page1 as $row1)
+     
+                    <a style="width: 50px;"href="../movie/page-movie-{{ $row1->movie_id }}&{{ $row1->episode_id }}.html" class="btn bg-danger mr-2 mt-2"><?php echo $count; ?></a>
+           
+                   <?php $count++;?>
+                   @endforeach
                    
                   
                  
@@ -61,13 +73,45 @@
               <h5 class="text-danger">BÌNH LUẬN PHIM</h5>
             </div>
             <div class="row-2">
-              <p class="text-secondary">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque pariatur velit temporibus provident magni qui illum adipisci nam et, ullam veritatis doloremque libero saepe expedita illo maiores sed, officia ipsum, quisquam placeat? Doloremque numquam tenetur minima dolorum quibusdam, sapiente voluptatem in architecto deleniti modi omnis eveniet molestias illo consequatur sit obcaecati voluptatum fugiat possimus. Expedita nemo delectus labore sed repellat magnam, voluptas tenetur? Ipsum ut alias deserunt doloribus nesciunt architecto atque impedit minus quia sint ipsam libero, nobis tempore sapiente cupiditate omnis dolorum tenetur quo molestias quod illo. Corrupti hic quia magnam quod qui ratione praesentium officia fugit, vero at!</p>
+              {{-- <p class="text-secondary">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque pariatur velit temporibus provident magni qui illum adipisci nam et, ullam veritatis doloremque libero saepe expedita illo maiores sed, officia ipsum, quisquam placeat? Doloremque numquam tenetur minima dolorum quibusdam, sapiente voluptatem in architecto deleniti modi omnis eveniet molestias illo consequatur sit obcaecati voluptatum fugiat possimus. Expedita nemo delectus labore sed repellat magnam, voluptas tenetur? Ipsum ut alias deserunt doloribus nesciunt architecto atque impedit minus quia sint ipsam libero, nobis tempore sapiente cupiditate omnis dolorum tenetur quo molestias quod illo. Corrupti hic quia magnam quod qui ratione praesentium officia fugit, vero at!</p> --}}
+              <div class="fb-comments bg-light" data-href="{{ $movie_detail->url_cmt_fb }}" data-width="100%" data-numposts="7"></div>
+
             </div>
-            <div class="row-2">
-              <h5 class="text-danger">PHIM CÙNG TÁC GIẢ</h5>
+            <div class="row-2 mt-3">
+              <h5 class="text-danger">PHIM CÙNG QUỐC GIA</h5>
             </div>
-            <div class="row-2">
-              <div class="row mt-4">
+            <div class="row">
+              @foreach ($movie_nation as $row )
+              <div class="col-3">
+                <div class="row mt-4">
+                  <div class="col-xl-6">
+                    <a href="../movie/movie-{{ $row->movie_id }}.html" class="ml-2 mt-3 mr-1">
+                      <div class="card-style-1"  id="respon">
+                        <img src="{{ $row->url_image }}" alt="" />
+                        <div class="infor">
+                          <h5>{{ $row->movie_name }}</h5>
+                          <p>Lượt xem: {{ $row->view }} views</p>
+                        </div>
+                        <div class="rate">
+                          <p>8.5 <i class="fa fa-star"></i></p>
+                        </div>
+                        <div class="episode">
+                          <h8>Tập
+                            <p>{{$episode_nums[$row->movie_id]}} / {{$row->total_eps}} tập</p>
+                          </h8>
+                        </div>
+                        <div class="play">
+                          <i class="fa fa-play"></i>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+  
+             
+              @endforeach
+              {{-- <div class="row mt-4">
                 <div class="col-6">
                   <div class="row">
                     <div class="col-xl-6">
@@ -272,8 +316,9 @@
                   </div>
                 </div>
              
-              </div>
+              </div> --}}
             </div>
+
         </div>
         @include('frontend.master.fim_select')
       </div>

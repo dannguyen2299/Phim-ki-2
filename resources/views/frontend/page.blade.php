@@ -1,8 +1,12 @@
 @extends('frontend.master.master')
 @section('title','Page_Movie')
 @section('content')
-  
-
+  {{--  --}}
+  {{--  --}}
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v10.0" nonce="ifGS9jp0"></script>
+{{--  --}}
+{{--  --}}
     <div class="container">
       <div class="row-2 mt-4">
         <h5 class="text-light">THÔNG TIN PHIM</h5>
@@ -15,9 +19,9 @@
           <div class="row">
           
                 <div class="col-xl-4">
-                  <a href="">
+                  <a href="../movie/page-movie-{{ $movie_detail->movie_id }}&1&1.html">
                     <div class="card-style-1 ">
-                      <img src="./img/l-1.jpg" alt=""/>
+                      <img src="{{ $movie_detail->url_image }}" alt=""/>
                     </div>
                   </a>
                 
@@ -26,7 +30,7 @@
                   <table id="">
                     <tr>
                       <td style="width:100px"><h6 class="text-secondary">TÊN PHIM: </h6></td>
-                      <td><h6 class="text-danger">NẮNG VÀ HOA</h6></td>
+                      <td><h6 class="text-danger">{{ $movie_detail->movie_name }}</h6></td>
                     </tr>
                     <tr>
                       <td style="width:100px"></td>
@@ -34,23 +38,33 @@
                     </tr>
                     <tr>
                       <td style="width:100px"><h6 class="text-secondary mt-2">Trạng thái: </h6></td>
-                      <td><h6 class="text-danger mt-2">10/10 tập</h6></td>
+                      <td><h6 class="text-danger mt-2">{{$episode_nums[$movie_detail->movie_id]}} / {{$movie_detail->total_eps}} tập</h6></td>
                     </tr>
                     <tr>
                       <td style="width:100px"><h6 class="text-secondary mt-2">Quốc gia: </h6></td>
-                      <td><h6 class="text-danger mt-2">Đông lào</h6></td>
+                      <td><h6 class="text-danger mt-2"> {{ $movie_detail->nation_name }}</h6></td>
                     </tr>
                     <tr>
                       <td style="width:100px"><h6 class="text-secondary mt-2">Đạo diễn: </h6></td>
                       <td><h6 class="text-danger mt-2">Ngô Thanh Hà</h6></td>
                     </tr>
+
                     <tr>
                       <td style="width:100px"><h6 class="text-secondary mt-2">Thể loại: </h6></td>
-                      <td style="width:300px"><h6 class="text-danger mt-2">Huyền huyễn, Hành động, Kinh dị</h6></td>
+        
+  
+
+                      <td style="width:300px"><h6 class="text-danger mt-2">
+                        @foreach ($movie_cat as &$row)
+                        {{ $row->category_name }}
+                        
+                          @endforeach
+                      </h6></td>
+   
                     </tr>
                  
                     <tr>
-                      <td colspan="3"><a href="./movie.html"class="btn btn-danger mt-3">XEM PHIM</a>
+                      <td colspan="3"><a href="../movie/page-movie-{{ $movie_detail->movie_id }}&1&1.html"class="btn btn-danger mt-3">XEM PHIM</a>
                         <a href=""class="btn btn-outline-success mt-3 ml-3 mr-3">DOWNLOAD</a>
                         <a href=""class="btn btn-warning mt-3 ">THEO DÕI</a>
                       </td>
@@ -66,237 +80,60 @@
             <h5 class="text-danger">NỘI DUNG PHIM</h5>
           </div>
           <div class="row-2">
-              <p class="text-secondary">Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia, placeat eaque assumenda rerum quaerat aliquam pariatur, aliquid incidunt aspernatur obcaecati, harum minus exercitationem reiciendis velit. Aliquid accusantium voluptas autem sapiente maxime culpa suscipit quaerat error in iure placeat expedita commodi perferendis quibusdam eveniet, excepturi quasi est minus repellat fuga quia dignissimos doloribus! Officiis necessitatibus harum iste sed! Ea ducimus nemo ratione natus rerum beatae optio inventore eveniet, incidunt nobis eaque officia quos ullam deleniti fuga assumenda iste, voluptatibus possimus repellat?</p>
+              <p class="text-secondary">{{ $movie_detail->introduce }}</p>
           </div>
-          <div class="row-2">
-            <h5 class="text-danger">BÌNH CHỌN</h5>
-          </div>
-          <div class="row-2">
-            <h5 class="text-secondary">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, dolorum!</h5>
-          </div>
+          
           <div class="row-2">
             <h5 class="text-danger">TRAILER</h5>
           </div>
           <div class="row-2">
-            <iframe width="100%" height="315" src="https://www.youtube.com/embed/Vdxp5H2vOdU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe width="100%" height="315" src="{{ $movie_detail->url_trailer }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </div>
-          <div class="row-2">
+          <div class="row-2 mt-3">
             <h5 class="text-danger">BÌNH LUẬN PHIM</h5>
           </div>
-          <div class="row-2">
-            <p class="text-secondary">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque pariatur velit temporibus provident magni qui illum adipisci nam et, ullam veritatis doloremque libero saepe expedita illo maiores sed, officia ipsum, quisquam placeat? Doloremque numquam tenetur minima dolorum quibusdam, sapiente voluptatem in architecto deleniti modi omnis eveniet molestias illo consequatur sit obcaecati voluptatum fugiat possimus. Expedita nemo delectus labore sed repellat magnam, voluptas tenetur? Ipsum ut alias deserunt doloribus nesciunt architecto atque impedit minus quia sint ipsam libero, nobis tempore sapiente cupiditate omnis dolorum tenetur quo molestias quod illo. Corrupti hic quia magnam quod qui ratione praesentium officia fugit, vero at!</p>
+          <div class="row-2 ">
+            {{-- <p class="text-secondary">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque pariatur velit temporibus provident magni qui illum adipisci nam et, ullam veritatis doloremque libero saepe expedita illo maiores sed, officia ipsum, quisquam placeat? Doloremque numquam tenetur minima dolorum quibusdam, sapiente voluptatem in architecto deleniti modi omnis eveniet molestias illo consequatur sit obcaecati voluptatum fugiat possimus. Expedita nemo delectus labore sed repellat magnam, voluptas tenetur? Ipsum ut alias deserunt doloribus nesciunt architecto atque impedit minus quia sint ipsam libero, nobis tempore sapiente cupiditate omnis dolorum tenetur quo molestias quod illo. Corrupti hic quia magnam quod qui ratione praesentium officia fugit, vero at!</p> --}}
+            <div class="fb-comments bg-light" data-href="{{ $movie_detail->url_cmt_fb }}" data-width="100%" data-numposts="7"></div>
+         {{--  --}}
           </div>
-          <div class="row-2">
-            <h5 class="text-danger">PHIM CÙNG TÁC GIẢ</h5>
+          <div class="row-2 mt-3">
+            <h5 class="text-danger">PHIM CÙNG QUỐC GIA</h5>
           </div>
-          <div class="row-2">
-            <div class="row mt-4">
-              <div class="col-6">
-                <div class="row">
-                  <div class="col-xl-6">
-                    <a href="./page.html">
-                      <div class="card-style-1"  id="respon">
-                        <img src="./img/l-1.jpg" alt="" />
-                        <div class="infor">
-                          <h5>Hoa và nắng</h5>
-                          <p>Lượt xem: 2000 views</p>
-                        </div>
-                        <div class="rate">
-                          <p>8.5 <i class="fa fa-star"></i></p>
-                        </div>
-                        <div class="episode">
-                          <h8
-                            >Tập
-                            <p>10/10</p></h8
-                          >
-                        </div>
-                        <div class="play">
-                          <i class="fa fa-play"></i>
-                        </div>
+          <div class="row">
+            @foreach ($movie_nation as $row )
+            <div class="col-3">
+              <div class="row mt-4">
+                <div class="col-xl-6">
+                  <a href="../movie/movie-{{ $row->movie_id }}.html" class="ml-2 mt-3 mr-1">
+                    <div class="card-style-1"  id="respon">
+                      <img src="{{ $row->url_image }}" alt="" />
+                      <div class="infor">
+                        <h5>{{ $row->movie_name }}</h5>
+                        <p>Lượt xem: {{ $row->view }} views</p>
                       </div>
-                    </a>
-                  </div>
-                  <div class="col-xl-6">
-                    <a href="">
-                      <div class="card-style-1" id="respon" >
-                        <img src="./img/l-1.jpg" alt="" />
-                        <div class="infor">
-                          <h5>Hoa và nắng</h5>
-                          <p>Lượt xem: 2000 views</p>
-                        </div>
-                        <div class="rate">
-                          <p>8.5 <i class="fa fa-star"></i></p>
-                        </div>
-                        <div class="episode">
-                          <h8
-                            >Tập
-                            <p>10/10</p></h8
-                          >
-                        </div>
-                        <div class="play">
-                          <i class="fa fa-play"></i>
-                        </div>
+                      <div class="rate">
+                        <p>8.5 <i class="fa fa-star"></i></p>
                       </div>
-                    </a>
-                  </div>
+                      <div class="episode">
+                        <h8>Tập
+                          <p>{{$episode_nums[$row->movie_id]}} / {{$row->total_eps}} tập</p>
+                        </h8>
+                      </div>
+                      <div class="play">
+                        <i class="fa fa-play"></i>
+                      </div>
+                    </div>
+                  </a>
                 </div>
               </div>
-              <div class="col-6">
-                <div class="row">
-                  <div class="col-xl-6">
-                    <a href="">
-                      <div class="card-style-1" id="respon">
-                        <img src="./img/l-1.jpg" alt="" />
-                        <div class="infor">
-                          <h5>Hoa và nắng</h5>
-                          <p>Lượt xem: 2000 views</p>
-                        </div>
-                        <div class="rate">
-                          <p>8.5 <i class="fa fa-star"></i></p>
-                        </div>
-                        <div class="episode">
-                          <h8
-                            >Tập
-                            <p>10/10</p></h8
-                          >
-                        </div>
-                        <div class="play">
-                          <i class="fa fa-play"></i>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-                  <div class="col-xl-6">
-                    <a href="">
-                      <div class="card-style-1 "id="respon">
-                        <img src="./img/l-1.jpg" alt="" />
-                        <div class="infor">
-                          <h5>Hoa và nắng</h5>
-                          <p>Lượt xem: 2000 views</p>
-                        </div>
-                        <div class="rate">
-                          <p>8.5 <i class="fa fa-star"></i></p>
-                        </div>
-                        <div class="episode">
-                          <h8
-                            >Tập
-                            <p>10/10</p></h8
-                          >
-                        </div>
-                        <div class="play">
-                          <i class="fa fa-play"></i>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-                </div>
-              </div>
-           
             </div>
-            <div class="row mt-4">
-              <div class="col-6">
-                <div class="row">
-                  <div class="col-xl-6">
-                    <a href="">
-                      <div class="card-style-1"  id="respon">
-                        <img src="./img/l-1.jpg" alt="" />
-                        <div class="infor">
-                          <h5>Hoa và nắng</h5>
-                          <p>Lượt xem: 2000 views</p>
-                        </div>
-                        <div class="rate">
-                          <p>8.5 <i class="fa fa-star"></i></p>
-                        </div>
-                        <div class="episode">
-                          <h8
-                            >Tập
-                            <p>10/10</p></h8
-                          >
-                        </div>
-                        <div class="play">
-                          <i class="fa fa-play"></i>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-                  <div class="col-xl-6">
-                    <a href="">
-                      <div class="card-style-1" id="respon" >
-                        <img src="./img/l-1.jpg" alt="" />
-                        <div class="infor">
-                          <h5>Hoa và nắng</h5>
-                          <p>Lượt xem: 2000 views</p>
-                        </div>
-                        <div class="rate">
-                          <p>8.5 <i class="fa fa-star"></i></p>
-                        </div>
-                        <div class="episode">
-                          <h8
-                            >Tập
-                            <p>10/10</p></h8
-                          >
-                        </div>
-                        <div class="play">
-                          <i class="fa fa-play"></i>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-6">
-                <div class="row">
-                  <div class="col-xl-6">
-                    <a href="">
-                      <div class="card-style-1" id="respon">
-                        <img src="./img/l-1.jpg" alt="" />
-                        <div class="infor">
-                          <h5>Hoa và nắng</h5>
-                          <p>Lượt xem: 2000 views</p>
-                        </div>
-                        <div class="rate">
-                          <p>8.5 <i class="fa fa-star"></i></p>
-                        </div>
-                        <div class="episode">
-                          <h8
-                            >Tập
-                            <p>10/10</p></h8
-                          >
-                        </div>
-                        <div class="play">
-                          <i class="fa fa-play"></i>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-                  <div class="col-xl-6">
-                    <a href="">
-                      <div class="card-style-1 "id="respon">
-                        <img src="./img/l-1.jpg" alt="" />
-                        <div class="infor">
-                          <h5>Hoa và nắng</h5>
-                          <p>Lượt xem: 2000 views</p>
-                        </div>
-                        <div class="rate">
-                          <p>8.5 <i class="fa fa-star"></i></p>
-                        </div>
-                        <div class="episode">
-                          <h8
-                            >Tập
-                            <p>10/10</p></h8
-                          >
-                        </div>
-                        <div class="play">
-                          <i class="fa fa-play"></i>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-                </div>
-              </div>
+
            
-            </div>
+            @endforeach
           </div>
+         
+          
         </div>
         @include('frontend.master.fim_select')
       </div>
