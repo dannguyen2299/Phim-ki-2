@@ -58,6 +58,9 @@ Route::prefix('admin_1')->group(function () {
     Route::get('active-movie/{movie_id}', 'backend\MovieController@active');
     Route::get('unactive-movie/{movie_id}', 'backend\MovieController@unactive');
 
+    //* Movie Detail
+    Route::get('movie-detail', 'backend\MovieDetailController@movie_detail');
+
     //* Nation
     Route::get('add-nation', 'backend\NationController@add_nation');
     Route::get('edit-nation/{nation_id}', 'backend\NationController@edit_nation');
