@@ -13,14 +13,17 @@ class CreateMessageTable extends Migration
      */
     public function up()
     {
-        Schema::create('message', function (Blueprint $table) {
-            $table->increments('message_id');
-            $table->string('user_name',255)->nullable(false);
-            $table->string('user_email',255)->nullable(false);
+        Schema::create('report', function (Blueprint $table) {
+            $table->increments('report_id');
             $table->text('content',255);
+            $table->date('created_at')->nullable();
             // Tao khoa ngoai
             $table->integer('episode_id')->unsigned();
             $table->foreign('episode_id')->references('episode_id')->on('episode')->onDelete('cascade');         
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('user_id')->on('user')->onDelete('cascade');         
+            
+            $table->integer('is_fixed')->default(0);
         });
     }
 
@@ -31,6 +34,6 @@ class CreateMessageTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('message');
+        Schema::dropIfExists('report');
     }
 }

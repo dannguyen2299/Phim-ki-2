@@ -1,5 +1,5 @@
 @extends('admin/admin_layout')
-@section('title','Admin: Movie Detail')
+@section('title','Admin: Statistical')
 @section('admin_content')
 <?php
 use Illuminate\Support\Facades\Session;

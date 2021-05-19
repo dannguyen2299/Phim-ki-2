@@ -39,13 +39,15 @@ class EpisodeController extends Controller
     }
 
     public function edit_episode($episode_id){
-        $episode = DB::table('episode')->where('episode_id',$episode_id)->get();
+        $episode = DB::table('episode')
+        ->join('movie','movie.movie_id','=','episode.movie_id')
+        ->where('episode_id',$episode_id)->get();
+        
         return view('admin.episode.edit')->with('episode',$episode);
     }
 
     public function update_episode(Request $request, $episode_id){
         $movie_id = DB::table('episode')->where('episode_id',$episode_id)->get()[0]->movie_id;
-        DB::table('episode')->where('episode_id',$episode_id)->update(['status'=>1]);
 
         $data = array();
         $data['episode_name'] = $request->episode_name;

@@ -1,5 +1,5 @@
 @extends('admin/admin_layout')
-@section('title','Admin: Edit Episode')
+@section('title','Admin: Fix Report')
 @section('admin_content')
 
 <div class="row">
@@ -13,7 +13,7 @@
                 <div class="row">
                     <div class="col-xl-8">
                         <div>
-                            <form autocomplete="off" action="{{URL::to('admin_1/update-episode/'.$value->episode_id)}}">
+                            <form autocomplete="off" action="{{URL::to('admin_1/update-report/episode_id='.$value->episode_id.'&report_id='.$report->report_id)}}">
                                 <div class="form-group row">
                                     <label for="inputEmail3" class="col-sm-2 col-form-label">Episode Id</label>
                                     <div class="col-sm-10">
@@ -47,7 +47,15 @@
                                         </select>
                                     </div>
                                 </div>
-                                
+                                <div class="form-group row">
+                                    <label for="sl_is_fixed" class="col-sm-2 col-form-label">Is Fixed</label>
+                                    <div class="col-sm-10">
+                                        <select name="is_fixed" id="sl_is_fixed" class="form-control">
+                                            <option value="1" <?php if ($report->is_fixed == 1) echo 'selected';?>>Fixed</option>
+                                            <option value="0" <?php if ($report->is_fixed == 0) echo 'selected';?>>Not Fixed</option>
+                                        </select>
+                                    </div>
+                                </div>
                                 <div class="form-group row">
                                     <div class="col-sm-10">
                                         <button type="submit" class="btn btn-success">Update</button>
@@ -73,6 +81,6 @@
 @section('script')
 <script>
     $('.submenu ul li a').removeClass('active');
-    $('#submenu-category ul li a').last().addClass('active');
+    $('#submenu-report a').last().addClass('active');
 </script>
 @endsection

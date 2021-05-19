@@ -58,9 +58,6 @@ Route::prefix('admin_1')->group(function () {
     Route::get('active-movie/{movie_id}', 'backend\MovieController@active');
     Route::get('unactive-movie/{movie_id}', 'backend\MovieController@unactive');
 
-    //* Movie Detail
-    Route::get('movie-detail', 'backend\MovieDetailController@movie_detail');
-
     //* Nation
     Route::get('add-nation', 'backend\NationController@add_nation');
     Route::get('edit-nation/{nation_id}', 'backend\NationController@edit_nation');
@@ -83,6 +80,17 @@ Route::prefix('admin_1')->group(function () {
     Route::get('active-episode/{episode_id}', 'backend\EpisodeController@active');
     Route::get('unactive-episode/{episode_id}', 'backend\EpisodeController@unactive');
     
+    //* Movie Detail
+    Route::get('movie-detail', 'backend\MovieDetailController@movie_detail');
+
+    //* Report
+    Route::get('list-report', 'backend\ReportController@list_report');
+    Route::get('delete-report/{report_id}', 'backend\ReportController@delete_report');
+    Route::get('fix-report/{report_id}', 'backend\ReportController@fix_report');
+    Route::get('update-report/episode_id={episode_id}&report_id={report_id}', 'backend\ReportController@update_report');
+    Route::get('fixed-report/{report_id}', 'backend\ReportController@fixed');
+    Route::get('not-fixed-report/{report_id}', 'backend\ReportController@not_fixed');
+
     //*end - admin
 });
 

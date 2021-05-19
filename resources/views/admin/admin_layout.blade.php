@@ -312,6 +312,13 @@ use Illuminate\Support\Facades\Session;
                             </ul>
                         </li>
 
+                        <li class="submenu" id="submenu-report">
+                            <a href="{{URL::to('admin_1/list-report')}}">
+                                <i class="fas fa-user"></i>
+                                <span> Report </span>
+                            </a>
+                        </li>
+
                         <li class="submenu" id="submenu-statistacal">
                             <a href="{{URL::to('admin_1/movie-detail')}}">
                                 <i class="fas fa-user"></i>

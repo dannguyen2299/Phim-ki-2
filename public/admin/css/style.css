@@ -1671,3 +1671,13 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
     color: red;
     font-size: 17px;
 }
+
+.fa-thumbs-up{
+    color: rgb(0, 149, 0);
+    font-size: 17px;
+}
+
+.fa-thumbs-down{
+    color: red;
+    font-size: 17px;
+}
