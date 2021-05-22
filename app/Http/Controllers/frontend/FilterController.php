@@ -18,18 +18,32 @@ class FilterController extends Controller
         $data['category_l'] = DB::table('category')->get();
 
         $episode_nums = array();
+        $view_nums = array();
         foreach($movies as &$movie){
-            $episode_num = DB::table('movie')
+
+            //* Tổng số tập
+            $episodes = DB::table('movie')
             ->join('episode','episode.movie_id','=','movie.movie_id')
             ->where('movie.movie_id',$movie->movie_id)
             ->where('episode.status','1')->get();
-            $episode_nums[$movie->movie_id] = count($episode_num);
+            $episode_nums[$movie->movie_id] = count($episodes);
+
+            //* Tổng số view
+            $views = 0;
+            foreach($episodes as &$value){
+                $views = $views + $value->view;
+            }
+            $view_nums[$movie->movie_id] = $views;
         }
+
         $data['category_nation']=DB::table('movie')->join('nation','movie.nation_id','=','nation.nation_id')->where('movie_id',$category_id)->get();
        
         $category_by_id=DB::select('select * from movie inner join category_detail on movie.movie_id = category_detail.movie_id where category_detail.category_id = '.$category_id.' group by movie.movie_id');
+        
+        
 
-        return view('frontend.filter',$data)->with('episode_nums',$episode_nums)->with('category_by_id',$category_by_id);
+
+        return view('frontend.filter',$data)->with('episode_nums',$episode_nums)->with('category_by_id',$category_by_id)->with("view_nums",$view_nums);
     }
 
     function GetNation($nation_id){
@@ -41,17 +55,29 @@ class FilterController extends Controller
         $data['nation'] = DB::table('nation')->get();
         $data['category_l'] = DB::table('category')->get();
 
+        
         $episode_nums = array();
+        $view_nums = array();
         foreach($movies as &$movie){
-            $episode_num = DB::table('movie')
+
+            //* Tổng số tập
+            $episodes = DB::table('movie')
             ->join('episode','episode.movie_id','=','movie.movie_id')
             ->where('movie.movie_id',$movie->movie_id)
             ->where('episode.status','1')->get();
-            $episode_nums[$movie->movie_id] = count($episode_num);
+            $episode_nums[$movie->movie_id] = count($episodes);
+
+            //* Tổng số view
+            $views = 0;
+            foreach($episodes as &$value){
+                $views = $views + $value->view;
+            }
+            $view_nums[$movie->movie_id] = $views;
         }
+
         $data['category_by_id']=DB::table('movie')->join('nation','movie.nation_id','=','nation.nation_id')->where('movie.nation_id',$nation_id)->get();
        
 
-        return view('frontend.filter',$data)->with('episode_nums',$episode_nums);
+        return view('frontend.filter',$data)->with('episode_nums',$episode_nums)->with("view_nums",$view_nums);
     }
 }

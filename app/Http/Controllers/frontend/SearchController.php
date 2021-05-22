@@ -33,16 +33,26 @@ class SearchController extends Controller
         }
 
         $episode_nums = array();
+        $view_nums = array();
         foreach($movies as &$movie){
-            $episode_num = DB::table('movie')
+
+            //* Tổng số tập
+            $episodes = DB::table('movie')
             ->join('episode','episode.movie_id','=','movie.movie_id')
             ->where('movie.movie_id',$movie->movie_id)
             ->where('episode.status','1')->get();
-            $episode_nums[$movie->movie_id] = count($episode_num);
+            $episode_nums[$movie->movie_id] = count($episodes);
+
+            //* Tổng số view
+            $views = 0;
+            foreach($episodes as &$value){
+                $views = $views + $value->view;
+            }
+            $view_nums[$movie->movie_id] = $views;
         }
         $search_movie=DB::table('movie')->where('status',1)->where('movie_name','like','%' .$keywords. '%')->paginate(4);
        
 
-        return view('frontend.search',$data)->with('movies',$movies)->with('episode_nums',$episode_nums)->with('categories',$categories)->with('search_movie',$search_movie);
+        return view('frontend.search',$data)->with('movies',$movies)->with('episode_nums',$episode_nums)->with('categories',$categories)->with('search_movie',$search_movie)->with("view_nums",$view_nums);
     }
 }
