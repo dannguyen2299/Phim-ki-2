@@ -16,9 +16,9 @@ class role extends Seeder
         //
         DB::table('role')->delete();
         DB::table('role')->insert([
-            ['role_id'=>1,'role_name'=>'Admin_1','status'=>1],
-            ['role_id'=>2,'role_name'=>'Admin_2','status'=>1],
-            ['role_id'=>3,'role_name'=>'Member','status'=>1]
+            ['role_name'=>'Super Admin','level' => 0,'status'=>1],
+            ['role_name'=>'Admin','level' => 1,'status'=>1],
+            ['role_name'=>'Member','level' => 3,'status'=>1],
         ]);
     }
 }

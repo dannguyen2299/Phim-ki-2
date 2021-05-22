@@ -209,7 +209,7 @@ use Illuminate\Support\Facades\Session;
                             <!-- item-->
                             <div class="dropdown-item noti-title">
                                 <h5 class="text-overflow">
-                                    <small>Hello, admin</small>
+                                    <small>Hello, {{Session::get('name')}}</small>
                                 </h5>
                             </div>
 
@@ -220,8 +220,9 @@ use Illuminate\Support\Facades\Session;
                             </a>
 
                             <!-- item-->
-                            <a href="#" class="dropdown-item notify-item">
+                            <a href="{{route('logout')}}" class="dropdown-item notify-item">
                                 <i class="fas fa-power-off"></i>
+                               
                                 <span>Logout</span>
                             </a>
                         </div>

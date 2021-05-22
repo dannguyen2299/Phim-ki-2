@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('', 'frontend\IndexController@getIndex');
+Route::get('', 'frontend\IndexController@getIndex')->name("index");
 Route::get('error', 'frontend\ErController@getError');
 
 Route::prefix('movie')->group(function () {
@@ -25,15 +25,16 @@ Route::post('search', 'frontend\SearchController@GetSearch');
 Route::get('filter/{category_id}', 'frontend\FilterController@GetFilter');
 Route::get('filter-nation/{nation_id}', 'frontend\FilterController@GetNation');
 Route::get('sigup', 'frontend\SigUpController@GetSigUp');
-Route::get('login', 'frontend\LoginController@getLogin');
+Route::get('login', 'frontend\LoginController@getLogin')->name('login');
+Route::get('logout', 'frontend\LoginController@logout')->name('logout');
+Route::post('processLogin', 'frontend\LoginController@processLogin')->name('processLogin');
 
 //Thanh - admin
 
 Route::get('login_b', 'Login_backController@getLoginB');
 Route::post('login_b', 'Login_backController@postLogin');
-
-Route::prefix('admin_1')->group(function () {
-    Route::get('', 'backend\AdminController@show_dashboard');
+Route::middleware(['CheckLogin'])->prefix('admin_1')->group(function () {
+    Route::get('', 'backend\AdminController@show_dashboard')->name('admin');
     Route::get('dashboard', 'backend\AdminController@show_dashboard');
 
     //* Category

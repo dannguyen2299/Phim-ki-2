@@ -164,23 +164,22 @@ header{
 	background: #000;
 }
 footer{
+    position: sticky;
+    top: 100%;
     background-color: #333;
 }
 footer .container .fr{
     height: 150px;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 }
-footer .container .fr .logo{
-   flex: 1;
+.avatar{
+    width: 29px;
+    height: 29px;
+    border: 1px solid #fff;
+    border-radius: 50%;
 }
-footer .container .fr .content{
-    flex: 2;
- }
- footer .container .fr .infor{
-    flex: 1;
- }
 .dropdown-item:hover{
     background-color: #BD2130  !important;
 }
@@ -202,4 +201,27 @@ footer .container .fr .content{
         margin: auto;
     }
   
+  }
+  html::-webkit-scrollbar {
+    width: 10px;
+  }
+
+html::-webkit-scrollbar-track {
+    background: rgb(179, 177, 177);
+    border-radius: 10px;
+}
+
+html::-webkit-scrollbar-thumb {
+    background: rgb(136, 136, 136);
+    border-radius: 10px;
+  }
+
+html::-webkit-scrollbar-thumb:hover {
+    background: rgb(100, 100, 100);
+    border-radius: 10px;
+  }
+
+html::-webkit-scrollbar-thumb:active {
+    background: rgb(68, 68, 68);
+    border-radius: 10px;
   }

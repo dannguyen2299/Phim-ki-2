@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous" /> -->
   <title>@yield('title')</title>
+  <link rel="icon" href="{{asset('').'frontend/img/icon.png'}}" type="image/gif" sizes="16x16">
   <base href="{{ asset('').'frontend/' }}">
   <link rel="stylesheet" href="style.css" />
   <link href="css/style.css" rel="stylesheet" type="text/css" />
@@ -59,10 +60,7 @@
                 @endforeach
             </li>
             <li class="nav-item active">
-              <a class="nav-link text-light" href="../filter/1">Phim bộ <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item active">
-              <a class="nav-link text-light" href="../filter/2">Phim lẻ <span class="sr-only">(current)</span></a>
+              <a class="nav-link text-light" href="../filter/2">Phim đánh dấu<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item active">
               <a class="nav-link text-light" href="#">Top IMDB <span class="sr-only">(current)</span></a>
@@ -73,15 +71,38 @@
             
             <input class="form-control mr-sm-2 rounded-pill bg-dark text-light" name="keywords_submit" type="search" placeholder="Tìm kiếm" aria-label="Search" style="width: 250px; height:30px" />
             <input type="submit" name="submit" class="fa fa-search" hidden>
-            <!-- <button
+             <button
                 class="btn my-2 my-sm-0 rounded-pill"
                 type="submit"
                 
               >
                 <i class="fa fa-search text-danger"></i>
-              </button> -->
+              </button> 
           </form>
-          <a class="btn btn-outline-light pl-2" href="./login.html" style="height: 30px;width: 70px; padding-top:2px  !important;">Login</a>
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item dropdown"> 
+               @if (Session::has('name'))
+              <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <img class="avatar"src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/b8919e7a-2bb5-40c7-af15-8218d853bd92/d4njygs-38bef077-dd7a-4e80-8ac2-663485780f8c.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2I4OTE5ZTdhLTJiYjUtNDBjNy1hZjE1LTgyMThkODUzYmQ5MlwvZDRuanlncy0zOGJlZjA3Ny1kZDdhLTRlODAtOGFjMi02NjM0ODU3ODBmOGMucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.QqebgwhESsFn9NTetrmu7qI4l9juTGmfL59O0TjH4Zo" alt="">
+                </a>
+                <div class="dropdown-menu bg-dark" style="width: 200px; !important" aria-labelledby="navbarDropdown">
+                  <p class="pl-4 text-light"><span class="text-warning">Tên:</span> {{Session::get('name')}}</p>
+                  
+                <a href="/logout" class="dropdown-item text-light">Đăng xuất</a>
+
+              </div>
+              @else
+            <a class="btn btn-outline-warning pl-2" href="{{route('login')}}" style="height: 30px; padding-top:2px  !important; border-radius:7px">Đăng nhập</a>  
+            @endif
+
+            </li>
+           
+        
+          </ul>
+           
+        
+         
+         
 
         </div>
       </nav>
