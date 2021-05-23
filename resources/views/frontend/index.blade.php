@@ -83,7 +83,7 @@
             @endforeach
           </div>
           <div class="row-2 mt-4 mb-3 "  id="respon_card">
-            <a href="" class="btn btn-danger">Xem thêm...</a>
+            <a href="../new-movie-update" class="btn btn-danger">Xem thêm...</a>
           </div>
           <div class="row-2 mt-4">
             <h5 class="text-light">PHIM VIỆT NAM</h5>
@@ -123,7 +123,7 @@
             @endforeach
           </div>
           <div class="row-2 mt-4 mb-3"  id="respon_card">
-            <a href="" class="btn btn-danger">Xem thêm...</a>
+            <a href="../movie-viet-nam" class="btn btn-danger">Xem thêm...</a>
           </div>
         </div>
         @include('frontend.master.fim_select')

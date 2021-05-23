@@ -1,6 +1,6 @@
 
 <div class="col-lg-4" >
-    <div class="row">
+    {{-- <div class="row">
       <h5 class="text-light ml-3">PHIM ĐÁNH DẤU</h5>
     </div>
     <div class="row">
@@ -34,7 +34,7 @@
          </table>
          <a class=" text-success" href="">Xem thêm</a>
       </div>
-    </div>
+    </div> --}}
     <div class="row mt-3">
       <h5 class="text-danger ml-3">HÔM NAY XEM GÌ ?</h5>
     </div>
@@ -42,6 +42,6 @@
       <small class="text-secondary">Nếu bạn đang phân vân không biết xem gì. Hãy để hệ thống chúng tôi lựa chọn ngẫu nhiên cho bạn.<br> Chúc bạn có 1 ngày xem phim vui vẻ</small>
     </div>
     <div class="row-2">
-      <button class="btn bg-danger mt-2">Lựa chọn của hệ thống</button>
+      <a href="../select-system" class="btn bg-danger mt-2">Lựa chọn của hệ thống</a>
     </div>
   </div>
