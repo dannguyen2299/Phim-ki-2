@@ -1,3 +1,4 @@
+<?php header("Content-Type: application/xml; charset=utf-8"); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,7 +17,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css" crossorigin="anonymous" />
   <script src="https://code.jquery.com/jquery-1.12.4.js" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js" crossorigin="anonymous"></script>
-</head>
+
+  </head>
 
 <body>
   <header>
@@ -66,19 +68,23 @@
               <a class="nav-link text-light" href="#">Top IMDB <span class="sr-only">(current)</span></a>
             </li>
           </ul>
-          <form class="form-inline my-2 my-lg-0" method="POST" action="{{ URL::to('/search') }}">
+
+
+          {{-- <form class="form-inline my-2 my-lg-0" method="POST" action="{{ URL::to('/search') }}">
             {{ csrf_field() }}
-            
-            <input class="form-control mr-sm-2 rounded-pill bg-dark text-light" name="keywords_submit" type="search" placeholder="Tìm kiếm" aria-label="Search" style="width: 250px; height:30px" />
-            <input type="submit" name="submit" class="fa fa-search" hidden>
+             --}}
+            <input class="form-control mr-sm-2 rounded-pill bg-dark text-light typeahead" name="keywords_submit" type="search" placeholder="Tìm kiếm" aria-label="Search" style="width: 250px; height:30px" onkeyup="showResult1(this.value)"/>
+            {{-- <input type="submit" name="submit" class="fa fa-search" hidden> --}}
+            <div id="autocom-box" class="text-light"></div>
              <button
+             id="search"
                 class="btn my-2 my-sm-0 rounded-pill"
-                type="submit"
+              
                 
               >
                 <i class="fa fa-search text-danger"></i>
               </button> 
-          </form>
+
           <ul class="navbar-nav mr-auto">
             <li class="nav-item dropdown"> 
                @if (Session::has('name'))
@@ -89,7 +95,12 @@
                   <p class="pl-4 text-light"><span class="text-warning">Tên:</span> {{Session::get('name')}}</p>
                   
                 <a href="/logout" class="dropdown-item text-light">Đăng xuất</a>
-
+                  @if (Session::get('role_id') !=3 )
+                <a href="/admin_1" class="dropdown-item text-light">Admin Page</a>
+                      
+                  
+                      
+                  @endif
               </div>
               @else
             <a class="btn btn-outline-warning pl-2" href="{{route('login')}}" style="height: 30px; padding-top:2px  !important; border-radius:7px">Đăng nhập</a>  

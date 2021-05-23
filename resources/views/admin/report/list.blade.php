@@ -39,7 +39,8 @@ use Illuminate\Support\Facades\Session;
                         <tbody>
                         @foreach($reports as $report)
                             <tr>
-                                <td>{{$report->username}}</td>
+                                <td></td>
+                                {{-- <td>{{$report->username}}</td> --}}
                                 <td>{{$report->email}}</td>
                                 <td>{{$report->content}}</td>
                                 <td>{{$report->movie_name}}</td>

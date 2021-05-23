@@ -4,7 +4,9 @@
 
 <div class="row">
     <div class="col-xl-12">
-        <div class="card-body">
+        <div class="card-body bg-light">
+            <h5 >Edit Nation</h5>
+            <hr>
         @foreach($nation as $key=>$value)
             <form autocomplete="off" action="{{URL::to('admin_1/update-nation/'.$value->nation_id)}}">
                 <div class="form-group row">
@@ -30,8 +32,9 @@
                 </div>
                 
                 <div class="form-group row">
-                    <div class="col-sm-10">
-                        <button type="submit" class="btn btn-success">Update</button>
+                    <div class="col-10"></div>
+                    <div class="col-2">
+                        <button style="width: 90%;" type="submit" class="btn btn-success">Update Nation</button>
                     </div>
                 </div>
             </form>

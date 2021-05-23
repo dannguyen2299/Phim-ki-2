@@ -55,4 +55,5 @@ class SearchController extends Controller
 
         return view('frontend.search',$data)->with('movies',$movies)->with('episode_nums',$episode_nums)->with('categories',$categories)->with('search_movie',$search_movie)->with("view_nums",$view_nums);
     }
+
 }

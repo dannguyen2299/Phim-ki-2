@@ -14,7 +14,8 @@ use Illuminate\Support\Facades\Session;
 
     <base href="{{ asset('').'admin/' }}">
     <!-- Favicon -->
-    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="icon" href="{{asset('').'frontend/img/icon.png'}}" type="image/gif" sizes="16x16">
+    
     <!-- Bootstrap CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 
@@ -38,10 +39,11 @@ use Illuminate\Support\Facades\Session;
         <div class="headerbar">
 
             <!-- LOGO -->
+            
             <div class="headerbar-left">
                 <a href="{{URL::to('admin_1/')}}" class="logo">
-                    <img alt="Logo" src="images/logo.png" />
-                    <span>Nura Admin</span>
+                    <img src="{{asset('').'frontend/img/icon.png'}}" alt="">
+                    <span><span class="text-danger">Movie</span> Admin</span>
                 </a>
             </div>
 
@@ -203,7 +205,9 @@ use Illuminate\Support\Facades\Session;
 
                     <li class="list-inline-item dropdown notif">
                         <a class="nav-link dropdown-toggle nav-user" data-toggle="dropdown" href="#" aria-haspopup="false" aria-expanded="false">
-                            <img src="images/avatars/admin.png" alt="Profile image" class="avatar-rounded">
+                  <img class="avatar-rounded"src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/b8919e7a-2bb5-40c7-af15-8218d853bd92/d4njygs-38bef077-dd7a-4e80-8ac2-663485780f8c.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2I4OTE5ZTdhLTJiYjUtNDBjNy1hZjE1LTgyMThkODUzYmQ5MlwvZDRuanlncy0zOGJlZjA3Ny1kZDdhLTRlODAtOGFjMi02NjM0ODU3ODBmOGMucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.QqebgwhESsFn9NTetrmu7qI4l9juTGmfL59O0TjH4Zo" alt="">
+                            
+                           
                         </a>
                         <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
                             <!-- item-->
@@ -258,11 +262,27 @@ use Illuminate\Support\Facades\Session;
                             </a>
                         </li>
 
+                        <li class="submenu">
+                            <a href="{{URL::to('')}}">
+                                <i class="fas fa-home"></i>
+                                <span> Home Page </span>
+                            </a>
+                        </li>
+
                         <li class="submenu" id="submenu-user">
-                            <a href="{{URL::to('admin_1/dashboard')}}">
+                            <a href="{{Request::url().'#'}}">
                                 <i class="fas fa-user"></i>
                                 <span> Users </span>
+                                <span class="menu-arrow"></span>
                             </a>
+                            <ul class="list-unstyled">
+                                <li>
+                                    <a href="{{URL::to('admin_1/add-user')}}">Add user</a>
+                                </li>
+                                <li>
+                                    <a href="{{URL::to('admin_1/user')}}">All user</a>
+                                </li>
+                            </ul>
                         </li>
 
                         <li class="submenu" id="submenu-category">

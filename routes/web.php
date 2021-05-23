@@ -33,6 +33,7 @@ Route::post('processLogin', 'frontend\LoginController@processLogin')->name('proc
 
 Route::get('login_b', 'Login_backController@getLoginB');
 Route::post('login_b', 'Login_backController@postLogin');
+
 Route::middleware(['CheckLogin'])->prefix('admin_1')->group(function () {
     Route::get('', 'backend\AdminController@show_dashboard')->name('admin');
     Route::get('dashboard', 'backend\AdminController@show_dashboard');
@@ -47,6 +48,24 @@ Route::middleware(['CheckLogin'])->prefix('admin_1')->group(function () {
 
     Route::get('active-category/{category_id}', 'backend\CategoryController@active');
     Route::get('unactive-category/{category_id}', 'backend\CategoryController@unactive');
+
+
+    // User
+    Route::middleware(['checkAdmin'])->group(function(){
+        Route::get('user', 'backend\UserController@getUser');
+        Route::get('add-user', 'backend\UserController@addUser')->name('add-user');
+        Route::get('save-user', 'backend\UserController@saveUser');
+
+        Route::get('active-user/{user_id}', 'backend\UserController@active');
+        Route::get('unactive-user/{user_id}', 'backend\UserController@unactive');
+        Route::get('delete-user/{user_id}', 'backend\UserController@delete_user');
+        Route::get('edit-user/{user_id}', 'backend\UserController@edit_user');
+        Route::get('update-user/{user_id}', 'backend\UserController@update_user');
+
+    });
+       
+
+    
 
     //* Movie
     Route::get('add-movie', 'backend\MovieController@add_movie');

@@ -15,11 +15,13 @@ class LoginController extends Controller
     }
     function processLogin(Request $rq){
 
-        $user = DB::table('user')->where('email','=',$rq->email)->where('password',$rq->password)->first();
+        $user = DB::table('user')->where('email','=',$rq->email)->where('password',$rq->password)->where('status','=',1)->first();
+
         if(isset($user)){
             Session::put('user_id',$user->user_id);
             Session::put('name',$user->name);
             Session::put('role_id',$user->role_id);
+            
             if(Session::get('role_id')==3){
                 return redirect()->route('index');
             }else{

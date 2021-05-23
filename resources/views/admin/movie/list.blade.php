@@ -25,39 +25,36 @@ use Illuminate\Support\Facades\Session;
                         <thead>
                             <tr>
                                 <th>Name</th>
-                                <th>Year</th>
-                                <th>Episode</th>
-                                <th>View</th>
-                                <th>Introduce</th>
+                                <th>Category</th>
+                                <th>Information</th>
+                                <th>Introduce</td>
                                 <th>Length</th>
                                 <th>Image</th>
-                                <th>Category</th>
-                                <th>Nation</th>
+                        
                                 <th>Status</th>
                                 <th width="90">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                         @foreach($movies as $key=>$value)
-                            <tr>
-                                <td>{{$value->movie_name}}</td>
-                                <td>{{$value->year}}</td>
-                                <td>{{$episode_nums[$value->movie_id]}} / {{$value->total_eps}} tập</td>
-                                <td>{{$view_nums[$value->movie_id]}} views</td>
+                        <tr>
+                            <td>{{$value->movie_name}}</td>
+                            <td>{{$categories[$value->movie_id]}}</td>
+                                <td><span class="text-success">Year: </span>{{$value->year}} <br> <span class="text-success">Total:</span> {{$episode_nums[$value->movie_id]}} / {{$value->total_eps}} 
+                                <br>    <span class="text-success">View:</span> {{$view_nums[$value->movie_id]}} <br> <span class="text-success">Nation:</span> {{$value->nation_status==1?$value->nation_name:'' }}</td>
                                 <td>{{$value->introduce}}</td>
                                 <td>{{$value->length}}</td>
                                 <td><img src="{{$value->url_image}}" alt="" width="100"></td>
-                                <td>{{$categories[$value->movie_id]}}</td>
-                                <td>{{$value->nation_status==1?$value->nation_name:'' }}</td>
+                                
                                 <td>
                                 <?php
                                 if ($value->movie_status == '1'){
                                 ?>
-                                    <a href="{{URL::to('admin_1/unactive-movie/'.$value->movie_id)}}"><i class="far fa-eye"></i></a>
+                                    <a href="{{URL::to('admin_1/unactive-movie/'.$value->movie_id)}}"><i class="far fa-eye" ></i></a>
                                 <?php    
                                 } else {
                                 ?>
-                                    <a href="{{URL::to('admin_1/active-movie/'.$value->movie_id)}}"><i class="far fa-eye-slash"></i></a>
+                                    <a  href="{{URL::to('admin_1/active-movie/'.$value->movie_id)}}"><i class="far fa-eye-slash"></i></a>
                                 <?php
                                 }
                                 ?>

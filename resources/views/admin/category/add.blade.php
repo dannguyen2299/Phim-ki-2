@@ -7,7 +7,8 @@ use Illuminate\Support\Facades\Session;
 
 <div class="row">
     <div class="col-xl-12">
-        <div class="card-body">
+        <div class="card-body bg-light">
+            <h5 >Add Category</h5>
             <?php
             $message = Session::get('message');
             if ($message){
@@ -15,11 +16,12 @@ use Illuminate\Support\Facades\Session;
                 Session::put('message',null);
             }
             ?>
+            <hr>
             <form autocomplete="off" action="{{URL::to('admin_1/save-category')}}">
                 <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">Category Id</label>
                     <div class="col-sm-10">
-                        <input type="text" value="auto" disabled name="category_id" class="form-control" id="inputEmail3" placeholder="Category Id" autocomplete="off">
+                        <input type="text" value="Auto" disabled name="category_id" class="form-control" id="inputEmail3" placeholder="Category Id" autocomplete="off">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -39,8 +41,9 @@ use Illuminate\Support\Facades\Session;
                 </div>
                 
                 <div class="form-group row">
-                    <div class="col-sm-10">
-                        <button type="submit" class="btn btn-success">Add</button>
+                    <div class="col-10"></div>
+                    <div class="col-2">
+                        <button style="width: 90%;" type="submit" class="btn btn-success">Add Category</button>
                     </div>
                 </div>
             </form>

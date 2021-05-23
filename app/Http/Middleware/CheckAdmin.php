@@ -2,10 +2,11 @@
 
 namespace App\Http\Middleware;
 use Illuminate\Support\Facades\Session;
-use Closure;
-use Illuminate\Support\Facades\Auth;
 
-class CheckLogin
+use Closure;
+use role;
+
+class CheckAdmin
 {
     /**
      * Handle an incoming request.
@@ -16,14 +17,10 @@ class CheckLogin
      */
     public function handle($request, Closure $next)
     {
-        // if(Auth::guest()){
-        //     redirect()->intended('login'); 
-        // }
-        if(Session::has('role_id') && Session::get('role_id') !=3){
-             return $next($request);
-        }else{
-             return redirect()->route('login');
+        if(Session::get('role_id')==1)
+            return $next($request);
+        else{
+            abort(403);
         }
-     
     }
 }

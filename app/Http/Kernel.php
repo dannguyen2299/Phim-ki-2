@@ -21,7 +21,7 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
-
+        // 'checkAdmin' => [\App\Http\Middleware\checkAdmin::class]
 
       
 
@@ -48,7 +48,9 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
         
-        'CheckLogin' => [\App\Http\Middleware\CheckLogin::class]
+        'CheckLogin' => [\App\Http\Middleware\CheckLogin::class],
+        'checkAdmin' => [\App\Http\Middleware\CheckAdmin::class],
+
     ];
 
     /**
