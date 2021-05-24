@@ -1,5 +1,5 @@
 @extends('frontend.master.master')
-@section('title','Search')
+@section('title','Danh sách phim')
 @section('content')
   
 
@@ -46,7 +46,7 @@
           <div class="row-2 mt-4 mb-4">
            
             <nav aria-label="Page navigation example">
-              {{-- {{ $search_movie->links() }} --}}
+              {{ $category_by_id->links() }}
            
             </nav>
             
