@@ -70,11 +70,11 @@
           </ul>
 
 
-          {{-- <form class="form-inline my-2 my-lg-0" method="POST" action="{{ URL::to('/search') }}">
+          <form class="form-inline my-2 my-lg-0" method="POST" action="{{ URL::to('/search') }}">
             {{ csrf_field() }}
-             --}}
+            
             <input class="form-control mr-sm-2 rounded-pill bg-dark text-light typeahead" name="keywords_submit" type="search" placeholder="Tìm kiếm" aria-label="Search" style="width: 250px; height:30px" onkeyup="showResult1(this.value)"/>
-            {{-- <input type="submit" name="submit" class="fa fa-search" hidden> --}}
+            <input type="submit" name="submit" class="fa fa-search" hidden>
             <div id="autocom-box" class="text-light"></div>
              <button
              id="search"
@@ -84,7 +84,7 @@
               >
                 <i class="fa fa-search text-danger"></i>
               </button> 
-
+          </form>
           <ul class="navbar-nav mr-auto">
             <li class="nav-item dropdown"> 
                @if (Session::has('name'))

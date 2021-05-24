@@ -28,7 +28,8 @@ Route::get('sigup', 'frontend\SigUpController@GetSigUp');
 Route::get('login', 'frontend\LoginController@getLogin')->name('login');
 Route::get('logout', 'frontend\LoginController@logout')->name('logout');
 Route::post('processLogin', 'frontend\LoginController@processLogin')->name('processLogin');
-
+Route::get('/processLogin/{provider}', 'frontend\LoginController@redirect');
+  Route::get('/processLogin/callback/{provider}', 'frontend\LoginController@callback');
 //Thanh - admin
 
 Route::get('login_b', 'Login_backController@getLoginB');

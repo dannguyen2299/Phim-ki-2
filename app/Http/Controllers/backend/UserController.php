@@ -35,7 +35,7 @@ class UserController extends Controller
         try{
             $data = array();
             $data['email'] = $request->user_email;
-            $data['password'] = bcsqrt('$request->user_password');
+            $data['password'] = bcrypt('$request->user_password');
             $data['name'] = $request->user_name;
             $data['role_id'] = $request->user_role;
             $data['status'] = $request->user_status;
@@ -72,7 +72,7 @@ class UserController extends Controller
         
         
         $data['email'] = $request->user_email;
-        $data['password'] = bcsqrt('$request->user_password');
+        $data['password'] = bcrypt ('$request->user_password');
        
         $data['name'] = $request->user_name;
         $data['role_id'] = $request->user_role;

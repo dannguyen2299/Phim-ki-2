@@ -14,7 +14,7 @@
      
       <div class="row-2 mt-4 ">
 
-          <a style="background-color: #3b579d; width: 40%; text-align: start" class="btn">Kết nối với facebook</a>
+          <a href="/processLogin/facebook" style="background-color: #3b579d; width: 40%; text-align: start" class="btn">Kết nối với facebook</a>
       </div>
       <div class="row-2 mt-3">
         <form action="{{URL::to('processLogin')}}" method="post">
