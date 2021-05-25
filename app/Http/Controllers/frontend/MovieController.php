@@ -71,6 +71,9 @@ class MovieController extends Controller
         $data['movie_nation']=DB::table('movie')->select('movie.*')->where('movie.nation_id',$a)->where('movie_id','<>',$movie_id)->get();
 
         $episode_nums = array();
+        $rates = array();
+        $user_rates = array();
+
         foreach($movies as &$movie){
             $episode_num = DB::table('movie')
             ->join('episode','episode.movie_id','=','movie.movie_id')
@@ -84,11 +87,18 @@ class MovieController extends Controller
                 $views = $views + $value->view;
             }
             $view_nums[$movie->movie_id] = $views;
-    
+            
+            $rate = DB::table('movie_detail')->where('movie_detail.movie_id',$movie->movie_id)->avg('rate');
+            $rates[$movie->movie_id] = round($rate);
+
+
+            $user_rate = DB::table('movie_detail')->where('movie_detail.movie_id',$movie->movie_id)->count('user_id');
+            $user_rates[$movie->movie_id]= $user_rate;
+
         }
         
        
-        return  view('frontend.page',$data)->with('episode_nums',$episode_nums)->with('view_nums',$view_nums);
+        return  view('frontend.page',$data)->with('episode_nums',$episode_nums)->with('view_nums',$view_nums)->with('rates',$rates)->with('user_rates',$user_rates);
     }
 
     

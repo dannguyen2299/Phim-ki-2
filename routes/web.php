@@ -33,6 +33,8 @@ Route::get('filter-nation/{nation_id}', 'frontend\FilterController@GetNation');
 Route::get('new-movie-update', 'frontend\FilterController@GetNewMovie');
 Route::get('movie-viet-nam', 'frontend\FilterController@GetMovieVN');
 
+Route::post('processRate','frontend\RateController@postRate')->name('processRate');
+
 // END
 Route::get('sigup', 'frontend\SigUpController@GetSigUp');
 Route::get('login', 'frontend\LoginController@getLogin')->name('login');
