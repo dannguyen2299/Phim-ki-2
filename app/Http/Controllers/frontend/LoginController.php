@@ -50,16 +50,14 @@ class LoginController extends Controller
     }
     public function callback($provider)
     {
-        $getInfo = Socialite::driver($provider)->user();
+        $getInfo = Socialite::driver('facebook')->stateless()->user();
         //return response()->json($getInfo);
-        
         $user = $this->createUser($getInfo, $provider);
         $user_db = DB::table('user')->where('email', '=', $getInfo->email)->where('provider_id', $getInfo->id)->where('status', '=', 1)->first();
         if (isset($user_db)) {
             Session::put('user_id', $user_db->user_id);
             Session::put('name', $user_db->name);
-            Session::put('role_id', $user_db->role_id);
-            Session::put('avatar', $getInfo->avatar);
+            Session::put('role_id',$user_db->role_id);
             return redirect()->route('index');
         } else {
             $error = "Đăng nhập của bạn không đúng!";
