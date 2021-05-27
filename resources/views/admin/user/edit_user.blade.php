@@ -15,29 +15,29 @@
             @endif --}}
             <hr>
             @foreach($user as $key=>$value)
-            <form autocomplete="off" action="{{URL::to('admin_1/update-user/'.$value->user_id)}}">
+            <form data-parsley-validate novalidate autocomplete="off" action="{{URL::to('admin_1/update-user/'.$value->user_id)}}">
                 <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">User Id</label>
                     <div class="col-sm-10">
-                        <input type="text" name="user_id" value="{{$value->user_id}}" disabled name="category_id" class="form-control" id="inputEmail3" placeholder="Category Id" readonly autocomplete="off">
+                        <input required type="text" name="user_id" value="{{$value->user_id}}" disabled name="category_id" class="form-control" id="inputEmail3" placeholder="Category Id" readonly autocomplete="off">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="inputPassword3" class="col-sm-2 col-form-label">Name</label>
                     <div class="col-sm-10">
-                        <input type="text" value="{{$value->name}}" name="user_name" class="form-control" id="inputPassword3" placeholder="Name" autocomplete="off">
+                        <input required type="text" value="{{$value->name}}" name="user_name" class="form-control" id="inputPassword3" placeholder="Name" autocomplete="off">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="inputPassword3" class="col-sm-2 col-form-label">Email</label>
                     <div class="col-sm-10">
-                        <input type="email" value="{{$value->email}}" name="user_email" class="form-control" id="inputPassword3" placeholder="Email" autocomplete="off">
+                        <input required type="email" value="{{$value->email}}" name="user_email" class="form-control" id="inputPassword3" placeholder="Email" autocomplete="off">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
                     <div class="col-sm-10">
-                        <input type="text" value="{{$value->password}}" name="user_password" class="form-control" id="inputPassword3" placeholder="Password" autocomplete="off">
+                        <input required type="text" value="{{$value->password}}" name="user_password" class="form-control" id="inputPassword3" placeholder="Password" autocomplete="off">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -45,7 +45,7 @@
                     <div class="col-10">
                         <select class="form-control" aria-label="Default select example" name="user_role">
                             @foreach ($role_user as $row)
-                                @if ($value->password == $row->role_id)
+                                @if ($value->role_id == $row->role_id)
                                     <option selected value="{{$row->role_id}}">{{$row->role_name}}</option>                      
                                 @else
                                      <option value="{{$row->role_id}}">{{$row->role_name}}</option>

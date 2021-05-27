@@ -13,23 +13,23 @@
                 <div class="row">
                     <div class="col-xl-8">
                         <div>
-                            <form autocomplete="off" action="{{URL::to('admin_1/update-report/episode_id='.$value->episode_id.'&report_id='.$report->report_id)}}">
+                            <form data-parsley-validate novalidate autocomplete="off" action="{{URL::to('admin_1/update-report/episode_id='.$value->episode_id.'&report_id='.$report->report_id)}}">
                                 <div class="form-group row">
                                     <label for="inputEmail3" class="col-sm-2 col-form-label">Episode Id</label>
                                     <div class="col-sm-10">
-                                        <input type="text" value="{{$value->episode_id}}" name="episode-id" disabled class="form-control" id="inputEmail3" placeholder="Category Id" autocomplete="off">
+                                        <input required type="text" value="{{$value->episode_id}}" name="episode-id" disabled class="form-control" id="inputEmail3" placeholder="Category Id" autocomplete="off">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="inputPassword3" class="col-sm-2 col-form-label">Episode Name</label>
                                     <div class="col-sm-10">
-                                        <input type="text" value="{{$value->episode_name}}" name="episode_name" class="form-control" id="inputPassword3" placeholder="Category Name" autocomplete="off">
+                                        <input required type="text" value="{{$value->episode_name}}" name="episode_name" class="form-control" id="inputPassword3" placeholder="Category Name" autocomplete="off">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="episode_url_1" class="col-sm-2 col-form-label">Link 1</label>
                                     <div class="col-sm-10">
-                                        <input type="text" value="{{$value->url_first}}" name="url_first" class="form-control" id="episode_url_1" placeholder="Category Name" autocomplete="off">
+                                        <input required type="text" value="{{$value->url_first}}" name="url_first" class="form-control" id="episode_url_1" placeholder="Category Name" autocomplete="off">
                                     </div>
                                 </div>
                                 <div class="form-group row">

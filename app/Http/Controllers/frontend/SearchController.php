@@ -87,7 +87,7 @@ class SearchController extends Controller
 
         
 
-        $data['search_movie']=DB::table('movie')->join('episode','movie.movie_id','=','episode.movie_id')->orderBy('view','desc')->paginate(8);
+        $data['search_movie']=DB::table('movie')->join('episode','movie.movie_id','=','episode.movie_id')->orderBy('view','desc')->groupBy('movie.movie_id')->paginate(8);
        
 
         return view('frontend.search',$data)->with('movies',$movies)->with('episode_nums',$episode_nums)->with("view_nums",$view_nums);

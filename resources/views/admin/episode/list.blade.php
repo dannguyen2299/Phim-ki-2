@@ -13,8 +13,8 @@ use Illuminate\Support\Facades\Session;
             </div>
             <h3 class="mt-4"><i class="fas fa-tv mx-4"></i>{{$movie->movie_name}}</h3>
             <div class="card-body">
-                <form autocomplete="off" action="{{URL::to('admin_1/save-episode')}}">
-                    <input type="text" value="{{$movie->movie_id}}" name="movie_id" hidden>
+                <form data-parsley-validate novalidate autocomplete="off" action="{{URL::to('admin_1/save-episode')}}">
+                    <input required type="text" value="{{$movie->movie_id}}" name="movie_id" hidden>
                     <div class="table-responsive">
                         <table class="table table-hover display" style="width:100%">
                             <thead>
@@ -28,8 +28,8 @@ use Illuminate\Support\Facades\Session;
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><input type="text" class="form-control" name="episode_name"></td>
-                                    <td><input type="text" class="form-control" name="url_first"></td>
+                                    <td><input required type="text" class="form-control" name="episode_name"></td>
+                                    <td><input required type="text" class="form-control" name="url_first"></td>
                                     <td><input type="text" class="form-control" name="url_second"></td>
                                     <td>
                                         <select name="sl_status" class="form-control" id="">
@@ -37,7 +37,7 @@ use Illuminate\Support\Facades\Session;
                                             <option value="0">Hidden</option>
                                         </select>
                                     </td>
-                                    <td><input type="submit" hidden id="add_episode_input"><label for="add_episode_input" class="btn btn-success"><i class="fas fa-plus"></i></label></td>
+                                    <td><input required type="submit" hidden id="add_episode_input"><label for="add_episode_input" class="btn btn-success"><i class="fas fa-plus"></i></label></td>
                                 </tr>
                             </tbody>
                         </table>

@@ -29,14 +29,18 @@
           </div>
             <div class="row-2 mt-3">
               @if ($server==1)
-                <iframe width="100%" height="315"       
+                <iframe id="movie_tag" width="100%" height="315"       
               src="{{ $movie_page->url_first }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
               @elseif ($server==2)
-              <iframe width="100%" height="315"       
+              <iframe id="movie_tag" width="100%" height="315"       
               src="{{ $movie_page->url_second }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
               @endif
               
             </div>
+              <video id="movie_idd" controls="controls">
+                <source src="./img/video.mp4" type="video/mp4">
+                <p>Your browser does not support the video tag.</p>
+              </video>
             <div class="row-2 mt-4">
               <h5 class="text-danger">LINK DỰ PHÒNG</h5>
             </div>
@@ -372,4 +376,5 @@
       src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"
       crossorigin="anonymous"
     ></script>
+
 @endsection
