@@ -126,28 +126,5 @@ use Illuminate\Support\Facades\Session;
   @yield('content');
 
 </body>
-
-<script>
-  var media = document.getElementById('#movie_idd');
-
-// Playing event
-media.addEventListener("playing", function() {
-    alert("Playing event triggered");
-});
-
-// Pause event
-media.addEventListener("pause", function() { 
-    alert("Pause event triggered"); 
-});
-
-// Seeking event
-media.addEventListener("seeking", function() { 
-    alert("Seeking event triggered"); 
-});
-
-// Volume changed event
-media.addEventListener("volumechange", function(e) { 
-    alert("Volumechange event triggered"); 
-});
-    </script>
+@yield('youtube_video')
 </html>
