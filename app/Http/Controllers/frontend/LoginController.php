@@ -50,7 +50,7 @@ class LoginController extends Controller
     }
     public function callback($provider)
     {
-        $getInfo = Socialite::driver($provider)->user();
+        $getInfo = Socialite::driver('facebook')->stateless()->user();
         $user = $this->createUser($getInfo, $provider);
         $user_db = DB::table('user')->where('email', '=', $getInfo->email)->where('provider_id', $getInfo->id)->where('status', '=', 1)->first();
         if (isset($user_db)) {

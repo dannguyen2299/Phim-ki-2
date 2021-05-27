@@ -21,13 +21,18 @@ class MovieController extends Controller
 
         $data['movie_detail']=DB::table('movie')->join('nation','movie.nation_id','=','nation.nation_id')->where("movie_id",$movie_id)->first();
 
-        $data['movie_page']=DB::table('episode')->join('movie','episode.movie_id','=','movie.movie_id')->where("episode_id",$episode_id)->first();
 
-        $data['movie_page1']=DB::table('episode')->join('movie','episode.movie_id','=','movie.movie_id')->where("episode_id",$episode_id)->get();
 
         $data['movie_page2']=DB::table('episode')->join('movie','episode.movie_id','=','movie.movie_id')->where("episode.movie_id",$movie_id)->get();
-    
-        
+
+
+        //Lấy thắng đầu tiên của số tập ()
+        $data['movie_page3']=DB::table('episode')->join('movie','episode.movie_id','=','movie.movie_id')->where("episode.movie_id",$movie_id)->where("episode.episode_id",$episode_id)->first();
+       
+        // Sô tổng số tập theo movie id
+        $data['movie_page4']=DB::table('episode')->join('movie','episode.movie_id','=','movie.movie_id')->where("episode.movie_id",$movie_id)->get();
+
+     
 
        
 
@@ -55,7 +60,7 @@ class MovieController extends Controller
 
         // $data['movie_page']=DB::table('episode')->where('episode.movie_id',$movie_id)->first();
 
-        return  view('frontend.movie',$data)->with('episode_nums',$episode_nums)->with('view_nums',$view_nums)->with('server',$server);
+        return  view('frontend.movie',$data)->with('episode_nums',$episode_nums)->with('view_nums',$view_nums)->with('server',$server)->with('episode_id',$episode_id);
     }
 
     function GetPage($movie_id){
@@ -84,6 +89,7 @@ class MovieController extends Controller
                 $views = $views + $value->view;
             }
             $view_nums[$movie->movie_id] = $views;
+            $data['movie_page3']=DB::table('episode')->join('movie','episode.movie_id','=','movie.movie_id')->where("episode.movie_id",$movie_id)->first();
     
         }
         
