@@ -416,7 +416,7 @@
     if (event.data == YT.PlayerState.PLAYING && !bool) {
       time_id = setInterval(() => {
         i++;
-        if (i == 120){
+        if (i == 5){
           clearInterval(time_id);
 
           $.post('/update-view',{
