@@ -5,7 +5,7 @@
 use Illuminate\Support\Facades\Session;
 ?>
 @foreach($movie_edit as $key=>$value)
-<form autocomplete="off" action="{{URL::to('admin_1/update-movie/'.$value->movie_id)}}">
+<form data-parsley-validate novalidate autocomplete="off" action="{{URL::to('admin_1/update-movie/'.$value->movie_id)}}">
     <div class="row">
         <div class="col-xl-12 bg-light">
             <div class="card-body">
@@ -16,31 +16,31 @@ use Illuminate\Support\Facades\Session;
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-2 col-form-label">Id</label>
                             <div class="col-sm-10">
-                                <input type="text"required value="{{$value->movie_id}}" disabled name="movie_id" class="form-control" id="inputEmail3" placeholder="Movie Id" autocomplete="off">
+                                <input required type="text"required value="{{$value->movie_id}}" disabled name="movie_id" class="form-control" id="inputEmail3" placeholder="Movie Id" autocomplete="off">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="inputPassword3" class="col-sm-2 col-form-label">Name</label>
                             <div class="col-sm-10">
-                                <input type="text"required value="{{$value->movie_name}}" name="movie_name" class="form-control" id="inputPassword3" placeholder="Movie's Name" autocomplete="off">
+                                <input required type="text"required value="{{$value->movie_name}}" name="movie_name" class="form-control" id="inputPassword3" placeholder="Movie's Name" autocomplete="off">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="inputPassword4" class="col-sm-2 col-form-label">Year</label>
                             <div class="col-sm-10">
-                                <input type="text"required value="{{$value->year}}" name="movie_year" class="form-control" id="inputPassword4" placeholder="Year" autocomplete="off">
+                                <input required type="text"required value="{{$value->year}}" name="movie_year" class="form-control" id="inputPassword4" placeholder="Year" autocomplete="off">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="inputPassword4" class="col-sm-2 col-form-label">Total</label>
                             <div class="col-sm-10">
-                                <input type="text"required value="{{$value->total_eps}}" name="movie_episodes" class="form-control" id="inputPassword4" placeholder="Total Episodes" autocomplete="off">
+                                <input required type="text"required value="{{$value->total_eps}}" name="movie_episodes" class="form-control" id="inputPassword4" placeholder="Total Episodes" autocomplete="off">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="inputPassword6" class="col-sm-2 col-form-label">Length</label>
                             <div class="col-sm-10">
-                                <input type="text" required value="{{$value->length}}" name="movie_length" class="form-control" id="inputPassword6" placeholder="Length" autocomplete="off">
+                                <input required type="text" required value="{{$value->length}}" name="movie_length" class="form-control" id="inputPassword6" placeholder="Length" autocomplete="off">
                             </div>
                         </div>
                     </div>
@@ -49,19 +49,19 @@ use Illuminate\Support\Facades\Session;
                         <div class="form-group row">
                             <label for="movie_image" class="col-sm-2 col-form-label">Poster</label>
                                 <div class="col-sm-10">
-                                    <input type="text"required value="{{$value->url_image}}" name="movie_image" class="form-control" id="movie_image" placeholder="URL Image" autocomplete="off">
+                                    <input required type="text"required value="{{$value->url_image}}" name="movie_image" class="form-control" id="movie_image" placeholder="URL Image" autocomplete="off">
                                 </div>
                         </div>
                         <div class="form-group row">
                             <label for="inputPassword7" class="col-sm-2 col-form-label">Link trailer</label>
                             <div class="col-sm-10">
-                                <input type="text"required value="{{$value->url_trailer}}" name="movie_trailer" class="form-control" id="inputPassword7" placeholder="Trailer URL" autocomplete="off">
+                                <input required type="text"required value="{{$value->url_trailer}}" name="movie_trailer" class="form-control" id="inputPassword7" placeholder="Trailer URL" autocomplete="off">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="inputPassword9" class="col-sm-2 col-form-label">Link FB</label>
                             <div class="col-sm-10">
-                                <input type="text"required value="{{$value->url_cmt_fb}}" name="movie_cmt" class="form-control" id="inputPassword9" placeholder="Fb Comment URL" autocomplete="off">
+                                <input required type="text"required value="{{$value->url_cmt_fb}}" name="movie_cmt" class="form-control" id="inputPassword9" placeholder="Fb Comment URL" autocomplete="off">
                             </div>
                         </div>
                         <div class="form-group row">

@@ -28,6 +28,8 @@ class IndexController extends Controller
 
         $episode_nums = array();
         $view_nums = array();
+        $rates = array();
+
         foreach($movies as &$movie){
 
             //* Tổng số tập
@@ -43,6 +45,9 @@ class IndexController extends Controller
                 $views = $views + $value->view;
             }
             $view_nums[$movie->movie_id] = $views;
+
+            $rate = DB::table('movie_detail')->where('movie_id',$movie->movie_id)->avg('rate');
+            $rates[$movie->movie_id] = round($rate,1);
         }
 
         $data['movie']=DB::select('select * from movie order by year ASC');
@@ -50,7 +55,16 @@ class IndexController extends Controller
         $data['movie_v']=DB::select('select * from movie where nation_id=1');
         $data['nation'] = DB::table('nation')->get();
         $data['category_l'] = DB::table('category')->get();
-        return view('frontend.index',$data)->with('movies',$movies)->with('episode_nums',$episode_nums)->with('view_nums',$view_nums)->with('categories',$categories);
+        // Truy vấn quảng cáo
+        $data['ads_banner1']=DB::table('advertisement')->where('ad_location',1)->where('status',1)->orderBy('ad_id','desc')->first();
+
+        $data['ads_banner2']=DB::table('advertisement')->where('ad_location',2)->where('status',1)->orderBy('ad_id','desc')->first();
+
+        $data['ads_banner3']=DB::table('advertisement')->where('ad_location',3)->where('status',1)->orderBy('ad_id','desc')->first();
+
+        $data['ads_banner4']=DB::table('advertisement')->where('ad_location',4)->where('status',1)->orderBy('ad_id','desc')->first();
+        // End
+        return view('frontend.index',$data)->with('movies',$movies)->with('episode_nums',$episode_nums)->with('view_nums',$view_nums)->with('categories',$categories)->with('rates',$rates);
     }
     
 }

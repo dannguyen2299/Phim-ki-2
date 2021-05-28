@@ -20,29 +20,29 @@
             }
             ?>
             <hr>
-            <form autocomplete="off" action="{{URL::to('admin_1/save-user')}}">
+            <form data-parsley-validate novalidate autocomplete="off" action="{{URL::to('admin_1/save-user')}}">
                 <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">User Id</label>
                     <div class="col-sm-10">
-                        <input type="text" value="Auto" disabled name="category_id" class="form-control" id="inputEmail3" placeholder="Category Id" autocomplete="off">
+                        <input required type="text" value="Auto" disabled name="category_id" class="form-control" id="inputEmail3" placeholder="Category Id" autocomplete="off">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="inputPassword3" class="col-sm-2 col-form-label">Name</label>
                     <div class="col-sm-10">
-                        <input type="text" value="" name="user_name" class="form-control" id="inputPassword3" placeholder="Name" autocomplete="off">
+                        <input required type="text" value="" name="user_name" class="form-control" id="inputPassword3" placeholder="Name" autocomplete="off">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="inputPassword3" class="col-sm-2 col-form-label">Email</label>
                     <div class="col-sm-10">
-                        <input type="email" value="" name="user_email" class="form-control" id="inputPassword3" placeholder="Email" autocomplete="off">
+                        <input required type="email" value="" name="user_email" class="form-control" id="inputPassword3" placeholder="Email" autocomplete="off">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
                     <div class="col-sm-10">
-                        <input type="password" value="" name="user_password" class="form-control" id="inputPassword3" placeholder="Password" autocomplete="off">
+                        <input required type="password" value="" name="user_password" class="form-control" id="inputPassword3" placeholder="Password" autocomplete="off">
                     </div>
                 </div>
                 <div class="form-group row">

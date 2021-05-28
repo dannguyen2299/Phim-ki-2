@@ -17,17 +17,17 @@ use Illuminate\Support\Facades\Session;
             }
             ?>
             <hr>
-            <form autocomplete="off" action="{{URL::to('admin_1/save-category')}}">
+            <form data-parsley-validate novalidate autocomplete="off" action="{{URL::to('admin_1/save-category')}}">
                 <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">Category Id</label>
                     <div class="col-sm-10">
-                        <input type="text" value="Auto" disabled name="category_id" class="form-control" id="inputEmail3" placeholder="Category Id" autocomplete="off">
+                        <input required type="text" value="Auto" disabled name="category_id" class="form-control" id="inputEmail3" placeholder="Category Id" autocomplete="off">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="inputPassword3" class="col-sm-2 col-form-label">Category Name</label>
                     <div class="col-sm-10">
-                        <input type="text" value="" name="category_name" class="form-control" id="inputPassword3" placeholder="Category Name" autocomplete="off">
+                        <input required type="text" value="" name="category_name" class="form-control" id="inputPassword3" placeholder="Category Name" autocomplete="off">
                     </div>
                 </div>
                 <div class="form-group row">

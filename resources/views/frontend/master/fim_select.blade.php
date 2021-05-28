@@ -44,4 +44,19 @@
     <div class="row-2">
       <a href="../select-system" class="btn bg-danger mt-2">Lựa chọn của hệ thống</a>
     </div>
+    <div class="row-2 mt-3" style="width:250px;">
+      @if ($ads_banner2!=null)
+        <a href="{{ $ads_banner2->link_banner }}"><img src="{{ $ads_banner2->url_banner }}" style="width:100%; height:300px;"  alt=""></a>  
+      @endif
+    </div>
+    <div class="row-2 mt-3" style="width:250px;">
+      @if ($ads_banner3!=null)
+      <a href="{{ $ads_banner3->link_banner }}"><img src="{{ $ads_banner3->url_banner }}" style="width:100%; height:300px;"  alt=""></a>  
+      @endif    
+    </div>
+    <div class="row-2 mt-3" style="width:250px;">
+      @if ($ads_banner4!=null)
+      <a href="{{ $ads_banner4->link_banner }}"><img src="{{ $ads_banner4->url_banner }}" style="width:100%; height:300px;"  alt=""></a>  
+      @endif    
+    </div>
   </div>

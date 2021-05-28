@@ -56,7 +56,7 @@ class LoginController extends Controller
         if (isset($user_db)) {
             Session::put('user_id', $user_db->user_id);
             Session::put('name', $user_db->name);
-            Session::put('role_id', $user_db->role_id);
+            Session::put('role_id',$user_db->role_id);
             return redirect()->route('index');
         } else {
             $error = "Đăng nhập của bạn không đúng!";

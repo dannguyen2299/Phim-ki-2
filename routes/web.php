@@ -33,6 +33,8 @@ Route::get('filter-nation/{nation_id}', 'frontend\FilterController@GetNation');
 Route::get('new-movie-update', 'frontend\FilterController@GetNewMovie');
 Route::get('movie-viet-nam', 'frontend\FilterController@GetMovieVN');
 
+Route::post('processRate','frontend\RateController@postRate')->name('processRate');
+
 // END
 Route::get('sigup', 'frontend\SigUpController@GetSigUp');
 Route::get('login', 'frontend\LoginController@getLogin')->name('login');
@@ -122,9 +124,19 @@ Route::middleware(['CheckLogin'])->prefix('admin_1')->group(function () {
     Route::get('fixed-report/{report_id}', 'backend\ReportController@fixed');
     Route::get('not-fixed-report/{report_id}', 'backend\ReportController@not_fixed');
 
+    //* Advertisement
+    Route::get('list-advertisement', 'backend\AdvertisementController@list_advertisement');
+    Route::get('add-advertisement', 'backend\AdvertisementController@add_advertisement');
+    Route::get('save-advertisement', 'backend\AdvertisementController@save_advertisement');
+    Route::get('edit-advertisement/{ad_id}', 'backend\AdvertisementController@edit_advertisement');
+    Route::get('update-advertisement/{ad_id}', 'backend\AdvertisementController@update_advertisement');
+    Route::get('delete-advertisement/{ad_id}', 'backend\AdvertisementController@delete_advertisement');
+    Route::get('active-advertisement/{ad_id}', 'backend\AdvertisementController@active');
+    Route::get('unactive-advertisement/{ad_id}', 'backend\AdvertisementController@unactive');
+
+
     //*end - admin
 });
-
 
 
 //end - admin

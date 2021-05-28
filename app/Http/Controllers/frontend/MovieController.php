@@ -56,7 +56,16 @@ class MovieController extends Controller
         $view_nums[$movie->movie_id] = $views;
 
     }
-        // echo $movie_id;
+
+         // Truy vấn quảng cáo
+         $data['ads_banner1']=DB::table('advertisement')->where('ad_location',1)->where('status',1)->orderBy('ad_id','desc')->first();
+
+         $data['ads_banner2']=DB::table('advertisement')->where('ad_location',2)->where('status',1)->orderBy('ad_id','desc')->first();
+ 
+         $data['ads_banner3']=DB::table('advertisement')->where('ad_location',3)->where('status',1)->orderBy('ad_id','desc')->first();
+ 
+         $data['ads_banner4']=DB::table('advertisement')->where('ad_location',4)->where('status',1)->orderBy('ad_id','desc')->first();
+         // End
 
         // $data['movie_page']=DB::table('episode')->where('episode.movie_id',$movie_id)->first();
 
@@ -76,6 +85,9 @@ class MovieController extends Controller
         $data['movie_nation']=DB::table('movie')->select('movie.*')->where('movie.nation_id',$a)->where('movie_id','<>',$movie_id)->get();
 
         $episode_nums = array();
+        $rates = array();
+        $user_rates = array();
+
         foreach($movies as &$movie){
             $episode_num = DB::table('movie')
             ->join('episode','episode.movie_id','=','movie.movie_id')
@@ -90,11 +102,28 @@ class MovieController extends Controller
             }
             $view_nums[$movie->movie_id] = $views;
             $data['movie_page3']=DB::table('episode')->join('movie','episode.movie_id','=','movie.movie_id')->where("episode.movie_id",$movie_id)->first();
-    
+            // $data['movie_page3']=DB::table('episode')->join('movie','episode.movie_id','=','movie.movie_id')->where("episode.movie_id",$movie_id)->where("episode.episode_id",$episode_id)->first();
+
+            
+            $rate = DB::table('movie_detail')->where('movie_detail.movie_id',$movie->movie_id)->avg('rate');
+            $rates[$movie->movie_id] = round($rate);
+
+
+            $user_rate = DB::table('movie_detail')->where('movie_detail.movie_id',$movie->movie_id)->count('user_id');
+            $user_rates[$movie->movie_id]= $user_rate;
+
         }
-        
+         // Truy vấn quảng cáo
+         $data['ads_banner1']=DB::table('advertisement')->where('ad_location',1)->where('status',1)->orderBy('ad_id','desc')->first();
+
+         $data['ads_banner2']=DB::table('advertisement')->where('ad_location',2)->where('status',1)->orderBy('ad_id','desc')->first();
+ 
+         $data['ads_banner3']=DB::table('advertisement')->where('ad_location',3)->where('status',1)->orderBy('ad_id','desc')->first();
+ 
+         $data['ads_banner4']=DB::table('advertisement')->where('ad_location',4)->where('status',1)->orderBy('ad_id','desc')->first();
+         // End
        
-        return  view('frontend.page',$data)->with('episode_nums',$episode_nums)->with('view_nums',$view_nums);
+        return  view('frontend.page',$data)->with('episode_nums',$episode_nums)->with('view_nums',$view_nums)->with('rates',$rates)->with('user_rates',$user_rates);
     }
 
     
