@@ -19,7 +19,7 @@ Route::get('error', 'frontend\ErController@getError');
 
 Route::prefix('movie')->group(function () {
     Route::get('movie-{movie_id}.html', 'frontend\MovieController@GetPage');
-    Route::get('page-movie-{movie_id}&{episode_id}&{server}.html', 'frontend\MovieController@GetMovie');
+    Route::get('page-movie-{movie_id}&episode-{episode_id}&server-{server}.html', 'frontend\MovieController@GetMovie');
 });
 //  search
 Route::post('search', 'frontend\SearchController@GetSearch');
@@ -27,8 +27,8 @@ Route::post('search', 'frontend\SearchController@GetSearch');
 Route::get('select-system', 'frontend\SearchController@GetChoice');
 
 // Lọc theo thể loại và quốc gia
-Route::get('filter/{category_id}', 'frontend\FilterController@GetFilter');
-Route::get('filter-nation/{nation_id}', 'frontend\FilterController@GetNation');
+Route::get('filter/category-{category_id}', 'frontend\FilterController@GetFilter');
+Route::get('filter-nation/nation-{nation_id}', 'frontend\FilterController@GetNation');
 // 2 nút Xem thêm 
 Route::get('new-movie-update', 'frontend\FilterController@GetNewMovie');
 Route::get('movie-viet-nam', 'frontend\FilterController@GetMovieVN');

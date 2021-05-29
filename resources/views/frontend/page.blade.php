@@ -21,9 +21,9 @@
 
                     <div class="col-xl-4">
                         @if ($movie_page3!=null)
-                            <a href="../movie/page-movie-{{ $movie_detail->movie_id }}&{{ $movie_page3->episode_id }}&1.html">
+                            <a href="../movie/page-movie-{{ $movie_detail->movie_id }}&episode-{{ $movie_page3->episode_id }}&server-{{ 1 }}.html">
                         @else
-                            <a href="../movie/page-movie-{{ $movie_detail->movie_id }}&{{ 0 }}&1.html">
+                            <a href="../movie/page-movie-{{ $movie_detail->movie_id }}&episode-{{ 0 }}&server-{{ 1 }}.html">
                         @endif 
                             <div class="card-style-1 ">
                                 <img src="{{ $movie_detail->url_image }}" alt="" />
@@ -95,10 +95,10 @@
                                 
                                 <td colspan="3">
                                     @if ($movie_page3!=null)
-                                    <a href="../movie/page-movie-{{ $movie_detail->movie_id }}&{{ $movie_page3->episode_id }}&1.html"
+                                    <a href="../movie/page-movie-{{ $movie_detail->movie_id }}&episode-{{ $movie_page3->episode_id }}&server-{{ 1 }}.html"
                                         class="btn btn-danger mt-3">XEM PHIM</a>
                                      @else
-                                        <a href="../movie/page-movie-{{ $movie_detail->movie_id }}&{{ 0 }}&1.html"
+                                        <a href="../movie/page-movie-{{ $movie_detail->movie_id }}&episode-{{ 0 }}&server-{{ 1 }}.html"
                                         class="btn btn-danger mt-3">XEM PHIM</a>
                                      @endif
                                     <a href="" class="btn btn-outline-success mt-3 ml-3 mr-3">DOWNLOAD</a>

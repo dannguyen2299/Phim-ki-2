@@ -44,7 +44,7 @@ use Illuminate\Support\Facades\Session;
               <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
                 @foreach($category_l as $row)
 
-                <a class="dropdown-item text-light" href="../filter/{{ $row->category_id }}">{{ $row->category_name }}</a>
+                <a class="dropdown-item text-light" href="../filter/category-{{ $row->category_id }}">{{ $row->category_name }}</a>
 
                 @endforeach
 
@@ -60,7 +60,7 @@ use Illuminate\Support\Facades\Session;
 
                 @foreach ($nation as $row )
 
-                <a class="dropdown-item text-light" href="../filter-nation/{{ $row->nation_id }}">{{ $row->nation_name }}</a>
+                <a class="dropdown-item text-light" href="../filter-nation/nation-{{ $row->nation_id }}">{{ $row->nation_name }}</a>
 
                 @endforeach
             </li>

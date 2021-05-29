@@ -55,8 +55,8 @@
                   {{-- @else --}}
                   @elseif ($episode_id==$row1->episode_id)
                     
-                       <a href="../movie/page-movie-{{ $row1->movie_id }}&{{ $row1->episode_id }}&{{ 1 }}.html" class="btn-success btn">Server #1</a>
-                       <a href="../movie/page-movie-{{ $row1->movie_id }}&{{ $row1->episode_id }}&{{ 2 }}.html" class="btn-success btn">Server #2</a>
+                       <a href="../movie/page-movie-{{ $row1->movie_id }}&episode-{{ $row1->episode_id }}&server-{{ 1 }}.html" class="btn-success btn">Server #1</a>
+                       <a href="../movie/page-movie-{{ $row1->movie_id }}&episode-{{ $row1->episode_id }}&server-{{ 2 }}.html" class="btn-success btn">Server #2</a>
 
                     
                  
@@ -77,7 +77,7 @@
           
                 @foreach ($movie_page4 as $row1)
      
-                    <a style="width: 50px;"href="../movie/page-movie-{{ $row1->movie_id }}&{{ $row1->episode_id }}&{{ 1 }}.html" class="btn bg-danger mr-2 mt-2">{{ $row1->episode_name }}</a>
+                    <a style="width: 50px;"href="../movie/page-movie-{{ $row1->movie_id }}&episode-{{ $row1->episode_id }}&server-{{ 1 }}.html" class="btn bg-danger mr-2 mt-2">{{ $row1->episode_name }}</a>
            
                    
                    @endforeach

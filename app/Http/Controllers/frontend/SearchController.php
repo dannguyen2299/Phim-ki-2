@@ -52,15 +52,11 @@ class SearchController extends Controller
         }
         $search_movie=DB::table('movie')->where('status',1)->where('movie_name','like','%' .$keywords. '%')->paginate(4);
         $data['search_movie1']=DB::table('movie')->where('status',1)->where('movie_name','like','%' .$keywords. '%')->count('movie_id');
-         // Truy vấn quảng cáo
-         $data['ads_banner1']=DB::table('advertisement')->where('ad_location',1)->where('status',1)->orderBy('ad_id','desc')->first();
+        // Truy vấn quảng cáo
+        $data['ads_banner1']=DB::table('advertisement')->where('ad_location',1)->where('status',1)->orderBy('ad_id','desc')->first();
 
-         $data['ads_banner2']=DB::table('advertisement')->where('ad_location',2)->where('status',1)->orderBy('ad_id','desc')->first();
- 
-         $data['ads_banner3']=DB::table('advertisement')->where('ad_location',3)->where('status',1)->orderBy('ad_id','desc')->first();
- 
-         $data['ads_banner4']=DB::table('advertisement')->where('ad_location',4)->where('status',1)->orderBy('ad_id','desc')->first();
-         // End
+        $data['ads_banner2']=DB::table('advertisement')->where('ad_location',2)->where('status',1)->orderBy('ad_id','desc')->get();
+        // End
         return view('frontend.search',$data)->with('movies',$movies)->with('episode_nums',$episode_nums)->with('categories',$categories)->with('search_movie',$search_movie)->with("view_nums",$view_nums)->with('keywords',$keywords);
     }
 

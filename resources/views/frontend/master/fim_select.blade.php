@@ -11,12 +11,17 @@
       <a href="../select-system" class="btn bg-danger mt-2">Lựa chọn của hệ thống</a>
     </div>
     @if ($ads_banner2!=null)
+        @foreach ($ads_banner2 as $row)
+          <div class="row-2 mt-3" style="width:250px;">
+              <a href="{{ $row->link_banner }}"><img src="{{ $row->url_banner }}" style="width:100%; height:300px;"  alt=""/></a>  
+          </div>
+        @endforeach
+    @else
       @foreach ($ads_banner2 as $row)
-      <div class="row-2 mt-3" style="width:250px;">
-          <a href="{{ $row->link_banner }}"><img src="{{ $row->url_banner }}" style="width:100%; height:300px;"  alt=""/></a>  
-      </div>
+        <div class="row-2 mt-3" style="width:250px;">
+          <a href=""><img src="" style="width:100%; height:300px;"  alt=""/></a>  
+        </div>
       @endforeach
-      
     @endif
    
   </div>
