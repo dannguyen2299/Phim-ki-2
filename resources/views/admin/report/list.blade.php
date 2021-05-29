@@ -26,7 +26,6 @@ use Illuminate\Support\Facades\Session;
                     <table id="dataTable" class="table table-bordered table-hover display" style="width:100%">
                         <thead>
                             <tr>
-                                <th>Username</th>
                                 <th>User's email</th>
                                 <th>Content</th>
                                 <th>Movie</th>
@@ -39,8 +38,6 @@ use Illuminate\Support\Facades\Session;
                         <tbody>
                         @foreach($reports as $report)
                             <tr>
-                                <td></td>
-                                {{-- <td>{{$report->username}}</td> --}}
                                 <td>{{$report->email}}</td>
                                 <td>{{$report->content}}</td>
                                 <td>{{$report->movie_name}}</td>

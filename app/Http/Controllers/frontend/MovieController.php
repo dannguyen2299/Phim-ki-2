@@ -19,13 +19,18 @@ class MovieController extends Controller
 
         $data['movie_detail']=DB::table('movie')->join('nation','movie.nation_id','=','nation.nation_id')->where("movie_id",$movie_id)->first();
 
-        $data['movie_page']=DB::table('episode')->join('movie','episode.movie_id','=','movie.movie_id')->where("episode_id",$episode_id)->first();
 
-        $data['movie_page1']=DB::table('episode')->join('movie','episode.movie_id','=','movie.movie_id')->where("episode_id",$episode_id)->get();
 
         $data['movie_page2']=DB::table('episode')->join('movie','episode.movie_id','=','movie.movie_id')->where("episode.movie_id",$movie_id)->get();
-    
-        
+
+
+        //Lấy thắng đầu tiên của số tập ()
+        $data['movie_page3']=DB::table('episode')->join('movie','episode.movie_id','=','movie.movie_id')->where("episode.movie_id",$movie_id)->where("episode.episode_id",$episode_id)->first();
+       
+        // Sô tổng số tập theo movie id
+        $data['movie_page4']=DB::table('episode')->join('movie','episode.movie_id','=','movie.movie_id')->where("episode.movie_id",$movie_id)->get();
+
+     
 
        
 
@@ -49,11 +54,16 @@ class MovieController extends Controller
         $view_nums[$movie->movie_id] = $views;
 
     }
-        // echo $movie_id;
+
+        // Truy vấn quảng cáo
+        $data['ads_banner1']=DB::table('advertisement')->where('ad_location',1)->where('status',1)->orderBy('ad_id','desc')->first();
+
+        $data['ads_banner2']=DB::table('advertisement')->where('ad_location',2)->where('status',1)->orderBy('ad_id','desc')->get();
+        // End
 
         // $data['movie_page']=DB::table('episode')->where('episode.movie_id',$movie_id)->first();
 
-        return  view('frontend.movie',$data)->with('episode_nums',$episode_nums)->with('view_nums',$view_nums)->with('server',$server);
+        return  view('frontend.movie',$data)->with('episode_nums',$episode_nums)->with('view_nums',$view_nums)->with('server',$server)->with('episode_id',$episode_id);
     }
 
     function GetPage($movie_id){
@@ -69,6 +79,9 @@ class MovieController extends Controller
         $data['movie_nation']=DB::table('movie')->select('movie.*')->where('movie.nation_id',$a)->where('movie_id','<>',$movie_id)->get();
 
         $episode_nums = array();
+        $rates = array();
+        $user_rates = array();
+
         foreach($movies as &$movie){
             $episode_num = DB::table('movie')
             ->join('episode','episode.movie_id','=','movie.movie_id')
@@ -82,7 +95,17 @@ class MovieController extends Controller
                 $views = $views + $value->view;
             }
             $view_nums[$movie->movie_id] = $views;
-    
+            $data['movie_page3']=DB::table('episode')->join('movie','episode.movie_id','=','movie.movie_id')->where("episode.movie_id",$movie_id)->first();
+            // $data['movie_page3']=DB::table('episode')->join('movie','episode.movie_id','=','movie.movie_id')->where("episode.movie_id",$movie_id)->where("episode.episode_id",$episode_id)->first();
+
+            
+            $rate = DB::table('movie_detail')->where('movie_detail.movie_id',$movie->movie_id)->avg('rate');
+            $rates[$movie->movie_id] = round($rate);
+
+
+            $user_rate = DB::table('movie_detail')->where('movie_detail.movie_id',$movie->movie_id)->count('user_id');
+            $user_rates[$movie->movie_id]= $user_rate;
+
         }
         $dan_user_id=Session::get('user_id'); 
 
@@ -103,8 +126,15 @@ class MovieController extends Controller
              $a;
 
         }
+             // Truy vấn quảng cáo
+             $data['ads_banner1']=DB::table('advertisement')->where('ad_location',1)->where('status',1)->orderBy('ad_id','desc')->first();
+
+             $data['ads_banner2']=DB::table('advertisement')->where('ad_location',2)->where('status',1)->orderBy('ad_id','desc')->get();
+             // End
+           
+            return  view('frontend.page',$data)->with('episode_nums',$episode_nums)->with('view_nums',$view_nums)->with('rates',$rates)->with('user_rates',$user_rates)->with('follow',$a)->with('dan_user_id',$dan_user_id);
     
-           return  view('frontend.page',$data)->with('episode_nums',$episode_nums)->with('view_nums',$view_nums)->with('follow',$a)->with('dan_user_id',$dan_user_id);
+        //    return  view('frontend.page',$data)->with('episode_nums',$episode_nums)->with('view_nums',$view_nums)->with('follow',$a)->with('dan_user_id',$dan_user_id);
     }
     function InFollow($movie_id,$user_id){
         // follow cho trường hợp chưa tồn tại trong bảng
@@ -130,6 +160,7 @@ class MovieController extends Controller
             ->where('movie_id', $movie_id)->where('user_id',$user_id)
             ->update(['follow' => 0]);
             return redirect()->back();
+    
     }
 
     

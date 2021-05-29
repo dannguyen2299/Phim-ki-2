@@ -333,6 +333,22 @@ use Illuminate\Support\Facades\Session;
                             </ul>
                         </li>
 
+                        <li class="submenu" id="submenu-advertisement">
+                            <a href="{{Request::url().'#'}}" id="tables">
+                                <i class="fas fa-table"></i>
+                                <span> Advertisement </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <ul class="list-unstyled">
+                                <li>
+                                    <a href="{{URL::to('admin_1/add-advertisement')}}">Add Advertisement</a>
+                                </li>
+                                <li>
+                                    <a href="{{URL::to('admin_1/list-advertisement')}}">All Advertisement</a>
+                                </li>
+                            </ul>
+                        </li>
+
                         <li class="submenu" id="submenu-report">
                             <a href="{{URL::to('admin_1/list-report')}}">
                                 <i class="fas fa-user"></i>
@@ -365,7 +381,6 @@ use Illuminate\Support\Facades\Session;
             <!-- Start content -->
             <div class="content">
                 <div class="container-fluid">
-
                     @yield('admin_content')
 
                 </div>
@@ -437,6 +452,9 @@ use Illuminate\Support\Facades\Session;
         // NAVIGATION HIGHLIGHT & OPEN PARENT
         $("#sidebar-menu ul li.submenu a.active").parents("li:last").children("a:first").addClass("active").trigger("click");
     </script>
+
+        <!--validation  -->
+    <script src="plugins/parsleyjs/parsley.min.js"></script>
 </body>
 
 </html>

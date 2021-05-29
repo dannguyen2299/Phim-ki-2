@@ -8,18 +8,18 @@
                 <h5>Edit Category </h5>
                 <hr>
                 @foreach ($category as $key => $value)
-                    <form autocomplete="off" action="{{ URL::to('admin_1/update-category/' . $value->category_id) }}">
+                    <form data-parsley-validate novalidate autocomplete="off" action="{{ URL::to('admin_1/update-category/' . $value->category_id) }}">
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-2 col-form-label">Category Id</label>
                             <div class="col-sm-10">
-                                <input type="text" value="{{ $value->category_id }}" name="category_id" disabled
+                                <input required type="text" value="{{ $value->category_id }}" name="category_id" disabled
                                     class="form-control" id="inputEmail3" placeholder="Category Id" autocomplete="off">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="inputPassword3" class="col-sm-2 col-form-label">Category Name</label>
                             <div class="col-sm-10">
-                                <input type="text" value="{{ $value->category_name }}" name="category_name"
+                                <input required type="text" value="{{ $value->category_name }}" name="category_name"
                                     class="form-control" id="inputPassword3" placeholder="Category Name" autocomplete="off">
                             </div>
                         </div>

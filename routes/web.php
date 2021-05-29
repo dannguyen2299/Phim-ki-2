@@ -25,6 +25,7 @@ Route::prefix('movie')->group(function () {
     Route::get('In_follow-{movie_id}&{user_id}','frontend\MovieController@InFollow' ); // follow cho trường hợp chưa tồn tại trong bảng
     Route::get('B_follow-{movie_id}&{user_id}','frontend\MovieController@BackFollow' );// follow cho TH đã tồn tại trong bảng
     Route::get('Dele_follow-{movie_id}&{user_id}','frontend\MovieController@DeleFollow' ); // hủy follow 
+    Route::get('page-movie-{movie_id}&episode-{episode_id}&server-{server}.html', 'frontend\MovieController@GetMovie');
 });
 //  search
 Route::post('search', 'frontend\SearchController@GetSearch');
@@ -35,12 +36,16 @@ Route::get('film_tick', 'frontend\filmTickController@getFilm');
 Route::get('select-system', 'frontend\SearchController@GetChoice');
 
 // Lọc theo thể loại và quốc gia
-Route::get('filter/{category_id}', 'frontend\FilterController@GetFilter');
-Route::get('filter-nation/{nation_id}', 'frontend\FilterController@GetNation');
+Route::get('filter/category-{category_id}', 'frontend\FilterController@GetFilter');
+Route::get('filter-nation/nation-{nation_id}', 'frontend\FilterController@GetNation');
 // 2 nút Xem thêm 
 Route::get('new-movie-update', 'frontend\FilterController@GetNewMovie');
 Route::get('movie-viet-nam', 'frontend\FilterController@GetMovieVN');
 
+//* Rating
+Route::post('processRate','frontend\RateController@postRate');
+//* Update view
+Route::post('update-view','frontend\UpdateViewController@update_view');
 // END
 Route::get('sigup', 'frontend\SigUpController@GetSigUp');
 Route::post('processLogin', 'frontend\LoginController@processLogin')->name('processLogin');
@@ -128,9 +133,19 @@ Route::middleware(['CheckLogin'])->prefix('admin_1')->group(function () {
     Route::get('fixed-report/{report_id}', 'backend\ReportController@fixed');
     Route::get('not-fixed-report/{report_id}', 'backend\ReportController@not_fixed');
 
+    //* Advertisement
+    Route::get('list-advertisement', 'backend\AdvertisementController@list_advertisement');
+    Route::get('add-advertisement', 'backend\AdvertisementController@add_advertisement');
+    Route::get('save-advertisement', 'backend\AdvertisementController@save_advertisement');
+    Route::get('edit-advertisement/{ad_id}', 'backend\AdvertisementController@edit_advertisement');
+    Route::get('update-advertisement/{ad_id}', 'backend\AdvertisementController@update_advertisement');
+    Route::get('delete-advertisement/{ad_id}', 'backend\AdvertisementController@delete_advertisement');
+    Route::get('active-advertisement/{ad_id}', 'backend\AdvertisementController@active');
+    Route::get('unactive-advertisement/{ad_id}', 'backend\AdvertisementController@unactive');
+
+
     //*end - admin
 });
-
 
 
 //end - admin

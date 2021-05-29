@@ -56,6 +56,9 @@ class filmTickController extends Controller
         ->where('movie_detail.user_id',$user_id)
         ->where('movie_detail.follow',1)
         ->get();
+        $data['ads_banner1']=DB::table('advertisement')->where('ad_location',1)->where('status',1)->orderBy('ad_id','desc')->first();
+
+        $data['ads_banner2']=DB::table('advertisement')->where('ad_location',2)->where('status',1)->orderBy('ad_id','desc')->get();
 
         return view('frontend.film_tick',$data)->with('movies',$movies)->with('episode_nums',$episode_nums)->with('view_nums',$view_nums)->with('categories',$categories);
     }

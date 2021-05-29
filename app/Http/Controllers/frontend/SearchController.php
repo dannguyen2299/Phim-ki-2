@@ -51,9 +51,13 @@ class SearchController extends Controller
             $view_nums[$movie->movie_id] = $views;
         }
         $search_movie=DB::table('movie')->where('status',1)->where('movie_name','like','%' .$keywords. '%')->paginate(4);
-       
+        $data['search_movie1']=DB::table('movie')->where('status',1)->where('movie_name','like','%' .$keywords. '%')->count('movie_id');
+        // Truy vấn quảng cáo
+        $data['ads_banner1']=DB::table('advertisement')->where('ad_location',1)->where('status',1)->orderBy('ad_id','desc')->first();
 
-        return view('frontend.search',$data)->with('movies',$movies)->with('episode_nums',$episode_nums)->with('categories',$categories)->with('search_movie',$search_movie)->with("view_nums",$view_nums);
+        $data['ads_banner2']=DB::table('advertisement')->where('ad_location',2)->where('status',1)->orderBy('ad_id','desc')->get();
+        // End
+        return view('frontend.search',$data)->with('movies',$movies)->with('episode_nums',$episode_nums)->with('categories',$categories)->with('search_movie',$search_movie)->with("view_nums",$view_nums)->with('keywords',$keywords);
     }
 
     function GetChoice(){
@@ -87,10 +91,14 @@ class SearchController extends Controller
 
         
 
-        $data['search_movie']=DB::table('movie')->join('episode','movie.movie_id','=','episode.movie_id')->orderBy('view','desc')->paginate(8);
-       
+        $data['search_movie']=DB::table('movie')->join('episode','movie.movie_id','=','episode.movie_id')->groupBy('movie.movie_id')->paginate(8);
+        // Truy vấn quảng cáo
+        $data['ads_banner1']=DB::table('advertisement')->where('ad_location',1)->where('status',1)->orderBy('ad_id','desc')->first();
 
-        return view('frontend.search',$data)->with('movies',$movies)->with('episode_nums',$episode_nums)->with("view_nums",$view_nums);
+        $data['ads_banner2']=DB::table('advertisement')->where('ad_location',2)->where('status',1)->orderBy('ad_id','desc')->get();
+        // End
+
+        return view('frontend.test',$data)->with('movies',$movies)->with('episode_nums',$episode_nums)->with("view_nums",$view_nums);
 
 }
 }

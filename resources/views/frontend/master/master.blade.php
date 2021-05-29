@@ -1,7 +1,10 @@
 <?php header("Content-Type: application/xml; charset=utf-8"); ?>
 <!DOCTYPE html>
 <html lang="en">
+<?php
 
+use Illuminate\Support\Facades\Session;
+?>
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -41,7 +44,7 @@
               <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
                 @foreach($category_l as $row)
 
-                <a class="dropdown-item text-light" href="../filter/{{ $row->category_id }}">{{ $row->category_name }}</a>
+                <a class="dropdown-item text-light" href="../filter/category-{{ $row->category_id }}">{{ $row->category_name }}</a>
 
                 @endforeach
 
@@ -57,7 +60,7 @@
 
                 @foreach ($nation as $row )
 
-                <a class="dropdown-item text-light" href="../filter-nation/{{ $row->nation_id }}">{{ $row->nation_name }}</a>
+                <a class="dropdown-item text-light" href="../filter-nation/nation-{{ $row->nation_id }}">{{ $row->nation_name }}</a>
 
                 @endforeach
             </li>
@@ -91,9 +94,9 @@
             <li class="nav-item dropdown"> 
                @if (Session::has('name'))
               <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <img class="avatar"src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/b8919e7a-2bb5-40c7-af15-8218d853bd92/d4njygs-38bef077-dd7a-4e80-8ac2-663485780f8c.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2I4OTE5ZTdhLTJiYjUtNDBjNy1hZjE1LTgyMThkODUzYmQ5MlwvZDRuanlncy0zOGJlZjA3Ny1kZDdhLTRlODAtOGFjMi02NjM0ODU3ODBmOGMucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.QqebgwhESsFn9NTetrmu7qI4l9juTGmfL59O0TjH4Zo" alt="">
+                  <img class="avatar"src="<?php echo Session::has('avatar')?Session::get('avatar'):''; ?>" alt="">
                 </a>
-                <div class="dropdown-menu bg-dark" style="width: 200px; !important" aria-labelledby="navbarDropdown">
+                <div class="dropdown-menu bg-dark" style="width: 200px;" aria-labelledby="navbarDropdown">
                   <p class="pl-4 text-light"><span class="text-warning">Tên:</span> {{Session::get('name')}}</p>
                   
                 <a href="/logout" class="dropdown-item text-light">Đăng xuất</a>
@@ -125,5 +128,5 @@
   @yield('content');
 
 </body>
-
+@yield('youtube_video')
 </html>

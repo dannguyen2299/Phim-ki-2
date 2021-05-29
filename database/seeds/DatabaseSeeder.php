@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
          $this->call(report::class);
          $this->call(movie_detail::class);
          $this->call(category_detail::class);
+         $this->call(advertisement::class);
         // 
          
     }
