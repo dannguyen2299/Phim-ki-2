@@ -29,13 +29,13 @@
                 <div class="col-xl-8 mt-3">
                   <table id="">
                     <tr>
-                      <td style="width:100px"><h6 class="text-secondary">TÊN PHIM: </h6></td>
+                      <td style="width:100px"><h6 class="text-secondary">TÊN PHIM:</h6></td>
                       <td><h6 class="text-danger">{{ $movie_detail->movie_name }}</h6></td>
                     </tr>
-                    <tr>
+                    {{-- <tr>
                       <td style="width:100px"></td>
                       <td><small class="text-secondary">Sunny and flower</h6></small>
-                    </tr>
+                    </tr> --}}
                     <tr>
                       <td style="width:100px"><h6 class="text-secondary mt-2">Trạng thái: </h6></td>
                       <td><h6 class="text-danger mt-2">{{$episode_nums[$movie_detail->movie_id]}} / {{$movie_detail->total_eps}} tập</h6></td>
@@ -51,13 +51,9 @@
 
                     <tr>
                       <td style="width:100px"><h6 class="text-secondary mt-2">Thể loại: </h6></td>
-        
-  
-
                       <td style="width:300px"><h6 class="text-danger mt-2">
                         @foreach ($movie_cat as &$row)
                         {{ $row->category_name }}
-                        
                           @endforeach
                       </h6></td>
    
@@ -66,7 +62,20 @@
                     <tr>
                       <td colspan="3"><a href="../movie/page-movie-{{ $movie_detail->movie_id }}&1&1.html"class="btn btn-danger mt-3">XEM PHIM</a>
                         <a href=""class="btn btn-outline-success mt-3 ml-3 mr-3">DOWNLOAD</a>
-                        <a href=""class="btn btn-warning mt-3 ">THEO DÕI</a>
+                        @if(Session::has('user_id'))
+
+                            @if($follow==2){
+                              <a href="../movie/In_follow-{{ $movie_detail->movie_id }}&{{ $dan_user_id }}"class="btn btn-warning mt-3 "> THEO DÕI</a> //ko ton tai trong bang 
+                            }
+                            @elseif ($follow==1){
+                              <a href="../movie/Dele_follow-{{ $movie_detail->movie_id }}&{{ $dan_user_id }}"class="btn btn-warning mt-3 "> ĐÃ THEO DÕI</a> // co trong bang movie_detail  và follow=1
+                            }
+                            @elseif ($follow==0){
+                              <a href="../movie/B_follow-{{ $movie_detail->movie_id }}&{{ $dan_user_id }}"class="btn btn-warning mt-3 "> THEO DÕI</a>// co trong bảng nhưng follow =0
+                            }
+                            @endif
+                        @endif
+                        {{--  <a href=""class="btn btn-warning mt-3 "> THEO DÕI</a>  --}}
                       </td>
                     </tr>
                   </table>

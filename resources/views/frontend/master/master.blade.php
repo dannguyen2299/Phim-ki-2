@@ -61,9 +61,11 @@
 
                 @endforeach
             </li>
+            @if(Session::has('name'))
             <li class="nav-item active">
-              <a class="nav-link text-light" href="../filter/2">Phim đánh dấu<span class="sr-only">(current)</span></a>
+              <a class="nav-link text-light" href="../film_tick">Phim đánh dấu<span class="sr-only">(current)</span></a>
             </li>
+            @endif
             <li class="nav-item active">
               <a class="nav-link text-light" href="#">Top IMDB <span class="sr-only">(current)</span></a>
             </li>
