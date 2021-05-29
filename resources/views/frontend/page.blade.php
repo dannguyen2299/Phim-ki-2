@@ -244,7 +244,7 @@
 
                 var index = $(this).data("index");
                 var product_id = $(this).data('product_id');
-
+                
                 $.ajax({
                     url: "/processRate",
                     type: "POST",

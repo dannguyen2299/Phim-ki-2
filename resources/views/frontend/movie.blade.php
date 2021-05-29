@@ -29,27 +29,20 @@
           </div>
             <div class="row-2 mt-3">
               @if ($server==1)
-                @if ( $movie_page3==null)
-                  <iframe width="100%" height="315"       
-                  src="a.html" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                @if ($movie_page3!=null)
+                  <div id="player" video_id="{{ $movie_page3->url_first }}"></div>
                 @else
-                  <iframe width="100%" height="315"       
-                  src="{{ $movie_page3->url_first }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <div id="player" video_id=""></div>
                 @endif
-               
               @elseif ($server==2)
-                  @if ( $movie_page3==null)
-                  <iframe width="100%" height="315"       
-                  src="a.html" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                @if ($movie_page3!=null)
+                   <div id="player" video_id="{{ $movie_page3->url_second }}"></div>
                 @else
-                  <iframe width="100%" height="315"       
-                  src="{{ $movie_page3->url_second }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                   <div id="player" video_id=""></div> 
                 @endif
-           
               @endif
               
             </div>
-            
             <div class="row-2 mt-4">
               <h5 class="text-danger">LINK DỰ PHÒNG</h5>
             </div>
@@ -192,4 +185,67 @@
       crossorigin="anonymous"
     ></script>
 
+@endsection
+
+@section('youtube_video')
+<script>
+  var i = 0; //Bien dem thoi gian xem video
+  //Lay video id
+  var video_id = $('#player').attr('video_id');
+
+  // 2. This code loads the IFrame Player API code asynchronously.
+  var tag = document.createElement('script');
+
+  tag.src = "https://www.youtube.com/iframe_api";
+  var firstScriptTag = document.getElementsByTagName('script')[0];
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+  // 3. This function creates an <iframe> (and YouTube player)
+  //    after the API code downloads.
+  var player;
+  function onYouTubeIframeAPIReady() {
+    player = new YT.Player('player', {
+      height: '390',
+      width: '640',
+      // autoPlay:false,
+      videoId: video_id,
+      playerVars: {
+        'playsinline': 1
+      },
+      events: {
+        // 'onReady': onPlayerReady,
+        'onStateChange': onPlayerStateChange
+      }
+    });
+  }
+
+  // 4. The API will call this function when the video player is ready.
+  function onPlayerReady(event) {
+    event.target.playVideo();
+  }
+
+  // 5. The API calls this function when the player's state changes.
+  //    The function indicates that when playing a video (state=1),
+  //    the player should play for six seconds and then stop.
+  var bool = false;
+  function onPlayerStateChange(event) {
+    if (event.data == YT.PlayerState.PLAYING && !bool) {
+      time_id = setInterval(() => {
+        i++;
+        if (i == 5){
+          clearInterval(time_id);
+
+          $.post('/update-view',{
+            episode_id: <?php if ($movie_page3==null) {echo "d";} else { echo $movie_page3->episode_id; } ?>,
+            _token: "{{ csrf_token() }}"
+          });
+          
+          bool = true;
+        }
+      }, 1000);
+    }
+    if (event.data == YT.PlayerState.PAUSED && !bool) {
+      clearInterval(time_id);
+    }
+  }
+</script>
 @endsection

@@ -55,15 +55,11 @@ class IndexController extends Controller
         $data['movie_v']=DB::select('select * from movie where nation_id=1');
         $data['nation'] = DB::table('nation')->get();
         $data['category_l'] = DB::table('category')->get();
-        // Truy vấn quảng cáo
-        $data['ads_banner1']=DB::table('advertisement')->where('ad_location',1)->where('status',1)->orderBy('ad_id','desc')->first();
+      // Truy vấn quảng cáo
+      $data['ads_banner1']=DB::table('advertisement')->where('ad_location',1)->where('status',1)->orderBy('ad_id','desc')->first();
 
-        $data['ads_banner2']=DB::table('advertisement')->where('ad_location',2)->where('status',1)->orderBy('ad_id','desc')->first();
-
-        $data['ads_banner3']=DB::table('advertisement')->where('ad_location',3)->where('status',1)->orderBy('ad_id','desc')->first();
-
-        $data['ads_banner4']=DB::table('advertisement')->where('ad_location',4)->where('status',1)->orderBy('ad_id','desc')->first();
-        // End
+      $data['ads_banner2']=DB::table('advertisement')->where('ad_location',2)->where('status',1)->orderBy('ad_id','desc')->get();
+      // End
         return view('frontend.index',$data)->with('movies',$movies)->with('episode_nums',$episode_nums)->with('view_nums',$view_nums)->with('categories',$categories)->with('rates',$rates);
     }
     

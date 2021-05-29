@@ -88,8 +88,7 @@ use Illuminate\Support\Facades\Session;
                             <option value="0" <?php if ($advertisement->ad_location == 0) echo 'selected'; ?>>0 - Unfinished</option> <!-- Chưa gắn lên trang -->
                             <option value="1" <?php if ($advertisement->ad_location == 1) echo 'selected'; ?>>1 - Location: 1</option> <!-- Đang gắn ở vị trí 1 -->
                             <option value="2" <?php if ($advertisement->ad_location == 2) echo 'selected'; ?>>2 - Location: 2</option> <!-- Đang gắn ở vị trí 2 -->
-                            <option value="3" <?php if ($advertisement->ad_location == 3) echo 'selected'; ?>>3 - Location: 3</option> <!-- Đang gắn ở vị trí 3 -->
-                            <option value="4" <?php if ($advertisement->ad_location == 4) echo 'selected'; ?>>4 - Finished</option> <!-- Đã lên trang và đã hết hạn -->
+                            <option value="3" <?php if ($advertisement->ad_location == 3) echo 'selected'; ?>>3 - Finished</option> <!-- Đã lên trang và đã hết hạn -->
                         </select>
                     </div>
                 </div>
