@@ -112,7 +112,7 @@
                 
                 </div>
                
-                <div class="row-2 pt-4 mt-4">
+                <div class="row-2 pt-4 mt-2">
                     <h5 class="text-danger">ĐÁNH GIÁ PHIM</h5>
                     <div class="row">
                         <ul class="list-inline col rating" title="Average Rating">
@@ -124,9 +124,20 @@
                                     } else {
                                         $color = 'color:#ccc;';
                                     }
+
+                                    if ($count <= 2) {
+                                        $tils = 'Không hay!';
+                                    } elseif ($count > 2 && $count <= 5) {
+                                        $tils = 'Bình thường!';
+                                    }elseif ($count > 5 && $count <= 8) {
+                                        $tils = 'Hay!';
+                                    } else {
+                                        $tils = 'Rất hay';
+                                    }
+
                                 @endphp
 
-                                <li title="Đánh giá sao" id="{{ $movie_detail->movie_id }}-{{ $count }}"
+                                <li title="{{$tils}}" id="{{ $movie_detail->movie_id }}-{{ $count }}"
                                     data-index="{{ $count }}" data-product_id="{{ $movie_detail->movie_id }}"
                                     data-rating="{{ $rates[$movie_detail->movie_id] }}" class="ml-2 ratess"
                                     style="cursor:pointer; display: inline-block; {{ $color }}; font-size:25px; ">
@@ -139,14 +150,14 @@
                             giá</p>
                     </div>
                 </div>
-                <div class="row-2 mt-5">
+                <div class="row-2 mt-3">
                     <h5 class="text-danger">NỘI DUNG PHIM</h5>
                 </div>
                 <div class="row-2">
                     <p class="text-secondary">{{ $movie_detail->introduce }}</p>
                 </div>
 
-                <div class="row-2">
+                <div class="row-2 mb-4">
                     <h5 class="text-danger">TRAILER</h5>
                 </div>
                 <div class="row-2">
@@ -155,7 +166,7 @@
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen></iframe>
                 </div>
-                <div class="row-2 mt-3">
+                <div class="row-2 mt-3 mb-3">
                     <h5 class="text-danger">BÌNH LUẬN PHIM</h5>
                 </div>
                 <div class="row-2 ">
@@ -257,7 +268,7 @@
                     success: function(response) {
                         // console.log(response);
                         if (response) {
-                            alert('Đánh giá thành công! Xin load lại page')
+                            alert("Đánh giá thành công "+index +" sao trên 10 sao");
                         }
                     },
                 });
