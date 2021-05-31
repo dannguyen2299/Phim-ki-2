@@ -38,4 +38,10 @@ class RateController extends Controller
         return 
         $user_rates = DB::table('movie_detail')->where('movie_detail.movie_id',$movie_id)->count('user_id');
     }
+    public function statusUser($movie_id)
+    {
+        $user_id = Session::get("user_id");
+        return $status_rate = DB::table('movie_detail')->where("user_id",$user_id)->where("movie_id",$movie_id)->first();
+       
+    }
 }

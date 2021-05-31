@@ -1,49 +1,71 @@
 @extends('frontend.master.master')
-@section('title','Movie')
+@section('title','Đăng nhập')
 @section('content')
  
     <div class="container login">
-      <div class="row-2 mt-4">
-        <h5 class="text-light">ĐĂNG NHẬP VÀO HỆ THỐNG
-           
-        </h5>
-      </div>
-      <div class="row-2">
-        <hr />
-      </div>
-     
-      <div class="row-2 mt-4 ">
+      <div class="row mt-4">
+        <div class="col">
+          <div >
+            {{-- <h5 class="text-light">ĐĂNG NHẬP VÀO HỆ THỐNG</h5> --}}
 
-          <a href="/processLogin/facebook" style="background-color: #3b579d; width: 40%; text-align: start" class="btn">Kết nối với facebook</a>
-      </div>
-      <div class="row-2 mt-3">
-        <form action="{{URL::to('processLogin')}}" method="post">
-          {{csrf_field()}}
-           <table>
-            <tr>
-              <td><p class="text-secondary mr-3">Tên đăng nhập: </p></td>
-              <td>
-                <div class="input-group mb-3">
-                  <input type="email" class="form-control bg-dark text-light" style="height: 35px;width: 300px;" placeholder="Username" name="email" aria-describedby="basic-addon1">
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td><p class="text-secondary mr-3">Mật khẩu: </p></td>
-              <td>
-                <div class="input-group mb-3">
-                  <input type="password" class="form-control bg-dark text-light" style="height: 35px;width: 300px;" placeholder="Password" name="password" aria-describedby="basic-addon1">
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td><button  type="submit"class="btn btn-danger">Login</button></td>
-              <td>
-                <a href="" class="text-warning">Quên mật khẩu?</a>
-              </td>
-            </tr>
-          </table>
-        </form>
+          </div>
+       
+         <div >
+
+           <hr />
+         </div>
+          
+        
+         
+         <div >
+           <form  action="{{URL::to('processLogin')}}" method="post" >
+             {{csrf_field()}}
+              <table>
+                <tr>
+                  <td colspan="2">
+                     <div style="margin: 50px 0px ;">
+           <h2 class="text-light mb-0" >GROUP 8</h2>
+           <p  style="color:#cdcdcd">Hãy đăng nhập và đồng hành cùng chúng tôi</p>
+         </div>
+                  </td>
+                </tr>
+               <tr>
+                 <td><p class="text-light mr-3">Tài khoản </p></td>
+                 <td>
+                   <div class="input-group mb-3">
+                     <input type="email" class="form-control bg-dark text-light" style="height: 35px;width: 300px;" placeholder="Username" name="email" aria-describedby="basic-addon1">
+                   </div>
+                 </td>
+               </tr>
+               <tr>
+                 <td><p class="text-light mr-3">Mật khẩu </p></td>
+                 <td>
+                   <div class="input-group mb-3">
+                     <input type="password" class="form-control bg-dark text-light" style="height: 35px;width: 300px;" placeholder="Password" name="password" aria-describedby="basic-addon1">
+                   </div>
+                 </td>
+               </tr>
+               <tr>
+                 <td colspan="2"><button  type="submit" style="width: 100%;margin-top: 20px" class="btn btn-danger">Đăng nhập</button></td>
+                 
+               </tr>
+               <tr >
+                <td  colspan="2">
+                          <a href="/processLogin/facebook" style="background-color: #3b579d;color:#fff; width: 100%; text-align: center;margin-top: 40px" class="btn">Kết nối với facebook</a>
+             
+                        </td>
+                           </tr>
+             </table>
+           </form>
+
+         </div>
+         
+        {{-- <div>
+
+           <a href="/processLogin/facebook" style="background-color: #3b579d;color:#fff; width: 40%; text-align: start" class="btn">Kết nối với facebook</a>
+         </div> --}}
+        </div>
+        @include('frontend.master.fim_select')
       </div>
       
       <div class="row" style="height: 31vh">

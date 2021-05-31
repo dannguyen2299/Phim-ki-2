@@ -11,55 +11,39 @@ use Illuminate\Support\Facades\Session;
 
 class MovieController extends Controller
 {
-    function GetMovie($movie_id, $episode_id, $server)
-    {
+    function GetMovie($movie_id,$episode_id,$server){
 
-        $movies = DB::table('movie')->join('nation', 'nation.nation_id', '=', 'movie.nation_id')->select('movie.*', 'nation.*', 'movie.status as movie_status', 'nation.status as nation_status')->get();
-        $data['nation'] = DB::table('nation')->get();
-        $data['category_l'] = DB::table('category')->get();
+        // Get movie by id
+        $movies = DB::table('movie')->select('movie.movie_id')->get();
+       
+        // Get data navbar
+        $nav = new NavController();
+        $data['nation'] = $nav->getNation();
+        $data['category_l'] = $nav->getCategory();
 
-        $data['movie_detail'] = DB::table('movie')->join('nation', 'movie.nation_id', '=', 'nation.nation_id')->where("movie_id", $movie_id)->first();
-
-
-
-        $data['movie_page2'] = DB::table('episode')->join('movie', 'episode.movie_id', '=', 'movie.movie_id')->where("episode.movie_id", $movie_id)->get();
-
-
+          //Get episode 
+        $data['movie_detail']=DB::table('movie')->join('nation','movie.nation_id','=','nation.nation_id')->where("movie_id",$movie_id)->first();
+        $data['movie_page2']=DB::table('episode')->join('movie','episode.movie_id','=','movie.movie_id')->where("episode.movie_id",$movie_id)->get();
         //Lấy thắng đầu tiên của số tập ()
-        $data['movie_page3'] = DB::table('episode')->join('movie', 'episode.movie_id', '=', 'movie.movie_id')->where("episode.movie_id", $movie_id)->where("episode.episode_id", $episode_id)->first();
+        $data['movie_page3']=DB::table('episode')->where("episode.movie_id",$movie_id)->where("episode.episode_id",$episode_id)->get();
+        $data['movie_page4']=DB::table('episode')->join('movie','episode.movie_id','=','movie.movie_id')->where("episode.movie_id",$movie_id)->get();
 
-        // Sô tổng số tập theo movie id
-        $data['movie_page4'] = DB::table('episode')->join('movie', 'episode.movie_id', '=', 'movie.movie_id')->where("episode.movie_id", $movie_id)->get();
-
-
-
-
-
-        $a = $data['movie_detail']->nation_id;
-        $data['movie_nation'] = DB::table('movie')->select('movie.*')->where('movie.nation_id', $a)->where('movie_id', '<>', $movie_id)->get();
-
-        $episode_nums = array();
-        foreach ($movies as &$movie) {
-            $episode_num = DB::table('movie')
-                ->join('episode', 'episode.movie_id', '=', 'movie.movie_id')
-                ->where('movie.movie_id', $movie->movie_id)
-                ->where('episode.status', '1')->get();
-            $episode_nums[$movie->movie_id] = count($episode_num);
-            $views = 0;
-            foreach ($episode_num as &$value) {
-                $views = $views + $value->view;
-            }
-            $view_nums[$movie->movie_id] = $views;
-        }
+     
+        // Film same nation
+        $data['movie_nation']= $this->getFilmBySameNation($movie_id, $data['movie_detail']->nation_id);
+        $detail = new DetailFilmController();
+        $episode_nums = $detail->getEpisodeByMovie($movies);
+        $view_nums = $detail->getViewByMovie($movies);
+        $rate_obj = new RateController();       
+        $rates = $rate_obj->getRateByMovie($movies);
 
         // Get Data ads
         $ads = new AdsController();
-        $data['ads_banner1'] = $ads->getAdsByLocation(1);
-        $data['ads_banner2'] = $ads->getAdsByLocation(2);
-
-        // $data['movie_page']=DB::table('episode')->where('episode.movie_id',$movie_id)->first();
-
-        return  view('frontend.movie', $data)->with('episode_nums', $episode_nums)->with('view_nums', $view_nums)->with('server', $server)->with('episode_id', $episode_id);
+        $data['ads_banner2']= $ads->getAdsByLocation(2);
+    
+        return  view('frontend.movie',$data)->with('episode_nums',$episode_nums)
+        ->with('rates',$rates)->with('view_nums',$view_nums)->with('server',$server)
+        ->with('episode_id',$episode_id);
     }
 
     function GetPage($movie_id){
@@ -77,7 +61,7 @@ class MovieController extends Controller
         $rate_obj = new RateController();       
         $rates = $rate_obj->getRateByMovie($movies);
         $user_rates = $rate_obj->getCountByUser($movie_id);
-        
+        $status_rate = $rate_obj->statusUser($movie_id);
         // Film same nation
         $data['movie_nation']= $this->getFilmBySameNation($movie_id, $data['movie_detail']->nation_id);
         $detail = new DetailFilmController();
@@ -91,7 +75,10 @@ class MovieController extends Controller
         // Folow
         $follow = $this->handlingFolow(Session::get('user_id'),$movie_id);
              
-        return  view('frontend.page',$data)->with('episode_nums',$episode_nums)->with('view_nums',$view_nums)->with('rates',$rates)->with('user_rates',$user_rates)->with('follow',$follow)->with('dan_user_id',Session::get('user_id'));
+        return  view('frontend.page',$data)
+        ->with('episode_nums',$episode_nums)->with('view_nums',$view_nums)
+        ->with('rates',$rates)->with('user_rates',$user_rates)
+        ->with('follow',$follow)->with('dan_user_id',Session::get('user_id'))->with('status_rate',$status_rate);
     }
     function handlingFolow($dan_user_id, $movie_id){
         $sql_dan=DB::table('movie_detail')->where('user_id',$dan_user_id)->where('movie_id',$movie_id)->get();

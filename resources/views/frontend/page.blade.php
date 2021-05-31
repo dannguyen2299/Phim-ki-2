@@ -86,8 +86,14 @@
                                     <a href="../movie/page-movie-{{ $movie_detail->movie_id }}&episode-{{ $episode->episode_id }}&server-{{ 1 }}.html"
                                         class="btn btn-danger mt-3">XEM PHIM</a>
                                      @else
-                                        <a href="../movie/page-movie-{{ $movie_detail->movie_id }}&episode-{{ 0 }}&server-{{ 1 }}.html"
-                                        class="btn btn-danger mt-3">XEM PHIM</a>
+                                        <a 
+                                        class="btn btn-danger mt-3 no-film">XEM PHIM</a>
+
+                                        <script>
+                                            $('.no-film').click(function(event){
+                                                alert('Hiện chưa có tập phim nào. Xin hãy truy cập khi có phim mới.')
+                                            })
+                                        </script>
                                      @endif
                                     <a href="" class="btn btn-outline-success mt-3 ml-3 mr-3">DOWNLOAD</a>
                                     @if(Session::has('user_id'))
@@ -149,6 +155,18 @@
                         <p class="text-warning mt-2 col-md-3"> {{ $user_rates}} người đã đánh
                             giá</p>
                     </div>
+                    @if (Session::has('user_id'))
+                        @if ($status_rate == null)
+                        <small class="ml-2"style="color: #cdcdcd;font-family:san-self">Bạn chưa đánh giá phim</small>
+                            
+                        @else
+                        <small class="ml-2"style="color: #cdcdcd;font-family:san-self">Bạn đã đánh giá: {{$status_rate->rate}} sao</small>
+                            
+                        @endif
+                    @else
+                    
+                        <small class="ml-2"style="color: #cdcdcd;font-family:san-self">Bạn chưa đăng nhập</small>
+                    @endif
                 </div>
                 <div class="row-2 mt-3">
                     <h5 class="text-danger">NỘI DUNG PHIM</h5>
@@ -189,11 +207,15 @@
                                                 <p>Lượt xem: {{ $view_nums[$row->movie_id] }} views</p>
                                             </div>
                                             <div class="rate">
-                                                <p>8.5 <i class="fa fa-star"></i></p>
+                                                <p>@if ($rates[$row->movie_id] != null)
+                                                    {{ $rates[$row->movie_id] }}
+                                                @else
+                                                    10
+                                                    @endif <i class="fa fa-star"></i></p>
                                             </div>
                                             <div class="episode">
                                                 <h8>Tập
-                                                    <p>{{ $episode_nums[$row->movie_id] }} / {{ $row->total_eps }} tập
+                                                    <p>{{ $episode_nums[$row->movie_id] }} / {{ $row->total_eps }}
                                                     </p>
                                                 </h8>
                                             </div>
@@ -265,6 +287,7 @@
                         // console.log(response);
                         if (response) {
                             alert("Đánh giá thành công "+index +" sao trên 10 sao");
+                            location.reload()
                         }
                     },
                 });

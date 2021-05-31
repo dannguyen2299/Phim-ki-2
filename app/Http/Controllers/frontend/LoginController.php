@@ -13,6 +13,9 @@ class LoginController extends Controller
 {
     function getLogin()
     {
+         // Get Data ads
+        $ads = new AdsController();
+        $data['ads_banner2']= $ads->getAdsByLocation(2);
         $data['nation'] = DB::table('nation')->get();
         $data['category_l'] = DB::table('category')->get();
         return view('frontend.login', $data);

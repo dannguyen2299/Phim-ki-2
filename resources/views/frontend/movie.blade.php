@@ -1,5 +1,5 @@
 @extends('frontend.master.master')
-@section('title','Movie')
+@section('title','Xem phim')
 @section('content')
 
 <div id="fb-root"></div>
@@ -30,13 +30,13 @@
             <div class="row-2 mt-3">
               @if ($server==1)
                 @if ($movie_page3!=null)
-                  <div id="player" video_id="{{ $movie_page3->url_first }}"></div>
+                  <div id="player" video_id="{{$movie_page3[0]->url_first}}"></div>
                 @else
                 <div id="player" video_id=""></div>
                 @endif
               @elseif ($server==2)
                 @if ($movie_page3!=null)
-                   <div id="player" video_id="{{ $movie_page3->url_second }}"></div>
+                   <div id="player" video_id="{{$movie_page3[0]->url_second}}"></div>
                 @else
                    <div id="player" video_id=""></div> 
                 @endif
@@ -50,18 +50,24 @@
               
                 @foreach ($movie_page4 as $row1)
                   @if ($movie_page4==null)
+                    
                     <a href="1.html" class="btn-success btn">Server #1</a>
                     <a href="2.html" class="btn-success btn">Server #2</a>
+                     
+                  
                   {{-- @else --}}
                   @elseif ($episode_id==$row1->episode_id)
-                    
-                       <a href="../movie/page-movie-{{ $row1->movie_id }}&episode-{{ $row1->episode_id }}&server-{{ 1 }}.html" class="btn-success btn">Server #1</a>
-                       <a href="../movie/page-movie-{{ $row1->movie_id }}&episode-{{ $row1->episode_id }}&server-{{ 2 }}.html" class="btn-success btn">Server #2</a>
-
-                    
+                    @if ($server ==1)
+                    <a href="../movie/page-movie-{{ $row1->movie_id }}&episode-{{ $row1->episode_id }}&server-{{ 1 }}.html" class="btn-success btn">Server #1</a>
+                    <a href="../movie/page-movie-{{ $row1->movie_id }}&episode-{{ $row1->episode_id }}&server-{{ 2 }}.html" class="btn-outline-success btn">Server #2</a>
                  
-                    
-                    <a href="" class="btn-warning btn">Báo lỗi</a>
+                    @else
+                    <a href="../movie/page-movie-{{ $row1->movie_id }}&episode-{{ $row1->episode_id }}&server-{{ 1 }}.html" class="btn-outline-success btn">Server #1</a>
+                    <a href="../movie/page-movie-{{ $row1->movie_id }}&episode-{{ $row1->episode_id }}&server-{{ 2 }}.html" class="btn-success btn">Server #2</a>
+                 
+                    @endif
+                     
+                      <a href="" class="btn-warning btn">Báo lỗi</a>
                   @endif
  
               
@@ -76,10 +82,13 @@
               
           
                 @foreach ($movie_page4 as $row1)
-     
-                    <a style="width: 50px;"href="../movie/page-movie-{{ $row1->movie_id }}&episode-{{ $row1->episode_id }}&server-{{ 1 }}.html" class="btn bg-danger mr-2 mt-2">{{ $row1->episode_name }}</a>
-           
-                   
+                    @if ($movie_page3[0]->episode_id == $row1->episode_id)
+                    <a style="width: 70px;"href="../movie/page-movie-{{ $row1->movie_id }}&episode-{{ $row1->episode_id }}&server-{{ 1 }}.html" class="btn btn-danger mr-2 mt-2">{{ $row1->episode_name }}</a>           
+                        
+                    @else
+                    <a style="width: 70px;"href="../movie/page-movie-{{ $row1->movie_id }}&episode-{{ $row1->episode_id }}&server-{{ 1 }}.html" class="btn btn-outline-danger mr-2 mt-2">{{ $row1->episode_name }}</a>           
+                        
+                    @endif
                    @endforeach
                    
                   
@@ -110,11 +119,15 @@
                           <p>Lượt xem: {{ $view_nums[$row->movie_id] }} views</p>
                         </div>
                         <div class="rate">
-                          <p>8.5 <i class="fa fa-star"></i></p>
+                          <p> @if ($rates[$row->movie_id] != null)
+                            {{ $rates[$row->movie_id] }}
+                        @else
+                            10
+                            @endif<i class="fa fa-star"></i></p>
                         </div>
                         <div class="episode">
                           <h8>Tập
-                            <p>{{$episode_nums[$row->movie_id]}} / {{$row->total_eps}} tập</p>
+                            <p>{{$episode_nums[$row->movie_id]}} / {{$row->total_eps}}</p>
                           </h8>
                         </div>
                         <div class="play">
@@ -140,7 +153,10 @@
       <div class="container">
         <div class="fr">
              <div class="logo">
-            <h2 class="text-danger">1080+</h2>
+            <h2 class="text-danger">1080+ 
+              
+             
+        </h2>
         </div>
         <div class="content">
           <!-- <p class="text-secondary">Phim được tài trợ bởi</p> -->
@@ -235,7 +251,13 @@
           clearInterval(time_id);
 
           $.post('/update-view',{
-            episode_id: <?php if ($movie_page3==null) {echo "d";} else { echo $movie_page3->episode_id; } ?>,
+            episode_id:       <?php 
+              if ($movie_page3==null) {
+                echo "d";
+                } else {
+                   echo $movie_page3[0]->episode_id ; 
+                   } 
+                ?>,
             _token: "{{ csrf_token() }}"
           });
           

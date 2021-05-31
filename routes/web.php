@@ -21,7 +21,7 @@ Route::get('error', 'frontend\ErController@getError');
 
 Route::prefix('movie')->group(function () {
     Route::get('movie-{movie_id}.html', 'frontend\MovieController@GetPage');
-    Route::get('page-movie-{movie_id}&{episode_id}&{server}.html', 'frontend\MovieController@GetMovie');
+    Route::get('page-movie-{movie_id}&episode-{episode_id}&server-{server}.html', 'frontend\MovieController@GetMovie');
     Route::get('In_follow-{movie_id}&{user_id}','frontend\MovieController@InFollow' ); // follow cho trường hợp chưa tồn tại trong bảng
     Route::get('B_follow-{movie_id}&{user_id}','frontend\MovieController@BackFollow' );// follow cho TH đã tồn tại trong bảng
     Route::get('Dele_follow-{movie_id}&{user_id}','frontend\MovieController@DeleFollow' ); // hủy follow 

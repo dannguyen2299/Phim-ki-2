@@ -94,7 +94,7 @@ use Illuminate\Support\Facades\Session;
             <li class="nav-item dropdown"> 
                @if (Session::has('name'))
               <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <img class="avatar"src="<?php echo Session::has('avatar')?Session::get('avatar'):''; ?>" alt="">
+                  <img class="avatar"src="https://i.pinimg.com/236x/24/21/85/242185eaef43192fc3f9646932fe3b46.jpg" alt="">
                 </a>
                 <div class="dropdown-menu bg-dark" style="width: 200px;" aria-labelledby="navbarDropdown">
                   <p class="pl-4 text-light"><span class="text-warning">Tên:</span> {{Session::get('name')}}</p>

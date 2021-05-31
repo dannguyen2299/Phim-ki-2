@@ -20,7 +20,7 @@
                                     <img src="{{ $row->url_image }}" alt="" />
                                     <div class="episode">
                                         <h8>Tập
-                                            <p>{{ $episode_nums[$row->movie_id] }} / {{ $row->total_eps }} tập</p>
+                                            <p>{{ $episode_nums[$row->movie_id] }} / {{ $row->total_eps }}</p>
                                         </h8>
                                     </div>
                                     <div class="rate">
