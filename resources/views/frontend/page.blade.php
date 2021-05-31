@@ -1,5 +1,5 @@
 @extends('frontend.master.master')
-@section('title', 'Page_Movie')
+@section('title', 'Thông tin bộ phim')
 @section('content')
     <div id="fb-root"></div>
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v10.0"
@@ -169,9 +169,7 @@
                 </div>
                 <div class="row">
                     @foreach ($movie_nation as $row)
-                        <div class="col-3">
-                            <div class="row mt-4">
-                                <div class="col-xl-6">
+                        
                                     <a href="../movie/movie-{{ $row->movie_id }}.html" class="ml-2 mt-3 mr-1">
                                         <div class="card-style-1" id="respon">
                                             <img src="{{ $row->url_image }}" alt="" />
@@ -193,9 +191,7 @@
                                             </div>
                                         </div>
                                     </a>
-                                </div>
-                            </div>
-                        </div>
+                             
 
 
                     @endforeach

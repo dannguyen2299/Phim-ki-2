@@ -54,12 +54,11 @@ class MovieController extends Controller
         $view_nums[$movie->movie_id] = $views;
 
     }
-
-        // Truy vấn quảng cáo
-        $data['ads_banner1']=DB::table('advertisement')->where('ad_location',1)->where('status',1)->orderBy('ad_id','desc')->first();
-
-        $data['ads_banner2']=DB::table('advertisement')->where('ad_location',2)->where('status',1)->orderBy('ad_id','desc')->get();
-        // End
+       
+       // Get Data ads
+       $ads = new AdsController();
+       $data['ads_banner1'] = $ads->getAdsByLocation(1);
+       $data['ads_banner2']= $ads->getAdsByLocation(2);
 
         // $data['movie_page']=DB::table('episode')->where('episode.movie_id',$movie_id)->first();
 

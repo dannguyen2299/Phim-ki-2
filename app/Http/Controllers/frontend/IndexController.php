@@ -9,58 +9,76 @@ use Illuminate\Support\Facades\DB;
 class IndexController extends Controller
 {
     function getIndex(){
-        $movies = DB::table('movie')
-        ->join('nation','nation.nation_id','=','movie.nation_id')->select('movie.*','nation.*','movie.status as movie_status','nation.status as nation_status')->get();
+        // Get movie by id
+        $movies = DB::table('movie')->select('movie.movie_id')->get();
 
-        $categories = array();
-        foreach($movies as &$movie){
-            $movie_categories = DB::table('category_detail')
-            ->join('category','category.category_id','=','category_detail.category_id')
-            ->where('category_detail.movie_id',$movie->movie_id)
-            ->where('category_detail.status','1')
-            ->where('category.status','1')->get();
-            $str_category = '';
-            foreach($movie_categories as &$cate){
-                $str_category = $str_category.$cate->category_name.", ";
-            }
-            $categories[$movie->movie_id] = $str_category;
-        }
+        // Get movie by content page
+        $data['movie']=$this->getNominate();
+        $data['movie_up']=$this->getFilmByEpisodeNew();
+        $data['movie_v']=$this->getFilmByNation(1);
 
-        $episode_nums = array();
-        $view_nums = array();
+        // Get detail film
+        $episode_nums = $this->getEpisodeByMovie($movies);
+        $view_nums = $this->getViewByMovie($movies);
+        $rates = $this->getRateByMovie($movies);
+
+        // Get data navbar
+        $nav = new NavController();
+        $data['nation'] = $nav->getNation();
+        $data['category_l'] = $nav->getCategory();
+
+      // Get Data ads
+        $ads = new AdsController();
+        $data['ads_banner1'] = $ads->getAdsByLocation(1);
+        $data['ads_banner2']= $ads->getAdsByLocation(2);
+
+        return view('frontend.index',$data)->with('movies',$movies)
+        ->with('episode_nums',$episode_nums)
+        ->with('view_nums',$view_nums)->with('rates',$rates);
+    }
+
+    public function getFilmByNation($id){
+        return $data['movie_v']=DB::select('select * from movie where nation_id = '.$id);
+    }
+    public function getFilmByEpisodeNew(){        
+        return $data['movie_up']=DB::select('select * from movie  order by year DESC LIMIT 8');
+    }
+    public function getNominate(){
+        return $data['movie']=DB::select('select * from movie order by year ASC');
+    }
+    public function getRateByMovie($movies){
         $rates = array();
-
         foreach($movies as &$movie){
-
-            //* Tổng số tập
+            $rate = DB::table('movie_detail')->where('movie_id',$movie->movie_id)->avg('rate');
+            $rates[$movie->movie_id] = round($rate,1);
+        }
+        return $rates;
+    }
+    public function getViewByMovie($movies){
+        $view_nums = array();
+        foreach($movies as &$movie){
             $episodes = DB::table('movie')
             ->join('episode','episode.movie_id','=','movie.movie_id')
             ->where('movie.movie_id',$movie->movie_id)
             ->where('episode.status','1')->get();
-            $episode_nums[$movie->movie_id] = count($episodes);
-
-            //* Tổng số view
             $views = 0;
             foreach($episodes as &$value){
                 $views = $views + $value->view;
             }
             $view_nums[$movie->movie_id] = $views;
-
-            $rate = DB::table('movie_detail')->where('movie_id',$movie->movie_id)->avg('rate');
-            $rates[$movie->movie_id] = round($rate,1);
         }
-
-        $data['movie']=DB::select('select * from movie order by year ASC');
-        $data['movie_up']=DB::select('select * from movie  order by year DESC LIMIT 8');
-        $data['movie_v']=DB::select('select * from movie where nation_id=1');
-        $data['nation'] = DB::table('nation')->get();
-        $data['category_l'] = DB::table('category')->get();
-      // Truy vấn quảng cáo
-      $data['ads_banner1']=DB::table('advertisement')->where('ad_location',1)->where('status',1)->orderBy('ad_id','desc')->first();
-
-      $data['ads_banner2']=DB::table('advertisement')->where('ad_location',2)->where('status',1)->orderBy('ad_id','desc')->get();
-      // End
-        return view('frontend.index',$data)->with('movies',$movies)->with('episode_nums',$episode_nums)->with('view_nums',$view_nums)->with('categories',$categories)->with('rates',$rates);
+        return $view_nums;
+    }
+    public function getEpisodeByMovie($movies){
+        $episode_nums = array();
+        foreach($movies as &$movie){
+            $episodes = DB::table('movie')
+            ->join('episode','episode.movie_id','=','movie.movie_id')
+            ->where('movie.movie_id',$movie->movie_id)
+            ->where('episode.status','1')->get();
+            $episode_nums[$movie->movie_id] = count($episodes);
+        }
+        return $episode_nums;
     }
     
 }

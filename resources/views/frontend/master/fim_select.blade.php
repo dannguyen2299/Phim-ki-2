@@ -51,15 +51,9 @@
     @if ($ads_banner2!=null)
         @foreach ($ads_banner2 as $row)
           <div class="row-2 mt-3" style="width:250px;">
-              <a href="{{ $row->link_banner }}"><img src="{{ $row->url_banner }}" style="width:100%; height:300px;"  alt=""/></a>  
+              <a href="{{ $row->link_banner }}"><img src="{{ $row->url_banner }}" style="width:100%; height:auto;"  alt=""/></a>  
           </div>
-        @endforeach
-    @else
-      @foreach ($ads_banner2 as $row)
-        <div class="row-2 mt-3" style="width:250px;">
-          <a href=""><img src="" style="width:100%; height:300px;"  alt=""/></a>  
-        </div>
-      @endforeach
+        @endforeach   
     @endif
    
   </div>

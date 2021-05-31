@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\DB;
 class RateController extends Controller
 {
     public function postRate(Request $request){   
-
         $data = array(); 
         $data['rate'] = (int)$request->index;
         $data['follow'] = 0;

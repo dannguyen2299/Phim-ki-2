@@ -1,5 +1,5 @@
 @extends('frontend.master.master')
-@section('title', 'Home')
+@section('title', 'Trang chủ')
 @section('content')
 
     <div class="container">
@@ -48,14 +48,18 @@
                 </div>
             </div>
         </div>
-
+        <div class="row-2">
+            <hr />
+        </div>
         {{-- Quảng cáo --}}
         @if ($ads_banner1!=null)
             <div class="row-2 mt-3" style="width:70%;margin:0px auto;">
-            <a href="{{ $ads_banner1->link_banner }}"><img class="img-fluid" src="{{ $ads_banner1->url_banner }}" alt="" style="width:100%; height:100px;"></a>
+            <a href="{{ $ads_banner1->link_banner }}"><img class="img-fluid" src="{{ $ads_banner1->url_banner }}" alt="" style="width:100%; height:auto;"></a>
             </div>
         @endif
-        
+        <div class="row-2">
+            <hr />
+        </div>
         {{-- End --}}
     </div>
     <div class="container">
