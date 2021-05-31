@@ -13,21 +13,23 @@ class IndexController extends Controller
         $movies = DB::table('movie')->select('movie.movie_id')->get();
 
         // Get movie by content page
-        $data['movie']=$this->getNominate();
+        $data['movie']=$this->getFilmNominate();
         $data['movie_up']=$this->getFilmByEpisodeNew();
         $data['movie_v']=$this->getFilmByNation(1);
 
         // Get detail film
-        $episode_nums = $this->getEpisodeByMovie($movies);
-        $view_nums = $this->getViewByMovie($movies);
-        $rates = $this->getRateByMovie($movies);
+        $detail = new DetailFilmController();
+        $episode_nums = $detail->getEpisodeByMovie($movies);
+        $view_nums = $detail->getViewByMovie($movies);
+        $rate_obj = new RateController();       
+        $rates = $rate_obj->getRateByMovie($movies);
 
         // Get data navbar
         $nav = new NavController();
         $data['nation'] = $nav->getNation();
         $data['category_l'] = $nav->getCategory();
 
-      // Get Data ads
+        // Get Data ads
         $ads = new AdsController();
         $data['ads_banner1'] = $ads->getAdsByLocation(1);
         $data['ads_banner2']= $ads->getAdsByLocation(2);
@@ -43,42 +45,8 @@ class IndexController extends Controller
     public function getFilmByEpisodeNew(){        
         return $data['movie_up']=DB::select('select * from movie  order by year DESC LIMIT 8');
     }
-    public function getNominate(){
+    public function getFilmNominate(){
         return $data['movie']=DB::select('select * from movie order by year ASC');
-    }
-    public function getRateByMovie($movies){
-        $rates = array();
-        foreach($movies as &$movie){
-            $rate = DB::table('movie_detail')->where('movie_id',$movie->movie_id)->avg('rate');
-            $rates[$movie->movie_id] = round($rate,1);
-        }
-        return $rates;
-    }
-    public function getViewByMovie($movies){
-        $view_nums = array();
-        foreach($movies as &$movie){
-            $episodes = DB::table('movie')
-            ->join('episode','episode.movie_id','=','movie.movie_id')
-            ->where('movie.movie_id',$movie->movie_id)
-            ->where('episode.status','1')->get();
-            $views = 0;
-            foreach($episodes as &$value){
-                $views = $views + $value->view;
-            }
-            $view_nums[$movie->movie_id] = $views;
-        }
-        return $view_nums;
-    }
-    public function getEpisodeByMovie($movies){
-        $episode_nums = array();
-        foreach($movies as &$movie){
-            $episodes = DB::table('movie')
-            ->join('episode','episode.movie_id','=','movie.movie_id')
-            ->where('movie.movie_id',$movie->movie_id)
-            ->where('episode.status','1')->get();
-            $episode_nums[$movie->movie_id] = count($episodes);
-        }
-        return $episode_nums;
     }
     
 }

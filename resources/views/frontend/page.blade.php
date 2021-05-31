@@ -16,8 +16,8 @@
                 <div class="row">
 
                     <div class="col-xl-4">
-                        @if ($movie_page3!=null)
-                            <a href="../movie/page-movie-{{ $movie_detail->movie_id }}&episode-{{ $movie_page3->episode_id }}&server-{{ 1 }}.html">
+                        @if ($episode!=null)
+                            <a href="../movie/page-movie-{{ $movie_detail->movie_id }}&episode-{{ $episode->episode_id }}&server-{{ 1 }}.html">
                         @else
                             <a href="../movie/page-movie-{{ $movie_detail->movie_id }}&episode-{{ 0 }}&server-{{ 1 }}.html">
                         @endif 
@@ -82,8 +82,8 @@
                             </tr>
                             <tr>
                                 <td colspan="3">
-                                    @if ($movie_page3!=null)
-                                    <a href="../movie/page-movie-{{ $movie_detail->movie_id }}&episode-{{ $movie_page3->episode_id }}&server-{{ 1 }}.html"
+                                    @if ($episode!=null)
+                                    <a href="../movie/page-movie-{{ $movie_detail->movie_id }}&episode-{{ $episode->episode_id }}&server-{{ 1 }}.html"
                                         class="btn btn-danger mt-3">XEM PHIM</a>
                                      @else
                                         <a href="../movie/page-movie-{{ $movie_detail->movie_id }}&episode-{{ 0 }}&server-{{ 1 }}.html"
@@ -146,7 +146,7 @@
 
                             @endfor
                         </ul>
-                        <p class="text-warning mt-2 col-md-3"> {{ $user_rates[$movie_detail->movie_id] }} người đã đánh
+                        <p class="text-warning mt-2 col-md-3"> {{ $user_rates}} người đã đánh
                             giá</p>
                     </div>
                 </div>
@@ -175,7 +175,7 @@
                         data-numposts="7"></div>
                     {{--  --}}
                 </div>
-                <div class="row-2 mt-3">
+                <div class="row-2 mt-4">
                     <h5 class="text-danger">PHIM CÙNG QUỐC GIA</h5>
                 </div>
                 <div class="row">
