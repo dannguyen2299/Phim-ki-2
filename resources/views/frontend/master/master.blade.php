@@ -1,3 +1,4 @@
+
 <?php header("Content-Type: application/xml; charset=utf-8"); ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -5,10 +6,30 @@
 
 use Illuminate\Support\Facades\Session;
 ?>
+
+<!-- ajax live search -->
+<?php
+
+// $DS = DIRECTORY_SEPARATOR;
+// file_exists(__DIR__ . $DS . 'core' . $DS . 'Handler.php') ? require_once __DIR__ . $DS . 'core' . $DS . 'Handler.php' : die('Handler.php not found');
+// file_exists(__DIR__ . $DS . 'core' . $DS . 'Config.php') ? require_once __DIR__ . $DS . 'core' . $DS . 'Config.php' : die('Config.php not found');
+
+use App\Http\Controllers\live_search\Config;
+use App\Http\Controllers\live_search\Handler;
+
+if (session_id() == '') {
+    session_start();
+}
+
+    $handler = new Handler();
+    $handler->getJavascriptAntiBot();
+?>
+
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- <meta name="csrf-token" content="{{ csrf_token() }}" /> -->
   <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous" /> -->
   <title>@yield('title')</title>
   <link rel="icon" href="{{asset('').'frontend/img/icon.png'}}" type="image/gif" sizes="16x16">
@@ -20,6 +41,17 @@ use Illuminate\Support\Facades\Session;
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css" crossorigin="anonymous" />
   <script src="https://code.jquery.com/jquery-1.12.4.js" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js" crossorigin="anonymous"></script>
+
+  {{ asset("frontend/plugins/Ajax_live_search/img/green_loader.gif") }}
+
+    <!-- Live Search Styles -->
+    <link rel="stylesheet" href="plugins/Ajax_live_search/css/fontello.css">
+    <link rel="stylesheet" href="plugins/Ajax_live_search/css/animation.css">
+    <!--[if IE 7]>
+    <link rel="stylesheet" href="css/fontello-ie7.css">
+    <![endif]-->
+    <link rel="stylesheet" type="text/css" href="plugins/Ajax_live_search/css/ajaxlivesearch.css">
+
 
   </head>
 
@@ -74,22 +106,17 @@ use Illuminate\Support\Facades\Session;
             </li>
           </ul>
 
-
-          <form class="form-inline my-2 my-lg-0" method="POST" action="{{ URL::to('/search') }}">
             {{ csrf_field() }}
             
-            <input class="form-control mr-sm-2 rounded-pill bg-dark text-light typeahead" name="keywords_submit" type="search" placeholder="Tìm kiếm" aria-label="Search" style="width: 250px; height:30px" onkeyup="showResult1(this.value)"/>
-            <input type="submit" name="submit" class="fa fa-search" hidden>
-            <div id="autocom-box" class="text-light"></div>
-             <button
-             id="search"
-                class="btn my-2 my-sm-0 rounded-pill"
-              
-                
-              >
-                <i class="fa fa-search text-danger"></i>
-              </button> 
-          </form>
+            <!-- Search Form Demo -->
+            <div style="clear: both">
+              <input type="text" class='mySearch' id="ls_query" placeholder="Tìm kiếm phim ...">
+            </div>
+
+            <button id="search" class="btn my-2 my-sm-0 rounded-pill">
+              <i class="fa fa-search text-danger"></i>
+            </button> 
+          <!-- </form> -->
           <ul class="navbar-nav mr-auto">
             <li class="nav-item dropdown"> 
                @if (Session::has('name'))
@@ -128,5 +155,45 @@ use Illuminate\Support\Facades\Session;
   @yield('content');
 
 </body>
+
+<!-- /// Đây là Script của youtube -->
 @yield('youtube_video')
-</html>
+
+<!-- /// Đây là script của Ajax live search -->
+@include('frontend.plugins.ajaxlivesearch')
+<!-- /// Search Form Demo -->
+<!-- Placed at the end of the document so the pages load faster -->
+<!-- <script src="plugins/Ajax_live_search/js/jquery-1.11.1.min.js"></script> -->
+
+<!-- Live Search Script -->
+<!-- <script type="text/javascript" src="plugins/Ajax_live_search/js/ajaxlivesearch.js"></script> -->
+
+<script>
+
+$(document).ready(function(){
+    jQuery(".mySearch").ajaxlivesearch({
+        loaded_at: <?php echo time(); ?>,
+        token: <?php echo "'" . $handler->getToken() . "'"; ?>,
+        max_input: <?php echo Config::getConfig('maxInputLength'); ?>,
+        onResultClick: function(e, data) {
+            // get the index 0 (first column) value
+            var selectedOne = jQuery(data.selected).find('td').eq('0').text();
+
+            // set the input value
+            jQuery('#ls_query').val(selectedOne);
+
+            // hide the result
+            jQuery("#ls_query").trigger('ajaxlivesearch:hide_result');
+        },
+        onResultEnter: function(e, data) {
+            // do whatever you want
+            // jQuery("#ls_query").trigger('ajaxlivesearch:search', {query: 'test'});
+        },
+        onAjaxComplete: function(e, data) {
+
+        }
+    });
+})
+</script>
+
+</html> 

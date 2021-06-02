@@ -43,15 +43,19 @@ Route::get('filter-nation/nation-{nation_id}', 'frontend\FilterController@GetNat
 Route::get('new-movie-update', 'frontend\FilterController@GetNewMovie');
 Route::get('movie-viet-nam', 'frontend\FilterController@GetMovieVN');
 
+// END
+
 //* Rating
 Route::post('processRate','frontend\RateController@postRate');
 //* Update view
 Route::post('update-view','frontend\UpdateViewController@update_view');
-// END
+//* Ajax live search
+Route::post('ajax-processor','live_search\AjaxProcessor@process');
+
 Route::get('sigup', 'frontend\SigUpController@GetSigUp');
 Route::post('processLogin', 'frontend\LoginController@processLogin')->name('processLogin');
 Route::get('/processLogin/{provider}', 'frontend\LoginController@redirect');
-  Route::get('/processLogin/callback/{provider}', 'frontend\LoginController@callback');
+Route::get('/processLogin/callback/{provider}', 'frontend\LoginController@callback');
 //Thanh - admin
 
 Route::middleware(['CheckLogin'])->prefix('admin_1')->group(function () {
