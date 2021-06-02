@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use Carbon\Carbon;
 // use Illuminate\Support\Facades\Redirect;
 
 
@@ -133,5 +134,36 @@ class MovieController extends Controller
 
     public function getFilmBySameNation($movie_id, $nation_id){
         return $data['movie_nation'] = DB::table('movie')->select('movie.*')->where('movie.nation_id', $nation_id)->where('movie_id', '<>', $movie_id)->get();      
+    }
+    public function errorMessage(){
+        $content=$_POST['content'];
+        $episode_id=$_POST['episode_id'];
+
+        $dan_sql_check_content=DB::table('report')->where('episode_id',$episode_id)->get();
+        if($dan_sql_check_content->count()==1){  // episode_id đã có trong bảng report
+            Session::put('dan_error',1);   
+        }else{   // ngược lại
+            if($content==""){ // content rỗng
+                $content="Phim không xem được";
+
+                DB::table('report')->insert([
+                    'content' => $content,
+                    'episode_id' => $episode_id,
+                    'created_at'=>Carbon::now()->day()
+                ]);
+               
+            }else{
+                DB::table('report')->insert([
+                    'content' => $content,
+                    'episode_id' => $episode_id,
+                    'created_at'=>Carbon::now()->day()
+                ]);
+               
+            }
+        }
+        Session::put('dan_error',1); 
+        Session::put('dan_err_episode',$episode_id); 
+        Session::put('message','Báo lỗi thành công, cảm ơn quý khán giả!');
+        return redirect()->back();
     }
 }

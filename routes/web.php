@@ -26,6 +26,7 @@ Route::prefix('movie')->group(function () {
     Route::get('B_follow-{movie_id}&{user_id}','frontend\MovieController@BackFollow' );// follow cho TH đã tồn tại trong bảng
     Route::get('Dele_follow-{movie_id}&{user_id}','frontend\MovieController@DeleFollow' ); // hủy follow 
     Route::get('page-movie-{movie_id}&episode-{episode_id}&server-{server}.html', 'frontend\MovieController@GetMovie');
+    Route::post('error_message','frontend\MovieController@errorMessage'); 
 });
 //  search
 Route::post('search', 'frontend\SearchController@GetSearch');
@@ -52,9 +53,6 @@ Route::post('processLogin', 'frontend\LoginController@processLogin')->name('proc
 Route::get('/processLogin/{provider}', 'frontend\LoginController@redirect');
   Route::get('/processLogin/callback/{provider}', 'frontend\LoginController@callback');
 //Thanh - admin
-
-// Route::get('login_b', 'Login_backController@getLoginB');
-// Route::post('login_b', 'Login_backController@postLogin');
 
 Route::middleware(['CheckLogin'])->prefix('admin_1')->group(function () {
     Route::get('', 'backend\AdminController@show_dashboard')->name('admin');
@@ -126,6 +124,8 @@ Route::middleware(['CheckLogin'])->prefix('admin_1')->group(function () {
     Route::get('movie-detail', 'backend\MovieDetailController@movie_detail');
 
     //* Report
+    Route::get('in_report&episode-{episode_id}','backend\ReportController@in_report' );
+    
     Route::get('list-report', 'backend\ReportController@list_report');
     Route::get('delete-report/{report_id}', 'backend\ReportController@delete_report');
     Route::get('fix-report/{report_id}', 'backend\ReportController@fix_report');

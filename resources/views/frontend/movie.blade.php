@@ -2,6 +2,7 @@
 @section('title','Xem phim')
 @section('content')
 
+
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v10.0" nonce="ifGS9jp0"></script>
    
@@ -15,6 +16,13 @@
       <div class="row">
         <div class="col">
           <div class="row-2">
+            <?php
+                $message = Session::get('message');
+                if ($message){
+                    echo "<div class='alert alert-success'>".$message."</div>";
+                    Session::put('message',null);
+                }
+                ?>
             <table>
     
                 <tr>
@@ -60,27 +68,75 @@
                     @if ($server ==1)
                     <a href="../movie/page-movie-{{ $row1->movie_id }}&episode-{{ $row1->episode_id }}&server-{{ 1 }}.html" class="btn-success btn">Server #1</a>
                     <a href="../movie/page-movie-{{ $row1->movie_id }}&episode-{{ $row1->episode_id }}&server-{{ 2 }}.html" class="btn-outline-success btn">Server #2</a>
-                 
                     @else
                     <a href="../movie/page-movie-{{ $row1->movie_id }}&episode-{{ $row1->episode_id }}&server-{{ 1 }}.html" class="btn-outline-success btn">Server #1</a>
                     <a href="../movie/page-movie-{{ $row1->movie_id }}&episode-{{ $row1->episode_id }}&server-{{ 2 }}.html" class="btn-success btn">Server #2</a>
-                 
                     @endif
-                     
-                      <a href="" class="btn-warning btn">Báo lỗi</a>
+                      {{--  <a href="../admin_1/in_report&episode-{{ $row1->episode_id }}" onclick="confirmDelete(this);" class="btn-warning btn">Báo lỗi</a>  --}}
+                      {{-- <button type="button" class="btn btn-warning" data-id="#" onclick="confirmDelete(this);">Báo lỗi</button> --}}
+                        @if(Session::has('dan_error') && Session::has('dan_err_episode')==$row1->episode_id){
+                          <button type="button" class="btn btn-warning" data-toggle="modal" >Đã báo lỗi</button>
+                        }@else{
+                          <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModalCenter"> Báo lỗi</button>
+                        }@endif
+
                   @endif
- 
-              
               @endforeach
-          
+              <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <form action="../movie/error_message" method="POST" style="width:400px;">
+                    @csrf
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLongTitle">Nội dung lỗi</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <input type="text" name="content" style="width:380px !important; border-top:none;border-left:none;border-right:none;">
+                    </div>
+                    @foreach ($movie_page4 as $row1)
+                      <input type="text" name="episode_id" style="display: none" value="{{$row1->episode_id  }}">
+                    @endforeach
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                  </div>
+                </form>
+                </div>
+              </div>
+              <div id="myModal" class="modal">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    
+                    <div class="modal-header">
+                      <h4 class="modal-title">Delete User</h4>
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+              
+                    <div class="modal-body">
+                      <p>Are you sure you want to delete this user ?</p>
+                      <form method="POST" action="delete-user.php" id="form-delete-user">
+                        <input type="hidden" name="id">
+                      </form>
+                    </div>
+              
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      <button type="submit" form="form-delete-user" class="btn btn-danger">Delete</button>
+                    </div>
+              
+                  </div>
+                </div>
+              </div>
             </div>
             <div class="row-2 mt-4">
               <h5 class="text-danger">TẬP PHIM</h5>
             </div>
             <div class="row-2">
-              
-              
-          
+
                 @foreach ($movie_page4 as $row1)
                     @if ($movie_page3[0]->episode_id == $row1->episode_id)
                     <a style="width: 70px;"href="../movie/page-movie-{{ $row1->movie_id }}&episode-{{ $row1->episode_id }}&server-{{ 1 }}.html" class="btn btn-danger mr-2 mt-2">{{ $row1->episode_name }}</a>           
@@ -103,6 +159,9 @@
               <div class="fb-comments bg-light" data-href="{{ $movie_detail->url_cmt_fb }}" data-width="100%" data-numposts="7"></div>
 
             </div>
+            <button type="button" class="btn btn-warning" data-id="#" onclick="confirmDelete(this);">
+              Báo lỗi
+            </button>
             <div class="row-2 mt-3">
               <h5 class="text-danger">PHIM CÙNG QUỐC GIA</h5>
             </div>
@@ -167,8 +226,18 @@
         </div>
       
       </div>
-       
+      
     </footer>
+ {{-- script-- Báo lỗi   --}}
+{{--  <script>
+	function confirmDelete(self) {
+		var id = self.getAttribute("data-id");
+
+		document.getElementById("form-delete-user").id.value = id;
+		$("#myModal").modal("show");
+	}
+</script>  --}}
+{{--  script-- Báo lỗi   --}}
     <script type="text/javascript">
       $(document).ready(function () {
         $("#news-slider").owlCarousel({
