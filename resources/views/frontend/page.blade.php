@@ -34,12 +34,8 @@
                                     <h6 class="text-secondary">TÊN PHIM: </h6>
                                 </td>
                                 <td>
-                                    <h6 class="text-danger">{{ $movie_detail->movie_name }}</h6>
+                                    <h6 style="line-height: 1.6" class="text-danger">{{ $movie_detail->movie_name }}</h6>
                                 </td>
-                            </tr>
-                            <tr>
-                                <td style="width:100px"></td>
-                                <td><small class="text-secondary">Sunny and flower</h6></small>
                             </tr>
                             <tr>
                                 <td style="width:100px">

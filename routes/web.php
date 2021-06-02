@@ -33,17 +33,21 @@ Route::get('filter-nation/{nation_id}', 'frontend\FilterController@GetNation');
 Route::get('new-movie-update', 'frontend\FilterController@GetNewMovie');
 Route::get('movie-viet-nam', 'frontend\FilterController@GetMovieVN');
 
+// END
+
 //* Rating
 Route::post('processRate','frontend\RateController@postRate');
 //* Update view
 Route::post('update-view','frontend\UpdateViewController@update_view');
-// END
+//* Ajax live search
+Route::post('ajax-processor','live_search\AjaxProcessor@process');
+
 Route::get('sigup', 'frontend\SigUpController@GetSigUp');
 Route::get('login', 'frontend\LoginController@getLogin')->name('login');
 Route::get('logout', 'frontend\LoginController@logout')->name('logout');
 Route::post('processLogin', 'frontend\LoginController@processLogin')->name('processLogin');
 Route::get('/processLogin/{provider}', 'frontend\LoginController@redirect');
-  Route::get('/processLogin/callback/{provider}', 'frontend\LoginController@callback');
+Route::get('/processLogin/callback/{provider}', 'frontend\LoginController@callback');
 //Thanh - admin
 
 Route::get('login_b', 'Login_backController@getLoginB');
