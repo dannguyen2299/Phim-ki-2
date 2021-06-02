@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\DB;
 class RateController extends Controller
 {
     public function postRate(Request $request){   
-
         $data = array(); 
         $data['rate'] = (int)$request->index;
         $data['follow'] = 0;
@@ -19,12 +18,30 @@ class RateController extends Controller
         $data['user_id'] = Session::get('user_id');
 
         $user = DB::table('movie_detail')->Where('movie_detail.movie_id',$request->product_id)->where('user_id',Session::get('user_id'))->first();
-         if (isset($user)) {
+        if (isset($user)) {
             DB::table('movie_detail')->Where('movie_detail.movie_id',$request->product_id)->where('user_id',Session::get('user_id'))->update($data);
         }else{
             DB::table('movie_detail')->insert($data);
         }
         return redirect()->route('index');
-        // return response()->json($data);
+    }
+    public function getRateByMovie($movies){
+        $rates = array();
+        foreach($movies as &$movie){
+            $rate = DB::table('movie_detail')->where('movie_id',$movie->movie_id)->avg('rate');
+            $rates[$movie->movie_id] = round($rate,1);
+        }
+        return $rates;
+    }
+    public function getCountByUser($movie_id)
+    {
+        return 
+        $user_rates = DB::table('movie_detail')->where('movie_detail.movie_id',$movie_id)->count('user_id');
+    }
+    public function statusUser($movie_id)
+    {
+        $user_id = Session::get("user_id");
+        return $status_rate = DB::table('movie_detail')->where("user_id",$user_id)->where("movie_id",$movie_id)->first();
+       
     }
 }

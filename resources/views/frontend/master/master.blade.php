@@ -75,7 +75,7 @@ if (session_id() == '') {
               <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
                 @foreach($category_l as $row)
 
-                <a class="dropdown-item text-light" href="../filter/{{ $row->category_id }}">{{ $row->category_name }}</a>
+                <a class="dropdown-item text-light" href="../filter/category-{{ $row->category_id }}">{{ $row->category_name }}</a>
 
                 @endforeach
 
@@ -91,13 +91,15 @@ if (session_id() == '') {
 
                 @foreach ($nation as $row )
 
-                <a class="dropdown-item text-light" href="../filter-nation/{{ $row->nation_id }}">{{ $row->nation_name }}</a>
+                <a class="dropdown-item text-light" href="../filter-nation/nation-{{ $row->nation_id }}">{{ $row->nation_name }}</a>
 
                 @endforeach
             </li>
+            @if(Session::has('name'))
             <li class="nav-item active">
-              <a class="nav-link text-light" href="../filter/2">Phim đánh dấu<span class="sr-only">(current)</span></a>
+              <a class="nav-link text-light" href="../film_tick">Phim đánh dấu<span class="sr-only">(current)</span></a>
             </li>
+            @endif
             <li class="nav-item active">
               <a class="nav-link text-light" href="#">Top IMDB <span class="sr-only">(current)</span></a>
             </li>
@@ -118,7 +120,7 @@ if (session_id() == '') {
             <li class="nav-item dropdown"> 
                @if (Session::has('name'))
               <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <img class="avatar"src="<?php echo Session::has('avatar')?Session::get('avatar'):''; ?>" alt="">
+                  <img class="avatar"src="https://i.pinimg.com/236x/24/21/85/242185eaef43192fc3f9646932fe3b46.jpg" alt="">
                 </a>
                 <div class="dropdown-menu bg-dark" style="width: 200px;" aria-labelledby="navbarDropdown">
                   <p class="pl-4 text-light"><span class="text-warning">Tên:</span> {{Session::get('name')}}</p>

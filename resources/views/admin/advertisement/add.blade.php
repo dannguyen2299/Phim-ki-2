@@ -88,8 +88,8 @@ use Illuminate\Support\Facades\Session;
                             <option value="0">0 - Unfinished</option> <!-- Chưa gắn lên trang -->
                             <option value="1">1 - Location: 1</option> <!-- Đang gắn ở vị trí 1 -->
                             <option value="2">2 - Location: 2</option> <!-- Đang gắn ở vị trí 2 -->
-                            <option value="3">3 - Location: 3</option> <!-- Đang gắn ở vị trí 3 -->
-                            <option value="4">4 - Finished</option> <!-- Đã lên trang và đã hết hạn -->
+                            
+                            <option value="3">3 - Finished</option> <!-- Đã lên trang và đã hết hạn -->
                         </select>
                     </div>
                 </div>
@@ -116,7 +116,7 @@ use Illuminate\Support\Facades\Session;
         <div class="card-body bg-light">
             <h5>Location</h5>
             <hr>
-            <img src="images/location.png" style="width: 85%" alt="">
+            <img src="images/Screenshot 2021-05-29 100805.png" style="width: 85%" alt="">
             
             <h5 class="mt-3">Banner Preview</h5>
             <hr>

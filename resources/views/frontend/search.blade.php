@@ -13,8 +13,11 @@
       <div class="row">
         <div class="col">
           <div class="row" id="respon_card">
-            @foreach ($search_movie as $row )
+            @if ( $search_movie1<=0 )
+              <p style="color:red;">Không tìm thấy phim "{{ $keywords }}".</p>
+            @else
            
+            @foreach ($search_movie as $row )
                   <a href="/movie/movie-{{ $row->movie_id }}.html" class="ml-2 mt-3 mr-1">
                     <div class="card-style-1"  id="respon">
                       <img src="{{ $row->url_image }}" alt="" />
@@ -41,6 +44,7 @@
               </div>
             </div> -->
             @endforeach
+            @endif
           </div>
          
         

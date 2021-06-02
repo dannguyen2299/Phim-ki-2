@@ -1,6 +1,8 @@
 
 <div class="col-lg-4" >
-    {{-- <div class="row">
+
+{{--  @if(Session::has('user_id'))
+     <div class="row">
       <h5 class="text-light ml-3">PHIM ĐÁNH DẤU</h5>
     </div>
     <div class="row">
@@ -34,7 +36,9 @@
          </table>
          <a class=" text-success" href="">Xem thêm</a>
       </div>
-    </div> --}}
+    </div> 
+@endif  --}}
+
     <div class="row mt-3">
       <h5 class="text-danger ml-3">HÔM NAY XEM GÌ ?</h5>
     </div>
@@ -44,4 +48,12 @@
     <div class="row-2">
       <a href="../select-system" class="btn bg-danger mt-2">Lựa chọn của hệ thống</a>
     </div>
+    @if ($ads_banner2!=null)
+        @foreach ($ads_banner2 as $row)
+          <div class="row-2 mt-3" style="width:250px;">
+              <a href="{{ $row->link_banner }}"><img src="{{ $row->url_banner }}" style="width:100%; height:auto;"  alt=""/></a>  
+          </div>
+        @endforeach   
+    @endif
+   
   </div>

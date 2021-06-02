@@ -1,5 +1,5 @@
 @extends('frontend.master.master')
-@section('title', 'Home')
+@section('title', 'Trang chủ')
 @section('content')
 
     <div class="container">
@@ -20,7 +20,7 @@
                                     <img src="{{ $row->url_image }}" alt="" />
                                     <div class="episode">
                                         <h8>Tập
-                                            <p>{{ $episode_nums[$row->movie_id] }} / {{ $row->total_eps }} tập</p>
+                                            <p>{{ $episode_nums[$row->movie_id] }} / {{ $row->total_eps }}</p>
                                         </h8>
                                     </div>
                                     <div class="rate">
@@ -48,6 +48,19 @@
                 </div>
             </div>
         </div>
+        <div class="row-2">
+            <hr />
+        </div>
+        {{-- Quảng cáo --}}
+        @if ($ads_banner1!=null)
+            <div class="row-2 mt-3" style="width:70%;margin:0px auto;">
+            <a href="{{ $ads_banner1->link_banner }}"><img class="img-fluid" src="{{ $ads_banner1->url_banner }}" alt="" style="width:100%; height:auto;"></a>
+            </div>
+        @endif
+        <div class="row-2">
+            <hr />
+        </div>
+        {{-- End --}}
     </div>
     <div class="container">
         <div class="row-2 mt-4">

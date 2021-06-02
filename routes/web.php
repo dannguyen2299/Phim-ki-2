@@ -13,22 +13,31 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('login', 'frontend\LoginController@getLogin')->name('login');
+Route::get('logout', 'frontend\LoginController@logout')->name('logout');
 
 Route::get('', 'frontend\IndexController@getIndex')->name("index");
 Route::get('error', 'frontend\ErController@getError');
 
 Route::prefix('movie')->group(function () {
     Route::get('movie-{movie_id}.html', 'frontend\MovieController@GetPage');
-    Route::get('page-movie-{movie_id}&{episode_id}&{server}.html', 'frontend\MovieController@GetMovie');
+    Route::get('page-movie-{movie_id}&episode-{episode_id}&server-{server}.html', 'frontend\MovieController@GetMovie');
+    Route::get('In_follow-{movie_id}&{user_id}','frontend\MovieController@InFollow' ); // follow cho trường hợp chưa tồn tại trong bảng
+    Route::get('B_follow-{movie_id}&{user_id}','frontend\MovieController@BackFollow' );// follow cho TH đã tồn tại trong bảng
+    Route::get('Dele_follow-{movie_id}&{user_id}','frontend\MovieController@DeleFollow' ); // hủy follow 
+    Route::get('page-movie-{movie_id}&episode-{episode_id}&server-{server}.html', 'frontend\MovieController@GetMovie');
 });
 //  search
 Route::post('search', 'frontend\SearchController@GetSearch');
 
+//film-tick
+Route::get('film_tick', 'frontend\filmTickController@getFilm');
+
 Route::get('select-system', 'frontend\SearchController@GetChoice');
 
 // Lọc theo thể loại và quốc gia
-Route::get('filter/{category_id}', 'frontend\FilterController@GetFilter');
-Route::get('filter-nation/{nation_id}', 'frontend\FilterController@GetNation');
+Route::get('filter/category-{category_id}', 'frontend\FilterController@GetFilter');
+Route::get('filter-nation/nation-{nation_id}', 'frontend\FilterController@GetNation');
 // 2 nút Xem thêm 
 Route::get('new-movie-update', 'frontend\FilterController@GetNewMovie');
 Route::get('movie-viet-nam', 'frontend\FilterController@GetMovieVN');
@@ -43,15 +52,13 @@ Route::post('update-view','frontend\UpdateViewController@update_view');
 Route::post('ajax-processor','live_search\AjaxProcessor@process');
 
 Route::get('sigup', 'frontend\SigUpController@GetSigUp');
-Route::get('login', 'frontend\LoginController@getLogin')->name('login');
-Route::get('logout', 'frontend\LoginController@logout')->name('logout');
 Route::post('processLogin', 'frontend\LoginController@processLogin')->name('processLogin');
 Route::get('/processLogin/{provider}', 'frontend\LoginController@redirect');
 Route::get('/processLogin/callback/{provider}', 'frontend\LoginController@callback');
 //Thanh - admin
 
-Route::get('login_b', 'Login_backController@getLoginB');
-Route::post('login_b', 'Login_backController@postLogin');
+// Route::get('login_b', 'Login_backController@getLoginB');
+// Route::post('login_b', 'Login_backController@postLogin');
 
 Route::middleware(['CheckLogin'])->prefix('admin_1')->group(function () {
     Route::get('', 'backend\AdminController@show_dashboard')->name('admin');

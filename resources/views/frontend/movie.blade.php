@@ -1,5 +1,5 @@
 @extends('frontend.master.master')
-@section('title','Movie')
+@section('title','Xem phim')
 @section('content')
 
 <div id="fb-root"></div>
@@ -29,9 +29,17 @@
           </div>
             <div class="row-2 mt-3">
               @if ($server==1)
-              <div id="player" video_id="{{ $movie_page->url_first }}"></div>
+                @if ($movie_page3!=null)
+                  <div id="player" video_id="{{$movie_page3[0]->url_first}}"></div>
+                @else
+                <div id="player" video_id=""></div>
+                @endif
               @elseif ($server==2)
-              <div id="player" video_id="{{ $movie_page->url_second }}"></div>
+                @if ($movie_page3!=null)
+                   <div id="player" video_id="{{$movie_page3[0]->url_second}}"></div>
+                @else
+                   <div id="player" video_id=""></div> 
+                @endif
               @endif
               
             </div>
@@ -40,14 +48,31 @@
             </div>
             <div class="row-2 mt-4">
               
-                @foreach ($movie_page1 as $row1)
-              <a href="../movie/page-movie-{{ $row1->movie_id }}&{{ $row1->episode_id }}&1.html" class="btn-success btn">Server #1</a>
-              <a href="../movie/page-movie-{{ $row1->movie_id }}&{{ $row1->episode_id }}&2.html" class="btn-success btn">Server #2</a>
-              <a href="" class="btn-warning btn">Báo lỗi</a>
+                @foreach ($movie_page4 as $row1)
+                  @if ($movie_page4==null)
+                    
+                    <a href="1.html" class="btn-success btn">Server #1</a>
+                    <a href="2.html" class="btn-success btn">Server #2</a>
+                     
+                  
+                  {{-- @else --}}
+                  @elseif ($episode_id==$row1->episode_id)
+                    @if ($server ==1)
+                    <a href="../movie/page-movie-{{ $row1->movie_id }}&episode-{{ $row1->episode_id }}&server-{{ 1 }}.html" class="btn-success btn">Server #1</a>
+                    <a href="../movie/page-movie-{{ $row1->movie_id }}&episode-{{ $row1->episode_id }}&server-{{ 2 }}.html" class="btn-outline-success btn">Server #2</a>
+                 
+                    @else
+                    <a href="../movie/page-movie-{{ $row1->movie_id }}&episode-{{ $row1->episode_id }}&server-{{ 1 }}.html" class="btn-outline-success btn">Server #1</a>
+                    <a href="../movie/page-movie-{{ $row1->movie_id }}&episode-{{ $row1->episode_id }}&server-{{ 2 }}.html" class="btn-success btn">Server #2</a>
+                 
+                    @endif
+                     
+                      <a href="" class="btn-warning btn">Báo lỗi</a>
+                  @endif
+ 
+              
               @endforeach
-              {{-- <a href="" class="btn-outline-success btn">Server #2</a>
-              <a href="" class="btn-outline-success btn">Server #3</a>
-               --}}
+          
             </div>
             <div class="row-2 mt-4">
               <h5 class="text-danger">TẬP PHIM</h5>
@@ -55,12 +80,15 @@
             <div class="row-2">
               
               
-            <?php $count=1;?>
-                @foreach ($movie_page2 as $row1)
-     
-                    <a style="width: 50px;"href="../movie/page-movie-{{ $row1->movie_id }}&{{ $row1->episode_id }}&1.html" class="btn bg-danger mr-2 mt-2"><?php echo $count; ?></a>
-           
-                   <?php $count++;?>
+          
+                @foreach ($movie_page4 as $row1)
+                    @if ($movie_page3[0]->episode_id == $row1->episode_id)
+                    <a style="width: 70px;"href="../movie/page-movie-{{ $row1->movie_id }}&episode-{{ $row1->episode_id }}&server-{{ 1 }}.html" class="btn btn-danger mr-2 mt-2">{{ $row1->episode_name }}</a>           
+                        
+                    @else
+                    <a style="width: 70px;"href="../movie/page-movie-{{ $row1->movie_id }}&episode-{{ $row1->episode_id }}&server-{{ 1 }}.html" class="btn btn-outline-danger mr-2 mt-2">{{ $row1->episode_name }}</a>           
+                        
+                    @endif
                    @endforeach
                    
                   
@@ -91,11 +119,15 @@
                           <p>Lượt xem: {{ $view_nums[$row->movie_id] }} views</p>
                         </div>
                         <div class="rate">
-                          <p>8.5 <i class="fa fa-star"></i></p>
+                          <p> @if ($rates[$row->movie_id] != null)
+                            {{ $rates[$row->movie_id] }}
+                        @else
+                            10
+                            @endif<i class="fa fa-star"></i></p>
                         </div>
                         <div class="episode">
                           <h8>Tập
-                            <p>{{$episode_nums[$row->movie_id]}} / {{$row->total_eps}} tập</p>
+                            <p>{{$episode_nums[$row->movie_id]}} / {{$row->total_eps}}</p>
                           </h8>
                         </div>
                         <div class="play">
@@ -109,212 +141,7 @@
   
              
               @endforeach
-              {{-- <div class="row mt-4">
-                <div class="col-6">
-                  <div class="row">
-                    <div class="col-xl-6">
-                      <a href="">
-                        <div class="card-style-1"  id="respon">
-                          <img src="./img/l-1.jpg" alt="" />
-                          <div class="infor">
-                            <h5>Hoa và nắng</h5>
-                            <p>Lượt xem: 2000 views</p>
-                          </div>
-                          <div class="rate">
-                            <p>8.5 <i class="fa fa-star"></i></p>
-                          </div>
-                          <div class="episode">
-                            <h8
-                              >Tập
-                              <p>10/10</p></h8
-                            >
-                          </div>
-                          <div class="play">
-                            <i class="fa fa-play"></i>
-                          </div>
-                        </div>
-                      </a>
-                    </div>
-                    <div class="col-xl-6">
-                      <a href="">
-                        <div class="card-style-1" id="respon" >
-                          <img src="./img/l-1.jpg" alt="" />
-                          <div class="infor">
-                            <h5>Hoa và nắng</h5>
-                            <p>Lượt xem: 2000 views</p>
-                          </div>
-                          <div class="rate">
-                            <p>8.5 <i class="fa fa-star"></i></p>
-                          </div>
-                          <div class="episode">
-                            <h8
-                              >Tập
-                              <p>10/10</p></h8
-                            >
-                          </div>
-                          <div class="play">
-                            <i class="fa fa-play"></i>
-                          </div>
-                        </div>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-6">
-                  <div class="row">
-                    <div class="col-xl-6">
-                      <a href="">
-                        <div class="card-style-1" id="respon">
-                          <img src="./img/l-1.jpg" alt="" />
-                          <div class="infor">
-                            <h5>Hoa và nắng</h5>
-                            <p>Lượt xem: 2000 views</p>
-                          </div>
-                          <div class="rate">
-                            <p>8.5 <i class="fa fa-star"></i></p>
-                          </div>
-                          <div class="episode">
-                            <h8
-                              >Tập
-                              <p>10/10</p></h8
-                            >
-                          </div>
-                          <div class="play">
-                            <i class="fa fa-play"></i>
-                          </div>
-                        </div>
-                      </a>
-                    </div>
-                    <div class="col-xl-6">
-                      <a href="">
-                        <div class="card-style-1 "id="respon">
-                          <img src="./img/l-1.jpg" alt="" />
-                          <div class="infor">
-                            <h5>Hoa và nắng</h5>
-                            <p>Lượt xem: 2000 views</p>
-                          </div>
-                          <div class="rate">
-                            <p>8.5 <i class="fa fa-star"></i></p>
-                          </div>
-                          <div class="episode">
-                            <h8
-                              >Tập
-                              <p>10/10</p></h8
-                            >
-                          </div>
-                          <div class="play">
-                            <i class="fa fa-play"></i>
-                          </div>
-                        </div>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-             
-              </div>
-              <div class="row mt-4">
-                <div class="col-6">
-                  <div class="row">
-                    <div class="col-xl-6">
-                      <a href="">
-                        <div class="card-style-1"  id="respon">
-                          <img src="./img/l-1.jpg" alt="" />
-                          <div class="infor">
-                            <h5>Hoa và nắng</h5>
-                            <p>Lượt xem: 2000 views</p>
-                          </div>
-                          <div class="rate">
-                            <p>8.5 <i class="fa fa-star"></i></p>
-                          </div>
-                          <div class="episode">
-                            <h8
-                              >Tập
-                              <p>10/10</p></h8
-                            >
-                          </div>
-                          <div class="play">
-                            <i class="fa fa-play"></i>
-                          </div>
-                        </div>
-                      </a>
-                    </div>
-                    <div class="col-xl-6">
-                      <a href="">
-                        <div class="card-style-1" id="respon" >
-                          <img src="./img/l-1.jpg" alt="" />
-                          <div class="infor">
-                            <h5>Hoa và nắng</h5>
-                            <p>Lượt xem: 2000 views</p>
-                          </div>
-                          <div class="rate">
-                            <p>8.5 <i class="fa fa-star"></i></p>
-                          </div>
-                          <div class="episode">
-                            <h8
-                              >Tập
-                              <p>10/10</p></h8
-                            >
-                          </div>
-                          <div class="play">
-                            <i class="fa fa-play"></i>
-                          </div>
-                        </div>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-6">
-                  <div class="row">
-                    <div class="col-xl-6">
-                      <a href="">
-                        <div class="card-style-1" id="respon">
-                          <img src="./img/l-1.jpg" alt="" />
-                          <div class="infor">
-                            <h5>Hoa và nắng</h5>
-                            <p>Lượt xem: 2000 views</p>
-                          </div>
-                          <div class="rate">
-                            <p>8.5 <i class="fa fa-star"></i></p>
-                          </div>
-                          <div class="episode">
-                            <h8
-                              >Tập
-                              <p>10/10</p></h8
-                            >
-                          </div>
-                          <div class="play">
-                            <i class="fa fa-play"></i>
-                          </div>
-                        </div>
-                      </a>
-                    </div>
-                    <div class="col-xl-6">
-                      <a href="">
-                        <div class="card-style-1 "id="respon">
-                          <img src="./img/l-1.jpg" alt="" />
-                          <div class="infor">
-                            <h5>Hoa và nắng</h5>
-                            <p>Lượt xem: 2000 views</p>
-                          </div>
-                          <div class="rate">
-                            <p>8.5 <i class="fa fa-star"></i></p>
-                          </div>
-                          <div class="episode">
-                            <h8
-                              >Tập
-                              <p>10/10</p></h8
-                            >
-                          </div>
-                          <div class="play">
-                            <i class="fa fa-play"></i>
-                          </div>
-                        </div>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-             
-              </div> --}}
+            
             </div>
 
         </div>
@@ -326,7 +153,10 @@
       <div class="container">
         <div class="fr">
              <div class="logo">
-            <h2 class="text-danger">1080+</h2>
+            <h2 class="text-danger">1080+ 
+              
+             
+        </h2>
         </div>
         <div class="content">
           <!-- <p class="text-secondary">Phim được tài trợ bởi</p> -->
@@ -392,12 +222,13 @@
     player = new YT.Player('player', {
       height: '390',
       width: '640',
+      // autoPlay:false,
       videoId: video_id,
       playerVars: {
         'playsinline': 1
       },
       events: {
-        'onReady': onPlayerReady,
+        // 'onReady': onPlayerReady,
         'onStateChange': onPlayerStateChange
       }
     });
@@ -420,9 +251,14 @@
           clearInterval(time_id);
 
           $.post('/update-view',{
-            episode_id: <?php echo $movie_page->episode_id; ?>,
+            episode_id:       <?php 
+              if ($movie_page3==null) {
+                echo "d";
+                } else {
+                   echo $movie_page3[0]->episode_id ; 
+                   } 
+                ?>,
             _token: "{{ csrf_token() }}"
-          },function(data){
           });
           
           bool = true;

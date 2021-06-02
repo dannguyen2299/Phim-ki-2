@@ -13,6 +13,9 @@ class LoginController extends Controller
 {
     function getLogin()
     {
+         // Get Data ads
+        $ads = new AdsController();
+        $data['ads_banner2']= $ads->getAdsByLocation(2);
         $data['nation'] = DB::table('nation')->get();
         $data['category_l'] = DB::table('category')->get();
         return view('frontend.login', $data);
@@ -51,7 +54,6 @@ class LoginController extends Controller
     public function callback($provider)
     {
         $getInfo = Socialite::driver('facebook')->stateless()->user();
-        //return response()->json($getInfo);
         $user = $this->createUser($getInfo, $provider);
         $user_db = DB::table('user')->where('email', '=', $getInfo->email)->where('provider_id', $getInfo->id)->where('status', '=', 1)->first();
         if (isset($user_db)) {

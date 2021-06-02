@@ -1,13 +1,9 @@
 @extends('frontend.master.master')
-@section('title', 'Page_Movie')
+@section('title', 'Thông tin bộ phim')
 @section('content')
-    {{--  --}}
-    {{--  --}}
     <div id="fb-root"></div>
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v10.0"
         nonce="ifGS9jp0"></script>
-    {{--  --}}
-    {{--  --}}
     <div class="container">
         <div class="row-2 mt-4">
             <h5 class="text-light">THÔNG TIN PHIM</h5>
@@ -20,12 +16,15 @@
                 <div class="row">
 
                     <div class="col-xl-4">
-                        <a href="../movie/page-movie-{{ $movie_detail->movie_id }}&1&1.html">
+                        @if ($episode!=null)
+                            <a href="../movie/page-movie-{{ $movie_detail->movie_id }}&episode-{{ $episode->episode_id }}&server-{{ 1 }}.html">
+                        @else
+                            <a href="../movie/page-movie-{{ $movie_detail->movie_id }}&episode-{{ 0 }}&server-{{ 1 }}.html">
+                        @endif 
                             <div class="card-style-1 ">
                                 <img src="{{ $movie_detail->url_image }}" alt="" />
                             </div>
                         </a>
-
                     </div>
                     <div class="col-xl-8 mt-3">
                         <table id="">
@@ -67,9 +66,6 @@
                                 <td style="width:100px">
                                     <h6 class="text-secondary mt-2">Thể loại: </h6>
                                 </td>
-
-
-
                                 <td style="width:300px">
                                     <h6 class="text-danger mt-2">
                                         @foreach ($movie_cat as &$row)
@@ -80,18 +76,45 @@
                                 </td>
 
                             </tr>
-
                             <tr>
-                                <td colspan="3"><a href="../movie/page-movie-{{ $movie_detail->movie_id }}&1&1.html"
+                                <td colspan="3">
+                                    @if ($episode!=null)
+                                    <a href="../movie/page-movie-{{ $movie_detail->movie_id }}&episode-{{ $episode->episode_id }}&server-{{ 1 }}.html"
                                         class="btn btn-danger mt-3">XEM PHIM</a>
+                                     @else
+                                        <a 
+                                        class="btn btn-danger mt-3 no-film">XEM PHIM</a>
+
+                                        <script>
+                                            $('.no-film').click(function(event){
+                                                alert('Hiện chưa có tập phim nào. Xin hãy truy cập khi có phim mới.')
+                                            })
+                                        </script>
+                                     @endif
                                     <a href="" class="btn btn-outline-success mt-3 ml-3 mr-3">DOWNLOAD</a>
-                                    <a href="" class="btn btn-warning mt-3 ">THEO DÕI</a>
+                                    @if(Session::has('user_id'))
+
+                            @if($follow==2){
+                              <a href="../movie/In_follow-{{ $movie_detail->movie_id }}&{{ $dan_user_id }}"class="btn btn-warning mt-3 "> THEO DÕI</a> //ko ton tai trong bang 
+                            }
+                            @elseif ($follow==1){
+                              <a href="../movie/Dele_follow-{{ $movie_detail->movie_id }}&{{ $dan_user_id }}"class="btn btn-warning mt-3 "> ĐÃ THEO DÕI</a> // co trong bang movie_detail  và follow=1
+                            }
+                            @elseif ($follow==0){
+                              <a href="../movie/B_follow-{{ $movie_detail->movie_id }}&{{ $dan_user_id }}"class="btn btn-warning mt-3 "> THEO DÕI</a>// co trong bảng nhưng follow =0
+                            }
+                            @endif
+                        @endif
+                        {{--  <a href=""class="btn btn-warning mt-3 "> THEO DÕI</a>  --}}
                                 </td>
                             </tr>
                         </table>
                     </div>
+                  </a>
+                
                 </div>
-                <div class="row-2 pt-4 mt-4">
+               
+                <div class="row-2 pt-4 mt-2">
                     <h5 class="text-danger">ĐÁNH GIÁ PHIM</h5>
                     <div class="row">
                         <ul class="list-inline col rating" title="Average Rating">
@@ -103,9 +126,20 @@
                                     } else {
                                         $color = 'color:#ccc;';
                                     }
+
+                                    if ($count <= 2) {
+                                        $tils = 'Không hay!';
+                                    } elseif ($count > 2 && $count <= 5) {
+                                        $tils = 'Bình thường!';
+                                    }elseif ($count > 5 && $count <= 8) {
+                                        $tils = 'Hay!';
+                                    } else {
+                                        $tils = 'Rất hay';
+                                    }
+
                                 @endphp
 
-                                <li title="Đánh giá sao" id="{{ $movie_detail->movie_id }}-{{ $count }}"
+                                <li title="{{$tils}}" id="{{ $movie_detail->movie_id }}-{{ $count }}"
                                     data-index="{{ $count }}" data-product_id="{{ $movie_detail->movie_id }}"
                                     data-rating="{{ $rates[$movie_detail->movie_id] }}" class="ml-2 ratess"
                                     style="cursor:pointer; display: inline-block; {{ $color }}; font-size:25px; ">
@@ -114,18 +148,30 @@
 
                             @endfor
                         </ul>
-                        <p class="text-warning mt-2 col-md-3"> {{ $user_rates[$movie_detail->movie_id] }} người đã đánh
+                        <p class="text-warning mt-2 col-md-3"> {{ $user_rates}} người đã đánh
                             giá</p>
                     </div>
+                    @if (Session::has('user_id'))
+                        @if ($status_rate == null)
+                        <small class="ml-2"style="color: #cdcdcd;font-family:san-self">Bạn chưa đánh giá phim</small>
+                            
+                        @else
+                        <small class="ml-2"style="color: #cdcdcd;font-family:san-self">Bạn đã đánh giá: {{$status_rate->rate}} sao</small>
+                            
+                        @endif
+                    @else
+                    
+                        <small class="ml-2"style="color: #cdcdcd;font-family:san-self">Bạn chưa đăng nhập</small>
+                    @endif
                 </div>
-                <div class="row-2 mt-5">
+                <div class="row-2 mt-3">
                     <h5 class="text-danger">NỘI DUNG PHIM</h5>
                 </div>
                 <div class="row-2">
                     <p class="text-secondary">{{ $movie_detail->introduce }}</p>
                 </div>
 
-                <div class="row-2">
+                <div class="row-2 mb-4">
                     <h5 class="text-danger">TRAILER</h5>
                 </div>
                 <div class="row-2">
@@ -134,7 +180,7 @@
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen></iframe>
                 </div>
-                <div class="row-2 mt-3">
+                <div class="row-2 mt-3 mb-3">
                     <h5 class="text-danger">BÌNH LUẬN PHIM</h5>
                 </div>
                 <div class="row-2 ">
@@ -143,14 +189,12 @@
                         data-numposts="7"></div>
                     {{--  --}}
                 </div>
-                <div class="row-2 mt-3">
+                <div class="row-2 mt-4">
                     <h5 class="text-danger">PHIM CÙNG QUỐC GIA</h5>
                 </div>
                 <div class="row">
                     @foreach ($movie_nation as $row)
-                        <div class="col-3">
-                            <div class="row mt-4">
-                                <div class="col-xl-6">
+                        
                                     <a href="../movie/movie-{{ $row->movie_id }}.html" class="ml-2 mt-3 mr-1">
                                         <div class="card-style-1" id="respon">
                                             <img src="{{ $row->url_image }}" alt="" />
@@ -159,11 +203,15 @@
                                                 <p>Lượt xem: {{ $view_nums[$row->movie_id] }} views</p>
                                             </div>
                                             <div class="rate">
-                                                <p>8.5 <i class="fa fa-star"></i></p>
+                                                <p>@if ($rates[$row->movie_id] != null)
+                                                    {{ $rates[$row->movie_id] }}
+                                                @else
+                                                    10
+                                                    @endif <i class="fa fa-star"></i></p>
                                             </div>
                                             <div class="episode">
                                                 <h8>Tập
-                                                    <p>{{ $episode_nums[$row->movie_id] }} / {{ $row->total_eps }} tập
+                                                    <p>{{ $episode_nums[$row->movie_id] }} / {{ $row->total_eps }}
                                                     </p>
                                                 </h8>
                                             </div>
@@ -172,9 +220,7 @@
                                             </div>
                                         </div>
                                     </a>
-                                </div>
-                            </div>
-                        </div>
+                             
 
 
                     @endforeach
@@ -236,7 +282,8 @@
                     success: function(response) {
                         // console.log(response);
                         if (response) {
-                            alert('Đánh giá thành công! Xin load lại page')
+                            alert("Đánh giá thành công "+index +" sao trên 10 sao");
+                            location.reload()
                         }
                     },
                 });
