@@ -224,16 +224,6 @@
       </div>
       
     </footer>
- {{-- script-- Báo lỗi   --}}
-{{--  <script>
-	function confirmDelete(self) {
-		var id = self.getAttribute("data-id");
-
-		document.getElementById("form-delete-user").id.value = id;
-		$("#myModal").modal("show");
-	}
-</script>  --}}
-{{--  script-- Báo lỗi   --}}
     <script type="text/javascript">
       $(document).ready(function () {
         $("#news-slider").owlCarousel({

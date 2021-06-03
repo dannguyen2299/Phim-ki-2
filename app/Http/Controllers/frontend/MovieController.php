@@ -141,7 +141,12 @@ class MovieController extends Controller
 
         $dan_sql_check_content=DB::table('report')->where('episode_id',$episode_id)->get();
         if($dan_sql_check_content->count()==1){  // episode_id đã có trong bảng report
-            Session::put('dan_error',1);   
+            if($dan_sql_check_content->is_fixed==1){
+                DB::table('report')
+              ->where('episode_id', $episode_id)
+              ->update(['is_fixed->enabled' => 0]);
+            }
+           
         }else{   // ngược lại
             if($content==""){ // content rỗng
                 $content="Phim không xem được";
