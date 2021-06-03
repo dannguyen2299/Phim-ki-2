@@ -19,9 +19,7 @@ class CreateMessageTable extends Migration
             $table->date('created_at')->nullable();
             // Tao khoa ngoai
             $table->integer('episode_id')->unsigned();
-            $table->foreign('episode_id')->references('episode_id')->on('episode')->onDelete('cascade');         
-            $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('user_id')->on('user')->onDelete('cascade');         
+            $table->foreign('episode_id')->references('episode_id')->on('episode')->onDelete('cascade');       
             
             $table->integer('is_fixed')->default(0);
         });

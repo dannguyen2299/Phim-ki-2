@@ -26,6 +26,7 @@ Route::prefix('movie')->group(function () {
     Route::get('B_follow-{movie_id}&{user_id}','frontend\MovieController@BackFollow' );// follow cho TH đã tồn tại trong bảng
     Route::get('Dele_follow-{movie_id}&{user_id}','frontend\MovieController@DeleFollow' ); // hủy follow 
     Route::get('page-movie-{movie_id}&episode-{episode_id}&server-{server}.html', 'frontend\MovieController@GetMovie');
+    Route::post('error_message','frontend\MovieController@errorMessage'); 
 });
 //  search
 Route::post('search', 'frontend\SearchController@GetSearch');
