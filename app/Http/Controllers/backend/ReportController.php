@@ -12,9 +12,27 @@ use Illuminate\Support\Facades\Redirect;
 
 class ReportController extends Controller
 {
+    function in_report($episode_id){
+        $search_report=DB::table('report')->where('episode_id',$episode_id)->get();
+         
+        if($search_report->count()==0){
+            DB::table('report')->insert([
+                'email' => 'kayla@example.com',
+                'votes' => 0
+            ]);
+
+            return redirect()->back();
+        }
+        elseif($search_report->count()==1){
+            
+            return redirect()->back();
+        }
+        // return view('admin.admin_layout');
+    }
+
     public function list_report(){
         $reports = DB::table('report')
-        ->join('user','user.user_id','=','report.user_id')
+        // ->join('user','user.user_id','=','report.user_id')
         ->join('episode','episode.episode_id','=','report.episode_id')
         ->join('movie','movie.movie_id','episode.movie_id')->get();
         
