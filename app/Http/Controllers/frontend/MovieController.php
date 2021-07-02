@@ -28,7 +28,7 @@ class MovieController extends Controller
         //Lấy thắng đầu tiên của số tập ()
         $data['movie_page3']=DB::table('episode')->where("episode.movie_id",$movie_id)->where("episode.episode_id",$episode_id)->get();
         $data['movie_page4']=DB::table('episode')->join('movie','episode.movie_id','=','movie.movie_id')->where("episode.movie_id",$movie_id)->get();
-
+        $data['movie_cat']= $this->getCategoryToFilm($movie_id);
      
         // Film same nation
         $data['movie_nation']= $this->getFilmBySameNation($movie_id, $data['movie_detail']->nation_id);
@@ -46,7 +46,6 @@ class MovieController extends Controller
         ->with('rates',$rates)->with('view_nums',$view_nums)->with('server',$server)
         ->with('episode_id',$episode_id);
     }
-
     function GetPage($movie_id){
         $movies = DB::table('movie')->select('movie.movie_id')->get();
         
@@ -58,6 +57,7 @@ class MovieController extends Controller
         //Get Film by movie id and rate in movie
         $data['movie_detail']=DB::table('movie')->where("movie_id",$movie_id)->join('nation','movie.nation_id','=','nation.nation_id')->first();
         $data['movie_cat']= $this->getCategoryToFilm($movie_id);
+        $data['movie_page4']=DB::table('episode')->join('movie','episode.movie_id','=','movie.movie_id')->where("episode.movie_id",$movie_id)->get();
         $data['episode']= $this->getEpisodeByFilm($movie_id);
         $rate_obj = new RateController();       
         $rates = $rate_obj->getRateByMovie($movies);

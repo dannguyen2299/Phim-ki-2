@@ -372,49 +372,7 @@ class Handler extends Controller
      * @return array
      * @throws \Exception
      */
-    private function getDataFromMongo($dbInfo, $query, $currentPage, $perPage)
-    {
-        $mongoClient = new \MongoClient($dbInfo['server']);
-        $database = $mongoClient->selectDB($dbInfo['database']);
-        $collection = $database->selectCollection($dbInfo['collection']);
-
-        $searchField = $dbInfo['searchField'];
-        $regex = new \MongoRegex("/^{$query}/i");
-        $criteria = [$searchField => $regex];
-        $results = $collection->find($criteria, $dbInfo['filterResult']);
-
-        if (!$results instanceof \MongoCursor) {
-            throw new \Exception('There is an issue getting data from Mongodb');
-        }
-
-        $resultNumber = $results->count();
-        $start = ($currentPage > 0) ? ($currentPage - 1) * $perPage : 0;
-        $rows = $results->limit($perPage)->skip($start);
-
-        /*
-         * pagination
-         *
-         * calculate total pages
-         */
-        if ($resultNumber < $perPage) {
-            $pagesNumber = 1;
-        } elseif ($resultNumber > $perPage) {
-            if ($resultNumber % $perPage === 0) {
-                $pagesNumber = floor($resultNumber / $perPage);
-            } else {
-                $pagesNumber = floor($resultNumber / $perPage) + 1;
-            }
-        } else {
-            $pagesNumber = $resultNumber / $perPage;
-        }
-
-        // form the return
-        return [
-            'rows' => $rows,
-            'number_of_results' => (int) $resultNumber,
-            'total_pages' => $pagesNumber,
-        ];
-    }
+ 
     
     /**
      * @return string

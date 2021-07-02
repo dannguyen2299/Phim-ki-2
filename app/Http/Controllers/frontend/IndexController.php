@@ -38,7 +38,6 @@ class IndexController extends Controller
         ->with('episode_nums',$episode_nums)
         ->with('view_nums',$view_nums)->with('rates',$rates);
     }
-
     public function getFilmByNation($id){
         return $data['movie_v']=DB::select('select * from movie where nation_id = '.$id);
     }

@@ -14,7 +14,6 @@
         <div class="row">
             <div class="col">
                 <div class="row">
-
                     <div class="col-xl-4">
                         @if ($episode!=null)
                             <a href="../movie/page-movie-{{ $movie_detail->movie_id }}&episode-{{ $episode->episode_id }}&server-{{ 1 }}.html">
@@ -109,9 +108,7 @@
                                 </td>
                             </tr>
                         </table>
-                    </div>
-                  </a>
-                
+                    </div>           
                 </div>
                
                 <div class="row-2 pt-4 mt-2">
@@ -232,23 +229,6 @@
         </div>
     </div>
     <!-- Script-Section -->
-    <footer class="mt-4">
-        <div class="container">
-            <div class="fr">
-                <div class="logo">
-                    <h2 class="text-danger">1080+</h2>
-                </div>
-                <div class="content">
-                    <!-- <p class="text-secondary">Phim được tài trợ bởi</p> -->
-                </div>
-                <div class="infor">
-                    <!-- <h2 class="text-secondary">es</h2> -->
-                </div>
-            </div>
-
-        </div>
-
-    </footer>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
     </script>

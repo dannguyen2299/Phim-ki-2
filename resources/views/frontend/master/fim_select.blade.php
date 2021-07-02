@@ -38,7 +38,8 @@
       </div>
     </div> 
 @endif  --}}
-
+    <div class="row">
+       </div>
     <div class="row mt-3">
       <h5 class="text-danger ml-3">HÔM NAY XEM GÌ ?</h5>
     </div>

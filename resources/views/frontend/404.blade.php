@@ -49,25 +49,6 @@
        
       </div>
     </div>
-
-    <!-- Script-Section -->
-    <footer class="mt-4">  
-      <div class="container">
-        <div class="fr">
-             <div class="logo">
-            <h2 class="text-danger">1080+</h2>
-        </div>
-        <div class="content">
-          <!-- <p class="text-secondary">Phim được tài trợ bởi</p> -->
-        </div>
-        <div class="infor">
-          <!-- <h2 class="text-secondary">es</h2> -->
-        </div>
-        </div>
-      
-      </div>
-       
-    </footer>
     <script type="text/javascript">
       $(document).ready(function () {
         $("#news-slider").owlCarousel({

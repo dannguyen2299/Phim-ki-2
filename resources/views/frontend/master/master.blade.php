@@ -42,7 +42,7 @@ if (session_id() == '') {
   <script src="https://code.jquery.com/jquery-1.12.4.js" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js" crossorigin="anonymous"></script>
 
-  {{ asset("frontend/plugins/Ajax_live_search/img/green_loader.gif") }}
+  {{-- {{ asset("frontend/plugins/Ajax_live_search/img/green_loader.gif") }} --}}
 
     <!-- Live Search Styles -->
     <link rel="stylesheet" href="plugins/Ajax_live_search/css/fontello.css">
@@ -59,7 +59,10 @@ if (session_id() == '') {
   <header>
     <div class="container" style="padding: 0 !important">
       <nav class="navbar navbar-expand-lg navbar-light">
-        <a class="navbar-brand text-danger" href="{{ URL::to('') }}">1080+</a>
+        {{-- <a class="navbar-brand text-danger" href="{{ URL::to('') }}">1080+</a> --}}
+        {{-- <a class="navbar-brand text-danger" href="{{ URL::to('') }}"> --}}
+          <img src="{{asset('').'frontend/img/logo.png'}}" class="mb-2 mr-4" width="60px" height="40px";alt="">
+        {{-- </a> --}}
         <button class="navbar-toggler" jm type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -73,10 +76,13 @@ if (session_id() == '') {
               <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Thể loại
               </a>
-              <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
+              <div class="dropdown-menu row" style="background-color: #181818;" aria-labelledby="navbarDropdown">
+                
                 @foreach($category_l as $row)
+                
 
-                <a class="dropdown-item text-light" href="../filter/category-{{ $row->category_id }}">{{ $row->category_name }}</a>
+                  <a class="dropdown-item text-light pt-2 pl-4 pb-2" href="../filter/category-{{ $row->category_id }}">{{ $row->category_name }}</a>
+            
 
                 @endforeach
 
@@ -88,36 +94,36 @@ if (session_id() == '') {
               <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Quốc gia
               </a>
-              <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
+              <div class="dropdown-menu" style="background-color: #181818 " aria-labelledby="navbarDropdown">
 
                 @foreach ($nation as $row )
 
-                <a class="dropdown-item text-light" href="../filter-nation/nation-{{ $row->nation_id }}">{{ $row->nation_name }}</a>
+                <a class="dropdown-item text-light pt-2 pl-4 pb-2" href="../filter-nation/nation-{{ $row->nation_id }}">{{ $row->nation_name }}</a>
 
                 @endforeach
             </li>
+            <li class="nav-item active">
+              <a class="nav-link text-light" href="#">Top Idmb <span class="sr-only">(current)</span></a>
+            </li>
             @if(Session::has('name'))
             <li class="nav-item active">
-              <a class="nav-link text-light" href="../film_tick">Phim đánh dấu<span class="sr-only">(current)</span></a>
+              <a class="nav-link text-danger" href="../film_tick">Hộp phim<span class="sr-only">(current)</span></a>
             </li>
             @endif
-            <li class="nav-item active">
-              <a class="nav-link text-light" href="#">Top IMDB <span class="sr-only">(current)</span></a>
-            </li>
           </ul>
 
             {{ csrf_field() }}
             
             <!-- Search Form Demo -->
-            <div style="clear: both">
-              <input type="text" class='mySearch' id="ls_query" placeholder="Tìm kiếm phim ...">
+            <div style="clear: both; position: relative;">
+              <input type="text" class='mySearch' id="ls_query" placeholder="Tìm kiếm phim ..." style="padding-left: 40px">
+              <button id="search" class="btn my-2 my-sm-0 rounded-pill" style="position: absolute; top: -2px; left: 2px">
+                <i class="fa fa-search text-danger"></i>
+              </button> 
             </div>
 
-            <button id="search" class="btn my-2 my-sm-0 rounded-pill">
-              <i class="fa fa-search text-danger"></i>
-            </button> 
           <!-- </form> -->
-          <ul class="navbar-nav mr-auto">
+          <ul class="navbar-nav" >
             <li class="nav-item dropdown"> 
                @if (Session::has('name'))
               <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -135,7 +141,7 @@ if (session_id() == '') {
                   @endif
               </div>
               @else
-            <a class="btn btn-outline-warning pl-2" href="{{route('login')}}" style="height: 30px; padding-top:2px  !important; border-radius:7px">Đăng nhập</a>  
+            <a class="pl-2 text-danger" href="{{route('login')}}" style="font-size: 28px; margin-left: 5px;margin-top: -3px;"><i class="fa fa-user"></i></a>  
             @endif
 
             </li>
@@ -153,7 +159,8 @@ if (session_id() == '') {
   </header>
 
   @yield('content');
-
+  @include('frontend.footer')
+  
 </body>
 
 <!-- /// Đây là Script của youtube -->

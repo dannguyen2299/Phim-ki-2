@@ -48,18 +48,14 @@
                 </div>
             </div>
         </div>
-        <div class="row-2">
-            <hr />
-        </div>
+        
         {{-- Quảng cáo --}}
         @if ($ads_banner1!=null)
             <div class="row-2 mt-3" style="width:70%;margin:0px auto;">
             <a href="{{ $ads_banner1->link_banner }}"><img class="img-fluid" src="{{ $ads_banner1->url_banner }}" alt="" style="width:100%; height:auto;"></a>
             </div>
         @endif
-        <div class="row-2">
-            <hr />
-        </div>
+        
         {{-- End --}}
     </div>
     <div class="container">
@@ -106,7 +102,7 @@
                     @endforeach
                 </div>
                 <div class="row-2 mt-4 mb-3 " id="respon_card">
-                    <a href="../new-movie-update" class="btn btn-danger">Xem thêm...</a>
+                    <a href="../new-movie-update" class="text-danger">Xem thêm >>></a>
                 </div>
                 <div class="row-2 mt-4">
                     <h5 class="text-light">PHIM VIỆT NAM</h5>
@@ -151,30 +147,14 @@
                     @endforeach
                 </div>
                 <div class="row-2 mt-4 mb-3" id="respon_card">
-                    <a href="../movie-viet-nam" class="btn btn-danger">Xem thêm...</a>
+                    <a href="../movie-viet-nam" class="text-danger">Xem thêm >>></a>
                 </div>
             </div>
             @include('frontend.master.fim_select')
         </div>
     </div>
     <!-- Script-Section -->
-    <footer class="mt-4">
-        <div class="container">
-            <div class="fr">
-                <div class="logo">
-                    <h2 class="text-danger">1080+</h2>
-                </div>
-                <div class="content">
-                    <!-- <p class="text-secondary">Phim được tài trợ bởi</p> -->
-                </div>
-                <div class="infor">
-                    <!-- <h2 class="text-secondary">es</h2> -->
-                </div>
-            </div>
-
-        </div>
-
-    </footer>
+  
 
     <script type="text/javascript">
         $(document).ready(function() {

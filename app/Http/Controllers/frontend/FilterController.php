@@ -126,7 +126,6 @@ class FilterController extends Controller
 
         return view('frontend.filter',$data)->with('episode_nums',$episode_nums)->with("view_nums",$view_nums);
     }
-
     function GetMovieVN(){
         $movies = DB::table('movie')
         ->join('nation','nation.nation_id','=','movie.nation_id')->select('movie.*','nation.*','movie.status as movie_status','nation.status as nation_status')->get();
