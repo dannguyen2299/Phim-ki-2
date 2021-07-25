@@ -32,7 +32,7 @@ class AjaxProcessor extends Controller
     /**
      * Validate the request
      */
-    //TODO: lúc đầu không có (Request $request) vì ko dùng Request của laravel, giờ thì phải có
+    //TODO: lúc đầu không có (Request $request) vì ko dùng Request của laravel
     private function validateRequest(Request $request)
     {
         // 1. Validate if the request is AJAX

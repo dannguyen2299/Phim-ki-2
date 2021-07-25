@@ -7,7 +7,7 @@
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous" /> -->
     <title>@yield('title')</title>
     <base href="{{ asset('').'frontend/' }}">
-    <link rel="stylesheet" href="style.css" />
+    <!-- <link rel="stylesheet" href="style.css" />
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <link
       rel="stylesheet"
@@ -32,7 +32,7 @@
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"
       crossorigin="anonymous"
-    ></script>
+    ></script> -->
   </head>
   <body>
 
@@ -49,7 +49,7 @@
        
       </div>
     </div>
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
       $(document).ready(function () {
         $("#news-slider").owlCarousel({
           items: 4,
@@ -71,7 +71,7 @@
     ></script>
     <!-- Script-Section -->
 
-    <script
+    <!-- <script
       src="https://code.jquery.com/jquery-3.6.0.js"
       integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
       crossorigin="anonymous"
@@ -79,7 +79,7 @@
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"
       crossorigin="anonymous"
-    ></script>
+    ></script> -->
   </body>
   </html>
   

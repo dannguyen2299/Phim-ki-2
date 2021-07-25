@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Session;
 
     <base href="{{ asset('').'admin/' }}">
     <!-- Favicon -->
-    <link rel="icon" href="{{asset('').'frontend/img/icon.png'}}" type="image/gif" sizes="16x16">
+    <!-- <link rel="icon" href="{{asset('').'frontend/img/icon.png'}}" type="image/gif" sizes="16x16"> -->
     
     <!-- Bootstrap CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -26,7 +26,7 @@ use Illuminate\Support\Facades\Session;
     <link href="css/style.css" rel="stylesheet" type="text/css" />
 
     <!-- BEGIN CSS for this page -->
-    <link rel="stylesheet" type="text/css" href="plugins/chart.js/Chart.min.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="plugins/chart.js/Chart.min.css" /> -->
     <link rel="stylesheet" type="text/css" href="plugins/datatables/datatables.min.css" />
     <!-- END CSS for this page -->
 </head>
@@ -398,45 +398,28 @@ use Illuminate\Support\Facades\Session;
                 <!-- Copyright footer link MUST remain intact if you download free version. -->
                 <!-- You can delete the links only if you purchased the pro or extended version. -->
                 <!-- Purchase the pro or extended version with PHP version of this template: https://bootstrap24.com/template/nura-admin-4-free-bootstrap-admin-template -->
-                Powered by <a target="_blank" href="https://bootstrap24.com" title="Download free Bootstrap templates"><b>Bootstrap24.com</b></a>
+                Powered by <a target="_blank" href="https://daotao.nuce.edu.vn/" title=""><b>NUCE</b></a>
             </span>
         </footer>
-
-        <script src="js/modernizr.min.js"></script>
-        <script src="js/jquery.min.js"></script>
-        <script src="js/moment.min.js"></script>
-
-        <script src="js/popper.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-
-        <script src="js/detect.js"></script>
-        <script src="js/fastclick.js"></script>
-        <script src="js/jquery.blockUI.js"></script>
-        <script src="js/jquery.nicescroll.js"></script>
-
-        <!-- App js -->
-        <script src="js/admin.js"></script>
 
     </div>
     <!-- END main -->
 
-    <!-- BEGIN Java Script for this page -->
-    <script src="plugins/datatables/datatables.min.js"></script>
-
-    <!-- Counter-Up-->
-    <script src="plugins/waypoints/lib/jquery.waypoints.min.js"></script>
-    <script src="plugins/counterup/jquery.counterup.min.js"></script>
-
-    <!-- dataTabled data -->
-    <script src="data/data_datatables.js"></script>
-
     <!-- Add active class in left sidebar -->
     @yield('script')
 
-    <!-- Upload files -->
-    <script></script>
 
-    <!-- Jquery for data-table -->
+    <!-- App js -->
+    <script src="js/admin.js"></script>
+    
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.nicescroll.js"></script>
+    <script src="plugins/datatables/datatables.min.js"></script>
+    <!--validation  -->
+    <script src="plugins/parsleyjs/parsley.min.js"></script>
+    <script src="js/fastclick.js"></script>
+    
     <script>
         $(document).on('ready', function() {
             // data-tables
@@ -453,8 +436,7 @@ use Illuminate\Support\Facades\Session;
         $("#sidebar-menu ul li.submenu a.active").parents("li:last").children("a:first").addClass("active").trigger("click");
     </script>
 
-        <!--validation  -->
-    <script src="plugins/parsleyjs/parsley.min.js"></script>
+        
 </body>
 
 </html>

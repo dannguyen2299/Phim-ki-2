@@ -60,7 +60,7 @@
        @include('frontend.master.fim_select')
       </div>
     </div>
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
       $(document).ready(function () {
         $("#news-slider").owlCarousel({
           items: 4,
@@ -80,7 +80,6 @@
       integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
       crossorigin="anonymous"
     ></script>
-    <!-- Script-Section -->
 
     <script
       src="https://code.jquery.com/jquery-3.6.0.js"
@@ -90,5 +89,5 @@
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"
       crossorigin="anonymous"
-    ></script>
+    ></script> -->
 @endsection

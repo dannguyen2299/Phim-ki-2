@@ -5,7 +5,7 @@
 
     <div class="container">
       <div class="row-2 mt-4">
-        <h5 class="text-light">DANH SÁCH PHIM</h5>
+        <h5 class="text-light">TOP VIEW - RATING</h5>
       </div>
       <div class="row-2">
         <hr />
@@ -53,7 +53,6 @@
             
           </div>
         </div>
-       @include('frontend.master.fim_select')
       </div>
     </div>
     <!-- Script-Section -->

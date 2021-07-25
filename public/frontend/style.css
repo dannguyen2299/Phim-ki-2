@@ -63,6 +63,7 @@ header{
 .card-style-1 .infor{
     width: 100%;
 }
+
 .card-style-1 .episode{
     position: absolute;
     top:10px;
@@ -104,8 +105,10 @@ header{
     text-align: center;
     color: #fff;
     font-size: 13.28px;
-    font-weight: 700;
-    margin: 0;}
+    font-weight: 500;
+    margin: 0;
+    line-height: 1.6;
+}
 
 .card-style-1 .infor p{
     color: rgb(175, 175, 175);

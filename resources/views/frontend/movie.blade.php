@@ -260,18 +260,17 @@
           @include('frontend.master.fim_select')
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous">
     </script>
-    <!-- Script-Section -->
 
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js" crossorigin="anonymous">
-    </script>
+    </script> -->
 
 @endsection
 
@@ -321,7 +320,8 @@
             if (event.data == YT.PlayerState.PLAYING && !bool) {
                 time_id = setInterval(() => {
                     i++;
-                    if (i == 5) {
+                    // Sau 30*2=60s thi tinh 1 view
+                    if (i == 30) { 
                         clearInterval(time_id);
 
                         $.post('/update-view', {
@@ -335,7 +335,7 @@
 
                         bool = true;
                     }
-                }, 1000);
+                }, 2000);
             }
             if (event.data == YT.PlayerState.PAUSED && !bool) {
                 clearInterval(time_id);

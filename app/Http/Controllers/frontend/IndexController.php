@@ -47,5 +47,4 @@ class IndexController extends Controller
     public function getFilmNominate(){
         return $data['movie']=DB::select('select * from movie order by year ASC');
     }
-    
 }

@@ -47,7 +47,7 @@
         </div>
     </div>
     <!-- Script-Section -->
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
         $(document).ready(function() {
             $("#news-slider").owlCarousel({
                 items: 4,
@@ -65,8 +65,13 @@
     </script>
     <!-- Script-Section -->
 
-    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js" crossorigin="anonymous">
-    </script>
+    </script> -->
+    
+    <script src="{{ asset('').'admin/'.'js/jquery.min.js' }}"></script>
+    <script src="{{ asset('').'admin/'.'js/bootstrap.min.js' }}"></script>
+    <script src="{{ asset('').'admin/'.'' }}"></script>
+    <script src="{{ asset('').'admin/'.'' }}"></script>
 @endsection
