@@ -12,6 +12,16 @@ class FilterController extends Controller
         $movies = DB::table('movie')
         ->join('nation','nation.nation_id','=','movie.nation_id')->select('movie.*','nation.*','movie.status as movie_status','nation.status as nation_status')->get();
 
+
+        //Top View
+        $day_views = DB::table('movie')->join('episode','movie.movie_id','=','episode.movie_id')->leftJoin('movie_detail','movie.movie_id','=','movie_detail.movie_id')->select('movie.*', DB::raw('SUM(day_view) as day_views, SUM(month_view) as month_views, SUM(year_view) as year_views, AVG(rate) as rate'))->where([['movie.status','1'],['episode.status','1']])->groupBy('movie.movie_id')->orderBy('day_views')->limit(20)->get();
+        $month_views = DB::table('movie')->join('episode','movie.movie_id','=','episode.movie_id')->leftJoin('movie_detail','movie.movie_id','=','movie_detail.movie_id')->select('movie.*', DB::raw('SUM(day_view) as day_views, SUM(month_view) as month_views, SUM(year_view) as year_views, AVG(rate) as rate'))->where([['movie.status','1'],['episode.status','1']])->groupBy('movie.movie_id')->orderBy('month_views')->limit(20)->get();
+        $year_views = DB::table('movie')->join('episode','movie.movie_id','=','episode.movie_id')->leftJoin('movie_detail','movie.movie_id','=','movie_detail.movie_id')->select('movie.*', DB::raw('SUM(day_view) as day_views, SUM(month_view) as month_views, SUM(year_view) as year_views, AVG(rate) as rate'))->where([['movie.status','1'],['episode.status','1']])->groupBy('movie.movie_id')->orderBy('year_views')->limit(20)->get();
+        
+        $data['day_views'] = $day_views;
+        $data['month_views']= $month_views;
+        $data['year_views']= $year_views;
+
         // $data['movie_cat']=DB::table('category')->select('category_name')->join('category_detail','category_detail.category_id','=','category.category_id')->where('category_detail.movie_id',$movie_id)->distinct()->get();
         
         $data['nation'] = DB::table('nation')->get();
@@ -59,6 +69,16 @@ class FilterController extends Controller
         $data['nation'] = DB::table('nation')->get();
         $data['category_l'] = DB::table('category')->get();
 
+
+        //Top View
+        $day_views = DB::table('movie')->join('episode','movie.movie_id','=','episode.movie_id')->leftJoin('movie_detail','movie.movie_id','=','movie_detail.movie_id')->select('movie.*', DB::raw('SUM(day_view) as day_views, SUM(month_view) as month_views, SUM(year_view) as year_views, AVG(rate) as rate'))->where([['movie.status','1'],['episode.status','1']])->groupBy('movie.movie_id')->orderBy('day_views')->limit(20)->get();
+        $month_views = DB::table('movie')->join('episode','movie.movie_id','=','episode.movie_id')->leftJoin('movie_detail','movie.movie_id','=','movie_detail.movie_id')->select('movie.*', DB::raw('SUM(day_view) as day_views, SUM(month_view) as month_views, SUM(year_view) as year_views, AVG(rate) as rate'))->where([['movie.status','1'],['episode.status','1']])->groupBy('movie.movie_id')->orderBy('month_views')->limit(20)->get();
+        $year_views = DB::table('movie')->join('episode','movie.movie_id','=','episode.movie_id')->leftJoin('movie_detail','movie.movie_id','=','movie_detail.movie_id')->select('movie.*', DB::raw('SUM(day_view) as day_views, SUM(month_view) as month_views, SUM(year_view) as year_views, AVG(rate) as rate'))->where([['movie.status','1'],['episode.status','1']])->groupBy('movie.movie_id')->orderBy('year_views')->limit(20)->get();
+        
+        $data['day_views'] = $day_views;
+        $data['month_views']= $month_views;
+        $data['year_views']= $year_views;
+
         
         $episode_nums = array();
         $view_nums = array();
@@ -97,6 +117,16 @@ class FilterController extends Controller
         $data['nation'] = DB::table('nation')->get();
         $data['category_l'] = DB::table('category')->get();
 
+
+        //Top View
+        $day_views = DB::table('movie')->join('episode','movie.movie_id','=','episode.movie_id')->leftJoin('movie_detail','movie.movie_id','=','movie_detail.movie_id')->select('movie.*', DB::raw('SUM(day_view) as day_views, SUM(month_view) as month_views, SUM(year_view) as year_views, AVG(rate) as rate'))->where([['movie.status','1'],['episode.status','1']])->groupBy('movie.movie_id')->orderBy('day_views')->limit(20)->get();
+        $month_views = DB::table('movie')->join('episode','movie.movie_id','=','episode.movie_id')->leftJoin('movie_detail','movie.movie_id','=','movie_detail.movie_id')->select('movie.*', DB::raw('SUM(day_view) as day_views, SUM(month_view) as month_views, SUM(year_view) as year_views, AVG(rate) as rate'))->where([['movie.status','1'],['episode.status','1']])->groupBy('movie.movie_id')->orderBy('month_views')->limit(20)->get();
+        $year_views = DB::table('movie')->join('episode','movie.movie_id','=','episode.movie_id')->leftJoin('movie_detail','movie.movie_id','=','movie_detail.movie_id')->select('movie.*', DB::raw('SUM(day_view) as day_views, SUM(month_view) as month_views, SUM(year_view) as year_views, AVG(rate) as rate'))->where([['movie.status','1'],['episode.status','1']])->groupBy('movie.movie_id')->orderBy('year_views')->limit(20)->get();
+        
+        $data['day_views'] = $day_views;
+        $data['month_views']= $month_views;
+        $data['year_views']= $year_views;
+
         
         $episode_nums = array();
         $view_nums = array();
@@ -134,6 +164,16 @@ class FilterController extends Controller
         
         $data['nation'] = DB::table('nation')->get();
         $data['category_l'] = DB::table('category')->get();
+
+
+        //Top View
+        $day_views = DB::table('movie')->join('episode','movie.movie_id','=','episode.movie_id')->leftJoin('movie_detail','movie.movie_id','=','movie_detail.movie_id')->select('movie.*', DB::raw('SUM(day_view) as day_views, SUM(month_view) as month_views, SUM(year_view) as year_views, AVG(rate) as rate'))->where([['movie.status','1'],['episode.status','1']])->groupBy('movie.movie_id')->orderBy('day_views')->limit(20)->get();
+        $month_views = DB::table('movie')->join('episode','movie.movie_id','=','episode.movie_id')->leftJoin('movie_detail','movie.movie_id','=','movie_detail.movie_id')->select('movie.*', DB::raw('SUM(day_view) as day_views, SUM(month_view) as month_views, SUM(year_view) as year_views, AVG(rate) as rate'))->where([['movie.status','1'],['episode.status','1']])->groupBy('movie.movie_id')->orderBy('month_views')->limit(20)->get();
+        $year_views = DB::table('movie')->join('episode','movie.movie_id','=','episode.movie_id')->leftJoin('movie_detail','movie.movie_id','=','movie_detail.movie_id')->select('movie.*', DB::raw('SUM(day_view) as day_views, SUM(month_view) as month_views, SUM(year_view) as year_views, AVG(rate) as rate'))->where([['movie.status','1'],['episode.status','1']])->groupBy('movie.movie_id')->orderBy('year_views')->limit(20)->get();
+        
+        $data['day_views'] = $day_views;
+        $data['month_views']= $month_views;
+        $data['year_views']= $year_views;
 
         
         $episode_nums = array();

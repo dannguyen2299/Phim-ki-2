@@ -28,7 +28,7 @@
                     <div class="tab-list-movie">
                         <ul class="tab-movies">
                             <!-- Day view -->
-                            @if ($day_views!=null)
+                            @if (isset($day_views) && $day_views!=null)
                                 @foreach ($day_views as $row)
                             <li class="tab-movie">
                                 <a href="">
@@ -52,7 +52,7 @@
                         </ul>
                         <ul class="tab-movies">
                             <!-- Day view -->
-                            @if ($month_views!=null)
+                            @if (isset($month_views) && $month_views!=null)
                                 @foreach ($month_views as $row)
                             <li class="tab-movie">
                                 <a href="">
@@ -76,7 +76,7 @@
                         </ul>
                         <ul class="tab-movies">
                             <!-- Day view -->
-                            @if ($year_views!=null)
+                            @if (isset($year_views) && $year_views!=null)
                                 @foreach ($year_views as $row)
                             <li class="tab-movie">
                                 <a href="">

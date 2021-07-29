@@ -91,7 +91,7 @@ class SearchController extends Controller
 
         
 
-        $data['search_movie']=DB::table('movie')->join('episode','movie.movie_id','=','episode.movie_id')->groupBy('movie.movie_id')->paginate(10);
+        $data['search_movie']=DB::table('movie')->join('episode','movie.movie_id','=','episode.movie_id')->groupBy('movie.movie_id')->paginate(2);
         // Truy vấn quảng cáo
         $data['ads_banner1']=DB::table('advertisement')->where('ad_location',1)->where('status',1)->orderBy('ad_id','desc')->first();
 
