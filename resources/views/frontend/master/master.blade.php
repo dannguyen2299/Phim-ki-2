@@ -1,10 +1,18 @@
 
-<?php header("Content-Type: application/xml; charset=utf-8"); ?>
-<!DOCTYPE html>
-<html lang="en">
 <?php
-
 use Illuminate\Support\Facades\Session;
+use App\Http\Controllers\live_search\Config;
+use App\Http\Controllers\live_search\Handler;
+
+header("Content-Type: application/xml; charset=utf-8");
+
+if (session_id() == '') {
+  session_start();
+}
+
+$handler = new Handler();
+$handler->getJavascriptAntiBot();
+
 ?>
 
 <!-- ajax live search -->
@@ -14,17 +22,9 @@ use Illuminate\Support\Facades\Session;
 // file_exists(__DIR__ . $DS . 'core' . $DS . 'Handler.php') ? require_once __DIR__ . $DS . 'core' . $DS . 'Handler.php' : die('Handler.php not found');
 // file_exists(__DIR__ . $DS . 'core' . $DS . 'Config.php') ? require_once __DIR__ . $DS . 'core' . $DS . 'Config.php' : die('Config.php not found');
 
-use App\Http\Controllers\live_search\Config;
-use App\Http\Controllers\live_search\Handler;
-
-if (session_id() == '') {
-    session_start();
-}
-
-    $handler = new Handler();
-    $handler->getJavascriptAntiBot();
 ?>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -33,7 +33,6 @@ if (session_id() == '') {
   <link rel="icon" href="{{asset('').'frontend/img/icon.png'}}" type="image/gif" sizes="16x16">
   <base href="{{ asset('').'frontend/' }}">
   <link rel="stylesheet" href="style.css" />
-  {{-- <link href="css/style.css" rel="stylesheet" type="text/css" /> --}}
 
   <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css" crossorigin="anonymous" /> -->
   <link rel="stylesheet" href="owlcarousel/owl-carousel/owl.carousel.css">
@@ -172,7 +171,7 @@ if (session_id() == '') {
 <!-- Live Search Script -->
 <!-- <script type="text/javascript" src="plugins/Ajax_live_search/js/ajaxlivesearch.js"></script> -->
 
-
+<script src="script.js"></script>
 <script>
 
 $(document).ready(function(){

@@ -25,6 +25,20 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
+        //* Du lieu chay that
+        $schedule->command('dayView:reset')->daily();
+        $schedule->command('monthView:reset')->monthly();
+        $schedule->command('yearView:reset')->yearly();
+
+        //* Du lieu chay thu
+        // $schedule->command('dayView:reset')->everyMinute();
+        // $schedule->command('monthView:reset')->everyTwoMinutes();
+        // $schedule->command('yearView:reset')->everyThreeMinutes();
+    }
+
+    protected function scheduleTimezone()
+    {
+        return 'Asia/Ho_Chi_Minh';
     }
 
     /**

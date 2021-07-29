@@ -320,8 +320,8 @@
             if (event.data == YT.PlayerState.PLAYING && !bool) {
                 time_id = setInterval(() => {
                     i++;
-                    // Sau 30*2=60s thi tinh 1 view
-                    if (i == 30) { 
+                    //* Sau 30*2=60s thi tinh 1 view
+                    if (i == 2) { 
                         clearInterval(time_id);
 
                         $.post('/update-view', {
