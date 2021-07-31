@@ -4,7 +4,6 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
-use Carbon\Carbon;
 
 class YearView extends Command
 {
@@ -39,7 +38,6 @@ class YearView extends Command
      */
     public function handle()
     {
-        $now = Carbon::now()->second;
-        DB::table('episode')->update(['year_view'=>$now]);
+        DB::table('episode')->update(['year_view'=>0]);
     }
 }

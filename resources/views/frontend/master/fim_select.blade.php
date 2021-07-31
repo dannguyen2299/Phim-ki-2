@@ -16,7 +16,7 @@
         </div>
         <div class="tab-items">
             <ul>
-                <li class="tab-item tab--active">Day</li>
+                <li class="tab-item tab--active">Week</li>
                 <li class="tab-item">Month</li>
                 <li class="tab-item">Year</li>
                 <li class="tab-items__line"></li>
@@ -28,8 +28,8 @@
                     <div class="tab-list-movie">
                         <ul class="tab-movies">
                             <!-- Day view -->
-                            @if (isset($day_views) && $day_views!=null)
-                                @foreach ($day_views as $row)
+                            @if (isset($week_views) && $week_views!=null)
+                                @foreach ($week_views as $row)
                             <li class="tab-movie">
                                 <a href="">
                                     <div class="movie-poster">
@@ -40,7 +40,7 @@
                                             <h5 class="my-text-truncate">{{ $row->movie_name }}</h5>
                                         </div>
                                         <div class="movie-detail">
-                                            <span>Day View: {{ $row->day_views }}</span>
+                                            <span>Week View: {{ $row->week_views }}</span>
                                             <span>Rating: {{ round($row->rate==null?0:$row->rate,1) }}</span>
                                         </div>
                                     </div>

@@ -132,7 +132,7 @@ header{
     width: 265px;
 }
 #search {
-    top: 0px !important;
+    top: -4px !important;
     left: 0px !important;
 }
 /*OWL*/
@@ -321,7 +321,7 @@ html::-webkit-scrollbar-thumb:active {
       max-width: 60px;
   }
   .tab-list-movie .tab-movie .movie-name{
-      height: 50px;
+      max-height: 50px;
   }
   .tab-list-movie .tab-movie .movie-name h5{
       font-size: 15px;

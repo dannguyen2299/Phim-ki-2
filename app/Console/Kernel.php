@@ -26,7 +26,7 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')->hourly();
         //* Du lieu chay that
-        $schedule->command('dayView:reset')->daily();
+        $schedule->command('weekView:reset')->weekly();
         $schedule->command('monthView:reset')->monthly();
         $schedule->command('yearView:reset')->yearly();
 
@@ -49,7 +49,6 @@ class Kernel extends ConsoleKernel
     protected function commands()
     {
         $this->load(__DIR__.'/Commands');
-
         require base_path('routes/console.php');
     }
 }

@@ -24,13 +24,9 @@ class MovieController extends Controller
 
 
         //Top View
-        $day_views = DB::table('movie')->join('episode','movie.movie_id','=','episode.movie_id')->leftJoin('movie_detail','movie.movie_id','=','movie_detail.movie_id')->select('movie.*', DB::raw('SUM(day_view) as day_views, SUM(month_view) as month_views, SUM(year_view) as year_views, AVG(rate) as rate'))->where([['movie.status','1'],['episode.status','1']])->groupBy('movie.movie_id')->orderBy('day_views')->limit(20)->get();
-        $month_views = DB::table('movie')->join('episode','movie.movie_id','=','episode.movie_id')->leftJoin('movie_detail','movie.movie_id','=','movie_detail.movie_id')->select('movie.*', DB::raw('SUM(day_view) as day_views, SUM(month_view) as month_views, SUM(year_view) as year_views, AVG(rate) as rate'))->where([['movie.status','1'],['episode.status','1']])->groupBy('movie.movie_id')->orderBy('month_views')->limit(20)->get();
-        $year_views = DB::table('movie')->join('episode','movie.movie_id','=','episode.movie_id')->leftJoin('movie_detail','movie.movie_id','=','movie_detail.movie_id')->select('movie.*', DB::raw('SUM(day_view) as day_views, SUM(month_view) as month_views, SUM(year_view) as year_views, AVG(rate) as rate'))->where([['movie.status','1'],['episode.status','1']])->groupBy('movie.movie_id')->orderBy('year_views')->limit(20)->get();
-        
-        $data['day_views'] = $day_views;
-        $data['month_views']= $month_views;
-        $data['year_views']= $year_views;
+        $data['week_views'] = $this->get_movie_order_by('week_views');
+        $data['month_views']= $this->get_movie_order_by('month_views');
+        $data['year_views']= $this->get_movie_order_by('year_views');
 
           //Get episode 
         $data['movie_detail']=DB::table('movie')->join('nation','movie.nation_id','=','nation.nation_id')->where("movie_id",$movie_id)->first();
@@ -61,13 +57,9 @@ class MovieController extends Controller
         
 
         //Top View
-        $day_views = DB::table('movie')->join('episode','movie.movie_id','=','episode.movie_id')->leftJoin('movie_detail','movie.movie_id','=','movie_detail.movie_id')->select('movie.*', DB::raw('SUM(day_view) as day_views, SUM(month_view) as month_views, SUM(year_view) as year_views, AVG(rate) as rate'))->where([['movie.status','1'],['episode.status','1']])->groupBy('movie.movie_id')->orderBy('day_views')->limit(20)->get();
-        $month_views = DB::table('movie')->join('episode','movie.movie_id','=','episode.movie_id')->leftJoin('movie_detail','movie.movie_id','=','movie_detail.movie_id')->select('movie.*', DB::raw('SUM(day_view) as day_views, SUM(month_view) as month_views, SUM(year_view) as year_views, AVG(rate) as rate'))->where([['movie.status','1'],['episode.status','1']])->groupBy('movie.movie_id')->orderBy('month_views')->limit(20)->get();
-        $year_views = DB::table('movie')->join('episode','movie.movie_id','=','episode.movie_id')->leftJoin('movie_detail','movie.movie_id','=','movie_detail.movie_id')->select('movie.*', DB::raw('SUM(day_view) as day_views, SUM(month_view) as month_views, SUM(year_view) as year_views, AVG(rate) as rate'))->where([['movie.status','1'],['episode.status','1']])->groupBy('movie.movie_id')->orderBy('year_views')->limit(20)->get();
-        
-        $data['day_views'] = $day_views;
-        $data['month_views']= $month_views;
-        $data['year_views']= $year_views;
+        $data['week_views'] = $this->get_movie_order_by('week_views');
+        $data['month_views']= $this->get_movie_order_by('month_views');
+        $data['year_views']= $this->get_movie_order_by('year_views');
 
         // Get data navbar
         $nav = new NavController();
@@ -190,5 +182,9 @@ class MovieController extends Controller
         Session::put('dan_err_episode',$episode_id); 
         Session::put('message','Báo lỗi thành công, cảm ơn quý khán giả!');
         return redirect()->back();
+    }
+
+    private function get_movie_order_by($option){
+        return DB::select("SELECT movie.movie_id, movie.movie_name, movie.url_image, SUM(episode.week_view) as week_views, SUM(episode.month_view) as month_views, SUM(episode.year_view) as year_views, a.rating as rate from movie JOIN episode on movie.movie_id = episode.movie_id LEFT JOIN (SELECT movie_id, AVG(rate) as rating from movie_detail GROUP BY movie_id) as a on movie.movie_id = a.movie_id WHERE movie.status=1 and episode.status=1 GROUP BY movie.movie_id, movie.movie_name, movie.url_image ORDER BY $option");
     }
 }
