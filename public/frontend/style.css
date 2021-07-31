@@ -314,7 +314,7 @@ html::-webkit-scrollbar-thumb:active {
   }
   .tabs-UI .tab-contents .tab-movies{
       width: 342px;
-      height: 600px;
+      height: 550px;
       overflow-y: auto;
   }
   .tab-list-movie .tab-movie img{
@@ -326,7 +326,7 @@ html::-webkit-scrollbar-thumb:active {
   .tab-list-movie .tab-movie .movie-name h5{
       font-size: 15px;
       padding-top: 7px;
-      width: 250px;
+      width: 220px;
       color: #eee;
       line-height: 1.4;
   

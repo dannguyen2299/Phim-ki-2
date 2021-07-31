@@ -27,7 +27,7 @@
                 <li class="tab-content tab--active">
                     <div class="tab-list-movie">
                         <ul class="tab-movies">
-                            <!-- Day view -->
+                            <!-- Week view -->
                             @if (isset($week_views) && $week_views!=null)
                                 @foreach ($week_views as $row)
                             <li class="tab-movie">
@@ -40,7 +40,7 @@
                                             <h5 class="my-text-truncate">{{ $row->movie_name }}</h5>
                                         </div>
                                         <div class="movie-detail">
-                                            <span>Week View: {{ $row->week_views }}</span>
+                                            <span>View: {{ $row->week_views }}</span>
                                             <span>Rating: {{ round($row->rate==null?0:$row->rate,1) }}</span>
                                         </div>
                                     </div>
@@ -51,7 +51,7 @@
                             @endif
                         </ul>
                         <ul class="tab-movies">
-                            <!-- Day view -->
+                            <!-- Month view -->
                             @if (isset($month_views) && $month_views!=null)
                                 @foreach ($month_views as $row)
                             <li class="tab-movie">
@@ -64,7 +64,7 @@
                                             <h5 class="my-text-truncate">{{ $row->movie_name }}</h5>
                                         </div>
                                         <div class="movie-detail">
-                                            <span>Month View: {{ $row->month_views }}</span>
+                                            <span>View: {{ $row->month_views }}</span>
                                             <span>Rating: {{ round($row->rate==null?0:$row->rate,1) }}</span>
                                         </div>
                                     </div>
@@ -75,7 +75,7 @@
                             @endif
                         </ul>
                         <ul class="tab-movies">
-                            <!-- Day view -->
+                            <!-- Year view -->
                             @if (isset($year_views) && $year_views!=null)
                                 @foreach ($year_views as $row)
                             <li class="tab-movie">
@@ -88,7 +88,7 @@
                                             <h5 class="my-text-truncate">{{ $row->movie_name }}</h5>
                                         </div>
                                         <div class="movie-detail">
-                                            <span>Year View: {{ $row->year_views }}</span>
+                                            <span>View: {{ $row->year_views }}</span>
                                             <span>Rating: {{ round($row->rate==null?0:$row->rate,1) }}</span>
                                         </div>
                                     </div>
