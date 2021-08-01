@@ -135,7 +135,7 @@ class SearchController extends Controller
         
         $data['search_movie']=DB::select('SELECT movie.movie_id,movie.total_eps, movie.movie_name, movie.url_image FROM movie INNER JOIN episode ON episode.movie_id = movie.movie_id GROUP BY(movie.movie_id) ORDER BY(episode.episode_id) DESC LIMIT 0,24');
         
-        $data['search_movie']=DB::table('movie')->join('episode','movie.movie_id','=','episode.movie_id')->groupBy('movie.movie_id')->orderBy('episode.episode_id','desc')->paginate(12);
+        $data['search_movie']=DB::table('movie')->join('episode','movie.movie_id','=','episode.movie_id')->groupBy('movie.movie_id')->orderBy('episode.episode_id','asc')->paginate(12);
         // Truy vấn quảng cáo
         $data['ads_banner1']=DB::table('advertisement')->where('ad_location',1)->where('status',1)->orderBy('ad_id','desc')->first();
 
