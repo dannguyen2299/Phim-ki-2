@@ -15,7 +15,7 @@
             <div class="row">
                 <div class="col-xl-4">
                     <div class="card-style-1 ">
-                        <img src="{{ $movie_detail->url_image }}" alt="" />
+                        <img src="{{ $movie_detail->url_image }}" style="width:200.19px !important; height:auto !important" alt="" />
                     </div>
                 </div>
                 <div class="col-xl-8 mt-3">
