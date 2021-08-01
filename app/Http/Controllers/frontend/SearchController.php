@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
+use episode;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -100,5 +101,48 @@ class SearchController extends Controller
 
         return view('frontend.test',$data)->with('movies',$movies)->with('episode_nums',$episode_nums)->with("view_nums",$view_nums);
 
-}
+
+    }
+    function GetMovieByEpisodeNew(){
+        $movies = DB::table('movie')
+        ->join('nation','nation.nation_id','=','movie.nation_id')->select('movie.*','nation.*','movie.status as movie_status','nation.status as nation_status')->get();
+
+        // $data['movie_cat']=DB::table('category')->select('category_name')->join('category_detail','category_detail.category_id','=','category.category_id')->where('category_detail.movie_id',$movie_id)->distinct()->get();
+        
+        $data['nation'] = DB::table('nation')->get();
+        $data['category_l'] = DB::table('category')->get();
+
+        
+        $episode_nums = array();
+        $view_nums = array();
+        foreach($movies as &$movie){
+
+            //* Tổng số tập
+            $episodes = DB::table('movie')
+            ->join('episode','episode.movie_id','=','movie.movie_id')
+            ->where('movie.movie_id',$movie->movie_id)
+            ->where('episode.status','1')->get();
+            $episode_nums[$movie->movie_id] = count($episodes);
+
+            //* Tổng số view
+            $views = 0;
+            foreach($episodes as &$value){
+                $views = $views + $value->view;
+            }
+            $view_nums[$movie->movie_id] = $views;
+        }
+
+        
+        $data['search_movie']=DB::select('SELECT movie.movie_id,movie.total_eps, movie.movie_name, movie.url_image FROM movie INNER JOIN episode ON episode.movie_id = movie.movie_id GROUP BY(movie.movie_id) ORDER BY(episode.episode_id) DESC LIMIT 0,24');
+        
+        $data['search_movie']=DB::table('movie')->join('episode','movie.movie_id','=','episode.movie_id')->groupBy('movie.movie_id')->orderBy('episode.episode_id','desc')->paginate(12);
+        // Truy vấn quảng cáo
+        $data['ads_banner1']=DB::table('advertisement')->where('ad_location',1)->where('status',1)->orderBy('ad_id','desc')->first();
+
+        $data['ads_banner2']=DB::table('advertisement')->where('ad_location',2)->where('status',1)->orderBy('ad_id','desc')->get();
+        // End
+
+        return view('frontend.test',$data)->with('movies',$movies)->with('episode_nums',$episode_nums)->with("view_nums",$view_nums);
+    }
+
 }

@@ -44,11 +44,13 @@ class IndexController extends Controller
         ->with('episode_nums',$episode_nums)
         ->with('view_nums',$view_nums)->with('rates',$rates);
     }
+
+
     public function getFilmByNation($id){
         return $data['movie_v']=DB::select('select * from movie where nation_id = '.$id);
     }
     public function getFilmByEpisodeNew(){        
-        return $data['movie_up']=DB::select('select * from movie  order by year DESC LIMIT 8');
+        return $data['movie_up']=DB::select('SELECT movie.movie_id,movie.total_eps, movie.movie_name, movie.url_image FROM movie INNER JOIN episode ON episode.movie_id = movie.movie_id GROUP BY(movie.movie_id) ORDER BY(episode.episode_id) DESC LIMIT 0,8');
     }
     public function getFilmNominate(){
         return $data['movie']=DB::select('select * from movie order by year ASC');
