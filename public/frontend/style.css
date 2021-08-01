@@ -50,8 +50,7 @@ header{
     color:#cdcdcd;
 }
 .card-style-1 img{
-    height: 250px;
-    width: 167.29px;  
+    width: 200.29px;
     /* Sửa ở đây nhé */
 }
 
@@ -166,6 +165,7 @@ header{
 	color: #fff;
 	font-size: 16px;
 }
+
 
 .owl-controls .owl-next:after {
 	content: '\f105';
@@ -375,3 +375,13 @@ html::-webkit-scrollbar-thumb:active {
     background: #dc3545; 
   }
 /** End Tabs UI */
+
+/** The loai phim */
+.my-text-truncate{
+    line-height: 1.6;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}

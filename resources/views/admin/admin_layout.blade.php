@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Session;
     
     <!-- Bootstrap CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="js/jquery.min.js"></script>
 
     <!-- Font Awesome CSS -->
     <link href="font-awesome/css/all.css" rel="stylesheet" type="text/css" />
@@ -410,9 +411,9 @@ use Illuminate\Support\Facades\Session;
 
 
     <!-- App js -->
-    <script src="js/admin.js"></script>
     
-    <script src="js/jquery.min.js"></script>
+    <!-- App js -->
+    <script src="js/admin.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.nicescroll.js"></script>
     <script src="plugins/datatables/datatables.min.js"></script>
@@ -426,14 +427,14 @@ use Illuminate\Support\Facades\Session;
             $('#dataTable').DataTable();
 
             // counter-up
-            $('.counter').counterUp({
-                delay: 10,
-                time: 600
-            });
+            // $('.counter').counterUp({
+            //     delay: 10,
+            //     time: 600
+            // });
         });
 
         // NAVIGATION HIGHLIGHT & OPEN PARENT
-        $("#sidebar-menu ul li.submenu a.active").parents("li:last").children("a:first").addClass("active").trigger("click");
+        // $("#sidebar-menu ul li.submenu a.active").parents("li:last").children("a:first").addClass("active").trigger("click");
     </script>
 
         

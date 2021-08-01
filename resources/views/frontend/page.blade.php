@@ -14,15 +14,9 @@
         <div class="col">
             <div class="row">
                 <div class="col-xl-4">
-                    @if ($episode!=null)
-                    <a href="../movie/page-movie-{{ $movie_detail->movie_id }}&episode-{{ $episode->episode_id }}&server-{{ 1 }}.html">
-                        @else
-                        <a href="../movie/page-movie-{{ $movie_detail->movie_id }}&episode-{{ 0 }}&server-{{ 1 }}.html">
-                            @endif
-                            <div class="card-style-1 ">
-                                <img src="{{ $movie_detail->url_image }}" alt="" />
-                            </div>
-                        </a>
+                    <div class="card-style-1 ">
+                        <img src="{{ $movie_detail->url_image }}" alt="" />
+                    </div>
                 </div>
                 <div class="col-xl-8 mt-3">
                     <table id="">
@@ -66,10 +60,9 @@
                                 <h6 class="text-secondary mt-2">Thể loại: </h6>
                             </td>
                             <td style="width:300px">
-                                <h6 class="text-danger mt-2">
+                                <h6 class="text-danger mt-2 my-text-truncate">
                                     @foreach ($movie_cat as &$row)
-                                    {{ $row->category_name }}
-
+                                        {{ $row->category_name }}, 
                                     @endforeach
                                 </h6>
                             </td>
@@ -88,7 +81,7 @@
                                     })
                                 </script>
                                 @endif
-                                <a href="" class="btn btn-outline-success mt-3 ml-3 mr-3">DOWNLOAD</a>
+                                <!-- <a href="" class="btn btn-outline-success mt-3 ml-3 mr-3">DOWNLOAD</a> -->
                                 @if(Session::has('user_id'))
 
                                 @if($follow==2){

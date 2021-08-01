@@ -31,7 +31,7 @@
                             @if (isset($week_views) && $week_views!=null)
                                 @foreach ($week_views as $row)
                             <li class="tab-movie">
-                                <a href="">
+                                <a href="/movie/movie-{{ $row->movie_id }}.html">
                                     <div class="movie-poster">
                                         <img src="{{ $row->url_image }}" alt="">
                                     </div>
@@ -55,7 +55,7 @@
                             @if (isset($month_views) && $month_views!=null)
                                 @foreach ($month_views as $row)
                             <li class="tab-movie">
-                                <a href="">
+                                <a href="/movie/movie-{{ $row->movie_id }}.html">
                                     <div class="movie-poster">
                                         <img src="{{ $row->url_image }}" alt="">
                                     </div>
@@ -79,7 +79,7 @@
                             @if (isset($year_views) && $year_views!=null)
                                 @foreach ($year_views as $row)
                             <li class="tab-movie">
-                                <a href="">
+                                <a href="/movie/movie-{{ $row->movie_id }}.html">
                                     <div class="movie-poster">
                                         <img src="{{ $row->url_image }}" alt="">
                                     </div>

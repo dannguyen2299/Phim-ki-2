@@ -76,7 +76,6 @@
            <a href="/processLogin/facebook" style="background-color: #3b579d;color:#fff; width: 40%; text-align: start" class="btn">Kết nối với facebook</a>
          </div> --}}
             </div>
-            @include('frontend.master.fim_select')
         </div>
 
         <div class="row" style="height: 10vh">
