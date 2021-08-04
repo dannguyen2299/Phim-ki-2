@@ -43,6 +43,8 @@ Route::get('filter-nation/nation-{nation_id}', 'frontend\FilterController@GetNat
 Route::get('new-movie-update', 'frontend\FilterController@GetNewMovie');
 Route::get('movie-viet-nam', 'frontend\FilterController@GetMovieVN');
 
+//Lọc theo nhiều điều kiện
+Route::get('filter-movie','frontend\FilterController@GetFilterMovie');
 // END
 
 //* Rating

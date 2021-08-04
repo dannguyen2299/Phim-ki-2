@@ -21,7 +21,7 @@
     <div class="form-group">
       <label class="label_title">Loại phim</label>
       <select class="form-control select2" id="category" name="category" style="width: 100%;">
-          <option  value="">---Tất cả---</option>
+          <option value="">---Tất cả---</option>
         @foreach ($category_parent as $row)
           <option value="{{ $row->category_id }}">{{ $row->category_name }}</option>
         @endforeach
@@ -43,7 +43,7 @@
     <div class="form-group">
       <label class="label_title">Quốc gia</label>
       <select class="form-control select2" id="nation" name="nation" style="width: 100%;">
-      <option  value="">---Tất cả---</option>
+      <option value="">---Tất cả---</option>
       @foreach ($nation as $row)
       <option value="{{ $row->nation_id }}">{{ $row->nation_name }}</option>
       @endforeach
@@ -55,7 +55,7 @@
     <div class="form-group">
       <label class="label_title">Năm phát hành</label>
       <select class="form-control select2" id="year" name="year" style="width:100%;">
-      <option  value="">---Tất cả---</option>
+      <option value="">---Tất cả---</option>
       @foreach ($yearR as $row)
       <option value="{{ $row->movie_id }}">{{ $row->year }}</option>
       @endforeach
@@ -64,7 +64,7 @@
   
 </div>
 {{-- {{ Form::Submit('submit',['class'=>'btn btn-primary h-25 col-md-2 col-xs-6 mt-5']) }} --}}
-  <button type="submit" class="btn btn-primary h-25 col-md-2 col-xs-6 mt-5">Duyệt Phim</button>
+  <button type="submit" id="btn_submit" class="btn btn-primary h-25 col-md-2 col-xs-6 mt-5">Duyệt Phim</button>
    
 
   </div>
@@ -82,7 +82,11 @@
       <div class="row">
         <div class="col">
           <div class="row" id="respon_card">
-            @foreach ($category_by_id as $row )
+            
+           
+          
+          
+              @foreach ($category_by_id as $row )
            
                   <a href="/movie/movie-{{ $row->movie_id }}.html" class="ml-2 mt-3 mr-1">
                     <div class="card-style-1"  id="respon">
@@ -109,7 +113,13 @@
                 <!-- </div>
               </div>
             </div> -->
-            @endforeach
+            
+              @endforeach
+           
+           
+              
+            
+          
           </div>
          
           <div class="row-2 mt-4 mb-4">
@@ -156,4 +166,17 @@
       src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"
       crossorigin="anonymous"
     ></script> -->
+    {{-- <script>
+      $(document).ready(function(){
+$("#btn_submit").click(function(){
+  var category=$("#category").val()
+  var kind=$("#kind").val()
+  var nation=$("#nation").val()
+  var year=$("#year").val()
+  if(category="" && kind="" && nation="" && year=""){
+    alert("aca");
+  }
+})
+      });
+      </script> --}}
 @endsection

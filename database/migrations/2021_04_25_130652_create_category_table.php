@@ -17,6 +17,7 @@ class CreateCategoryTable extends Migration
             $table->increments('category_id');
             $table->string('category_name',100)->nullable(false);
             $table->integer('status')->unsigned()->nullable(false);
+            $table->integer('parentID')->unsigned()->nullable(true)->default(0);
             
         });
     }

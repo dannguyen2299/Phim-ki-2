@@ -32,6 +32,9 @@ $handler->getJavascriptAntiBot();
   <title>@yield('title')</title>
   <link rel="icon" href="{{asset('').'frontend/img/icon.png'}}" type="image/gif" sizes="16x16">
   <base href="{{ asset('').'frontend/' }}">
+  <!-- Select2 -->
+  <link rel="stylesheet" href="select2/css/select2.min.css" />
+  <link rel="stylesheet" href="select2-bootstrap4-theme/select2-bootstrap4.min.css" />
   <link rel="stylesheet" href="style.css" />
 
   <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css" crossorigin="anonymous" /> -->
@@ -170,7 +173,8 @@ $handler->getJavascriptAntiBot();
 
 <!-- Live Search Script -->
 <!-- <script type="text/javascript" src="plugins/Ajax_live_search/js/ajaxlivesearch.js"></script> -->
-
+ <!-- Select2 -->
+ <script src="select2/js/select2.full.min.js"></script>
 <script src="script.js"></script>
 <script>
 
@@ -197,7 +201,18 @@ $(document).ready(function(){
 
         }
     });
-})
+});
+
+$(function() {
+            //Initialize Select2 Elements
+            $('.select2').select2()
+
+            //Initialize Select2 Elements
+            $('.select2bs4').select2({
+                    theme: 'bootstrap4'
+                })
+               
+        })
 </script>
 
 </html> 
