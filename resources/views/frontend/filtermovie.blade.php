@@ -3,70 +3,66 @@
 @section('content')
   
 <div class="container">
-  <form method="GET" action="/filter-movie" >
+<form method="GET" action="/filter-movie" >
   <div class="row">
-    
+     
     <div class="col-md-2 col-xs-6">
       <div class="form-group">
         <label class="label_title">Sắp xếp</label>
         <select class="form-control select2" id="sl_all" name="sl_all" style="width: 100%;">
           <option value="">---Tất cả---</option>
-          <option value="1">Theo ngày mới nhất</option>
-          <option value="2">View cao nhất</option>
+          <option value="mov.movie_id">Theo ngày mới nhất</option>
+          <option value="views">View cao nhất</option>
           
         </select>
       </div>
-  </div>
-  <div class="col-md-2 col-xs-6">
-    <div class="form-group">
-      <label class="label_title">Loại phim</label>
-      <select class="form-control select2" id="category" name="category" style="width: 100%;">
-          <option value="">---Tất cả---</option>
-        @foreach ($category_parent as $row)
-          <option value="{{ $row->category_id }}">{{ $row->category_name }}</option>
+    </div>
+    <div class="col-md-2 col-xs-6">
+      <div class="form-group">
+        <label class="label_title">Loại phim</label>
+        <select class="form-control select2" id="category" name="category" style="width: 100%;">
+            <option value="">---Tất cả---</option>
+          @foreach ($category_parent as $row)
+            <option value="{{ $row->category_id }}">{{ $row->category_name }}</option>
+          @endforeach
+        </select>
+      </div>
+    </div>
+    <div class="col-md-2 col-xs-6">
+      <div class="form-group">
+        <label class="label_title">Thể loại</label>
+        <select class="form-control select2" id="kind" name="kind" style="width: 100%;">
+        <option value="">---Tất cả---</option>
+        @foreach ($category_son as $row)
+        <option value="{{ $row->category_id }}">{{ $row->category_name }}</option>
         @endforeach
-      </select>
-  </div>
-  </div>
-  <div class="col-md-2 col-xs-6">
-    <div class="form-group">
-      <label class="label_title">Thể loại</label>
-      <select class="form-control select2" id="kind" name="kind" style="width: 100%;">
-      <option value="">---Tất cả---</option>
-      @foreach ($category_son as $row)
-      <option value="{{ $row->category_id }}">{{ $row->category_name }}</option>
-      @endforeach
-    </select>
-  </div>
-  </div>
-  <div class="col-md-2 col-xs-6">
-    <div class="form-group">
-      <label class="label_title">Quốc gia</label>
-      <select class="form-control select2" id="nation" name="nation" style="width: 100%;">
-      <option value="">---Tất cả---</option>
-      @foreach ($nation as $row)
-      <option value="{{ $row->nation_id }}">{{ $row->nation_name }}</option>
-      @endforeach
-    </select>
-  </div>
-</div>
-  
-  <div class="col-md-2 col-xs-6">
-    <div class="form-group">
-      <label class="label_title">Năm phát hành</label>
-      <select class="form-control select2" id="year" name="year" style="width:100%;">
-      <option value="">---Tất cả---</option>
-      @foreach ($yearR as $row)
-      <option value="{{ $row->movie_id }}">{{ $row->year }}</option>
-      @endforeach
-    </select>
-  </div>
-  
-</div>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-2 col-xs-6">
+      <div class="form-group">
+        <label class="label_title">Quốc gia</label>
+        <select class="form-control select2" id="nation" name="nation" style="width: 100%;">
+        <option value="">---Tất cả---</option>
+        @foreach ($nation as $row)
+        <option value="{{ $row->nation_id }}">{{ $row->nation_name }}</option>
+        @endforeach
+        </select>
+      </div>
+    </div>
+    <div class="col-md-2 col-xs-6">
+      <div class="form-group">
+        <label class="label_title">Năm phát hành</label>
+        <select class="form-control select2" id="year" name="year" style="width:100%;">
+        <option value="">---Tất cả---</option>
+        @foreach ($yearR as $row)
+        <option value="{{ $row->year }}">{{ $row->year }}</option>
+        @endforeach
+        </select>
+      </div>
+    </div>
 {{-- {{ Form::Submit('submit',['class'=>'btn btn-primary h-25 col-md-2 col-xs-6 mt-5']) }} --}}
   <button type="submit" id="btn_submit" class="btn btn-primary h-25 col-md-2 col-xs-6 mt-5">Duyệt Phim</button>
-   
-
   </div>
    </form>
 </div>
@@ -82,12 +78,9 @@
       <div class="row">
         <div class="col">
           <div class="row" id="respon_card">
-            
-           
-          
-          
-              @foreach ($category_by_id as $row )
-           
+
+
+              @foreach ($category_filter as $row )
                   <a href="/movie/movie-{{ $row->movie_id }}.html" class="ml-2 mt-3 mr-1">
                     <div class="card-style-1"  id="respon">
                       <img src="{{ $row->url_image }}" alt="" />
@@ -121,19 +114,50 @@
             
           
           </div>
-         
+          
           <div class="row-2 mt-4 mb-4">
            
             <nav aria-label="Page navigation example">
-              {{ $category_by_id->links() }}
+                    <ul class="pagination">
+                      @if($number_page>3)
+                        
+                         <li class="page-item">
+              <a class="page-link pages" href="{{url()->full()}}&page=1" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Previous</span>
+              </a>
+            </li>
+                      @endif
            
+            @for($i=1;$i<=$totalPages;$i++)
+                 @if($i>($number_page-3) && $i<($number_page+3))
+                 <li class="page-item"><a class="page-link pages" href="{{url()->full()}}&page={{ $i }}">{{ $i }}</a></li>
+                
+                 @endif 
+              
+            @endfor
+            
+            @if($number_page<($totalPages-3))
+              <li class="page-item"> 
+              <a class="page-link pages" href="{{url()->full()}}&page={{ $totalPages }}" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+              </a>
+            </li>
+            @endif
+            
+          </ul>
+          
             </nav>
             
           </div>
+          
         </div>
+        {{-- </form> --}}
        @include('frontend.master.fim_select')
       </div>
     </div>
+    {{-- </form> --}}
     <!-- Script-Section -->
    
     <!-- <script type="text/javascript">

@@ -15,7 +15,7 @@ class CreateDetailFilmTable extends Migration
     {
         Schema::create('movie_detail', function (Blueprint $table) {
             $table->increments('idd');
-            $table->integer('rate')->unsigned();
+            $table->integer('rate')->unsigned()->default(0);
             $table->integer('follow')->unsigned();
             $table->integer('status')->unsigned();
             // Tao khoa ngoai

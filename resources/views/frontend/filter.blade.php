@@ -11,8 +11,8 @@
         <label class="label_title">Sắp xếp</label>
         <select class="form-control select2" id="sl_all" name="sl_all" style="width: 100%;">
           <option value="">---Tất cả---</option>
-          <option value="1">Theo ngày mới nhất</option>
-          <option value="2">View cao nhất</option>
+          <option value="mov.movie_id">Theo ngày mới nhất</option>
+          <option value="views">View cao nhất</option>
           
         </select>
       </div>
@@ -57,7 +57,7 @@
       <select class="form-control select2" id="year" name="year" style="width:100%;">
       <option  value="">---Tất cả---</option>
       @foreach ($yearR as $row)
-      <option value="{{ $row->movie_id }}">{{ $row->year }}</option>
+      <option value="{{ $row->year }}">{{ $row->year }}</option>
       @endforeach
     </select>
   </div>
@@ -114,7 +114,7 @@
          
           <div class="row-2 mt-4 mb-4">
            
-            <nav aria-label="Page navigation example">
+            <nav aria-label="Page navigation example" class="pages_nav">
               {{ $category_by_id->links() }}
            
             </nav>

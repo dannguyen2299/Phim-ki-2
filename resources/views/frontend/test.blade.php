@@ -5,7 +5,7 @@
 
     <div class="container">
       <div class="row-2 mt-4">
-        <h5 class="text-light">TOP VIEW - RATING</h5>
+        <h5 class="text-light">Movie</h5>
       </div>
       <div class="row-2">
         <hr />
@@ -46,7 +46,7 @@
         
           <div class="row-2 mt-4 mb-4">
            
-            <nav aria-label="Page navigation example">
+            <nav aria-label="Page navigation example" class="pages_nav">
               {{ $search_movie->links() }}
             
             </nav>

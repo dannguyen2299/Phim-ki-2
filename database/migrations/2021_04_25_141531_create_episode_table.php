@@ -19,10 +19,10 @@ class CreateEpisodeTable extends Migration
             $table->string('url_first',255)->nullable(false);
             $table->string('url_second',255)->nullable();
             $table->integer('view')->unsigned()->nullable()->default(0);
-            $table->integer('day_view')->unsigned()->nullable()->default(0);
+            $table->integer('week_view')->unsigned()->nullable()->default(0);
             $table->integer('month_view')->unsigned()->nullable()->default(0);
             $table->integer('year_view')->unsigned()->nullable()->default(0);
-            $table->integer('status')->unsigned();
+            $table->integer('status')->unsigned()->default(1);
             // Tao khoa ngoai
             $table->integer('movie_id')->unsigned();
             $table->foreign('movie_id')->references('movie_id')->on('movie')->onDelete('cascade');

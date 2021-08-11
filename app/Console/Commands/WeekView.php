@@ -3,17 +3,15 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\DB;
-use Carbon\Carbon;
 
-class DayView extends Command
+class WeekView extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'dayView:reset';
+    protected $signature = 'weekView:reset';
 
     /**
      * The console command description.
@@ -39,7 +37,6 @@ class DayView extends Command
      */
     public function handle()
     {
-        $now = Carbon::now()->second;
-        DB::table('episode')->update(['day_view'=>$now]);
+        DB::table('episode')->update(['week_view'=>0]);
     }
 }

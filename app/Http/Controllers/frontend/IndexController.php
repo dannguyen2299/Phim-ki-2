@@ -20,6 +20,7 @@ class IndexController extends Controller
         $detail = new DetailFilmController();
         $episode_nums = $detail->getEpisodeByMovie($movies);
         $view_nums = $detail->getViewByMovie($movies);
+        
         $rate_obj = new RateController();       
         $rates = $rate_obj->getRateByMovie($movies);
 
@@ -34,26 +35,30 @@ class IndexController extends Controller
         $data['ads_banner2']= $ads->getAdsByLocation(2);
 
         //Top View
-        $day_views = DB::table('movie')->join('episode','movie.movie_id','=','episode.movie_id')->leftJoin('movie_detail','movie.movie_id','=','movie_detail.movie_id')->select('movie.*', DB::raw('SUM(day_view) as day_views, SUM(month_view) as month_views, SUM(year_view) as year_views, AVG(rate) as rate'))->where([['movie.status','1'],['episode.status','1']])->groupBy('movie.movie_id')->orderBy('day_views')->limit(20)->get();
-        $month_views = DB::table('movie')->join('episode','movie.movie_id','=','episode.movie_id')->leftJoin('movie_detail','movie.movie_id','=','movie_detail.movie_id')->select('movie.*', DB::raw('SUM(day_view) as day_views, SUM(month_view) as month_views, SUM(year_view) as year_views, AVG(rate) as rate'))->where([['movie.status','1'],['episode.status','1']])->groupBy('movie.movie_id')->orderBy('month_views')->limit(20)->get();
-        $year_views = DB::table('movie')->join('episode','movie.movie_id','=','episode.movie_id')->leftJoin('movie_detail','movie.movie_id','=','movie_detail.movie_id')->select('movie.*', DB::raw('SUM(day_view) as day_views, SUM(month_view) as month_views, SUM(year_view) as year_views, AVG(rate) as rate'))->where([['movie.status','1'],['episode.status','1']])->groupBy('movie.movie_id')->orderBy('year_views')->limit(20)->get();
-        
-        $data['day_views'] = $day_views;
-        $data['month_views']= $month_views;
-        $data['year_views']= $year_views;
 
+        $data['week_views'] = $this->get_movie_order_by('week_views');
+        $data['month_views']= $this->get_movie_order_by('month_views');
+        $data['year_views']= $this->get_movie_order_by('year_views');      
+        
 
         return view('frontend.index',$data)->with('movies',$movies)
         ->with('episode_nums',$episode_nums)
         ->with('view_nums',$view_nums)->with('rates',$rates);
     }
+
+
     public function getFilmByNation($id){
         return $data['movie_v']=DB::select('select * from movie where nation_id = '.$id);
     }
     public function getFilmByEpisodeNew(){        
-        return $data['movie_up']=DB::select('select * from movie  order by year DESC LIMIT 8');
+        return $data['movie_up']=DB::select('SELECT  movie.movie_id,movie.total_eps, movie.movie_name, movie.url_image FROM movie INNER JOIN episode ON episode.movie_id = movie.movie_id GROUP BY(movie.movie_id) ORDER BY max(episode.episode_id) desc LIMIT 0,8');
     }
     public function getFilmNominate(){
         return $data['movie']=DB::select('select * from movie order by year ASC');
+    }
+
+    private function get_movie_order_by($option){
+        return DB::select("SELECT movie.movie_id, movie.movie_name, movie.url_image, SUM(episode.week_view) as week_views, SUM(episode.month_view) as month_views, SUM(episode.year_view) as year_views, a.rating as rate from movie JOIN episode on movie.movie_id = episode.movie_id LEFT JOIN (select movie_id, AVG(rate) as rating from movie_detail GROUP BY movie_id) as a on movie.movie_id = a.movie_id WHERE movie.status=1 and episode.status=1 GROUP BY movie.movie_id, movie.movie_name ORDER BY $option DESC");
+        
     }
 }

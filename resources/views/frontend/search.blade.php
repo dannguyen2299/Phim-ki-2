@@ -50,7 +50,7 @@
         
           <div class="row-2 mt-4 mb-4">
            
-            <nav aria-label="Page navigation example">
+            <nav aria-label="Page navigation example" class="pages_nav">
               {{ $search_movie->links() }}
             
             </nav>

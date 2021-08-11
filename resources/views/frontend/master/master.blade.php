@@ -50,6 +50,7 @@ $handler->getJavascriptAntiBot();
   <!-- Live Search Styles -->
   <link rel="stylesheet" href="plugins/Ajax_live_search/css/animation.css">
   <link rel="stylesheet" type="text/css" href="plugins/Ajax_live_search/css/ajaxlivesearch.css">
+  <link rel="stylesheet" href="plugins/Ajax_live_search/css/fontello.css">
 
   </head>
 

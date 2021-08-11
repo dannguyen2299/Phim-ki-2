@@ -39,6 +39,8 @@ Route::get('select-system', 'frontend\SearchController@GetChoice');
 // Lọc theo thể loại và quốc gia
 Route::get('filter/category-{category_id}', 'frontend\FilterController@GetFilter');
 Route::get('filter-nation/nation-{nation_id}', 'frontend\FilterController@GetNation');
+
+Route::get('episode-new', 'frontend\SearchController@GetMovieByEpisodeNew');
 // 2 nút Xem thêm 
 Route::get('new-movie-update', 'frontend\FilterController@GetNewMovie');
 Route::get('movie-viet-nam', 'frontend\FilterController@GetMovieVN');

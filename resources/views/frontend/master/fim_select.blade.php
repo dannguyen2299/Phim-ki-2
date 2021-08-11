@@ -16,7 +16,7 @@
         </div>
         <div class="tab-items">
             <ul>
-                <li class="tab-item tab--active">Day</li>
+                <li class="tab-item tab--active">Week</li>
                 <li class="tab-item">Month</li>
                 <li class="tab-item">Year</li>
                 <li class="tab-items__line"></li>
@@ -27,11 +27,11 @@
                 <li class="tab-content tab--active">
                     <div class="tab-list-movie">
                         <ul class="tab-movies">
-                            <!-- Day view -->
-                            @if (isset($day_views) && $day_views!=null)
-                                @foreach ($day_views as $row)
+                            <!-- Week view -->
+                            @if (isset($week_views) && $week_views!=null)
+                                @foreach ($week_views as $row)
                             <li class="tab-movie">
-                                <a href="">
+                                <a href="/movie/movie-{{ $row->movie_id }}.html">
                                     <div class="movie-poster">
                                         <img src="{{ $row->url_image }}" alt="">
                                     </div>
@@ -40,7 +40,7 @@
                                             <h5 class="my-text-truncate">{{ $row->movie_name }}</h5>
                                         </div>
                                         <div class="movie-detail">
-                                            <span>Day View: {{ $row->day_views }}</span>
+                                            <span>View: {{ $row->week_views }}</span>
                                             <span>Rating: {{ round($row->rate==null?0:$row->rate,1) }}</span>
                                         </div>
                                     </div>
@@ -51,11 +51,11 @@
                             @endif
                         </ul>
                         <ul class="tab-movies">
-                            <!-- Day view -->
+                            <!-- Month view -->
                             @if (isset($month_views) && $month_views!=null)
                                 @foreach ($month_views as $row)
                             <li class="tab-movie">
-                                <a href="">
+                                <a href="/movie/movie-{{ $row->movie_id }}.html">
                                     <div class="movie-poster">
                                         <img src="{{ $row->url_image }}" alt="">
                                     </div>
@@ -64,7 +64,7 @@
                                             <h5 class="my-text-truncate">{{ $row->movie_name }}</h5>
                                         </div>
                                         <div class="movie-detail">
-                                            <span>Month View: {{ $row->month_views }}</span>
+                                            <span>View: {{ $row->month_views }}</span>
                                             <span>Rating: {{ round($row->rate==null?0:$row->rate,1) }}</span>
                                         </div>
                                     </div>
@@ -75,11 +75,11 @@
                             @endif
                         </ul>
                         <ul class="tab-movies">
-                            <!-- Day view -->
+                            <!-- Year view -->
                             @if (isset($year_views) && $year_views!=null)
                                 @foreach ($year_views as $row)
                             <li class="tab-movie">
-                                <a href="">
+                                <a href="/movie/movie-{{ $row->movie_id }}.html">
                                     <div class="movie-poster">
                                         <img src="{{ $row->url_image }}" alt="">
                                     </div>
@@ -88,7 +88,7 @@
                                             <h5 class="my-text-truncate">{{ $row->movie_name }}</h5>
                                         </div>
                                         <div class="movie-detail">
-                                            <span>Year View: {{ $row->year_views }}</span>
+                                            <span>View: {{ $row->year_views }}</span>
                                             <span>Rating: {{ round($row->rate==null?0:$row->rate,1) }}</span>
                                         </div>
                                     </div>

@@ -4,7 +4,6 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
-use Carbon\Carbon;
 
 class MonthView extends Command
 {
@@ -39,7 +38,6 @@ class MonthView extends Command
      */
     public function handle()
     {
-        $now = Carbon::now()->second;
-        DB::table('episode')->update(['month_view'=>$now]);
+        DB::table('episode')->update(['month_view'=>0]);
     }
 }
