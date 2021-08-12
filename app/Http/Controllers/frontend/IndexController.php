@@ -41,7 +41,8 @@ class IndexController extends Controller
         $data['year_views']= $this->get_movie_order_by('year_views');      
         
 
-        return view('frontend.index',$data)->with('movies',$movies)
+        return view('frontend.index',$data)
+        ->with('movies',$movies)
         ->with('episode_nums',$episode_nums)
         ->with('view_nums',$view_nums)->with('rates',$rates);
     }

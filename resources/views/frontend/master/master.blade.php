@@ -79,11 +79,9 @@ $handler->getJavascriptAntiBot();
                 
                 @foreach($category_l as $row)
                 
-
                   <a class="dropdown-item text-light pt-2 pl-4 pb-2" href="../filter/category-{{ $row->category_id }}">{{ $row->category_name }}</a>
-            
-
-                @endforeach
+                
+                  @endforeach
 
               </div>
 

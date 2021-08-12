@@ -102,7 +102,7 @@
                     @endforeach
                 </div>
                 <div class="row-2 mt-4 mb-3 " id="respon_card">
-                    <a href="/episode-new" class="text-danger">Xem thêm >>></a>
+                    <a href="/new-movie-update" class="text-danger">Xem thêm >>></a>
                 </div>
                 <div class="row-2 mt-4">
                     <h5 class="text-light">PHIM VIỆT NAM</h5>

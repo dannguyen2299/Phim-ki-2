@@ -38,11 +38,10 @@
                       </div>
                     </div>
                   </a>
-              
+
             @endforeach
-           
+
           </div>
-         
         
           <div class="row-2 mt-4 mb-4">
            
