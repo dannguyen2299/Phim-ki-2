@@ -99,9 +99,7 @@ $handler->getJavascriptAntiBot();
 
                 @endforeach
             </li>
-            <li class="nav-item active">
-              <a class="nav-link text-light" href="#">Top Idmb <span class="sr-only">(current)</span></a>
-            </li>
+  
             @if(Session::has('name'))
             <li class="nav-item active">
               <a class="nav-link text-danger" href="../film_tick">Hộp phim<span class="sr-only">(current)</span></a>

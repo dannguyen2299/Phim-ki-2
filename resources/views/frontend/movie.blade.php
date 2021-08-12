@@ -192,12 +192,12 @@
 
               @foreach ($movie_page4 as $row1)
               @if ($movie_page3[0]->episode_id == $row1->episode_id)
-                  <a style="width: 70px;"
+                  <a style="width: 80px;"
                       href="../movie/page-movie-{{ $row1->movie_id }}&episode-{{ $row1->episode_id }}&server-{{ 1 }}.html"
                       class="btn btn-danger mr-2 mt-2">{{ $row1->episode_name }}</a>
   
               @else
-                  <a style="width: 70px;"
+                  <a style="width: 80px;"
                       href="../movie/page-movie-{{ $row1->movie_id }}&episode-{{ $row1->episode_id }}&server-{{ 1 }}.html"
                       class="btn btn-outline-danger mr-2 mt-2">{{ $row1->episode_name }}</a>
   
