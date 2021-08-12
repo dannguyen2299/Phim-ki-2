@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Alata&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap');
 * {
     margin: 0;
     padding: 0
@@ -9,7 +9,7 @@ hr {
 }
 
 body {
-    font-family: 'Alata', sans-serif !important;
+    font-family: 'Montserrat', sans-serif !important ;
     background-color: #232323 !important;
 }
 
@@ -24,7 +24,16 @@ a {
 }
 
 header {
-    background-color: #181818;
+    background-color: #1c1c1c;
+    border-bottom: 1px solid rgb(100,0,0);
+}
+
+.navbar-nav{
+    justify-content: center;
+    align-items: center;
+}
+.navbar-collapse{
+    justify-content: space-around;
 }
 
 

@@ -35,7 +35,8 @@ class UserController extends Controller
         try{
             $data = array();
             $data['email'] = $request->user_email;
-            $data['password'] = bcrypt('$request->user_password');
+            $pass = $request->user_password;
+            $data['password'] = bcrypt($pass);
             $data['name'] = $request->user_name;
             $data['role_id'] = $request->user_role;
             $data['status'] = $request->user_status;
