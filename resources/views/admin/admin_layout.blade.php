@@ -49,166 +49,10 @@ use Illuminate\Support\Facades\Session;
             </div>
 
             <nav class="navbar-custom">
-
                 <ul class="list-inline float-right mb-0">
                     <li class="list-inline-item dropdown notif">
-                        <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" aria-haspopup="false" aria-expanded="false">
-                            <i class="far fa-envelope"></i>
-                            <span class="notif-bullet"></span>
-                        </a>
-
-                        <div class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-arrow-success dropdown-lg">
-                            <!-- item-->
-                            <div class="dropdown-item noti-title">
-                                <h5>
-                                    <small>
-                                        <span class="label label-danger pull-xs-right">12</span>Mailbox</small>
-                                </h5>
-                            </div>
-
-                            <!-- item-->
-                            <a href="mail-all.html" class="dropdown-item notify-item">
-                                <p class="notify-details ml-0">
-                                    <b>John Doe</b>
-                                    <span>New message received</span>
-                                    <small class="text-muted">3 minutes ago</small>
-                                </p>
-                            </a>
-
-                            <!-- item-->
-                            <a href="mail-all.html" class="dropdown-item notify-item">
-                                <p class="notify-details ml-0">
-                                    <b>Michael Smith</b>
-                                    <span>New message received</span>
-                                    <small class="text-muted">18 minutes ago</small>
-                                </p>
-                            </a>
-
-                            <!-- item-->
-                            <a href="mail-all.html" class="dropdown-item notify-item">
-                                <p class="notify-details ml-0">
-                                    <b>John Lenons</b>
-                                    <span>New message received</span>
-                                    <small class="text-muted">Yesterday, 18:27</small>
-                                </p>
-                            </a>
-
-                            <!-- All-->
-                            <a href="mail-all.html" class="dropdown-item notify-item notify-all">
-                                View All Messages
-                            </a>
-
-                        </div>
-
-                    </li>
-
-                    <li class="list-inline-item dropdown notif">
-                        <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" aria-haspopup="false" aria-expanded="false">
-                            <i class="far fa-bell"></i>
-                            <span class="notif-bullet"></span>
-                        </a>
-
-                        <div class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-arrow-success dropdown-lg">
-                            <!-- item-->
-                            <div class="dropdown-item noti-title">
-                                <h5>
-                                    <small>
-                                        <span class="label label-danger pull-xs-right">5</span>Allerts</small>
-                                </h5>
-                            </div>
-
-                            <!-- item-->
-                            <a href="#" class="dropdown-item notify-item">
-                                <div class="notify-icon bg-faded">
-                                    <img src="images/avatars/avatar2.png" alt="img" class="rounded-circle img-fluid">
-                                </div>
-                                <p class="notify-details">
-                                    <b>John Doe</b>
-                                    <span>User registration</span>
-                                    <small class="text-muted">3 minutes ago</small>
-                                </p>
-                            </a>
-
-                            <!-- item-->
-                            <a href="#" class="dropdown-item notify-item">
-                                <div class="notify-icon bg-faded">
-                                    <img src="images/avatars/avatar3.png" alt="img" class="rounded-circle img-fluid">
-                                </div>
-                                <p class="notify-details">
-                                    <b>Michael Cox</b>
-                                    <span>Task 2 completed</span>
-                                    <small class="text-muted">12 minutes ago</small>
-                                </p>
-                            </a>
-
-                            <!-- item-->
-                            <a href="#" class="dropdown-item notify-item">
-                                <div class="notify-icon bg-faded">
-                                    <img src="images/avatars/avatar4.png" alt="img" class="rounded-circle img-fluid">
-                                </div>
-                                <p class="notify-details">
-                                    <b>Michelle Dolores</b>
-                                    <span>New job completed</span>
-                                    <small class="text-muted">35 minutes ago</small>
-                                </p>
-                            </a>
-
-                            <!-- All-->
-                            <a href="#" class="dropdown-item notify-item notify-all">
-                                View All Allerts
-                            </a>
-
-                        </div>
-                    </li>
-
-
-                    <li class="list-inline-item dropdown notif">
-                        <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" aria-haspopup="false" aria-expanded="false">
-                            <i class="fas fa-cog"></i>
-                        </a>
-
-                        <div class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-arrow-success dropdown-sm">
-                            <!-- item-->
-                            <div class="dropdown-item noti-title">
-                                <h5>
-                                    <small>Settings</small>
-                                </h5>
-                            </div>
-
-                            <!-- item-->
-                            <a href="#" class="dropdown-item notify-item">
-                                <p class="notify-details ml-0">
-                                    <i class="fas fa-cog"></i>
-                                    <b>Settings 1</b>
-                                </p>
-                            </a>
-
-                            <!-- item-->
-                            <a href="#" class="dropdown-item notify-item">
-                                <p class="notify-details ml-0">
-                                    <i class="fas fa-cog"></i>
-                                    <b>Settings 2</b>
-                                </p>
-                            </a>
-
-                            <!-- item-->
-                            <a href="#" class="dropdown-item notify-item">
-                                <p class="notify-details ml-0">
-                                    <i class="fas fa-cog"></i>
-                                    <b>Settings 3</b>
-                                </p>
-                            </a>
-
-                        </div>
-
-                    </li>
-
-
-                    <li class="list-inline-item dropdown notif">
                         <a class="nav-link dropdown-toggle nav-user" data-toggle="dropdown" href="#" aria-haspopup="false" aria-expanded="false">
-                  <img class="avatar-rounded"src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/b8919e7a-2bb5-40c7-af15-8218d853bd92/d4njygs-38bef077-dd7a-4e80-8ac2-663485780f8c.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2I4OTE5ZTdhLTJiYjUtNDBjNy1hZjE1LTgyMThkODUzYmQ5MlwvZDRuanlncy0zOGJlZjA3Ny1kZDdhLTRlODAtOGFjMi02NjM0ODU3ODBmOGMucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.QqebgwhESsFn9NTetrmu7qI4l9juTGmfL59O0TjH4Zo" alt="">
-                            
-                           
+                            <img class="avatar-rounded"src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/b8919e7a-2bb5-40c7-af15-8218d853bd92/d4njygs-38bef077-dd7a-4e80-8ac2-663485780f8c.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2I4OTE5ZTdhLTJiYjUtNDBjNy1hZjE1LTgyMThkODUzYmQ5MlwvZDRuanlncy0zOGJlZjA3Ny1kZDdhLTRlODAtOGFjMi02NjM0ODU3ODBmOGMucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.QqebgwhESsFn9NTetrmu7qI4l9juTGmfL59O0TjH4Zo" alt="">
                         </a>
                         <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
                             <!-- item-->
@@ -304,7 +148,7 @@ use Illuminate\Support\Facades\Session;
 
                         <li class="submenu" id="submenu-movie">
                             <a href="{{Request::url().'#'}}" id="tables">
-                                <i class="fas fa-table"></i>
+                                <i class="fas fa-film"></i>
                                 <span> Movie </span>
                                 <span class="menu-arrow"></span>
                             </a>
@@ -320,7 +164,7 @@ use Illuminate\Support\Facades\Session;
                         
                         <li class="submenu" id="submenu-nation">
                             <a href="{{Request::url().'#'}}" id="tables">
-                                <i class="fas fa-table"></i>
+                            <i class="fas fa-location-arrow"></i>
                                 <span> Nation </span>
                                 <span class="menu-arrow"></span>
                             </a>
@@ -336,7 +180,7 @@ use Illuminate\Support\Facades\Session;
 
                         <li class="submenu" id="submenu-advertisement">
                             <a href="{{Request::url().'#'}}" id="tables">
-                                <i class="fas fa-table"></i>
+                            <i class="fab fa-adversal"></i>
                                 <span> Advertisement </span>
                                 <span class="menu-arrow"></span>
                             </a>
@@ -352,14 +196,14 @@ use Illuminate\Support\Facades\Session;
 
                         <li class="submenu" id="submenu-report">
                             <a href="{{URL::to('admin_1/list-report')}}">
-                                <i class="fas fa-user"></i>
+                            <i class="fas fa-bug"></i>
                                 <span> Report </span>
                             </a>
                         </li>
 
                         <li class="submenu" id="submenu-statistacal">
                             <a href="{{URL::to('admin_1/movie-detail')}}">
-                                <i class="fas fa-user"></i>
+                            <i class="fas fa-globe"></i>
                                 <span> Statistacal </span>
                             </a>
                         </li>

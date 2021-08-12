@@ -2,8 +2,8 @@
     const $ = document.querySelector.bind(document);
     const $$ = document.querySelectorAll.bind(document);
     
-    const line = $('.tab-items__line');
-    const tabItems = $$('.tab-item');
+    const line = $('.hasClick .tab-items__line');
+    const tabItems = $$('.hasClick .tab-item');
 
     var count = tabItems.length; // Number of tab item
     var tabUIWidth = tabItems[0].parentElement.offsetWidth; // Width
@@ -13,12 +13,12 @@
         item.style.width=tabUIWidth/count;
         item.onclick = (event) => {
             if (!event.target.classList.contains('tab--active')){
-                $('.tab-item.tab--active').classList.remove('tab--active');
+                $('.hasClick .tab-item.tab--active').classList.remove('tab--active');
                 event.target.classList.add('tab--active');
                 line.style.left = event.target.offsetLeft + "px";
 
-                $$('.tab-movies')[index].classList.add('tab-movies--display');
-                $('.tab-list-movie').style.left="-"+index*tabUIWidth+"px";
+                $$('.hasClick .tab-movies')[index].classList.add('tab-movies--display');
+                $('.hasClick .tab-list-movie').style.left="-"+index*tabUIWidth+"px";
             }
         }
     })

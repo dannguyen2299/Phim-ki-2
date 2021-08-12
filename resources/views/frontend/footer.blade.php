@@ -8,13 +8,13 @@
 
                   </div>
                   <div class="col-xl-2 col-md-4 col-sm-4 col-12">
-                      <h6 class="mb-3 mb-lg-4 bold-text "><b>MENU</b></h6>
+                      <h6 class="mb-3 mb-lg-4 bold-text "><b>Thành viên</b></h6>
                       <ul class="list-unstyled">
-                          <li><a class="text-danger" href="{{ URL::to('') }}">Trang chủ</a>
-                          </li>
-                          <li>Thể Loại</li>
-                          <li>Phim Bộ</li>
-                          <li>Phim Việt</li>
+                          <li>Kiều Đăng Thành</li>
+                          <li>Trần Thanh Duy</li>
+                          <li>Nguyễn Viết Dân</li>
+                          <li>Phan Huy Hoàng</li>
+                          <li>Phạm Tuấn Anh</li>
                       </ul>
                   </div>
                   <div class="col-xl-2 col-md-4 col-sm-4 col-12">
