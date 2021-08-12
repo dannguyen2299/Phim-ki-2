@@ -75,7 +75,7 @@ $handler->getJavascriptAntiBot();
               <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Thể loại
               </a>
-              <div class="dropdown-menu row" style="background-color: #181818;" aria-labelledby="navbarDropdown">
+              <div class="dropdown-menu row grid" style="background-color: #181818;" aria-labelledby="navbarDropdown">
                 
                 @foreach($category_l as $row)
                 
@@ -91,7 +91,7 @@ $handler->getJavascriptAntiBot();
               <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Quốc gia
               </a>
-              <div class="dropdown-menu" style="background-color: #181818 " aria-labelledby="navbarDropdown">
+              <div class="dropdown-menu grid" style="background-color: #181818 " aria-labelledby="navbarDropdown">
 
                 @foreach ($nation as $row )
 
@@ -124,7 +124,7 @@ $handler->getJavascriptAntiBot();
               <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <img class="avatar"src="https://i.pinimg.com/236x/24/21/85/242185eaef43192fc3f9646932fe3b46.jpg" alt="">
                 </a>
-                <div class="dropdown-menu bg-dark" style="width: 200px;" aria-labelledby="navbarDropdown">
+                <div class="dropdown-menu bg-dark infomation" style="width: 200px;" aria-labelledby="navbarDropdown">
                   <p class="pl-4 text-light"><span class="text-warning">Tên:</span> {{Session::get('name')}}</p>
                   
                 <a href="/logout" class="dropdown-item text-light">Đăng xuất</a>

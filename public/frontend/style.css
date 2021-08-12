@@ -472,9 +472,23 @@ html::-webkit-scrollbar-thumb:active {
 }
 
 /** End The loai phim */
-.navbar-expand-lg .navbar-nav .dropdown-menu.show{
+.navbar-expand-lg .navbar-nav .dropdown-menu.show.grid{
     width: 600px;
     display: grid !important;
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
+}
+
+.navbar-expand-lg .navbar-nav .dropdown-menu.infomation{
+    width: 250px !important;
+    padding-bottom: 0 !important;
+}
+.navbar-expand-lg .navbar-nav .dropdown-menu.infomation a{
+    margin-top: 15px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+}
+.navbar-expand-lg .navbar-nav .dropdown-menu.infomation p{
+    margin-top: 5px !important;
+    margin-bottom: 5px !important;
 }
