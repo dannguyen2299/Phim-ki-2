@@ -30,7 +30,7 @@
                                             <h5 class="my-text-truncate">{{ $row->movie_name }}</h5>
                                         </div>
                                         <div class="movie-detail">
-                                            <span>View: {{ $row->view }}</span>
+                                            <span>View: {{$row->view==null?0:$row->view}}</span>
                                             <span>Rating: {{ round($row->rate==null?0:$row->rate,1) }}</span>
                                         </div>
                                     </div>

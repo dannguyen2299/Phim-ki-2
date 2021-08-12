@@ -393,7 +393,7 @@ class FilterController extends Controller
     }
   
     private function get_saved_movie($user_id){
-        return DB::select("SELECT movie.movie_id, movie.movie_name, movie.url_image, SUM(view) as view, a.rating as rate from movie JOIN episode on movie.movie_id = episode.movie_id LEFT JOIN (select movie_id, AVG(rate) as rating from movie_detail GROUP BY movie_id) as a on movie.movie_id = a.movie_id LEFT JOIN movie_detail on movie.movie_id = movie_detail.movie_id WHERE movie_detail.user_id = $user_id AND movie_detail.follow = 1 AND movie.status=1 and episode.status=1 GROUP BY movie.movie_id, movie.movie_name ORDER BY movie_detail.idd DESC");
+        return DB::select("SELECT movie.movie_id, movie.movie_name, movie.url_image, SUM(view) as view, a.rating as rate from movie LEFT JOIN episode on movie.movie_id = episode.movie_id LEFT JOIN (select movie_id, AVG(rate) as rating from movie_detail GROUP BY movie_id) as a on movie.movie_id = a.movie_id LEFT JOIN movie_detail on movie.movie_id = movie_detail.movie_id WHERE movie_detail.user_id = $user_id AND movie_detail.follow = 1 AND movie.status=1 GROUP BY movie.movie_id, movie.movie_name ORDER BY movie_detail.idd DESC");
     }
 
 }
