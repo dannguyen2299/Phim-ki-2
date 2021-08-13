@@ -11,7 +11,7 @@ class FilterController extends Controller
 {
     
     function GetFilter($category_id){
-        $user_id=Session::get('user_id');
+        
         $movies = DB::table('movie')
         ->join('nation','nation.nation_id','=','movie.nation_id')->select('movie.*','nation.*','movie.status as movie_status','nation.status as nation_status')->get();
 
@@ -27,7 +27,9 @@ class FilterController extends Controller
         $data['year_views']= $this->get_movie_order_by('year_views');
 
         //phim da luu
-        $data['saved_movie'] = $this->get_saved_movie($user_id);
+        $user_id=Session::get('user_id');
+        if ($user_id){$data['saved_movie'] = $this->get_saved_movie($user_id);}
+        
 
         // $data['movie_cat']=DB::table('category')->select('category_name')->join('category_detail','category_detail.category_id','=','category.category_id')->where('category_detail.movie_id',$movie_id)->distinct()->get();
         
@@ -69,7 +71,7 @@ class FilterController extends Controller
     }
 
     function GetNation($nation_id){
-        $user_id=Session::get('user_id');
+        
         $movies = DB::table('movie')
         ->join('nation','nation.nation_id','=','movie.nation_id')->select('movie.*','nation.*','movie.status as movie_status','nation.status as nation_status')->get();
 
@@ -95,7 +97,9 @@ class FilterController extends Controller
 
 
         //phim da luu
-        $data['saved_movie'] = $this->get_saved_movie($user_id);
+        $user_id=Session::get('user_id');
+        if ($user_id){$data['saved_movie'] = $this->get_saved_movie($user_id);}
+        
         
         $episode_nums = array();
         $view_nums = array();
@@ -126,7 +130,7 @@ class FilterController extends Controller
         return view('frontend.filter',$data)->with('episode_nums',$episode_nums)->with("view_nums",$view_nums);
     }
     function GetNewMovie(){
-        $user_id=Session::get('user_id');
+        
         $movies = DB::table('movie')
         ->join('nation','nation.nation_id','=','movie.nation_id')->select('movie.*','nation.*','movie.status as movie_status','nation.status as nation_status')->get();
 
@@ -151,7 +155,9 @@ class FilterController extends Controller
 
 
         //phim da luu
-        $data['saved_movie'] = $this->get_saved_movie($user_id);
+        $user_id=Session::get('user_id');
+        if ($user_id){$data['saved_movie'] = $this->get_saved_movie($user_id);}
+        
         
         $episode_nums = array();
         $view_nums = array();
@@ -186,7 +192,7 @@ class FilterController extends Controller
 
 
     function GetMovieVN(){
-        $user_id=Session::get('user_id');
+        
         $movies = DB::table('movie')
         ->join('nation','nation.nation_id','=','movie.nation_id')->select('movie.*','nation.*','movie.status as movie_status','nation.status as nation_status')->get();
 
@@ -210,7 +216,9 @@ class FilterController extends Controller
 
 
         //phim da luu
-        $data['saved_movie'] = $this->get_saved_movie($user_id);
+        $user_id=Session::get('user_id');
+        if ($user_id){$data['saved_movie'] = $this->get_saved_movie($user_id);}
+        
         
         $episode_nums = array();
         $view_nums = array();
@@ -244,7 +252,7 @@ class FilterController extends Controller
     }
 
     function GetFilterMovie(Request $request){
-        $user_id=Session::get('user_id');
+        
 
         $movies = DB::table('movie')
         ->join('nation','nation.nation_id','=','movie.nation_id')->select('movie.*','nation.*','movie.status as movie_status','nation.status as nation_status')->get();
@@ -267,7 +275,9 @@ class FilterController extends Controller
         $data['year_views']= $this->get_movie_order_by('year_views');
 
         //phim da luu
-        $data['saved_movie'] = $this->get_saved_movie($user_id);
+        $user_id=Session::get('user_id');
+        if ($user_id){$data['saved_movie'] = $this->get_saved_movie($user_id);}
+        
 
         $episode_nums = array();
         $view_nums = array();

@@ -4,7 +4,7 @@
           <div class="col-11">
               <div class="row ">
                   <div class="col-xl-8 col-md-4 col-sm-4 col-12 my-auto mx-auto a">
-                    <img src="{{asset('').'frontend/img/logo.png'}}" class="mb-2 mr-4" width="100px" alt="">
+                    <img id="footer_logo" src="{{asset('').'frontend/img/logo.png'}}" class="mb-2 mr-4" width="200px" alt="">
 
                   </div>
                   <div class="col-xl-2 col-md-4 col-sm-4 col-12">

@@ -161,10 +161,12 @@ header {
 }
 
 #search {
-    top: -4px !important;
+    top: -3px !important;
     left: 0px !important;
 }
-
+#nav_logo{
+    margin-top: -15px;
+}
 
 /*OWL*/
 
