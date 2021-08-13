@@ -58,10 +58,8 @@ $handler->getJavascriptAntiBot();
   <header>
     <div class="container" style="padding: 0 !important">
       <nav class="navbar navbar-expand-lg navbar-light">
-        {{-- <a class="navbar-brand text-danger" href="{{ URL::to('') }}">1080+</a> --}}
-        {{-- <a class="navbar-brand text-danger" href="{{ URL::to('') }}"> --}}
-          <img src="{{asset('').'frontend/img/logo.png'}}" class="mb-2 mr-4" width="60px" height="40px";alt="">
-        {{-- </a> --}}
+          <img id="nav_logo" src="{{asset('').'frontend/img/logo.png'}}" class="mr-4" width="100px" alt="">
+        
         <button class="navbar-toggler" jm type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>

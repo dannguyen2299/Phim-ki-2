@@ -30,7 +30,7 @@ class MovieController extends Controller
         $data['year_views']= $this->get_movie_order_by('year_views');
 
         //phim da luu
-        $data['saved_movie'] = $this->get_saved_movie($user_id);
+        if ($user_id){$data['saved_movie'] = $this->get_saved_movie($user_id);}
 
           //Get episode 
         $data['movie_detail']=DB::table('movie')->join('nation','movie.nation_id','=','nation.nation_id')->where("movie_id",$movie_id)->first();
@@ -67,7 +67,7 @@ class MovieController extends Controller
         $data['year_views']= $this->get_movie_order_by('year_views');
 
         //phim da luu
-        $data['saved_movie'] = $this->get_saved_movie($user_id);
+        if ($user_id){$data['saved_movie'] = $this->get_saved_movie($user_id);}
 
         // Get data navbar
         $nav = new NavController();

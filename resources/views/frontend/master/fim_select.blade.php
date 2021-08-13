@@ -3,6 +3,7 @@
 
     <!-- Hop phim -->
     @if(Session::has('name'))
+    @if (isset($saved_movie) && $saved_movie!=null)
     <div class="tabs-UI row-2 mt-3">
         <div class="row mt-3">
         <h5 class="text-danger ml-3">Hộp phim</h5>
@@ -18,7 +19,6 @@
                     <div class="tab-list-movie">
                         <ul class="tab-movies">
                             <!-- Week view -->
-                            @if (isset($saved_movie) && $saved_movie!=null)
                                 @foreach ($saved_movie as $row)
                             <li class="tab-movie">
                                 <a href="/movie/movie-{{ $row->movie_id }}.html">
@@ -38,13 +38,13 @@
                                 <div class="tab-movie__line"></div>
                             </li>
                                 @endforeach
-                            @endif
                         </ul>
                     </div>
                 </li>
             </ul>
         </div>
     </div>
+    @endif
     @endif
 
     

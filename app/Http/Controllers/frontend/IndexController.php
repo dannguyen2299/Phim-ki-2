@@ -43,7 +43,7 @@ class IndexController extends Controller
         $data['year_views']= $this->get_movie_order_by('year_views');    
 
         //phim da luu
-        $data['saved_movie'] = $this->get_saved_movie($user_id);  
+        if ($user_id){$data['saved_movie'] = $this->get_saved_movie($user_id);}  
         
         //Phim bo hot
         $sql1 = "SELECT movie.*, SUM(episode.view) as views FROM movie JOIN category_detail on category_detail.movie_id = movie.movie_id JOIN category on category.category_id = category_detail.category_id join episode on movie.movie_id = episode.movie_id WHERE category.category_id = 1 AND movie.status = 1 GROUP BY movie.movie_id ORDER BY views DESC LIMIT 0,8";
