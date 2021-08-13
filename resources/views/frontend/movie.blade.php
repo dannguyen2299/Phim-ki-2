@@ -65,10 +65,10 @@
                                     style="width:380px !important; border-top:none;border-left:none;border-right:none;"
                                     placeholder="Nhập báo cáo">
                             </div>
-                            @foreach ($movie_page4 as $row1)
-                                <input type="text" name="episode_id" style="display: none"
-                                    value="{{ $row1->episode_id }}">
-                            @endforeach
+                           
+                                <input name="episode_id" type="hidden"
+                                    value="{{ $episode_id }}">
+                           
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
                                 <button type="submit" class="btn btn-danger">Gửi</button>
