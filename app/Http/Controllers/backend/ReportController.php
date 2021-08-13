@@ -50,11 +50,15 @@ class ReportController extends Controller
 
     public function update_report(Request $request, $episode_id, $report_id){
         $data = array();
-        $data['episode_name'] = $request->episode_name;
-        $data['url_first'] = $request->url_first;
-        $data['url_second'] = $request->url_second;
-        $data['status'] = $request->sl_status;
+        $data['episode_name'] = $request->episode_name==''?$message="Your activity Unsuccessfully":$request->episode_name;
+        $data['url_first'] = $request->url_first==''?$message="Your activity Unsuccessfully":$request->url_first;
+        $data['url_second'] = $request->url_second==''?$message="Your activity Unsuccessfully":$request->url_second;
+        $data['status'] = $request->sl_status==''?$message="Your activity Unsuccessfully":$request->sl_status;
         DB::table('episode')->where('episode_id',$episode_id)->update($data);
+        if ($message){
+            Session::put('message',$message);   
+            return Redirect::to('admin_1/list-report');
+        }
         
         $is_fixed = $request->is_fixed;
         if ($is_fixed == '1'){

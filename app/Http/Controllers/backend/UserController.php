@@ -34,14 +34,20 @@ class UserController extends Controller
 
         try{
             $data = array();
-            $data['email'] = $request->user_email;
-            $pass = $request->user_password;
+            $data['email'] = $request->user_email==''?$message="Your activity Unsuccessfully":$request->user_email;
+            $pass = $request->user_password==''?$message="Your activity Unsuccessfully":$request->user_password;
             $data['password'] = bcrypt($pass);
-            $data['name'] = $request->user_name;
-            $data['role_id'] = $request->user_role;
-            $data['status'] = $request->user_status;
-            DB::table('user')->insert($data);
-            Session::put('message','Add Category Successfully');        
+            $data['name'] = $request->user_name==''?$message="Your activity Unsuccessfully":$request->user_name;
+            $data['role_id'] = $request->user_role==''?$message="Your activity Unsuccessfully":$request->user_role;
+            $data['status'] = $request->user_status==''?$message="Your activity Unsuccessfully":$request->user_status;
+            
+            if ($message){
+                Session::put('message',$message);   
+            }
+            else {
+                DB::table('user')->insert($data);
+                Session::put('message','Add User Successfully');   
+            }
         }catch(Exception $e){
             Session::put('message_1','Error insert Database because same email');
 
@@ -72,15 +78,21 @@ class UserController extends Controller
         try{
         
         
-        $data['email'] = $request->user_email;
+        $data['email'] = $request->user_email==''?$message="Your activity Unsuccessfully":$request->user_email;
         $data['password'] = bcrypt ('$request->user_password');
-       
-        $data['name'] = $request->user_name;
-        $data['role_id'] = $request->user_role;
-        $data['status'] = $request->user_status;
+        $data['name'] = $request->user_name==''?$message="Your activity Unsuccessfully":$request->user_name;
+        $data['role_id'] = $request->user_role==''?$message="Your activity Unsuccessfully":$request->user_role;
+        $data['status'] = $request->user_status==''?$message="Your activity Unsuccessfully":$request->user_status;
 
-        DB::table('user')->where('user_id','=',$user_id)->update($data);
-        Session::put('message','Update Category Successfully');
+        if ($message){
+            Session::put('message',$message);   
+            return Redirect::to('admin_1/user');
+        }
+        else {
+            DB::table('user')->where('user_id','=',$user_id)->update($data);
+            Session::put('message','Update User Successfully');   
+        }
+        
         }catch(Exception $e){
             Session::put('message_1','Error insert Database because same email');
 

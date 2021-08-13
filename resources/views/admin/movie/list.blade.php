@@ -16,7 +16,13 @@ use Illuminate\Support\Facades\Session;
                 <?php
                 $message = Session::get('message');
                 if ($message){
-                    echo "<div class='alert alert-success'>".$message."</div>";
+                    $pos = strpos($message, 'Unsuccessfully');
+                    if ($pos === false){
+                        echo "<div class='alert alert-success'>".$message."</div>";
+                    }
+                    else {
+                        echo "<div class='alert alert-danger'>".$message."</div>";
+                    }
                     Session::put('message',null);
                 }
                 ?>

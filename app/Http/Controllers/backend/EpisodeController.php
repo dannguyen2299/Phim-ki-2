@@ -27,12 +27,16 @@ class EpisodeController extends Controller
 
     public function save_episode(Request $request){
         $data = array();
-        $data['episode_name'] = $request->episode_name;
-        $data['url_first'] = $request->url_first;
-        $data['url_second'] = $request->url_second;
+        $data['episode_name'] = $request->episode_name==''?$message="Your activity Unsuccessfully":$request->episode_name;
+        $data['url_first'] = $request->url_first==''?$message="Your activity Unsuccessfully":$request->url_first;
+        $data['url_second'] = $request->url_second==''?$message="Your activity Unsuccessfully":$request->url_second;
         $data['view'] = 0; // ban đầu view = 0;
-        $data['status'] = $request->sl_status;
+        $data['status'] = $request->sl_status==''?$message="Your activity Unsuccessfully":$request->sl_status;
         $data['movie_id'] = $request->movie_id;
+        if ($message){
+            Session::put('message',$message);   
+            return Redirect::to('admin_1/list-episode/'.$request->movie_id);
+        }
         DB::table('episode')->insert($data);
         Session::put('message','Add Episode Successfully');
         return Redirect::to('admin_1/list-episode/'.$request->movie_id);
@@ -50,11 +54,14 @@ class EpisodeController extends Controller
         $movie_id = DB::table('episode')->where('episode_id',$episode_id)->get()[0]->movie_id;
 
         $data = array();
-        $data['episode_name'] = $request->episode_name;
-        $data['url_first'] = $request->url_first;
-        $data['url_second'] = $request->url_second;
-        $data['status'] = $request->sl_status;
-
+        $data['episode_name'] = $request->episode_name==''?$message="Your activity Unsuccessfully":$request->episode_name;
+        $data['url_first'] = $request->url_first==''?$message="Your activity Unsuccessfully":$request->url_first;
+        $data['url_second'] = $request->url_second==''?$message="Your activity Unsuccessfully":$request->url_second;
+        $data['status'] = $request->sl_status==''?$message="Your activity Unsuccessfully":$request->sl_status;
+        if ($message){
+            Session::put('message',$message);   
+            return Redirect::to('admin_1/list-episode/'.$movie_id);
+        }
         DB::table('episode')->where('episode_id',$episode_id)->update($data);
         Session::put('message','Update Episode Successfully');
         return Redirect::to('admin_1/list-episode/'.$movie_id);

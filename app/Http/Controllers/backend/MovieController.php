@@ -71,18 +71,23 @@ class MovieController extends Controller
 
     public function update_movie(Request $request, $movie_id){
         // movie
+        
+        
         $data = array();
-        $data['movie_name'] = $request->movie_name;
-        $data['year'] = $request->movie_year;
-        $data['total_eps'] = $request->movie_episodes;
+        $data['movie_name'] = $request->movie_name==''?$message="Your activity Unsuccessfully":$request->movie_name;
+        $data['year'] = $request->movie_year==''?$message="Your activity Unsuccessfully":$request->movie_year;
+        $data['total_eps'] = $request->movie_episodes==''?$message="Your activity Unsuccessfully":$request->movie_episodes;
         $data['introduce'] = $request->movie_introduce;
-        $data['length'] = $request->movie_length;
-        $data['url_trailer'] = $request->movie_trailer;
-        $data['url_image'] = $request->movie_image;
-        $data['url_cmt_fb'] = $request->movie_cmt;
-        $data['status'] = $request->sl_status;
-        $data['nation_id'] = $request->movie_nation;
-
+        $data['length'] = $request->movie_length==''?$message="Your activity Unsuccessfully":$request->movie_length;
+        $data['url_trailer'] = $request->movie_trailer==''?$message="Your activity Unsuccessfully":$request->movie_trailer;
+        $data['url_image'] = $request->movie_image==''?$message="Your activity Unsuccessfully":$request->movie_image;
+        $data['url_cmt_fb'] = $request->movie_cmt==''?$message="Your activity Unsuccessfully":$request->movie_cmt;
+        $data['status'] = $request->sl_status==''?$message="Your activity Unsuccessfully":$request->sl_status;
+        $data['nation_id'] = $request->movie_nation==''?$message="Your activity Unsuccessfully":$request->movie_nation;
+        if ($message){
+            Session::put('message',$message);   
+            return Redirect::to('admin_1/list-movie');
+        }
         DB::table('movie')->where('movie_id','=',$movie_id)->update($data);
 
         // category
@@ -104,18 +109,34 @@ class MovieController extends Controller
     
     public function save_movie(REQUEST $request){
         // movie
+        $regex_nums = "/[a-z]/i";
+        if (preg_match($regex_nums, $request->movie_year) == 1){
+            $movie_year = 0;
+        } else {
+            $movie_year = $request->movie_year;
+        }
+        
+        if (preg_match($regex_nums, $request->movie_episodes) == 1){
+            $movie_year = 0;
+        } else {
+            $movie_year = $request->movie_year;
+        }
+        
         $data = array();
-        $data['movie_name'] = $request->movie_name;
-        $data['year'] = $request->movie_year;
-        $data['total_eps'] = $request->movie_episodes;
+        $data['movie_name'] = $request->movie_name==''?$message="Your activity Unsuccessfully":$request->movie_name;
+        $data['year'] = $request->movie_year==''?$message="Your activity Unsuccessfully":$request->movie_year;
+        $data['total_eps'] = $request->movie_episodes==''?$message="Your activity Unsuccessfully":$request->movie_episodes;
         $data['introduce'] = $request->movie_introduce;
-        $data['length'] = $request->movie_length;
-        $data['url_trailer'] = $request->movie_trailer;
-        $data['url_image'] = $request->movie_image;
-        $data['url_cmt_fb'] = $request->movie_cmt;
-        $data['status'] = $request->sl_status;
-        $data['nation_id'] = $request->movie_nation;
-
+        $data['length'] = $request->movie_length==''?$message="Your activity Unsuccessfully":$request->movie_length;
+        $data['url_trailer'] = $request->movie_trailer==''?$message="Your activity Unsuccessfully":$request->movie_trailer;
+        $data['url_image'] = $request->movie_image==''?$message="Your activity Unsuccessfully":$request->movie_image;
+        $data['url_cmt_fb'] = $request->movie_cmt==''?$message="Your activity Unsuccessfully":$request->movie_cmt;
+        $data['status'] = $request->sl_status==''?$message="Your activity Unsuccessfully":$request->sl_status;
+        $data['nation_id'] = $request->movie_nation==''?$message="Your activity Unsuccessfully":$request->movie_nation;
+        if ($message){
+            Session::put('message',$message);   
+            return Redirect::to('admin_1/add-movie');
+        }
         DB::table('movie')->insert($data);
 
         // category

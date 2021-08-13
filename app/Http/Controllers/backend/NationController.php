@@ -21,9 +21,12 @@
         
         public function update_nation(Request $request, $nation_id){
             $data = array();
-            $data['nation_name'] = $request->nation_name;
-            $data['status'] = $request->sl_status;
-    
+            $data['nation_name'] = $request->nation_name==''?$message="Your activity Unsuccessfully":$request->nation_name;
+            $data['status'] = $request->sl_status==''?$message="Your activity Unsuccessfully":$request->sl_status;
+            if ($message){
+                Session::put('message',$message);   
+                return Redirect::to('admin_1/list-nation');
+            }
             DB::table('nation')->where('nation_id','=',$nation_id)->update($data);
             Session::put('message','Update Nation Successfully');
             return Redirect::to('admin_1/list-nation');
@@ -31,9 +34,12 @@
         
         public function save_nation(Request $request){
             $data = array();
-            $data['nation_name'] = $request->nation_name;
-            $data['status'] = $request->sl_status;
-    
+            $data['nation_name'] = $request->nation_name==''?$message="Your activity Unsuccessfully":$request->nation_name;
+            $data['status'] = $request->sl_status==''?$message="Your activity Unsuccessfully":$request->sl_status;
+            if ($message){
+                Session::put('message',$message);   
+                return Redirect::to('admin_1/add-nation');
+            }
             DB::table('nation')->insert($data);
             Session::put('message','Add Nation Successfully');
             return Redirect::to('admin_1/add-nation');
