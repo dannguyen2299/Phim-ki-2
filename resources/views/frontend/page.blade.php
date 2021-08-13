@@ -46,14 +46,14 @@
                                 <h6 class="text-danger mt-2"> {{ $movie_detail->nation_name }}</h6>
                             </td>
                         </tr>
-                        <tr>
+                        <!-- <tr>
                             <td style="width:100px">
                                 <h6 class="text-secondary mt-2">Đạo diễn: </h6>
                             </td>
                             <td>
                                 <h6 class="text-danger mt-2">Ngô Thanh Hà</h6>
                             </td>
-                        </tr>
+                        </tr> -->
 
                         <tr>
                             <td style="width:100px">

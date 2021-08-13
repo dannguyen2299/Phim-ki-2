@@ -77,7 +77,7 @@ class MovieController extends Controller
         $data['movie_name'] = $request->movie_name==''?$message="Your activity Unsuccessfully":$request->movie_name;
         $data['year'] = $request->movie_year==''?$message="Your activity Unsuccessfully":$request->movie_year;
         $data['total_eps'] = $request->movie_episodes==''?$message="Your activity Unsuccessfully":$request->movie_episodes;
-        $data['introduce'] = $request->movie_introduce;
+        $data['introduce'] = $request->movie_introduce==''?$message="Your activity Unsuccessfully":$request->movie_length;
         $data['length'] = $request->movie_length==''?$message="Your activity Unsuccessfully":$request->movie_length;
         $data['url_trailer'] = $request->movie_trailer==''?$message="Your activity Unsuccessfully":$request->movie_trailer;
         $data['url_image'] = $request->movie_image==''?$message="Your activity Unsuccessfully":$request->movie_image;
@@ -92,17 +92,24 @@ class MovieController extends Controller
 
         // category
 
-        $cates = array();
-        $cate = array();
-        $size = count($request->movie_category);
-        for ($i = 0; $i < $size; $i++){
-            $cate['status'] = 1;
-            $cate['movie_id'] = $movie_id;
-            $cate['category_id'] = $request->movie_category[$i];
-            $cates[]=$cate;
+        if ($request->movie_category != null){
+            $cates = array();
+            $cate = array();
+            $size = count($request->movie_category);
+            for ($i = 0; $i < $size; $i++){
+                $cate['status'] = 1;
+                $cate['movie_id'] = $movie_id;
+                $cate['category_id'] = $request->movie_category[$i];
+                $cates[]=$cate;
+            }
+            
+            DB::table('category_detail')->where('movie_id',$movie_id)->delete();
+            DB::table('category_detail')->insert($cates);
         }
-        DB::table('category_detail')->where('movie_id',$movie_id)->delete();
-        DB::table('category_detail')->insert($cates);
+        else {
+            DB::table('category_detail')->where('movie_id',$movie_id)->delete();
+        }
+
         Session::put('message','Update Movie Successfully');
         return Redirect::to('admin_1/list-movie');
     }
@@ -126,7 +133,7 @@ class MovieController extends Controller
         $data['movie_name'] = $request->movie_name==''?$message="Your activity Unsuccessfully":$request->movie_name;
         $data['year'] = $request->movie_year==''?$message="Your activity Unsuccessfully":$request->movie_year;
         $data['total_eps'] = $request->movie_episodes==''?$message="Your activity Unsuccessfully":$request->movie_episodes;
-        $data['introduce'] = $request->movie_introduce;
+        $data['introduce'] = $request->movie_introduce==''?$message="Your activity Unsuccessfully":$request->movie_length;
         $data['length'] = $request->movie_length==''?$message="Your activity Unsuccessfully":$request->movie_length;
         $data['url_trailer'] = $request->movie_trailer==''?$message="Your activity Unsuccessfully":$request->movie_trailer;
         $data['url_image'] = $request->movie_image==''?$message="Your activity Unsuccessfully":$request->movie_image;
@@ -141,17 +148,22 @@ class MovieController extends Controller
 
         // category
         $movie_id = DB::table('movie')->orderby('movie_id','desc')->first();
-        
-        $cates = array();
-        $cate = array();
-        $size = count($request->movie_category);
-        for ($i = 0; $i < $size; $i++){
-            $cate['status'] = 1;
-            $cate['movie_id'] = $movie_id->movie_id;
-            $cate['category_id'] = $request->movie_category[$i];
-            $cates[]=$cate;
+        $url_cmt_fb = $data['url_cmt_fb'].$movie_id->movie_id;
+        DB::table('movie')->where('movie.movie_id',$movie_id->movie_id)->update(['url_cmt_fb' => $url_cmt_fb]);
+
+        if ($request->movie_category != null){
+            $cates = array();
+            $cate = array();
+            $size = count($request->movie_category);
+            for ($i = 0; $i < $size; $i++){
+                $cate['status'] = 1;
+                $cate['movie_id'] = $movie_id->movie_id;
+                $cate['category_id'] = $request->movie_category[$i];
+                $cates[]=$cate;
+            }
+            DB::table('category_detail')->insert($cates);
         }
-        DB::table('category_detail')->insert($cates);
+
         Session::put('message','Add Movie Successfully');
         return Redirect::to('admin_1/add-movie');
     }

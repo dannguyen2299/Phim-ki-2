@@ -60,7 +60,7 @@ class FilterController extends Controller
        
         // $category_by_id=DB::select('select * from movie inner join category_detail on movie.movie_id = category_detail.movie_id where category_detail.category_id = '.$category_id.' group by movie.movie_id LIMIT 0,8');
         
-        $data['category_by_id']=DB::table('movie')->join('category_detail','movie.movie_id','=','category_detail.movie_id')->join('category','category.category_id','=','category_detail.category_id')->where('category_detail.category_id',$category_id)->groupBy('movie.movie_id')->paginate(8);
+        $data['category_by_id']=DB::table('movie')->join('category_detail','movie.movie_id','=','category_detail.movie_id')->join('category','category.category_id','=','category_detail.category_id')->where('category_detail.category_id',$category_id)->where('movie.status',1)->groupBy('movie.movie_id')->paginate(8);
         // Truy vấn quảng cáo
         $data['ads_banner1']=DB::table('advertisement')->where('ad_location',1)->where('status',1)->orderBy('ad_id','desc')->first();
 
@@ -122,7 +122,7 @@ class FilterController extends Controller
             $view_nums[$movie->movie_id] = $views;
         }
 
-        $data['category_by_id']=DB::table('movie')->join('nation','movie.nation_id','=','nation.nation_id')->where('movie.nation_id',$nation_id)->paginate(8);
+        $data['category_by_id']=DB::table('movie')->join('nation','movie.nation_id','=','nation.nation_id')->where('movie.nation_id',$nation_id)->where('movie.status',1)->paginate(8);
      // Truy vấn quảng cáo
      $data['ads_banner1']=DB::table('advertisement')->where('ad_location',1)->where('status',1)->orderBy('ad_id','desc')->first();
 
@@ -245,7 +245,7 @@ class FilterController extends Controller
 
         
 
-        $data['category_by_id']=DB::table('movie')->where('nation_id',1)->orderBy('movie_id','desc')->paginate(8);
+        $data['category_by_id']=DB::table('movie')->where('nation_id',1)->where('status',1)->orderBy('movie_id','desc')->paginate(8);
        
        // Truy vấn quảng cáo
        $data['ads_banner1']=DB::table('advertisement')->where('ad_location',1)->where('status',1)->orderBy('ad_id','desc')->first();
@@ -357,9 +357,9 @@ class FilterController extends Controller
         $offset=((int)$number_page-1)*$item_page;
        
 
-        $category_filter="SELECT mov.*, sum(episode.view) as views from (SELECT movie.* FROM movie LEFT JOIN category_detail on movie.movie_id=category_detail.movie_id LEFT JOIN category on category_detail.category_id=category.category_id LEFT JOIN nation on movie.nation_id=nation.nation_id WHERE category.category_id like '$category' AND nation.nation_id like '$nation' AND movie.year like '$year' GROUP BY movie.movie_id) as mov LEFT JOIN category_detail on mov.movie_id = category_detail.movie_id LEFT JOIN category on category_detail.category_id = category_detail.category_id LEFT JOIN episode on mov.movie_id = episode.movie_id WHERE category.category_id like '$kind' GROUP BY mov.movie_id ORDER BY $sl_all DESC LIMIT $item_page OFFSET $offset";
+        $category_filter="SELECT mov.*, sum(episode.view) as views from (SELECT movie.* FROM movie LEFT JOIN category_detail on movie.movie_id=category_detail.movie_id LEFT JOIN category on category_detail.category_id=category.category_id LEFT JOIN nation on movie.nation_id=nation.nation_id WHERE category.category_id like '$category' AND nation.nation_id like '$nation' AND movie.year like '$year' GROUP BY movie.movie_id) as mov LEFT JOIN category_detail on mov.movie_id = category_detail.movie_id LEFT JOIN category on category_detail.category_id = category_detail.category_id LEFT JOIN episode on mov.movie_id = episode.movie_id WHERE category.category_id like '$kind' and mov.status = 1 GROUP BY mov.movie_id ORDER BY $sl_all DESC LIMIT $item_page OFFSET $offset";
         // 
-         $totalRecord="SELECT COUNT(movie_id) FROM (SELECT mov.*, sum(episode.view) as views from (SELECT movie.* FROM movie LEFT JOIN category_detail on movie.movie_id=category_detail.movie_id LEFT JOIN category on category_detail.category_id=category.category_id LEFT JOIN nation on movie.nation_id=nation.nation_id WHERE category.category_id like '$category' AND nation.nation_id like '$nation' AND movie.year like '$year' GROUP BY movie.movie_id) as mov LEFT JOIN category_detail on mov.movie_id = category_detail.movie_id LEFT JOIN category on category_detail.category_id = category_detail.category_id LEFT JOIN episode on mov.movie_id = episode.movie_id WHERE category.category_id like '$kind' GROUP BY mov.movie_id ORDER BY $sl_all DESC) AS movi";
+         $totalRecord="SELECT COUNT(movie_id) FROM (SELECT mov.*, sum(episode.view) as views from (SELECT movie.* FROM movie LEFT JOIN category_detail on movie.movie_id=category_detail.movie_id LEFT JOIN category on category_detail.category_id=category.category_id LEFT JOIN nation on movie.nation_id=nation.nation_id WHERE category.category_id like '$category' AND nation.nation_id like '$nation' AND movie.year like '$year' GROUP BY movie.movie_id) as mov LEFT JOIN category_detail on mov.movie_id = category_detail.movie_id LEFT JOIN category on category_detail.category_id = category_detail.category_id LEFT JOIN episode on mov.movie_id = episode.movie_id WHERE category.category_id like '$kind' and mov.status = 1 GROUP BY mov.movie_id ORDER BY $sl_all DESC) AS movi";
       
 
 

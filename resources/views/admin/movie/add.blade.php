@@ -81,7 +81,7 @@
                             <div class="form-group row">
                                 <label for="inputPassword9" class="col-sm-2 col-form-label">Link FB</label>
                                 <div class="col-sm-10">
-                                    <input required type="text" value=""required name="movie_cmt" class="form-control" id="inputPassword9"
+                                    <input required type="text" value="https://www.facebook.com/movie/group5/"required name="movie_cmt" class="form-control" id="inputPassword9"
                                         placeholder="Fb Comment URL" autocomplete="off">
                                 </div>
                             </div>
@@ -113,7 +113,7 @@
                             <div class="form-group row">
                                 <label for="inputPassword5" class="col-sm-2 col-form-label">Introduce</label>
                                 <div class="col-sm-10">
-                                    <textarea name="movie_introduce" style="height: 250px" class="form-control"
+                                    <textarea required name="movie_introduce" style="height: 250px" class="form-control"
                                         id="inputPassword5" placeholder="Introduce" autocomplete="off"></textarea>
                                 </div>
                             </div>

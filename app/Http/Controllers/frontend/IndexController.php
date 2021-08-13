@@ -61,7 +61,7 @@ class IndexController extends Controller
 
 
     public function getFilmByNation($id){
-        return $data['movie_v']=DB::select('select * from movie where nation_id = '.$id);
+        return $data['movie_v']=DB::select('select * from movie where nation_id = '.$id .' and status = 1');
     }
     public function getFilmByEpisodeNew(){        
         return $data['movie_up']=DB::select('SELECT  movie.movie_id,movie.total_eps, movie.movie_name, movie.url_image FROM movie INNER JOIN episode ON episode.movie_id = movie.movie_id GROUP BY(movie.movie_id) ORDER BY max(episode.episode_id) desc LIMIT 0,8');
