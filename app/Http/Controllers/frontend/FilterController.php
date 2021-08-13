@@ -6,10 +6,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Routing\UrlGenerator;
+use Illuminate\Support\Facades\Session;
 class FilterController extends Controller
 {
+    
     function GetFilter($category_id){
-        
+        $user_id=Session::get('user_id');
         $movies = DB::table('movie')
         ->join('nation','nation.nation_id','=','movie.nation_id')->select('movie.*','nation.*','movie.status as movie_status','nation.status as nation_status')->get();
 
@@ -23,6 +25,9 @@ class FilterController extends Controller
         $data['week_views'] = $this->get_movie_order_by('week_views');
         $data['month_views']= $this->get_movie_order_by('month_views');
         $data['year_views']= $this->get_movie_order_by('year_views');
+
+        //phim da luu
+        $data['saved_movie'] = $this->get_saved_movie($user_id);
 
         // $data['movie_cat']=DB::table('category')->select('category_name')->join('category_detail','category_detail.category_id','=','category.category_id')->where('category_detail.movie_id',$movie_id)->distinct()->get();
         
@@ -64,6 +69,7 @@ class FilterController extends Controller
     }
 
     function GetNation($nation_id){
+        $user_id=Session::get('user_id');
         $movies = DB::table('movie')
         ->join('nation','nation.nation_id','=','movie.nation_id')->select('movie.*','nation.*','movie.status as movie_status','nation.status as nation_status')->get();
 
@@ -87,6 +93,9 @@ class FilterController extends Controller
         $data['month_views']= $this->get_movie_order_by('month_views');
         $data['year_views']= $this->get_movie_order_by('year_views');
 
+
+        //phim da luu
+        $data['saved_movie'] = $this->get_saved_movie($user_id);
         
         $episode_nums = array();
         $view_nums = array();
@@ -117,6 +126,7 @@ class FilterController extends Controller
         return view('frontend.filter',$data)->with('episode_nums',$episode_nums)->with("view_nums",$view_nums);
     }
     function GetNewMovie(){
+        $user_id=Session::get('user_id');
         $movies = DB::table('movie')
         ->join('nation','nation.nation_id','=','movie.nation_id')->select('movie.*','nation.*','movie.status as movie_status','nation.status as nation_status')->get();
 
@@ -139,6 +149,9 @@ class FilterController extends Controller
         $data['month_views']= $this->get_movie_order_by('month_views');
         $data['year_views']= $this->get_movie_order_by('year_views');
 
+
+        //phim da luu
+        $data['saved_movie'] = $this->get_saved_movie($user_id);
         
         $episode_nums = array();
         $view_nums = array();
@@ -173,6 +186,7 @@ class FilterController extends Controller
 
 
     function GetMovieVN(){
+        $user_id=Session::get('user_id');
         $movies = DB::table('movie')
         ->join('nation','nation.nation_id','=','movie.nation_id')->select('movie.*','nation.*','movie.status as movie_status','nation.status as nation_status')->get();
 
@@ -194,6 +208,9 @@ class FilterController extends Controller
         $data['month_views']= $this->get_movie_order_by('month_views');
         $data['year_views']= $this->get_movie_order_by('year_views');
 
+
+        //phim da luu
+        $data['saved_movie'] = $this->get_saved_movie($user_id);
         
         $episode_nums = array();
         $view_nums = array();
@@ -227,6 +244,7 @@ class FilterController extends Controller
     }
 
     function GetFilterMovie(Request $request){
+        $user_id=Session::get('user_id');
 
         $movies = DB::table('movie')
         ->join('nation','nation.nation_id','=','movie.nation_id')->select('movie.*','nation.*','movie.status as movie_status','nation.status as nation_status')->get();
@@ -243,22 +261,14 @@ class FilterController extends Controller
         //Select năm phát hành
         $data['yearR']=DB::table('movie')->groupBy('year')->get();
 
-
         //Top View
-        // $day_views = DB::table('movie')->join('episode','movie.movie_id','=','episode.movie_id')->leftJoin('movie_detail','movie.movie_id','=','movie_detail.movie_id')->select('movie.*', DB::raw('SUM(day_view) as day_views, SUM(month_view) as month_views, SUM(year_view) as year_views, AVG(rate) as rate'))->where([['movie.status','1'],['episode.status','1']])->groupBy('movie.movie_id')->orderBy('day_views')->limit(20)->get();
-        // $month_views = DB::table('movie')->join('episode','movie.movie_id','=','episode.movie_id')->leftJoin('movie_detail','movie.movie_id','=','movie_detail.movie_id')->select('movie.*', DB::raw('SUM(day_view) as day_views, SUM(month_view) as month_views, SUM(year_view) as year_views, AVG(rate) as rate'))->where([['movie.status','1'],['episode.status','1']])->groupBy('movie.movie_id')->orderBy('month_views')->limit(20)->get();
-        // $year_views = DB::table('movie')->join('episode','movie.movie_id','=','episode.movie_id')->leftJoin('movie_detail','movie.movie_id','=','movie_detail.movie_id')->select('movie.*', DB::raw('SUM(day_view) as day_views, SUM(month_view) as month_views, SUM(year_view) as year_views, AVG(rate) as rate'))->where([['movie.status','1'],['episode.status','1']])->groupBy('movie.movie_id')->orderBy('year_views')->limit(20)->get();
-        
-//Top View
-$data['week_views'] = $this->get_movie_order_by('week_views');
-$data['month_views']= $this->get_movie_order_by('month_views');
-$data['year_views']= $this->get_movie_order_by('year_views');
+        $data['week_views'] = $this->get_movie_order_by('week_views');
+        $data['month_views']= $this->get_movie_order_by('month_views');
+        $data['year_views']= $this->get_movie_order_by('year_views');
 
-        // $data['day_views'] = $day_views;
-        // $data['month_views']= $month_views;
-        // $data['year_views']= $year_views;
+        //phim da luu
+        $data['saved_movie'] = $this->get_saved_movie($user_id);
 
-        
         $episode_nums = array();
         $view_nums = array();
         foreach($movies as &$movie){
@@ -380,7 +390,10 @@ $data['year_views']= $this->get_movie_order_by('year_views');
   
     private function get_movie_order_by($option){
         return DB::select("SELECT movie.movie_id, movie.movie_name, movie.url_image, SUM(episode.week_view) as week_views, SUM(episode.month_view) as month_views, SUM(episode.year_view) as year_views, a.rating as rate from movie JOIN episode on movie.movie_id = episode.movie_id LEFT JOIN (select movie_id, AVG(rate) as rating from movie_detail GROUP BY movie_id) as a on movie.movie_id = a.movie_id WHERE movie.status=1 and episode.status=1 GROUP BY movie.movie_id, movie.movie_name ORDER BY $option DESC");
-
+    }
+  
+    private function get_saved_movie($user_id){
+        return DB::select("SELECT movie.movie_id, movie.movie_name, movie.url_image, SUM(view) as view, a.rating as rate from movie LEFT JOIN episode on movie.movie_id = episode.movie_id LEFT JOIN (select movie_id, AVG(rate) as rating from movie_detail GROUP BY movie_id) as a on movie.movie_id = a.movie_id LEFT JOIN movie_detail on movie.movie_id = movie_detail.movie_id WHERE movie_detail.user_id = $user_id AND movie_detail.follow = 1 AND movie.status=1 GROUP BY movie.movie_id, movie.movie_name ORDER BY movie_detail.idd DESC");
     }
 
 }

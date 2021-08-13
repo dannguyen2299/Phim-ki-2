@@ -55,11 +55,24 @@ class filmTickController extends Controller
         $data['u_film'] = DB::table('movie')->join('movie_detail','movie_detail.movie_id','=','movie.movie_id')
         ->where('movie_detail.user_id',$user_id)
         ->where('movie_detail.follow',1)
-        ->get();
+        ->paginate(12);
         $data['ads_banner1']=DB::table('advertisement')->where('ad_location',1)->where('status',1)->orderBy('ad_id','desc')->first();
-
         $data['ads_banner2']=DB::table('advertisement')->where('ad_location',2)->where('status',1)->orderBy('ad_id','desc')->get();
 
+        
+        //Top View
+        $data['week_views'] = $this->get_movie_order_by('week_views');
+        $data['month_views']= $this->get_movie_order_by('month_views');
+        $data['year_views']= $this->get_movie_order_by('year_views');    
+
         return view('frontend.film_tick',$data)->with('movies',$movies)->with('episode_nums',$episode_nums)->with('view_nums',$view_nums)->with('categories',$categories);
+    }
+    
+    private function get_movie_order_by($option){
+        return DB::select("SELECT movie.movie_id, movie.movie_name, movie.url_image, SUM(episode.week_view) as week_views, SUM(episode.month_view) as month_views, SUM(episode.year_view) as year_views, a.rating as rate from movie JOIN episode on movie.movie_id = episode.movie_id LEFT JOIN (select movie_id, AVG(rate) as rating from movie_detail GROUP BY movie_id) as a on movie.movie_id = a.movie_id WHERE movie.status=1 and episode.status=1 GROUP BY movie.movie_id, movie.movie_name ORDER BY $option DESC");
+    }
+  
+    private function get_saved_movie($user_id){
+        return DB::select("SELECT movie.movie_id, movie.movie_name, movie.url_image, SUM(view) as view, a.rating as rate from movie LEFT JOIN episode on movie.movie_id = episode.movie_id LEFT JOIN (select movie_id, AVG(rate) as rating from movie_detail GROUP BY movie_id) as a on movie.movie_id = a.movie_id LEFT JOIN movie_detail on movie.movie_id = movie_detail.movie_id WHERE movie_detail.user_id = $user_id AND movie_detail.follow = 1 AND movie.status=1 GROUP BY movie.movie_id, movie.movie_name ORDER BY movie_detail.idd DESC");
     }
 }

@@ -104,6 +104,97 @@
                 <div class="row-2 mt-4 mb-3 " id="respon_card">
                     <a href="/new-movie-update" class="text-danger">Xem thêm >>></a>
                 </div>
+
+                <!-- Phim bo hot -->
+                <div class="row-2 mt-4">
+                    <h5 class="text-light">PHIM BỘ HOT</h5>
+                </div>
+                <div class="row-2">
+                    <hr />
+                </div>
+                <div class="row" id="respon_card">
+                    @foreach ($movie_hot1 as $row)
+                        {{-- <div class="col-3">
+              <div class="row mt-4">
+                <div class="col-xl-6"> --}}
+                        <a href="/movie/movie-{{ $row->movie_id }}.html" class="ml-2 mt-3 mr-1">
+                            <div class="card-style-1" id="respon">
+                                <img src="{{ $row->url_image }}" alt="" />
+                                <div class="infor">
+                                    <h5>{{ $row->movie_name }}</h5>
+                                    <p>Lượt xem: {{ $view_nums[$row->movie_id] }} views</p>
+                                </div>
+                                <div class="rate">
+                                    <p>
+                                        @if ($rates[$row->movie_id] != null)
+                                            {{ $rates[$row->movie_id] }}
+                                        @else
+                                            10
+                                            @endif <i class="fa fa-star"></i>
+                                    </p>
+                                </div>
+                                <div class="episode">
+                                    <h8>Tập
+                                        <p>{{ $episode_nums[$row->movie_id] }} / {{ $row->total_eps }} </p>
+                                    </h8>
+                                </div>
+                                <div class="play">
+                                    <i class="fa fa-play"></i>
+                                </div>
+                            </div>
+                        </a>
+                        <!-- </div>
+                          </div>
+                        </div> -->
+                    @endforeach
+                </div>
+
+
+                <!-- PHIM LE HOT -->
+                <div class="row-2 mt-4">
+                    <h5 class="text-light">PHIM LE HOT</h5>
+                </div>
+                <div class="row-2">
+                    <hr />
+                </div>
+                <div class="row" id="respon_card">
+                    @foreach ($movie_hot2 as $row)
+                        {{-- <div class="col-3">
+              <div class="row mt-4">
+                <div class="col-xl-6"> --}}
+                        <a href="/movie/movie-{{ $row->movie_id }}.html" class="ml-2 mt-3 mr-1">
+                            <div class="card-style-1" id="respon">
+                                <img src="{{ $row->url_image }}" alt="" />
+                                <div class="infor">
+                                    <h5>{{ $row->movie_name }}</h5>
+                                    <p>Lượt xem: {{ $view_nums[$row->movie_id] }} views</p>
+                                </div>
+                                <div class="rate">
+                                    <p>
+                                        @if ($rates[$row->movie_id] != null)
+                                            {{ $rates[$row->movie_id] }}
+                                        @else
+                                            10
+                                            @endif <i class="fa fa-star"></i>
+                                    </p>
+                                </div>
+                                <div class="episode">
+                                    <h8>Tập
+                                        <p>{{ $episode_nums[$row->movie_id] }} / {{ $row->total_eps }} </p>
+                                    </h8>
+                                </div>
+                                <div class="play">
+                                    <i class="fa fa-play"></i>
+                                </div>
+                            </div>
+                        </a>
+                        <!-- </div>
+                          </div>
+                        </div> -->
+                    @endforeach
+                </div>
+
+
                 <div class="row-2 mt-4">
                     <h5 class="text-light">PHIM VIỆT NAM</h5>
                 </div>

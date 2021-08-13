@@ -64,7 +64,7 @@
   
 </div>
 {{-- {{ Form::Submit('submit',['class'=>'btn btn-primary h-25 col-md-2 col-xs-6 mt-5']) }} --}}
-  <button type="submit" class="btn btn-primary h-25 col-md-2 col-xs-6 mt-5">Duyệt Phim</button>
+  <button type="submit" id="btn_submit" class="btn btn-primary col-md-2 col-xs-6">Duyệt Phim</button>
    
 
   </div>

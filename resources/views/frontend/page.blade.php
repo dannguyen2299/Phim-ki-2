@@ -156,7 +156,7 @@
                 {{-- --}}
             </div>
             <div class="row-2 mt-4">
-                <h5 class="text-danger">PHIM CÙNG QUỐC GIA</h5>
+                <h5 class="text-danger">PHIM LIÊN QUAN</h5>
             </div>
             <div class="row">
                 @foreach ($movie_nation as $row)

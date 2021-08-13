@@ -49,7 +49,6 @@ use Illuminate\Support\Facades\Session;
             </div>
 
             <nav class="navbar-custom">
-
                 <ul class="list-inline float-right mb-0">
               
                     <li class="list-inline-item dropdown notif">
@@ -67,9 +66,7 @@ use Illuminate\Support\Facades\Session;
 
                     <li class="list-inline-item dropdown notif">
                         <a class="nav-link dropdown-toggle nav-user" data-toggle="dropdown" href="#" aria-haspopup="false" aria-expanded="false">
-                  <img class="avatar-rounded"src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/b8919e7a-2bb5-40c7-af15-8218d853bd92/d4njygs-38bef077-dd7a-4e80-8ac2-663485780f8c.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2I4OTE5ZTdhLTJiYjUtNDBjNy1hZjE1LTgyMThkODUzYmQ5MlwvZDRuanlncy0zOGJlZjA3Ny1kZDdhLTRlODAtOGFjMi02NjM0ODU3ODBmOGMucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.QqebgwhESsFn9NTetrmu7qI4l9juTGmfL59O0TjH4Zo" alt="">
-                            
-                           
+                            <img class="avatar-rounded"src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/b8919e7a-2bb5-40c7-af15-8218d853bd92/d4njygs-38bef077-dd7a-4e80-8ac2-663485780f8c.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2I4OTE5ZTdhLTJiYjUtNDBjNy1hZjE1LTgyMThkODUzYmQ5MlwvZDRuanlncy0zOGJlZjA3Ny1kZDdhLTRlODAtOGFjMi02NjM0ODU3ODBmOGMucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.QqebgwhESsFn9NTetrmu7qI4l9juTGmfL59O0TjH4Zo" alt="">
                         </a>
                         <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
                             <!-- item-->
@@ -165,7 +162,7 @@ use Illuminate\Support\Facades\Session;
 
                         <li class="submenu" id="submenu-movie">
                             <a href="{{Request::url().'#'}}" id="tables">
-                                <i class="fas fa-table"></i>
+                                <i class="fas fa-film"></i>
                                 <span> Movie </span>
                                 <span class="menu-arrow"></span>
                             </a>
@@ -181,7 +178,7 @@ use Illuminate\Support\Facades\Session;
                         
                         <li class="submenu" id="submenu-nation">
                             <a href="{{Request::url().'#'}}" id="tables">
-                                <i class="fas fa-table"></i>
+                            <i class="fas fa-location-arrow"></i>
                                 <span> Nation </span>
                                 <span class="menu-arrow"></span>
                             </a>
@@ -197,7 +194,7 @@ use Illuminate\Support\Facades\Session;
 
                         <li class="submenu" id="submenu-advertisement">
                             <a href="{{Request::url().'#'}}" id="tables">
-                                <i class="fas fa-table"></i>
+                            <i class="fab fa-adversal"></i>
                                 <span> Advertisement </span>
                                 <span class="menu-arrow"></span>
                             </a>
@@ -213,14 +210,14 @@ use Illuminate\Support\Facades\Session;
 
                         <li class="submenu" id="submenu-report">
                             <a href="{{URL::to('admin_1/list-report')}}">
-                                <i class="fas fa-user"></i>
+                            <i class="fas fa-bug"></i>
                                 <span> Report </span>
                             </a>
                         </li>
 
                         <li class="submenu" id="submenu-statistacal">
                             <a href="{{URL::to('admin_1/movie-detail')}}">
-                                <i class="fas fa-user"></i>
+                            <i class="fas fa-globe"></i>
                                 <span> Statistacal </span>
                             </a>
                         </li>
