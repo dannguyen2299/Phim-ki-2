@@ -25,7 +25,7 @@ class CategoryController extends Controller
         $data = array();
         $data['category_name'] = $request->category_name==''?$message="Your activity Unsuccessfully":$request->category_name;
         $data['status'] = $request->sl_status==''?$message="Your activity Unsuccessfully":$request->sl_status;
-        if ($message){
+        if (isset($message)){
             Session::put('message',$message);   
             return Redirect::to('admin_1/list-category');
         }
@@ -38,7 +38,7 @@ class CategoryController extends Controller
         $data = array();
         $data['category_name'] = $request->category_name==''?$message="Your activity Unsuccessfully":$request->category_name;
         $data['status'] = $request->sl_status==''?$message="Your activity Unsuccessfully":$request->sl_status;
-        if ($message){
+        if (isset($message)){
             Session::put('message',$message);   
             return Redirect::to('admin_1/add-category');
         }

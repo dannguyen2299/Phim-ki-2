@@ -55,7 +55,7 @@ class ReportController extends Controller
         $data['url_second'] = $request->url_second==''?$message="Your activity Unsuccessfully":$request->url_second;
         $data['status'] = $request->sl_status==''?$message="Your activity Unsuccessfully":$request->sl_status;
         DB::table('episode')->where('episode_id',$episode_id)->update($data);
-        if ($message){
+        if (isset($message)){
             Session::put('message',$message);   
             return Redirect::to('admin_1/list-report');
         }

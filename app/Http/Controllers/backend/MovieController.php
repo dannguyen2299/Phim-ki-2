@@ -84,7 +84,7 @@ class MovieController extends Controller
         $data['url_cmt_fb'] = $request->movie_cmt==''?$message="Your activity Unsuccessfully":$request->movie_cmt;
         $data['status'] = $request->sl_status==''?$message="Your activity Unsuccessfully":$request->sl_status;
         $data['nation_id'] = $request->movie_nation==''?$message="Your activity Unsuccessfully":$request->movie_nation;
-        if ($message){
+        if (isset($message)){
             Session::put('message',$message);   
             return Redirect::to('admin_1/list-movie');
         }
@@ -133,7 +133,7 @@ class MovieController extends Controller
         $data['url_cmt_fb'] = $request->movie_cmt==''?$message="Your activity Unsuccessfully":$request->movie_cmt;
         $data['status'] = $request->sl_status==''?$message="Your activity Unsuccessfully":$request->sl_status;
         $data['nation_id'] = $request->movie_nation==''?$message="Your activity Unsuccessfully":$request->movie_nation;
-        if ($message){
+        if (isset($message)){
             Session::put('message',$message);   
             return Redirect::to('admin_1/add-movie');
         }

@@ -41,7 +41,7 @@ class UserController extends Controller
             $data['role_id'] = $request->user_role==''?$message="Your activity Unsuccessfully":$request->user_role;
             $data['status'] = $request->user_status==''?$message="Your activity Unsuccessfully":$request->user_status;
             
-            if ($message){
+            if (isset($message)){
                 Session::put('message',$message);   
             }
             else {
@@ -84,7 +84,7 @@ class UserController extends Controller
         $data['role_id'] = $request->user_role==''?$message="Your activity Unsuccessfully":$request->user_role;
         $data['status'] = $request->user_status==''?$message="Your activity Unsuccessfully":$request->user_status;
 
-        if ($message){
+        if (isset($message)){
             Session::put('message',$message);   
             return Redirect::to('admin_1/user');
         }

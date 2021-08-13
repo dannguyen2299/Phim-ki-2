@@ -33,7 +33,7 @@ class EpisodeController extends Controller
         $data['view'] = 0; // ban đầu view = 0;
         $data['status'] = $request->sl_status==''?$message="Your activity Unsuccessfully":$request->sl_status;
         $data['movie_id'] = $request->movie_id;
-        if ($message){
+        if (isset($message)){
             Session::put('message',$message);   
             return Redirect::to('admin_1/list-episode/'.$request->movie_id);
         }
@@ -58,7 +58,7 @@ class EpisodeController extends Controller
         $data['url_first'] = $request->url_first==''?$message="Your activity Unsuccessfully":$request->url_first;
         $data['url_second'] = $request->url_second==''?$message="Your activity Unsuccessfully":$request->url_second;
         $data['status'] = $request->sl_status==''?$message="Your activity Unsuccessfully":$request->sl_status;
-        if ($message){
+        if (isset($message)){
             Session::put('message',$message);   
             return Redirect::to('admin_1/list-episode/'.$movie_id);
         }
