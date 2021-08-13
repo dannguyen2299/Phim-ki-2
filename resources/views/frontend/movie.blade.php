@@ -127,7 +127,7 @@
                
                 </div>
                 <div class="col-md-9 mt-4">
-                    <table id="">
+                    <table width="100%">
                         <tr>
                             <td style="width:100px">
                                 <h6 class="text-secondary">TÊN PHIM: </h6>
