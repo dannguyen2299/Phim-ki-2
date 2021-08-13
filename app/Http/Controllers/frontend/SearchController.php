@@ -4,6 +4,7 @@ namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
 use episode;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -61,8 +62,24 @@ class SearchController extends Controller
         return view('frontend.search',$data)->with('movies',$movies)->with('episode_nums',$episode_nums)->with('categories',$categories)->with('search_movie',$search_movie)->with("view_nums",$view_nums)->with('keywords',$keywords);
     }
 
-    function GetMovieByEpisodeNew(){
-        $data['search_movie']=DB::table('movie')->join('episode','movie.movie_id','=','episode.movie_id')->groupBy('movie.movie_id')->orderBy('max','desc')->select('movie.movie_id','movie.total_eps', 'movie.movie_name', 'movie.url_image',DB::raw("MAX(episode.episode_id) as max"))->paginate(12);
+    function GetChoice(){
+        $count = DB::table('movie')->where('status',1)->count();
+        // ngẫu nhiên
+        $id = 1;
+        do{
+
+            $id = rand(0,$count);
+
+            $movie = DB::select("select * from movie where movie.status = 1 and movie.movie_id=".$id);
+    
+            if($movie != null ){
+                break;
+            }
+        }while(true);
+
+        return redirect("/movie/movie-".$id.".html");
+
     }
+
 
 }

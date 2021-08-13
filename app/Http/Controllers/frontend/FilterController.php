@@ -33,8 +33,9 @@ class FilterController extends Controller
 
         // $data['movie_cat']=DB::table('category')->select('category_name')->join('category_detail','category_detail.category_id','=','category.category_id')->where('category_detail.movie_id',$movie_id)->distinct()->get();
         
-        $data['nation'] = DB::table('nation')->get();
-        $data['category_l'] = DB::table('category')->get();
+        $nav = new NavController();
+        $data['nation'] = $nav->getNation();
+        $data['category_l'] = $nav->getCategory();
 
         $episode_nums = array();
         $view_nums = array();
@@ -77,8 +78,9 @@ class FilterController extends Controller
 
         // $data['movie_cat']=DB::table('category')->select('category_name')->join('category_detail','category_detail.category_id','=','category.category_id')->where('category_detail.movie_id',$movie_id)->distinct()->get();
         
-        $data['nation'] = DB::table('nation')->get();
-        $data['category_l'] = DB::table('category')->get();
+        $nav = new NavController();
+        $data['nation'] = $nav->getNation();
+        $data['category_l'] = $nav->getCategory();
 
 
         //Select danh mục loại phim
@@ -136,8 +138,9 @@ class FilterController extends Controller
 
         // $data['movie_cat']=DB::table('category')->select('category_name')->join('category_detail','category_detail.category_id','=','category.category_id')->where('category_detail.movie_id',$movie_id)->distinct()->get();
         
-        $data['nation'] = DB::table('nation')->get();
-        $data['category_l'] = DB::table('category')->get();
+        $nav = new NavController();
+        $data['nation'] = $nav->getNation();
+        $data['category_l'] = $nav->getCategory();
 
 
         //Select danh mục loại phim
@@ -198,8 +201,9 @@ class FilterController extends Controller
 
         // $data['movie_cat']=DB::table('category')->select('category_name')->join('category_detail','category_detail.category_id','=','category.category_id')->where('category_detail.movie_id',$movie_id)->distinct()->get();
         
-        $data['nation'] = DB::table('nation')->get();
-        $data['category_l'] = DB::table('category')->get();
+        $nav = new NavController();
+        $data['nation'] = $nav->getNation();
+        $data['category_l'] = $nav->getCategory();
 
         //Select danh mục loại phim
         $data['category_parent']=DB::table('category')->where('parentID',1)->orWhere('parentID',2)->get();
@@ -259,8 +263,9 @@ class FilterController extends Controller
 
         // $data['movie_cat']=DB::table('category')->select('category_name')->join('category_detail','category_detail.category_id','=','category.category_id')->where('category_detail.movie_id',$movie_id)->distinct()->get();
         
-        $data['nation'] = DB::table('nation')->get();
-        $data['category_l'] = DB::table('category')->get();
+        $nav = new NavController();
+        $data['nation'] = $nav->getNation();
+        $data['category_l'] = $nav->getCategory();
 
         //Select danh mục loại phim
         $data['category_parent']=DB::table('category')->where('parentID',1)->orWhere('parentID',2)->get();
