@@ -116,7 +116,6 @@ class MovieController extends Controller
                  $a=0; // co trong bảng nhưng follow =0
             }
              $a;
-
         }
         return $a;
     }
@@ -146,7 +145,7 @@ class MovieController extends Controller
         return redirect()->back();
     }
     public function getEpisodeByFilm($movie_id){
-        return $data['movie_page3']=DB::table('episode')->join('movie','episode.movie_id','=','movie.movie_id')->where("episode.movie_id",$movie_id)->first();
+        return $data['movie_page3']=DB::table('episode')->join('movie','episode.movie_id','=','movie.movie_id')->where("episode.status",1)->where("episode.movie_id",$movie_id)->first();
     }
     public function getCategoryToFilm($movie_id){
         return $data['movie_cat'] = DB::table('category')->select('category_name')->join('category_detail', 'category_detail.category_id', '=', 'category.category_id')->where('category_detail.movie_id', $movie_id)->distinct()->get();
@@ -195,7 +194,12 @@ class MovieController extends Controller
     }
 
     private function get_movie_order_by($option){
-        return DB::select("SELECT movie.movie_id, movie.movie_name, movie.url_image, SUM(episode.week_view) as week_views, SUM(episode.month_view) as month_views, SUM(episode.year_view) as year_views, a.rating as rate from movie JOIN episode on movie.movie_id = episode.movie_id LEFT JOIN (SELECT movie_id, AVG(rate) as rating from movie_detail GROUP BY movie_id) as a on movie.movie_id = a.movie_id WHERE movie.status=1 and episode.status=1 GROUP BY movie.movie_id, movie.movie_name, movie.url_image ORDER BY $option DESC");
+        return DB::select("SELECT movie.movie_id, movie.movie_name, movie.url_image, 
+        SUM(episode.week_view) as week_views, SUM(episode.month_view) as month_views,
+        SUM(episode.year_view) as year_views, a.rating as rate from movie JOIN episode on movie.movie_id = episode.movie_id 
+        LEFT JOIN (SELECT movie_id, AVG(rate) as rating from movie_detail GROUP BY movie_id) 
+        as a on movie.movie_id = a.movie_id WHERE movie.status=1 and episode.status=1 
+        GROUP BY movie.movie_id, movie.movie_name, movie.url_image ORDER BY $option DESC");
     }
   
     private function get_saved_movie($user_id){
