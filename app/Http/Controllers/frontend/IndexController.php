@@ -66,7 +66,7 @@ class IndexController extends Controller
         return $data['movie_v']=DB::select('select * from movie where nation_id = '.$id .' and status = 1');
     }
     public function getFilmByEpisodeNew(){        
-        return $data['movie_up']=DB::select('SELECT  movie.movie_id,movie.total_eps, movie.movie_name, movie.url_image FROM movie INNER JOIN episode ON episode.movie_id = movie.movie_id GROUP BY(movie.movie_id) ORDER BY max(episode.episode_id) desc LIMIT 0,8');
+        return $data['movie_up']=DB::select('SELECT  movie.movie_id,movie.total_eps, movie.movie_name, movie.url_image FROM movie INNER JOIN episode ON episode.movie_id = movie.movie_id where movie.status=1 GROUP BY(movie.movie_id) ORDER BY max(episode.episode_id) desc LIMIT 0,8');
     }
     public function getFilmNominate(){
         return $data['movie']=DB::select('SELECT movie.movie_id,movie.total_eps, movie.movie_name, movie.url_image FROM movie LEFT JOIN movie_detail on  movie_detail.movie_id= movie.movie_id  Where movie.status = 1 GROUP BY movie.movie_id  ORDER BY AVG(movie_detail.rate) DESC LIMIT 8 ');

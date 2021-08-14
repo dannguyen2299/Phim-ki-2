@@ -187,7 +187,7 @@ class FilterController extends Controller
             $view_nums[$movie->movie_id] = $views;
         }
 
-        $data['category_by_id']=DB::table('movie')->join('episode','movie.movie_id','=','episode.movie_id')->groupBy('movie.movie_id')->orderBy('max','desc')->select('movie.movie_id','movie.total_eps', 'movie.movie_name', 'movie.url_image',DB::raw("MAX(episode.episode_id) as max"))->paginate(8);
+        $data['category_by_id']=DB::table('movie')->join('episode','movie.movie_id','=','episode.movie_id')->where('movie.status',1)->groupBy('movie.movie_id')->orderBy('max','desc')->select('movie.movie_id','movie.total_eps', 'movie.movie_name', 'movie.url_image',DB::raw("MAX(episode.episode_id) as max"))->paginate(8);
 
         // $data['category_by_id']=DB::table('movie')->orderBy('movie_id','desc')->paginate(8);
         // Truy vấn quảng cáo
