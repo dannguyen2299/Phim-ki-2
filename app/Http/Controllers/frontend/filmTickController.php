@@ -30,6 +30,9 @@ class filmTickController extends Controller
             $categories[$movie->movie_id] = $str_category;
         }
 
+        $rate_obj = new RateController();       
+        $rates = $rate_obj->getRateByMovie($movies);
+
         $episode_nums = array();
         $view_nums = array();
         foreach($movies as &$movie){
@@ -65,7 +68,7 @@ class filmTickController extends Controller
         $data['month_views']= $this->get_movie_order_by('month_views');
         $data['year_views']= $this->get_movie_order_by('year_views');    
 
-        return view('frontend.film_tick',$data)->with('movies',$movies)->with('episode_nums',$episode_nums)->with('view_nums',$view_nums)->with('categories',$categories);
+        return view('frontend.film_tick',$data)->with('movies',$movies)->with('episode_nums',$episode_nums)->with('view_nums',$view_nums)->with('categories',$categories)->with('rates',$rates);
     }
     
     private function get_movie_order_by($option){

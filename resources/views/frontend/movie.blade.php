@@ -231,7 +231,7 @@
                                             @if ($rates[$row->movie_id] != null)
                                                 {{ $rates[$row->movie_id] }}
                                             @else
-                                                10
+                                                CXĐ
                                                 @endif<i class="fa fa-star"></i>
                                         </p>
                                     </div>

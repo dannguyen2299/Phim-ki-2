@@ -90,7 +90,12 @@
                        
                       </div>
                       <div class="rate">
-                        <p>8.5 <i class="fa fa-star"></i></p>
+                        <p>@if ($rates[$row->movie_id] != null)
+                          {{ $rates[$row->movie_id] }}
+                          @else
+                          CXĐ
+                          @endif <i class="fa fa-star"></i>
+                      </p>
                       </div>
                       <div class="episode">
                         <h8

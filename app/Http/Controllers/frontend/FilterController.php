@@ -37,6 +37,9 @@ class FilterController extends Controller
         $data['nation'] = $nav->getNation();
         $data['category_l'] = $nav->getCategory();
 
+        $rate_obj = new RateController();       
+        $rates = $rate_obj->getRateByMovie($movies);
+
         $episode_nums = array();
         $view_nums = array();
         foreach($movies as &$movie){
@@ -68,7 +71,7 @@ class FilterController extends Controller
         // End
         // End
 
-        return view('frontend.filter',$data)->with('episode_nums',$episode_nums)->with("view_nums",$view_nums);
+        return view('frontend.filter',$data)->with('episode_nums',$episode_nums)->with("view_nums",$view_nums)->with('rates',$rates);
     }
 
     function GetNation($nation_id){
@@ -81,7 +84,8 @@ class FilterController extends Controller
         $nav = new NavController();
         $data['nation'] = $nav->getNation();
         $data['category_l'] = $nav->getCategory();
-
+        $rate_obj = new RateController();       
+        $rates = $rate_obj->getRateByMovie($movies);
 
         //Select danh mục loại phim
         $data['category_parent']=DB::table('category')->where('parentID',1)->orWhere('parentID',2)->get();
@@ -129,7 +133,7 @@ class FilterController extends Controller
      $data['ads_banner2']=DB::table('advertisement')->where('ad_location',2)->where('status',1)->orderBy('ad_id','desc')->get();
      // End
 
-        return view('frontend.filter',$data)->with('episode_nums',$episode_nums)->with("view_nums",$view_nums);
+        return view('frontend.filter',$data)->with('episode_nums',$episode_nums)->with("view_nums",$view_nums)->with('rates',$rates);
     }
     function GetNewMovie(){
         
@@ -161,7 +165,9 @@ class FilterController extends Controller
         $user_id=Session::get('user_id');
         if ($user_id){$data['saved_movie'] = $this->get_saved_movie($user_id);}
         
-        
+        $rate_obj = new RateController();       
+        $rates = $rate_obj->getRateByMovie($movies);
+
         $episode_nums = array();
         $view_nums = array();
         foreach($movies as &$movie){
@@ -190,7 +196,7 @@ class FilterController extends Controller
         $data['ads_banner2']=DB::table('advertisement')->where('ad_location',2)->where('status',1)->orderBy('ad_id','desc')->get();
         // End
 
-        return view('frontend.filter',$data)->with('episode_nums',$episode_nums)->with("view_nums",$view_nums);
+        return view('frontend.filter',$data)->with('episode_nums',$episode_nums)->with("view_nums",$view_nums)->with('rates',$rates);
     }
 
 
@@ -243,7 +249,8 @@ class FilterController extends Controller
             $view_nums[$movie->movie_id] = $views;
         }
 
-        
+        $rate_obj = new RateController();       
+        $rates = $rate_obj->getRateByMovie($movies);
 
         $data['category_by_id']=DB::table('movie')->where('nation_id',1)->where('status',1)->orderBy('movie_id','desc')->paginate(8);
        
@@ -252,7 +259,7 @@ class FilterController extends Controller
 
        $data['ads_banner2']=DB::table('advertisement')->where('ad_location',2)->where('status',1)->orderBy('ad_id','desc')->get();
        // End
-        return view('frontend.filter',$data)->with('episode_nums',$episode_nums)->with("view_nums",$view_nums);
+        return view('frontend.filter',$data)->with('episode_nums',$episode_nums)->with("view_nums",$view_nums)->with('rates',$rates);
     }
 
     function GetFilterMovie(Request $request){
@@ -266,6 +273,9 @@ class FilterController extends Controller
         $nav = new NavController();
         $data['nation'] = $nav->getNation();
         $data['category_l'] = $nav->getCategory();
+
+        $rate_obj = new RateController();       
+        $rates = $rate_obj->getRateByMovie($movies);
 
         //Select danh mục loại phim
         $data['category_parent']=DB::table('category')->where('parentID',1)->orWhere('parentID',2)->get();
@@ -399,7 +409,7 @@ class FilterController extends Controller
        // return response()->json($data);
 
     
-        return view('frontend.filtermovie',$data)->with('episode_nums',$episode_nums)->with("view_nums",$view_nums)->with("item_page",$item_page)->with("totalPages",$totalPages)->with("number_page",$number_page);
+        return view('frontend.filtermovie',$data)->with('episode_nums',$episode_nums)->with("view_nums",$view_nums)->with("item_page",$item_page)->with("totalPages",$totalPages)->with("number_page",$number_page)->with('rates',$rates);
         
     }
   
